@@ -6,10 +6,20 @@ date_default_timezone_set("Asia/Manila");
 class Database
 {
     //local
-    private $host = "localhost";
-    private $db_name = "ssdc_sysdb";
-    private $username = "root";
-    private $password = '';
+    // private $host = "localhost";
+    // private $db_name = "ssdc_sysdb";
+    // private $username = "root";
+    // private $password = '';
+
+
+    //prod
+
+    private $host = "216.218.206.42";
+    private $db_name = "smilesav_system";
+    private $username = "smilesav_user";
+    private $password = 'H[)dnAZC-6AE';
+
+
 
     public $conn;
 
