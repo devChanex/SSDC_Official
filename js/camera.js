@@ -5,6 +5,8 @@ const capturedInput = document.getElementById('capturedPhoto');
 const canvas = document.getElementById('canvas');
 let stream;
 
+let currentFacingMode = "user"; // "user" for front, "environment" for back
+
 function openCameraModal() {
     modal.style.display = 'flex';
     navigator.mediaDevices.getUserMedia({
@@ -45,9 +47,28 @@ function capturePhoto() {
 }
 
 function switchCamera() {
-    usingFrontCamera = !usingFrontCamera;
+    // Stop current stream
     if (stream) {
         stream.getTracks().forEach(track => track.stop());
     }
-    startCamera();
+
+    // Toggle camera mode
+    currentFacingMode = currentFacingMode === "user" ? "environment" : "user";
+
+    // Restart with new camera
+    startCamera(currentFacingMode);
+}
+
+function startCamera(facingMode) {
+    navigator.mediaDevices.getUserMedia({
+        video: { facingMode: facingMode },
+        audio: false
+    }).then(s => {
+        stream = s;
+        video.srcObject = stream;
+        video.play();
+    }).catch(err => {
+        alert('Camera access denied or not supported on this browser.');
+        console.error(err);
+    });
 }
