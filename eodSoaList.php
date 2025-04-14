@@ -9,11 +9,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>KBFDentalCare</title>
+    <title>Smile Save Dental Care</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
@@ -43,16 +45,18 @@
                     <!-- Page Heading -->
                     <div class="card shadow mb-12">
                         <div class="card-header py-3">
-                        <button id="divPrinter" class="btn btn-success btn-sm btn-circle float-right" onclick="printDiv('bodyResult')" title="Print E-SOA"><i class="fas fa-print"></i></button>
-<!--                            <h6 class="m-0 font-weight-bold text-primary">SOA List -<?php echo $_GET["name"]; ?></h6> -->
-    <!--                        <input type="hidden" id="clientid" value="<?php echo $_GET["clientid"]; ?>"> -->
-    Date:    
-<input type="hidden" id="dateid" value= <?php
-$d="2022-09-28";  
-?>>
-<?php
-echo $d;
-?>
+                            <button id="divPrinter" class="btn btn-success btn-sm btn-circle float-right"
+                                onclick="printDiv('bodyResult')" title="Print E-SOA"><i
+                                    class="fas fa-print"></i></button>
+                            <!--                            <h6 class="m-0 font-weight-bold text-primary">SOA List -<?php echo $_GET["name"]; ?></h6> -->
+                            <!--                        <input type="hidden" id="clientid" value="<?php echo $_GET["clientid"]; ?>"> -->
+                            Date:
+                            <input type="hidden" id="dateid" value=<?php
+                            $d = "2022-09-28";
+                            ?>>
+                            <?php
+                            echo $d;
+                            ?>
 
 
                         </div>
@@ -60,7 +64,8 @@ echo $d;
                             <!-- USE THIS SPACE FOR YOUR ADDITIONAL CODE SNIPPET -->
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+                                    <table class="table table-bordered table-hover" id="dataTable" width="100%"
+                                        cellspacing="0">
                                         <thead>
                                             <tr>
                                                 <th>Date</th>

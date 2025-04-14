@@ -9,11 +9,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>KBFDentalCare</title>
+    <title>Smile Save Dental Care</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
@@ -42,8 +44,11 @@
                     <div class="card shadow mb-12">
                         <div class="card-header py-3">
                             Treatment History
-                            <button id="divPrinter" class="btn btn-success btn-sm float-right" onclick="location.reload()" title="Print E-SOA">Add New</button>
-                            <button id="divPrinter" class="btn btn-success btn-sm btn-circle float-right" onclick="printDiv('bodyResult')" title="Print E-SOA" style="display:none;"><i class="fas fa-print"></i></button>
+                            <button id="divPrinter" class="btn btn-success btn-sm float-right"
+                                onclick="location.reload()" title="Print E-SOA">Add New</button>
+                            <button id="divPrinter" class="btn btn-success btn-sm btn-circle float-right"
+                                onclick="printDiv('bodyResult')" title="Print E-SOA" style="display:none;"><i
+                                    class="fas fa-print"></i></button>
                         </div>
                         <input type="hidden" name="lastName" id="clientid" value="<?php echo $_GET['clientid']; ?>">
 
@@ -57,19 +62,22 @@
                                 <div class="col-lg-12">0927 B.F Gomez St. Purok 3 I Ibaba Sta.Rosa Laguna</div>
                                 <div class="col-lg-12">Contact us: 09056325517 || 09471027111</div>
                                 <hr>
-                                <div class="col-lg-12" style="text-align:center;"><strong>Electronic Statement of Account - ESOA</strong></div>
+                                <div class="col-lg-12" style="text-align:center;"><strong>Electronic Statement of
+                                        Account - ESOA</strong></div>
                             </div>
                             <hr>
                             <!-- USE THIS SPACE FOR YOUR ADDITIONAL CODE SNIPPET -->
                             <div class="row">
                                 <div class="col-lg-6">
                                     <label for="lastName">Dentist</label>
-                                    <input type="Text" name="lastName" id="dentist" placeholder="Assigned Dentist" class="form-control" value="">
+                                    <input type="Text" name="lastName" id="dentist" placeholder="Assigned Dentist"
+                                        class="form-control" value="">
 
                                 </div>
                                 <div class="col-lg-6">
                                     <label for="lastName">Date</label>
-                                    <input type="date" name="lastName" id="date" placeholder="Input Time" class="form-control" value="">
+                                    <input type="date" name="lastName" id="date" placeholder="Input Time"
+                                        class="form-control" value="">
 
                                 </div>
 
@@ -77,17 +85,22 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <label for="Client Name">Client Name</label>
-                                    <input type="Text" name="lastName" id="lastName" placeholder="LAST NAME" class="form-control" value="<?php echo $_GET['clientname']; ?>" readonly>
+                                    <input type="Text" name="lastName" id="lastName" placeholder="LAST NAME"
+                                        class="form-control" value="<?php echo $_GET['clientname']; ?>" readonly>
                                     <label for="Birthday">Birthday</label>
-                                    <input type="Text" name="lastName" id="lastName" placeholder="BIRTHDAY" class="form-control" value="<?php echo $_GET['birthDate']; ?>" readonly>
+                                    <input type="Text" name="lastName" id="lastName" placeholder="BIRTHDAY"
+                                        class="form-control" value="<?php echo $_GET['birthDate']; ?>" readonly>
                                     <label for="Age">Age</label>
-                                    <input type="Text" name="age" id="age" placeholder="Age" class="form-control" value="<?php echo $_GET['age']; ?>" readonly>
+                                    <input type="Text" name="age" id="age" placeholder="Age" class="form-control"
+                                        value="<?php echo $_GET['age']; ?>" readonly>
                                 </div>
                                 <div class="col-lg-6">
                                     <label for="lastName">Time</label>
-                                    <input type="Text" name="lastName" id="time" placeholder="Input Time" class="form-control" value="">
+                                    <input type="Text" name="lastName" id="time" placeholder="Input Time"
+                                        class="form-control" value="">
                                     <label for="Address">Address</label>
-                                    <input type="Text" name="address" id="address" placeholder="Address" class="form-control" value="<?php echo $_GET['address']; ?>" readonly>
+                                    <input type="Text" name="address" id="address" placeholder="Address"
+                                        class="form-control" value="<?php echo $_GET['address']; ?>" readonly>
 
                                 </div>
 
@@ -101,11 +114,14 @@
 
                                     </select>
                                     <label for="treatment">Remarks</label>
-                                    <input type="Text" name="remarks" id="remarks" placeholder="Input Remarks" class="form-control" value="">
+                                    <input type="Text" name="remarks" id="remarks" placeholder="Input Remarks"
+                                        class="form-control" value="">
                                     <label for="treatment">Details</label>
-                                    <textarea id="details" class="form-control" name="details" placeholder="Details"></textarea>
+                                    <textarea id="details" class="form-control" name="details"
+                                        placeholder="Details"></textarea>
                                     <label for="lastName">Treatment Fee</label>
-                                    <input type="number" name="price" id="price" placeholder="Input fee" class="form-control" value="">
+                                    <input type="number" name="price" id="price" placeholder="Input fee"
+                                        class="form-control" value="">
                                     <br>
                                     <button class="btn btn-primary form-control" onclick="add()">Add</button>
                                 </div>

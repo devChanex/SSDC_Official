@@ -9,11 +9,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>KBFDentalCare</title>
+    <title>Smile Save Dental Care</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
@@ -51,14 +53,17 @@
 
                             <hr>
                             <label for="treatment">Treatment</label>
-                            <input type="Text" name="treatment" id="treatment" placeholder="Treatment" class="form-control" value="">
+                            <input type="Text" name="treatment" id="treatment" placeholder="Treatment"
+                                class="form-control" value="">
                             <label for="description">Treatment</label>
-                            <textarea id="description" class="form-control" name="description" placeholder="Description"></textarea>
+                            <textarea id="description" class="form-control" name="description"
+                                placeholder="Description"></textarea>
 
                             <div id="formResult"></div>
                             <br>
                             <button class="btn btn-success" onclick="addTreatment()">Submit</button>
-                            <button class="btn btn-danger" onclick="window.location.href='treatmentList.php'">Cancel</button>
+                            <button class="btn btn-danger"
+                                onclick="window.location.href='treatmentList.php'">Cancel</button>
 
 
                             <!-- END OF YOUR ADDITIONAL CODE SNIPPET -->
