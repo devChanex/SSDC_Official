@@ -68,6 +68,8 @@
                                                 <th>Guardian Name</th>
                                                 <th>Guardian Occupation</th>
                                                 <th>Referred by</th>
+                                                <th>HMO</th>
+                                                <th>Account Number</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -87,6 +89,8 @@
                                                 <th>Guardian Name</th>
                                                 <th>Guardian Occupation</th>
                                                 <th>Referred by</th>
+                                                <th>HMO</th>
+                                                <th>Account Number</th>
                                                 <th>Action</th>
                                             </tr>
                                         </tfoot>

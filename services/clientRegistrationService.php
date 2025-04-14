@@ -24,12 +24,16 @@ $guardianOccupation = urldecode($_POST['guardianOccupation']);
 $referredBy = urldecode($_POST['referredBy']);
 $religion = urldecode($_POST['religion']);
 $civilStatus = urldecode($_POST['civilStatus']);
+$hmo = urldecode($_POST['hmo']);
+$cardNumber = urldecode($_POST['cardNumber']);
+
+$company = urldecode($_POST['company']);
 
 
 //echo'<script>alert("tesT");</script>';
 //INHERITANCE -- CREATING NEW INSTANCE OF A CLASS (INSTANTIATE)
 $service = new ServiceClass();
-$result = $service->addPatientProfile($lastName, $firstName, $middleName, $nickName, $age, $gender, $birthday, $homeAddress, $occupation, $contactNumber, $guardianName, $guardianOccupation, $referredBy, $religion, $civilStatus, $imageData);
+$result = $service->addPatientProfile($lastName, $firstName, $middleName, $nickName, $age, $gender, $birthday, $homeAddress, $occupation, $contactNumber, $guardianName, $guardianOccupation, $referredBy, $religion, $civilStatus, $imageData, $hmo, $cardNumber, $company);
 echo $result;
 //USE THIS AS YOUR BASIS
 class ServiceClass
@@ -48,12 +52,12 @@ class ServiceClass
 		$stmt = $this->conn->prepare($sql);
 		return $stmt;
 	}
-	public function addPatientProfile($lastName, $firstName, $middleName, $nickName, $age, $gender, $birthday, $homeAddress, $occupation, $contactNumber, $guardianName, $guardianOccupation, $referredBy, $religion, $civilStatus, $imageData)
+	public function addPatientProfile($lastName, $firstName, $middleName, $nickName, $age, $gender, $birthday, $homeAddress, $occupation, $contactNumber, $guardianName, $guardianOccupation, $referredBy, $religion, $civilStatus, $imageData, $hmo, $cardNumber, $company)
 	{
 		//:a,:b parameter
 		try {
 
-			$query = "Insert into clientProfile (lname,fname,mdname,nickname,age,sex,occupation,birthDate,mobileNumber,homeAddress,guardianName,gOccupation,refferedBy,religion,civilstatus,photo) values (:a,:b,:c,:d,:e,:f,:g,:h,:i,:j,:k,:l,:m,:n,:o,:p)";
+			$query = "Insert into clientProfile (lname,fname,mdname,nickname,age,sex,occupation,birthDate,mobileNumber,homeAddress,guardianName,gOccupation,refferedBy,religion,civilstatus,photo,hmo,cardnumber,company) values (:a,:b,:c,:d,:e,:f,:g,:h,:i,:j,:k,:l,:m,:n,:o,:p,:q,:r,:s)";
 			//$query = "Insert into clientProfile (lname,fname,mdname,nickname,age,sex,occupation,mobileNumber,homeAddress,guardianName,gOccupation,refferedBy) values (:a,:b,:c,:d,:e,:f,:g,:i,:j,:k,:l,:m)";
 			$stmt = $this->conn->prepare($query);
 			$stmt->bindParam(':a', $lastName);
@@ -72,6 +76,12 @@ class ServiceClass
 			$stmt->bindParam(':n', $religion);
 			$stmt->bindParam(':o', $civilStatus);
 			$stmt->bindParam(':p', $imageData, PDO::PARAM_LOB);
+
+			$stmt->bindParam(':q', $hmo);
+
+			$stmt->bindParam(':r', $cardNumber);
+
+			$stmt->bindParam(':s', $company);
 			$stmt->execute();
 			return "success";
 		} catch (Exception $e) {

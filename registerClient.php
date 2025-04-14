@@ -56,7 +56,7 @@
                                             <canvas id="canvas" width="400" height="400" style="display:none;"></canvas>
                                             <img id="photoPreview" src="img/profilepic.png" onclick="openCameraModal()"
                                                 class="img-fluid rounded mb-2" style="cursor:pointer;" />
-                                            <input type="text" name="capturedPhoto" id="capturedPhoto">
+                                            <input type="hidden" name="capturedPhoto" id="capturedPhoto">
                                             <br>
                                             Click to capture photo
 
@@ -150,7 +150,41 @@
                                     </div>
                                 </div>
 
+
                                 <hr>
+                                <h5 class="mb-3">Health Maintenance Organization</h5>
+                                <div class="row">
+
+                                    <!-- Demographics -->
+                                    <div class="col-lg-4 mb-4">
+                                        <label for="HMO">HMO</label>
+                                        <select id="hmo" name="hmo" class="form-control mb-2">
+                                            <option value="">-- Select HMO --</option>
+                                            <option value="Flexicare">Flexicare</option>
+                                            <option value="Intellicare">Intellicare</option>
+                                            <option value="Avega">Avega</option>
+                                            <option value="Medicard">Medicard</option>
+                                            <option value="Health Partners Dental Access, Inc.">Health Partners Dental
+                                                Access, Inc.</option>
+                                            <option value="Dental Network Company">Dental Network Company</option>
+                                            <option value="Cocolife">Cocolife</option>
+                                        </select>
+
+                                    </div>
+                                    <!-- Demographics -->
+                                    <div class="col-lg-4 mb-4">
+                                        <label for="cardNumber">Account No.</label>
+                                        <input type="text" name="cardNumber" id="cardNumber"
+                                            placeholder="Health Card Number" class="form-control mb-2">
+
+                                    </div>
+                                    <div class="col-lg-4 mb-4">
+                                        <label for="cardNumber">Company</label>
+                                        <input type="text" name="company" id="company" placeholder="Company Name"
+                                            class="form-control mb-2">
+
+                                    </div>
+                                </div>
 
                                 <div id="formResult"></div>
                                 <footer class="sticky-footer">
@@ -163,9 +197,8 @@
                                                 <span class="text">Submit</span>
 
                                             </a>
-                                            <a href="javascript:void(0)" onclick="submit(0)"
-                                                class="btn btn-danger btn-icon-split" data-toggle="modal"
-                                                data-target="#SubmitModal">
+                                            <a href="javascript:void(0)" class="btn btn-danger btn-icon-split"
+                                                onclick="location.reload();">
                                                 <span class="icon text-white-50"><i
                                                         class="fas fa-fw fa-times"></i></span>
                                                 <span class="text">Cancel</span>

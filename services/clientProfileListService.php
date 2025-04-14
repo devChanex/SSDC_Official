@@ -47,6 +47,8 @@ class ServiceClass
                 <td>' . $row["guardianName"] . '</td>
                 <td>' . $row["gOccupation"] . '</td>
                 <td>' . $row["refferedBy"] . '</td>
+                <td>' . $row["hmo"] . '</td>
+                <td>' . $row["cardnumber"] . '</td>
                
                 <td>';
 

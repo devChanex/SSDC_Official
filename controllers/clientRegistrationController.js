@@ -11,6 +11,11 @@ function addPatientPersonalInfo() {
 
     var cStatus = document.getElementById("civilStatus");
     var civilStatus = cStatus.value;
+    var hmoOption = document.getElementById("hmo");
+    var hmo = hmoOption.value;
+
+    var cardNumber = document.getElementById("cardNumber").value;
+    var company = document.getElementById("company").value;
 
     var religion = document.getElementById("religion").value;
     const base64Image = document.getElementById('capturedPhoto').value;
@@ -69,7 +74,7 @@ function addPatientPersonalInfo() {
 
     }
     if (msg == '') {
-        submitform(lastName, firstName, middleName, nickName, gender, age, birthday, occupation, homeAddress, contactNumber, guardianName, guardianOccupation, referredBy, civilStatus, religion, base64Image);
+        submitform(lastName, firstName, middleName, nickName, gender, age, birthday, occupation, homeAddress, contactNumber, guardianName, guardianOccupation, referredBy, civilStatus, religion, base64Image, hmo, cardNumber, company);
     } else {
         showToast("errorToast", msg);
     }
@@ -114,7 +119,7 @@ function generateUUID() {
         return v.toString(16);
     });
 }
-function submitform(lastName, firstName, middleName, nickName, gender, age, birthday, occupation, homeAddress, contactNumber, guardianName, guardianOccupation, referredBy, civilStatus, religion, imageBlob) {
+function submitform(lastName, firstName, middleName, nickName, gender, age, birthday, occupation, homeAddress, contactNumber, guardianName, guardianOccupation, referredBy, civilStatus, religion, imageBlob, hmo, cardNumber, company) {
 
     var imgname = generateUUID() + ".jpg";
     var fd = new FormData();
@@ -135,6 +140,10 @@ function submitform(lastName, firstName, middleName, nickName, gender, age, birt
     fd.append('civilStatus', civilStatus);
     fd.append('religion', religion);
     fd.append('profilePhoto', imageBlob);
+    fd.append('company', company);
+    fd.append('hmo', hmo);
+
+    fd.append('cardNumber', cardNumber);
     $.ajax({
         url: "services/clientRegistrationService.php",
         data: fd,
