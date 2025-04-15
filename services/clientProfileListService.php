@@ -25,7 +25,7 @@ class ServiceClass
 
 
 
-        $query = "select * from clientProfile";
+        $query = "select * from clientprofile";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         if ($stmt->rowCount() > 0) {
