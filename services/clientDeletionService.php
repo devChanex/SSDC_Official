@@ -7,7 +7,7 @@ echo $result;
 
 class ServiceClass
 {
-	
+
 	private $conn;
 	public function __construct()
 	{
@@ -22,21 +22,22 @@ class ServiceClass
 		return $stmt;
 	}
 	//DO NOT INCLUDE THIS CODE
-    public function deleteClientProfile($clientId){
+	public function deleteClientProfile($clientId)
+	{
 
-        try{
-        $query = "delete from clientProfile where clientid =:a";
-		$stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':a', $clientId);
-		$stmt->execute();
-        return 'success';
-        }catch(Exception $e){
-            return 'error';
-        }
+		try {
+			$query = "delete fromclientprofilewhere clientid =:a";
+			$stmt = $this->conn->prepare($query);
+			$stmt->bindParam(':a', $clientId);
+			$stmt->execute();
+			return 'success';
+		} catch (Exception $e) {
+			return 'error';
+		}
 
-    }
+	}
 
-	
+
 
 
 }

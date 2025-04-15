@@ -9,12 +9,12 @@ $approveDate = urldecode($_POST['date']);
 //echo'<script>alert("tesT");</script>';
 //INHERITANCE -- CREATING NEW INSTANCE OF A CLASS (INSTANTIATE)
 $service = new ServiceClass();
-$result = $service->bookappointmentinfo($clientid,$approveDate);
+$result = $service->bookappointmentinfo($clientid, $approveDate);
 echo $result;
 //USE THIS AS YOUR BASIS
 class ServiceClass
 {
-	
+
 	private $conn;
 	public function __construct()
 	{
@@ -28,22 +28,22 @@ class ServiceClass
 		$stmt = $this->conn->prepare($sql);
 		return $stmt;
 	}
-	public function bookappointmentinfo($clientid,$approveDate)
+	public function bookappointmentinfo($clientid, $approveDate)
 	{
 		//:a,:b parameter
-		try{
+		try {
 
-		$query = "update bookappointmentinfo set dateassigned=:a, status='Booked' where clientid=:b";
-		//$query = "Insert into clientProfile (lname,fname,mdname,nickname,age,sex,occupation,mobileNumber,homeAddress,guardianName,gOccupation,refferedBy) values (:a,:b,:c,:d,:e,:f,:g,:i,:j,:k,:l,:m)";
-		$stmt = $this->conn->prepare($query);
-		$stmt->bindParam(':a', $approveDate);
-	
-        $stmt->bindParam(':b', $clientid);
-        
-		$stmt->execute();
-		return "success";
-		}catch(Exception $e){
-		return "Error:".$e->getMessage();
+			$query = "update bookappointmentinfo set dateassigned=:a, status='Booked' where clientid=:b";
+			//$query = "Insert intoclientprofile(lname,fname,mdname,nickname,age,sex,occupation,mobileNumber,homeAddress,guardianName,gOccupation,refferedBy) values (:a,:b,:c,:d,:e,:f,:g,:i,:j,:k,:l,:m)";
+			$stmt = $this->conn->prepare($query);
+			$stmt->bindParam(':a', $approveDate);
+
+			$stmt->bindParam(':b', $clientid);
+
+			$stmt->execute();
+			return "success";
+		} catch (Exception $e) {
+			return "Error:" . $e->getMessage();
 		}
 
 

@@ -59,7 +59,7 @@ class ServiceClass
 		try {
 
 			$query = "Insert into medhistory (clientid,q1,q2,q3,q4,q5,q6,q7,q8,q9,q10,q11,q12,q13,q14,q15,q16,q17,q18,q19,q20,q21,q22,q23,q24,q25,q26,q27) values(:clientid,:q1,:q2,:q3,:q4,:q5,:q6,:q7,:q8,:q9,:q10,:q11,:q12,:q13,:q14,:q15,:q16,:q17,:q18,:q19,:q20,:q21,:q22,:q23,:q24,:q25,:q26,:q27)";
-			//$query = "Insert into clientProfile (q1,q2,q3,q4,q5,q6,q7,q8,q9,q10,q11,q12,q13,q14,q15,q16,q17,q18,q19,q20,q21,q22) values (:q1,:q2,:q3,:q4,:q5,:q6,:q7,:q8,:q9,:q10,:q11,:q12,:q13,:q14,:q15,:q16,:q17,:q18,:q19,:q20,:q21,:q22)";
+			//$query = "Insert intoclientprofile(q1,q2,q3,q4,q5,q6,q7,q8,q9,q10,q11,q12,q13,q14,q15,q16,q17,q18,q19,q20,q21,q22) values (:q1,:q2,:q3,:q4,:q5,:q6,:q7,:q8,:q9,:q10,:q11,:q12,:q13,:q14,:q15,:q16,:q17,:q18,:q19,:q20,:q21,:q22)";
 			$stmt = $this->conn->prepare($query);
 			$stmt->bindParam(':clientid', $clientId);
 			$stmt->bindParam(':q1', $q1);

@@ -26,7 +26,7 @@ class ServiceClass
 
 
 
-        $query = "select photo from clientprofile where clientid=:a";
+        $query = "select photo fromclientprofilewhere clientid=:a";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':a', $clientid);
         $stmt->execute();

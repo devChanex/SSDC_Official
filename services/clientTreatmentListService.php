@@ -25,7 +25,7 @@ class ServiceClass
 
 
 
-        $query = "select a.*,IfNull((select b.date from treatmentsoa b where b.clientid=a.clientid order by date desc limit 1),'-') as 'latest'  from clientprofile a";
+        $query = "select a.*,IfNull((select b.date from treatmentsoa b where b.clientid=a.clientid order by date desc limit 1),'-') as 'latest'  fromclientprofilea";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         if ($stmt->rowCount() > 0) {

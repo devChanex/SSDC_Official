@@ -29,7 +29,7 @@ class ServiceClass
 
 
 
-            $query = "select a.*,(select concat(lname,', ',fname,' ',mdname) from clientProfile where clientid=a.clientid) as clientname from treatmentsoa a where a.soaid=:a";
+            $query = "select a.*,(select concat(lname,', ',fname,' ',mdname) fromclientprofilewhere clientid=a.clientid) as clientname from treatmentsoa a where a.soaid=:a";
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':a', $soaid);
             $stmt->execute();
