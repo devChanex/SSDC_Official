@@ -19,6 +19,7 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
 
 </head>
 
@@ -43,78 +44,182 @@
                     <!-- Page Heading -->
                     <div class="card shadow mb-12">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">CLIENT PROFILE UPDATE</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">CLIENT INFORMATION - UPDATE</h6>
                         </div>
-                        <div class="card-body" id="bodyResult" style="padding-left:20%;padding-right:20%;">
-                            <!-- USE THIS SPACE FOR YOUR ADDITIONAL CODE SNIPPET -->
-                            <label for="Name">PERSONAL INFORMATION</label>
+                        <div class="card-body" id="bodyResult">
+                            <h5 class="mb-3">PERSONAL INFORMATION</h5>
+                            <hr>
+                            <input type="hidden" name="clientid" id="clientid"
+                                value="<?php echo $_GET['clientid'] ?? ''; ?>">
 
-                            <input type="hidden" name="lastName" id="clientid" value="<?php echo $_GET['clientid']; ?>">
+                            <div class="row">
+                                <!-- Profile Photo & Capture -->
+
+
+                                <div class="col-lg-4 mb-4">
+                                    <div class="text-center">
+                                        <h6>Profile Photo</h6>
+                                        <canvas id="canvas" width="400" height="400" style="display:none;"></canvas>
+                                        <img id="photoPreview" src="img/profilepic.png" onclick="openCameraModal()"
+                                            class="img-fluid rounded mb-2" style="cursor:pointer;" />
+                                        <input type="hidden" name="capturedPhoto" id="capturedPhoto">
+                                        <br>
+                                        Click to capture photo
+                                    </div>
+                                </div>
+
+                                <!-- Basic Information -->
+                                <div class="col-lg-4 mb-4">
+                                    <label for="lastName">Last Name</label>
+                                    <input type="text" name="lastName" id="lastName" placeholder="Last Name"
+                                        class="form-control mb-2" value="<?php echo $_GET['lname'] ?? ''; ?>">
+
+                                    <label for="firstName">First Name</label>
+                                    <input type="text" name="firstName" id="firstName" placeholder="First Name"
+                                        class="form-control mb-2" value="<?php echo $_GET['fname'] ?? ''; ?>">
+
+                                    <label for="middleName">Middle Name</label>
+                                    <input type="text" name="middleName" id="middleName" placeholder="Middle Name"
+                                        class="form-control mb-2" value="<?php echo $_GET['mname'] ?? ''; ?>">
+
+                                    <label for="nickName">Nickname</label>
+                                    <input type="text" name="nickName" id="nickName" placeholder="Nickname"
+                                        class="form-control mb-2" value="<?php echo $_GET['nick'] ?? ''; ?>">
+                                </div>
+
+                                <!-- Demographics -->
+                                <div class="col-lg-4 mb-4">
+                                    <label for="gender">Gender</label>
+                                    <select id="gender" name="gender" class="form-control mb-2">
+                                        <option value="">-- Select Gender --</option>
+                                        <option value="MALE" <?php echo ($_GET['sex'] ?? '') == 'MALE' ? 'selected' : ''; ?>>
+                                            Male</option>
+                                        <option value="FEMALE" <?php echo ($_GET['sex'] ?? '') == 'FEMALE' ? 'selected' : ''; ?>>Female</option>
+                                    </select>
+
+                                    <label for="civilStatus">Civil Status</label>
+                                    <select name="civilStatus" id="civilStatus" class="form-control mb-2">
+                                        <option value="">-- Select Civil Status --</option>
+                                        <option value="Single" <?php echo ($_GET['civilStatus'] ?? '') == 'Single' ? 'selected' : ''; ?>>Single</option>
+                                        <option value="Married" <?php echo ($_GET['civilStatus'] ?? '') == 'Married' ? 'selected' : ''; ?>>Married</option>
+                                        <option value="Widowed" <?php echo ($_GET['civilStatus'] ?? '') == 'Widowed' ? 'selected' : ''; ?>>Widowed</option>
+                                        <option value="Separated" <?php echo ($_GET['civilStatus'] ?? '') == 'Separated' ? 'selected' : ''; ?>>Separated</option>
+                                        <option value="Divorced" <?php echo ($_GET['civilStatus'] ?? '') == 'Divorced' ? 'selected' : ''; ?>>Divorced</option>
+                                    </select>
+
+                                    <label for="religion">Religion</label>
+                                    <input type="text" name="religion" id="religion" placeholder="Religion"
+                                        class="form-control mb-2" value="<?php echo $_GET['religion'] ?? ''; ?>">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <!-- Birth Info -->
+                                <div class="col-lg-4 mb-4">
+                                    <label for="birthday">Birthday</label>
+                                    <input type="date" name="birthday" id="birthday" class="form-control mb-2"
+                                        onchange="computeAge()" value="<?php echo $_GET['birthDate'] ?? ''; ?>">
+
+                                    <label for="age">Age</label>
+                                    <input type="number" name="age" id="age" placeholder="Age" class="form-control mb-2"
+                                        readonly value="<?php echo $_GET['age'] ?? ''; ?>">
+
+                                    <label for="occupation">Occupation</label>
+                                    <input type="text" name="occupation" id="occupation" placeholder="Occupation"
+                                        class="form-control mb-2" value="<?php echo $_GET['occupation'] ?? ''; ?>">
+                                </div>
+
+                                <!-- Contact Info -->
+                                <div class="col-lg-4 mb-4">
+                                    <label for="homeAddress">Home Address</label>
+                                    <input type="text" name="homeAddress" id="homeAddress" placeholder="Home Address"
+                                        class="form-control mb-2" value="<?php echo $_GET['homeAddress'] ?? ''; ?>">
+
+                                    <label for="contactNumber">Contact Number</label>
+                                    <input type="text" name="contactNumber" id="contactNumber"
+                                        placeholder="Contact Number" class="form-control mb-2"
+                                        value="<?php echo $_GET['mobileNumber'] ?? ''; ?>">
+
+                                    <label for="referredBy">Referred By</label>
+                                    <input type="text" name="referredBy" id="referredBy" placeholder="Referred By"
+                                        class="form-control mb-2" value="<?php echo $_GET['refferedBy'] ?? ''; ?>">
+                                </div>
+
+                                <div class="col-lg-4 mb-4">
+                                    <h6 class="mb-3">FOR MINORS ONLY</h6>
+                                    <label for="guardianName">Guardian Name</label>
+                                    <input type="text" name="guardianName" id="guardianName" placeholder="Guardian Name"
+                                        class="form-control mb-2" value="<?php echo $_GET['guardianName'] ?? ''; ?>">
+
+                                    <label for="guardianOccupation">Guardian Occupation</label>
+                                    <input type="text" name="guardianOccupation" id="guardianOccupation"
+                                        placeholder="Guardian Occupation" class="form-control mb-2"
+                                        value="<?php echo $_GET['gOccupation'] ?? ''; ?>">
+                                </div>
+                            </div>
 
                             <hr>
-                            <label for="lastName">LAST NAME</label>
-                            <input type="Text" name="lastName" id="lastName" placeholder="LAST NAME"
-                                class="form-control" value="<?php echo $_GET['lname']; ?>">
-                            <label for="firstName">FIRST NAME</label>
-                            <input type="Text" name="firstName" id="firstName" placeholder="FIRST NAME"
-                                class="form-control" value="<?php echo $_GET['fname']; ?>">
-                            <label for="middleName">MIDDLE NAME</label>
-                            <input type="Text" name="middleName" id="middleName" placeholder="MIDDLE NAME"
-                                class="form-control" value="<?php echo $_GET['mname']; ?>">
-                            <label for="nickName">NICKNAME</label>
-                            <input type="Text" name="nickName" id="nickName" placeholder="NICKNAME" class="form-control"
-                                value="<?php echo $_GET['nick']; ?>">
-                            <label for="gender">GENDER</label>
-                            <select id="gender" name="gender" size="1" class="form-control">
+                            <h5 class="mb-3">Health Maintenance Organization</h5>
+                            <div class="row">
+                                <div class="col-lg-4 mb-4">
+                                    <label for="HMO">HMO</label>
+                                    <select id="hmo" name="hmo" class="form-control mb-2">
+                                        <option value="">-- Select HMO --</option>
+                                        <?php
+                                        $hmos = ['Flexicare', 'Intellicare', 'Avega', 'Medicard', 'Health Partners Dental Access, Inc.', 'Dental Network Company', 'Cocolife'];
+                                        foreach ($hmos as $hmo) {
+                                            $selected = ($_GET['hmo'] ?? '') == $hmo ? 'selected' : '';
+                                            echo "<option value=\"$hmo\" $selected>$hmo</option>";
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
 
-                                <option value="MALE" <?php if (($_GET['sex']) == 'MALE') {
-                                    echo 'selected';
-                                } ?>>MALE
-                                </option>
-                                <option value="FEMALE" <?php if (($_GET['sex']) == 'FEMALE') {
-                                    echo 'selected';
-                                } ?>>FEMALE
-                                </option>
-                            </select>
-                            <label for="birthday">BIRTHDAY</label>
-                            <input type="date" name="birthday" id="birthday" class="form-control" placeholder="BIRTHDAY"
-                                onchange="computeAge()" value="<?php echo $_GET['birthDate']; ?>">
-                            <label for="age">AGE</label>
-                            <input type="number" name="age" id="age" placeholder="AGE" class="form-control" readonly
-                                value="<?php echo $_GET['age']; ?>">
-                            <label for="occupation">OCCUPATION</label>
-                            <input type="Text" name="occupation" id="occupation" placeholder="OCCUPATION"
-                                class="form-control" value="<?php echo $_GET['occupation']; ?>">
-                            <label for="homeAddress">HOME ADDRESS</label>
-                            <input type="Text" name="homeAddress" id="homeAddress" placeholder="HOME ADDRESS"
-                                class="form-control" value="<?php echo $_GET['homeAddress']; ?>"><br>
-                            <label for="contactNumber">CONACT NUMBER</label>
-                            <input type="text" id="contactNumber" name="contactNumber" placeholder="CONTACT NUMBER"
-                                class="form-control" value="<?php echo $_GET['mobileNumber']; ?>"><br>
-                            <hr>
-                            <label for="for Minors">FOR MINOR'S ONLY</label>
-                            <hr>
-                            <label for="guardianName">GUARDIAN NAME</label>
-                            <input type="Text" name="guardianName" id="guardianName" placeholder="GUARDIAN NAME"
-                                class="form-control" value="<?php echo $_GET['guardianName']; ?>"><br>
-                            <label for="guardianOccupation">GUARDIAN OCCUPATION</label>
-                            <input type="Text" name="guardianOccupation" id="guardianOccupation"
-                                placeholder="GUARDIAN OCCUPATION" class="form-control"
-                                value="<?php echo $_GET['gOccupation']; ?>"><br>
-                            <label for="referredBy">REFERRED BY</label>
-                            <input type="Text" name="referredBy" id="referredBy" placeholder="REFERRED BY"
-                                class="form-control" value="<?php echo $_GET['refferedBy']; ?>"><br>
+                                <div class="col-lg-4 mb-4">
+                                    <label for="cardNumber">Account No.</label>
+                                    <input type="text" name="cardNumber" id="cardNumber"
+                                        placeholder="Health Card Number" class="form-control mb-2"
+                                        value="<?php echo $_GET['cardNumber'] ?? ''; ?>">
+                                </div>
+
+                                <div class="col-lg-4 mb-4">
+                                    <label for="company">Company</label>
+                                    <input type="text" name="company" id="company" placeholder="Company Name"
+                                        class="form-control mb-2" value="<?php echo $_GET['company'] ?? ''; ?>">
+                                </div>
+                            </div>
+
                             <div id="formResult"></div>
-                            <button class="btn btn-success" onclick="updatePatientPersonalInfo()">Submit</button>
-
-
-                            <!-- END OF YOUR ADDITIONAL CODE SNIPPET -->
+                            <footer class="sticky-footer">
+                                <div class="container my-auto">
+                                    <div class="copyright text-center my-auto">
+                                        <a href="#" class="btn btn-success btn-icon-split"
+                                            onclick="updatePatientPersonalInfo()">
+                                            <span class="icon text-white-50"><i class="fas fa-fw fa-plus"></i></span>
+                                            <span class="text">Submit</span>
+                                        </a>
+                                        <a href="javascript:void(0)" class="btn btn-danger btn-icon-split"
+                                            onclick="location.replace('clientProfileList.php');">
+                                            <span class="icon text-white-50"><i class="fas fa-fw fa-times"></i></span>
+                                            <span class="text">Cancel</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </footer>
                         </div>
                     </div>
 
+
                 </div>
                 <!-- /.container-fluid -->
-
+                <div id="cameraModal">
+                    <div id="modalContent">
+                        <video id="video" width="320" height="240" autoplay playsinline></video><br>
+                        <button onclick="capturePhoto()">Capture</button>
+                        <button onclick="switchCamera()">Switch Camera</button>
+                        <button onclick="closeCameraModal()">Cancel</button>
+                    </div>
+                </div>
             </div>
             <!-- End of Main Content -->
 
@@ -129,9 +234,14 @@
 
             <!-- Custom scripts for all pages-->
             <script src="js/sb-admin-2.min.js"></script>
+
+            <script src="js/camera.js"></script>
+
+            <script src="js/custom.js"></script>
             <script src="controllers/logOutConroller.js"></script>
             <script src="controllers/sessionController.js"></script>
             <script src="controllers/clientProfileUpdateController.js"></script>
+
 </body>
 
 </html>

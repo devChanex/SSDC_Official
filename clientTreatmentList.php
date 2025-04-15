@@ -54,30 +54,20 @@
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
-                                                <th>Client id</th>
                                                 <th>Name</th>
                                                 <th>Nick Name</th>
                                                 <th>Age</th>
                                                 <th>Sex</th>
-                                                <th>Date of Birth</th>
-                                                <th>Mobile Number</th>
-                                                <th>Home Address</th>
-                                                <th>Guardian Name</th>
                                                 <th>Latest Treatment</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tfoot>
                                             <tr>
-                                                <th>Client id</th>
                                                 <th>Name</th>
                                                 <th>Nick Name</th>
                                                 <th>Age</th>
                                                 <th>Sex</th>
-                                                <th>Date of Birth</th>
-                                                <th>Mobile Number</th>
-                                                <th>Home Address</th>
-                                                <th>Guardian Name</th>
                                                 <th>Latest Treatment</th>
                                                 <th>Action</th>
                                             </tr>

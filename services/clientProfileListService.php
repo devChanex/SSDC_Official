@@ -29,26 +29,24 @@ class ServiceClass
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         if ($stmt->rowCount() > 0) {
+
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                $dob = new DateTime($row["birthDate"]); // assuming dob is something like '1990-04-15'
+                $today = new DateTime();
+                $age = $today->diff($dob)->y;
                 $fullname = $row["lname"] . ', ' . $row["fname"] . ' ' . $row["mdname"];
                 echo '
-<tr>
-                <td>' . $row["clientid"] . '</td>
+                <tr>
                 <td>' . $fullname . '</td>
                 <td>' . $row["nickname"] . '</td>
-                <td>' . $row["age"] . '</td>
+                <td>' . $age . '</td>
                 <td>' . $row["sex"] . '</td>
-                 <td>' . $row["religion"] . '</td>
-                  <td>' . $row["civilstatus"] . '</td>
-                <td>' . $row["occupation"] . '</td>
-                <td>' . $row["birthDate"] . '</td>
+        
                 <td>' . $row["mobileNumber"] . '</td>
-                <td>' . $row["homeAddress"] . '</td>
-                <td>' . $row["guardianName"] . '</td>
-                <td>' . $row["gOccupation"] . '</td>
-                <td>' . $row["refferedBy"] . '</td>
+               
+               
                 <td>' . $row["hmo"] . '</td>
-                <td>' . $row["cardnumber"] . '</td>
+     
                
                 <td>';
 
@@ -72,8 +70,7 @@ class ServiceClass
 
                 $imgBase64 = base64_encode($row["photo"]);
                 echo '
-                <a href="updateClient.php?clientid=' . $row["clientid"] . '&lname=' . $row["lname"] . '&fname=' . $row["fname"] . '
-                &mname=' . $row["mdname"] . '&nick=' . $row["nickname"] . '&age=' . $row["age"] . '&sex=' . $row["sex"] . '&occupation=' . $row["occupation"] . '
+                <a href="updateClient.php?civilStatus=' . $row["civilstatus"] . '&company=' . $row["company"] . '&cardNumber=' . $row["cardnumber"] . '&hmo=' . $row["hmo"] . '&religion=' . $row["religion"] . '&clientid=' . $row["clientid"] . '&lname=' . $row["lname"] . '&fname=' . $row["fname"] . '&mname=' . $row["mdname"] . '&nick=' . $row["nickname"] . '&age=' . $row["age"] . '&sex=' . $row["sex"] . '&occupation=' . $row["occupation"] . '
                 &birthDate=' . $row["birthDate"] . '&mobileNumber=' . $row["mobileNumber"] . '&homeAddress=' . $row["homeAddress"] . '
                 &guardianName=' . $row["guardianName"] . '&gOccupation=' . $row["gOccupation"] . '&refferedBy=' . $row["refferedBy"] . '
                 " class="btn btn-warning btn-circle" title="Update Client Profile"><i class="fas fa-edit"></i></a>
@@ -92,6 +89,15 @@ class ServiceClass
    <i class="fas fa-eye"></i>
 </a>';
                 }
+
+                echo '
+                <a href="addConsent.php?civilStatus=' . $row["civilstatus"] . '&company=' . $row["company"] . '&cardNumber=' . $row["cardnumber"] . '&hmo=' . $row["hmo"] . '&religion=' . $row["religion"] . '&clientid=' . $row["clientid"] . '&lname=' . $row["lname"] . '&fname=' . $row["fname"] . '&mname=' . $row["mdname"] . '&nick=' . $row["nickname"] . '&age=' . $row["age"] . '&sex=' . $row["sex"] . '&occupation=' . $row["occupation"] . '
+                &birthDate=' . $row["birthDate"] . '&mobileNumber=' . $row["mobileNumber"] . '&homeAddress=' . $row["homeAddress"] . '
+                &guardianName=' . $row["guardianName"] . '&gOccupation=' . $row["gOccupation"] . '&refferedBy=' . $row["refferedBy"] . '
+                " class="btn btn-secondary btn-circle" title="Add Client Consent"><i class="fas fa-file"></i></a>
+                
+
+                ';
                 echo '
                 
                 

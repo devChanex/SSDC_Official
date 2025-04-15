@@ -55,12 +55,13 @@
                         <div class="card-body" id="bodyResult">
 
                             <div class="row">
-                                <div class="col-lg-6"><strong>KBF Dental Care Clinic</strong></div>
+                                <div class="col-lg-6"><strong>Smile Save Dental Care</strong></div>
                                 <div class="col-lg-6" style="text-align:right;">Bringing you, your best smile!</div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-12">0927 B.F Gomez St. Purok 3 I Ibaba Sta.Rosa Laguna</div>
-                                <div class="col-lg-12">Contact us: 09056325517 || 09471027111</div>
+                                <div class="col-lg-12">2/F Mondo Bambini Commercial Strip Bldg.,
+                                    Brgy. Zapote, Binan City, Laguna</div>
+                                <div class="col-lg-12">Contact us: 0919-009-3099</div>
                                 <hr>
                                 <div class="col-lg-12" style="text-align:center;"><strong>Electronic Statement of
                                         Account - ESOA</strong></div>
@@ -101,6 +102,16 @@
                                     <label for="Address">Address</label>
                                     <input type="Text" name="address" id="address" placeholder="Address"
                                         class="form-control" value="<?php echo $_GET['address']; ?>" readonly>
+                                    <label for="Address">HMO Accredited:</label>
+                                    <input type="Text" name="address" id="hmo" placeholder="" class="form-control"
+                                        value="<?php
+
+                                        if ($_GET['hmo'] != "") {
+                                            echo $_GET['hmo'] . ' | ' . $_GET["cardnumber"] . ' | ' . $_GET["company"];
+
+                                        }
+
+                                        ?>" readonly>
 
                                 </div>
 

@@ -19,6 +19,7 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
@@ -40,12 +41,13 @@
 
 
                 <!-- Begin Page Content -->
-                <div class="container-fluid" id="content-table">
+                <div class="container-fluid" id="content-table" style="padding-left:20%;padding-right:20%;">
 
                     <!-- Page Heading -->
                     <div class="card shadow mb-12">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Client Profile List</h6>
+                            <strong>Consent List</strong>
+
                         </div>
                         <div class="card-body">
                             <!-- USE THIS SPACE FOR YOUR ADDITIONAL CODE SNIPPET -->
@@ -54,30 +56,17 @@
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
-
-                                                <th>Name</th>
-                                                <th>Nick Name</th>
-                                                <th>Age</th>
-                                                <th>Gender</th>
-                                                <th>Mobile Number</th>
-
-
-                                                <th>HMO</th>
-
+                                                <th>Client Name</th>
+                                                <th>Dentist Name</th>
+                                                <th>Date</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tfoot>
                                             <tr>
-                                                <th>Name</th>
-                                                <th>Nick Name</th>
-                                                <th>Age</th>
-                                                <th>Gender</th>
-                                                <th>Mobile Number</th>
-
-
-                                                <th>HMO</th>
-
+                                                <th>Client Name</th>
+                                                <th>Dentist Name</th>
+                                                <th>Date</th>
                                                 <th>Action</th>
                                             </tr>
                                         </tfoot>
@@ -91,28 +80,6 @@
                             </div>
 
 
-                            <!--Update Document-->
-                            <div class="modal fade" id="ViewModal" tabindex="-1" role="dialog"
-                                aria-labelledby="UploadModal" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content bg-primary text-white">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Profile Photo</h5>
-                                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">×</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body bg-light text-dark">
-                                            <img id="modalProfileImage" src="" class="img-fluid rounded"
-                                                alt="Client Photo" style="width:100%;">
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button class="btn btn-secondary" type="button"
-                                                data-dismiss="modal">Close</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
 
 
@@ -143,12 +110,15 @@
             <!-- Page level custom scripts -->
             <script src="js/demo/datatables-demo.js"></script>
 
+            <script src="js/custom.js"></script>
+
             <!-- Custom scripts for all pages-->
             <script src="js/sb-admin-2.min.js"></script>
             <script src="controllers/logOutConroller.js"></script>
             <script src="controllers/sessionController.js"></script>
-            <script src="controllers/getClientProfileController.js"></script>
-            <script src="controllers/deleteClientProfileController.js"></script>
+            <script src="controllers/getConsentListController.js"></script>
+            <script src="controllers/deleteTreatmentController.js"></script>
+
 
 
 

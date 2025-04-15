@@ -5,7 +5,7 @@ $result = $service->loadTreatmentList();
 
 class ServiceClass
 {
-	
+
 	private $conn;
 	public function __construct()
 	{
@@ -20,34 +20,35 @@ class ServiceClass
 		return $stmt;
 	}
 	//DO NOT INCLUDE THIS CODE
-    public function loadTreatmentList(){
-       
+	public function loadTreatmentList()
+	{
 
 
-        $query = "select * from treatmentlist where status='Active'";
+
+		$query = "select * from treatmentlist where status='Active'";
 		$stmt = $this->conn->prepare($query);
 		$stmt->execute();
 		if ($stmt->rowCount() > 0) {
 			while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-               
-                echo'
+
+				echo '
                 <tr>
-                <td style="display:none;">'.$row["treatmentid"].'</td>
-                <td>'.$row["treatment"].'</td>
-                <td>'.$row["description"].'</td>
+                <td style="display:none;">' . $row["treatmentid"] . '</td>
+                <td>' . $row["treatment"] . '</td>
+                <td>' . $row["description"] . '</td>
                 
                
                 <td align="center">
-                <a href="updateTreatment.php?treatmentid='.$row["treatmentid"].'" class="btn btn-warning btn-circle" title="Update treatment"><i class="fas fa-edit"></i></a>
-                <a href="#" class="btn btn-danger btn-circle" onclick="deleteTreatment(\''.$row["treatmentid"].'\')" title="Delete treatment"><i class="fas fa-trash"></i></a>
+                <a href="updateTreatment.php?treatmentid=' . $row["treatmentid"] . '" class="btn btn-warning btn-circle" title="Update treatment"><i class="fas fa-edit"></i></a>
+                <a href="#" class="btn btn-danger btn-circle" onclick="deleteTreatment(\'' . $row["treatmentid"] . '\')" title="Delete treatment"><i class="fas fa-trash"></i></a>
                 
                 
                 </td>
             </tr>';
-            }
-       
+			}
+
 		} else {
-			echo'
+			echo '
 <tr>
                 <td style="display:none;">-</td>
                 <td>-</td>
@@ -62,11 +63,11 @@ class ServiceClass
 ';
 
 		}
-    }
+	}
 
 }
 
-	
+
 
 
 

@@ -26,15 +26,20 @@ $q19 = urldecode($_POST['q19']);
 $q20 = urldecode($_POST['q20']);
 $q21 = urldecode($_POST['q21']);
 $q22 = urldecode($_POST['q22']);
+$q23 = urldecode($_POST['q23']);
+$q24 = urldecode($_POST['q24']);
+$q25 = urldecode($_POST['q25']);
+$q26 = urldecode($_POST['q26']);
+$q27 = urldecode($_POST['q27']);
 //echo'<script>alert("tesT");</script>';
 //INHERITANCE -- CREATING NEW INSTANCE OF A CLASS (INSTANTIATE)
 $service = new ServiceClass();
-$result = $service->addMedHistory($clientId,$q1,$q2,$q3,$q4,$q5,$q6,$q7,$q8,$q9,$q10,$q11,$q12,$q13,$q14,$q15,$q16,$q17,$q18,$q19,$q20,$q21,$q22);
+$result = $service->addMedHistory($clientId, $q1, $q2, $q3, $q4, $q5, $q6, $q7, $q8, $q9, $q10, $q11, $q12, $q13, $q14, $q15, $q16, $q17, $q18, $q19, $q20, $q21, $q22, $q23, $q24, $q25, $q26, $q27);
 echo $result;
 //USE THIS AS YOUR BASIS
 class ServiceClass
 {
-	
+
 	private $conn;
 	public function __construct()
 	{
@@ -48,41 +53,47 @@ class ServiceClass
 		$stmt = $this->conn->prepare($sql);
 		return $stmt;
 	}
-	public function addMedHistory($clientId,$q1,$q2,$q3,$q4,$q5,$q6,$q7,$q8,$q9,$q10,$q11,$q12,$q13,$q14,$q15,$q16,$q17,$q18,$q19,$q20,$q21,$q22)
+	public function addMedHistory($clientId, $q1, $q2, $q3, $q4, $q5, $q6, $q7, $q8, $q9, $q10, $q11, $q12, $q13, $q14, $q15, $q16, $q17, $q18, $q19, $q20, $q21, $q22, $q23, $q24, $q25, $q26, $q27)
 	{
 		//:a,:b parameter
-		try{
+		try {
 
-		$query = "Insert into medhistory (clientid,q1,q2,q3,q4,q5,q6,q7,q8,q9,q10,q11,q12,q13,q14,q15,q16,q17,q18,q19,q20,q21,q22) values(:clientid,:q1,:q2,:q3,:q4,:q5,:q6,:q7,:q8,:q9,:q10,:q11,:q12,:q13,:q14,:q15,:q16,:q17,:q18,:q19,:q20,:q21,:q22)";
-		//$query = "Insert into clientProfile (q1,q2,q3,q4,q5,q6,q7,q8,q9,q10,q11,q12,q13,q14,q15,q16,q17,q18,q19,q20,q21,q22) values (:q1,:q2,:q3,:q4,:q5,:q6,:q7,:q8,:q9,:q10,:q11,:q12,:q13,:q14,:q15,:q16,:q17,:q18,:q19,:q20,:q21,:q22)";
-		$stmt = $this->conn->prepare($query);
-		$stmt->bindParam(':clientid', $clientId);
-        $stmt->bindParam(':q1', $q1);
-		$stmt->bindParam(':q2', $q2);
-		$stmt->bindParam(':q3', $q3);
-		$stmt->bindParam(':q4', $q4);
-		$stmt->bindParam(':q5', $q5);
-		$stmt->bindParam(':q6', $q6);
-		$stmt->bindParam(':q7', $q7);
-		$stmt->bindParam(':q8', $q8);
-		$stmt->bindParam(':q9', $q9);
-		$stmt->bindParam(':q10', $q10);
-		$stmt->bindParam(':q11', $q11);
-		$stmt->bindParam(':q12', $q12);
-		$stmt->bindParam(':q13', $q13);
-        $stmt->bindParam(':q14', $q14);
-		$stmt->bindParam(':q15', $q15);
-		$stmt->bindParam(':q16', $q16);
-		$stmt->bindParam(':q17', $q17);
-		$stmt->bindParam(':q18', $q18);
-		$stmt->bindParam(':q19', $q19);
-		$stmt->bindParam(':q20', $q20);
-		$stmt->bindParam(':q21', $q21);
-		$stmt->bindParam(':q22', $q22);
-		$stmt->execute();
-		return "success";
-		}catch(Exception $e){
-		return "Error:".$e->getMessage();
+			$query = "Insert into medhistory (clientid,q1,q2,q3,q4,q5,q6,q7,q8,q9,q10,q11,q12,q13,q14,q15,q16,q17,q18,q19,q20,q21,q22,q23,q24,q25,q26,q27) values(:clientid,:q1,:q2,:q3,:q4,:q5,:q6,:q7,:q8,:q9,:q10,:q11,:q12,:q13,:q14,:q15,:q16,:q17,:q18,:q19,:q20,:q21,:q22,:q23,:q24,:q25,:q26,:q27)";
+			//$query = "Insert into clientProfile (q1,q2,q3,q4,q5,q6,q7,q8,q9,q10,q11,q12,q13,q14,q15,q16,q17,q18,q19,q20,q21,q22) values (:q1,:q2,:q3,:q4,:q5,:q6,:q7,:q8,:q9,:q10,:q11,:q12,:q13,:q14,:q15,:q16,:q17,:q18,:q19,:q20,:q21,:q22)";
+			$stmt = $this->conn->prepare($query);
+			$stmt->bindParam(':clientid', $clientId);
+			$stmt->bindParam(':q1', $q1);
+			$stmt->bindParam(':q2', $q2);
+			$stmt->bindParam(':q3', $q3);
+			$stmt->bindParam(':q4', $q4);
+			$stmt->bindParam(':q5', $q5);
+			$stmt->bindParam(':q6', $q6);
+			$stmt->bindParam(':q7', $q7);
+			$stmt->bindParam(':q8', $q8);
+			$stmt->bindParam(':q9', $q9);
+			$stmt->bindParam(':q10', $q10);
+			$stmt->bindParam(':q11', $q11);
+			$stmt->bindParam(':q12', $q12);
+			$stmt->bindParam(':q13', $q13);
+			$stmt->bindParam(':q14', $q14);
+			$stmt->bindParam(':q15', $q15);
+			$stmt->bindParam(':q16', $q16);
+			$stmt->bindParam(':q17', $q17);
+			$stmt->bindParam(':q18', $q18);
+			$stmt->bindParam(':q19', $q19);
+			$stmt->bindParam(':q20', $q20);
+			$stmt->bindParam(':q21', $q21);
+			$stmt->bindParam(':q22', $q22);
+			$stmt->bindParam(':q23', $q23);
+			$stmt->bindParam(':q24', $q24);
+			$stmt->bindParam(':q25', $q25);
+			$stmt->bindParam(':q26', $q26);
+			$stmt->bindParam(':q27', $q27);
+
+			$stmt->execute();
+			return "success";
+		} catch (Exception $e) {
+			return "Error:" . $e->getMessage();
 		}
 
 

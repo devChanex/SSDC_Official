@@ -37,12 +37,13 @@ class ServiceClass
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     echo '
                 <div class="row">
-                <div class="col-lg-6"><strong>KBF Dental Care Clinic</strong></div>
+                <div class="col-lg-6"><strong>Smile Save Dental Care</strong></div>
                 <div class="col-lg-6" style="text-align:right;">Bringing you, your best smile!</div>
             </div>
             <div class="row">
-                <div class="col-lg-12">0927 B.F Gomez St. Purok 3 I Ibaba Sta.Rosa Laguna</div>
-                <div class="col-lg-12">Contact us: 09056325517 || 09471027111</div>
+                <div class="col-lg-12">2/F Mondo Bambini Commercial Strip Bldg.,
+                                    Brgy. Zapote, Binan City, Laguna</div>
+                <div class="col-lg-12">Contact us: 0919-009-3099</div>
                 <hr>
                 <div class="col-lg-12" style="text-align:center;"><strong>Electronic Statement of Account - ESOA</strong></div>
             </div>
@@ -70,6 +71,25 @@ class ServiceClass
                     Time :<strong>' . $row["time"] . '</strong>
                            
                     </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                            HMO Accredited : <strong>';
+
+                    if ($row["hmoaccredited"] != "") {
+                        echo $row["hmoaccredited"];
+                    } else {
+                        echo 'N/A';
+                    }
+
+
+
+                    echo '</strong>
+                           
+                           
+                    </div>
+                 
 
                 </div>
           <hr>

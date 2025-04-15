@@ -55,5 +55,11 @@ echo '
 
                 </nav>
                 <!-- End of Topbar -->
+                
+                
 
 ';
+
+include_once("bars/toast.php");
+
+?>

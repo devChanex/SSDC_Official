@@ -39,7 +39,7 @@ function capturePhoto() {
 
     context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-    const imageData = canvas.toDataURL('image/png', 0.7);
+    const imageData = canvas.toDataURL('image/png', 1);
     photoPreview.src = imageData;
     capturedInput.value = imageData;
 
