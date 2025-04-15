@@ -48,7 +48,8 @@
 
                             <h6 class="m-0 font-weight-bold text-primary">RECORDS OF SOA AS OF:
                                 <?php $dToday = date('Y-m-d');
-                                echo $dToday; ?></h6>
+                                echo $dToday; ?>
+                            </h6>
 
                         </div>
                         <div class="card-body">
