@@ -57,7 +57,7 @@ class ServiceClass
 		//:a,:b parameter
 		try {
 
-			$query = "Insert intoclientprofile(lname,fname,mdname,nickname,age,sex,occupation,birthDate,mobileNumber,homeAddress,guardianName,gOccupation,refferedBy,religion,civilstatus,photo,hmo,cardnumber,company) values (:a,:b,:c,:d,:e,:f,:g,:h,:i,:j,:k,:l,:m,:n,:o,:p,:q,:r,:s)";
+			$query = "Insert into clientprofile (lname,fname,mdname,nickname,age,sex,occupation,birthDate,mobileNumber,homeAddress,guardianName,gOccupation,refferedBy,religion,civilstatus,photo,hmo,cardnumber,company) values (:a,:b,:c,:d,:e,:f,:g,:h,:i,:j,:k,:l,:m,:n,:o,:p,:q,:r,:s)";
 			//$query = "Insert intoclientprofile(lname,fname,mdname,nickname,age,sex,occupation,mobileNumber,homeAddress,guardianName,gOccupation,refferedBy) values (:a,:b,:c,:d,:e,:f,:g,:i,:j,:k,:l,:m)";
 			$stmt = $this->conn->prepare($query);
 			$stmt->bindParam(':a', $lastName);

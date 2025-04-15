@@ -26,7 +26,7 @@ class ServiceClass
 	{
 
 		try {
-			$query = "delete fromclientprofilewhere clientid =:a";
+			$query = "delete from clientprofile where clientid =:a";
 			$stmt = $this->conn->prepare($query);
 			$stmt->bindParam(':a', $clientId);
 			$stmt->execute();
