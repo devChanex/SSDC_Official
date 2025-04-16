@@ -106,20 +106,21 @@ function submit() {
     var dates = document.getElementById("date").value;
     var time = document.getElementById("time").value;
     var clientid = document.getElementById("clientid").value;
+    var hmo = document.getElementById("hmo").value;
     if (rowCount == 0) {
         alert("You do not have any treatment added.");
     } else if (dentist == "" || dates == "" || time == "") {
         alert("All Field is required.");
 
     } else {
-        submitform(dentist, dates, time, clientid, total);
+        submitform(dentist, dates, time, clientid, total, hmo);
     }
 
 
 
 }
 
-function submitform(dentist, dates, time, clientid, total) {
+function submitform(dentist, dates, time, clientid, total, hmo) {
     var confirmation = confirm('Are you sure you want to submit this form?');
     if (confirmation) {
         var fd = new FormData();
@@ -128,6 +129,7 @@ function submitform(dentist, dates, time, clientid, total) {
         fd.append('time', time);
         fd.append('clientid', clientid);
         fd.append('total', total);
+        fd.append('hmo', hmo);
         $.ajax({
             url: "services/esoaSubmitService.php",
             data: fd,

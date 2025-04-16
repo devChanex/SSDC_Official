@@ -7,13 +7,14 @@ $date = urldecode($_POST['date']);
 $time = urldecode($_POST['time']);
 $clientid = urldecode($_POST['clientid']);
 $total = urldecode($_POST['total']);
+$hmo = urldecode($_POST['hmo']);
 $service = new ServiceClass();
-$result = $service->submitEsoa($dentist,$date,$time,$clientid,$total);
+$result = $service->submitEsoa($dentist, $date, $time, $clientid, $total, $hmo);
 echo $result;
 //USE THIS AS YOUR BASIS
 class ServiceClass
 {
-	
+
 	private $conn;
 	public function __construct()
 	{
@@ -27,35 +28,36 @@ class ServiceClass
 		$stmt = $this->conn->prepare($sql);
 		return $stmt;
 	}
-	public function submitEsoa($dentist,$date,$time,$clientid,$total)
+	public function submitEsoa($dentist, $date, $time, $clientid, $total, $hmo)
 	{
-		try{
-		$query = "Insert into treatmentsoa(date,time,clientid,dentist,total) values (:a,:b,:c,:d,:e)";
-		$stmt = $this->conn->prepare($query);
-		$stmt->bindParam(':a', $date);
-		$stmt->bindParam(':b', $time);
-		$stmt->bindParam(':c', $clientid);
-		$stmt->bindParam(':d', $dentist);
-		$stmt->bindParam(':e', $total);
-		$stmt->execute();
-		
+		try {
+			$query = "Insert into treatmentsoa(date,time,clientid,dentist,total,hmoaccredited) values (:a,:b,:c,:d,:e,:f)";
+			$stmt = $this->conn->prepare($query);
+			$stmt->bindParam(':a', $date);
+			$stmt->bindParam(':b', $time);
+			$stmt->bindParam(':c', $clientid);
+			$stmt->bindParam(':d', $dentist);
+			$stmt->bindParam(':e', $total);
+			$stmt->bindParam(':f', $hmo);
+			$stmt->execute();
 
-		$query = "select max(soaid) as lastsoaid from treatmentsoa";
-		$stmt = $this->conn->prepare($query);
-		$stmt->execute();
-		if ($stmt->rowCount() > 0) {
-			while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-				return $row["lastsoaid"];
+
+			$query = "select max(soaid) as lastsoaid from treatmentsoa";
+			$stmt = $this->conn->prepare($query);
+			$stmt->execute();
+			if ($stmt->rowCount() > 0) {
+				while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+					return $row["lastsoaid"];
+				}
+
 			}
-		
-		}
-		
 
-		
 
-		
-		}catch(Exception $e){
-		return "Error:".$e->getMessage();
+
+
+
+		} catch (Exception $e) {
+			return "Error:" . $e->getMessage();
 		}
 
 

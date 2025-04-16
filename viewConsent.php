@@ -123,14 +123,14 @@
                                 <div class="col-lg-12">
                                     Please CHECK if you have had or any of the following:
                                 </div>
-                                <div class="col-lg-12" id="medHistory">
+                                <div class="col-lg-12 ml-4" id="medHistory">
 
 
                                 </div>
                             </div>
 
                             <br>
-
+                            <hr>
                             <!-- Page Heading -->
                             <h1 class="h3 mb-4  text-center">Informed Consent</h1>
 

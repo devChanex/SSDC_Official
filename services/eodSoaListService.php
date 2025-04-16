@@ -39,7 +39,7 @@ class ServiceClass
                 <td>' . $row["time"] . '</td>
                 <td>' . $row["dentist"] . '</td>
                 <td>' . $row["total"] . '</td>
-                <td style="text-align:center;">';
+                <td style="text-align:center;">
                
                </td>
             </tr>';
