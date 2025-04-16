@@ -29,6 +29,7 @@ loadMedHistory();
 function loadMedHistory() {
     var consentId = document.getElementById("consentId").value;
     var clientId = document.getElementById("clientId").value;
+    alert(consentId);
     var fd = new FormData();
     fd.append('clientId', clientId);
     fd.append('consentId', consentId);

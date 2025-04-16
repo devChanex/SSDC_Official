@@ -120,24 +120,24 @@ class ServiceClass
                         while ($row2 = $stmt2->fetch(PDO::FETCH_ASSOC)) {
                             $total += $row2["price"];
                             echo '
-        <tr>
-        <td>' . $row2["treatment"] . '</td>
-        <td>' . $row2["details"] . '</td>
-        <td>' . $row2["remarks"] . '</td>
-        <td>' . $row2["price"] . '</td>
-        </tr>
-        
-        ';
+                            <tr>
+                            <td onclick="createTicket(\'' . $row2["tsubid"] . '\',\'' . $row2["treatment"] . '\',\'treatment\',\'treatmentsub\',\'tsubid\');">' . $row2["treatment"] . '</td>
+                            <td onclick="createTicket(\'' . $row2["tsubid"] . '\',\'' . $row2["details"] . '\',\'details\',\'treatmentsub\',\'tsubid\');">' . $row2["details"] . '</td>
+                            <td onclick="createTicket(\'' . $row2["tsubid"] . '\',\'' . $row2["remarks"] . '\',\'remarks\',\'treatmentsub\',\'tsubid\');">' . $row2["remarks"] . '</td>
+                            <td onclick="createTicket(\'' . $row2["tsubid"] . '\',\'' . $row2["price"] . '\',\'price\',\'treatmentsub\',\'tsubid\');">' . $row2["price"] . '</td>
+                            </tr>
+                            
+                            ';
                         }
                         echo '
-                        <strong>
-                        <tr>
-                        <td colspan="3">Total</td>
-                        <td>' . $total . '</td>
-                        
-                        </tr>
-                        </strong>
-                        ';
+                                            <strong>
+                                            <tr>
+                                            <td colspan="3">Total</td>
+                                            <td onclick="createTicket(\'' . $soaid . '\',\'' . $row["total"] . '\',\'total\',\'treatmentsoa\',\'soaid\');">' . $row["total"] . '</td>
+                                            
+                                            </tr>
+                                            </strong>
+                                            ';
                     }
 
 
