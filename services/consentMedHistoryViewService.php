@@ -32,9 +32,17 @@ class ServiceClass
         //:a,:b parameter
         try {
             $query = "select * from consentmedhistory where clientId=:clientid and consentId=:consentId";
+
+            if ($consentId == '') {
+                $query = "select * from medhistory where clientId=:clientid";
+
+            }
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':clientid', $clientId);
-            $stmt->bindParam(':consentId', $consentId);
+            if ($consentId != '') {
+                $stmt->bindParam(':consentId', $consentId);
+
+            }
             $stmt->execute();
             if ($stmt->rowCount() > 0) {
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {

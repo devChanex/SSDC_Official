@@ -4,6 +4,7 @@ function loadMedHistory() {
     var clientId = document.getElementById("clientId").value;
     var fd = new FormData();
     fd.append('clientId', clientId);
+    fd.append('consentId', '');
 
 
     $.ajax({
@@ -52,7 +53,7 @@ function addConsent() {
 
 }
 
-function submitform(dateSigned, dentistSignature, patientSignature, dentistName, clientId) {
+function submitform(dateSigned, dentistSignature, patientSignature, dentistName) {
     var fd = new FormData();
     fd.append('dateSigned', dateSigned);
     fd.append('dentistSignature', dentistSignature);
