@@ -47,7 +47,7 @@
                     <!-- Page Heading -->
                     <div class="card shadow mb-12">
                         <div class="card-header py-3">
-                            <strong>Treatment List</strong>
+                            <strong>HMO List</strong>
                             <a href="addhmo.php" class="btn btn-warning btn-circle float-right" title="Add Record"><i
                                     class="fas fa-plus"></i></a>
                         </div>
