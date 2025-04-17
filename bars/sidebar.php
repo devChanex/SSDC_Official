@@ -42,6 +42,12 @@ echo '
         <i class="fas fa-file"></i>
         <span>Consent List</span>
     </a>
+
+        <li class="nav-item">
+    <a class="nav-link" href="hmoList.php" >
+        <i class="fas fa-heart"></i>
+        <span>HMO</span>
+    </a>
    
 </li>
         <li class="nav-item">
