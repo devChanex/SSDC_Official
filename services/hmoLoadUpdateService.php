@@ -58,7 +58,17 @@ class ServiceClass
                             <label for="treatment">Contact Number</label>
                             <input type="Text" name="treatment" id="contact" placeholder="Contact Number"
                                 class="form-control" value="' . $row["contact"] . '">
+                            <label for="validity">Validity:</label>
+                            <input type="date" name="treatment" id="validity" placeholder="Account Number"
+                                class="form-control" value="' . $row['validity'] . '">
 
+                            <label for="benefit">Dental Benefits:</label>
+                            <textarea id="benefit" style="width: 100%;" class="form-control" rows="4"
+                                placeholder="Enter your dental benefits here..." >' . $row['dentalbenefits'] . '</textarea>
+
+                            <label for="remarks">Remarks:</label>
+                            <textarea id="remarks" style="width: 100%;" class="form-control" rows="4"
+                                placeholder="Enter remarks here...">' . $row['remarks'] . '</textarea>
                             <div id="formResult"></div>
                             <br>
                             <button class="btn btn-success" onclick="update()">Submit</button>

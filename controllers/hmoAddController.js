@@ -6,6 +6,9 @@ function add() {
     var contact = document.getElementById("contact").value;
     var hmoOption = document.getElementById("hmo");
     var hmo = hmoOption.value;
+    var validity = document.getElementById("validity").value;
+    var benefit = document.getElementById("benefit").value;
+    var remarks = document.getElementById("remarks").value;
 
 
     var msg = '';
@@ -17,7 +20,7 @@ function add() {
 
 
     if (msg == '') {
-        submitform(name, accountnumber, birthdate, company, contact, hmo);
+        submitform(name, accountnumber, birthdate, company, contact, hmo, validity, benefit, remarks);
     } else {
         showToast("errorToast", msg);
     }
@@ -26,7 +29,7 @@ function add() {
 
 }
 
-function submitform(name, accountnumber, birthdate, company, contact, hmo) {
+function submitform(name, accountnumber, birthdate, company, contact, hmo, validity, benefit, remarks) {
     var fd = new FormData();
     fd.append('name', name);
     fd.append('accountnumber', accountnumber);
@@ -34,6 +37,9 @@ function submitform(name, accountnumber, birthdate, company, contact, hmo) {
     fd.append('company', company);
     fd.append('contact', contact);
     fd.append('hmo', hmo);
+    fd.append('validity', validity);
+    fd.append('benefit', benefit);
+    fd.append('remarks', remarks);
 
     $.ajax({
         url: "services/hmoAddService.php",

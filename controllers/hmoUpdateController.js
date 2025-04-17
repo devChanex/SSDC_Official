@@ -29,6 +29,10 @@ function update() {
     var contact = document.getElementById("contact").value;
     var hmoOption = document.getElementById("hmo");
     var hmo = hmoOption.value;
+    var validity = document.getElementById("validity").value;
+    var benefit = document.getElementById("benefit").value;
+    var remarks = document.getElementById("remarks").value;
+
 
 
     var msg = '';
@@ -40,7 +44,7 @@ function update() {
 
 
     if (msg == '') {
-        submitform(name, accountnumber, birthdate, company, contact, hmo);
+        submitform(name, accountnumber, birthdate, company, contact, hmo, validity, benefit, remarks);
     } else {
         showToast("errorToast", msg);
     }
@@ -49,7 +53,7 @@ function update() {
 
 }
 
-function submitform(name, accountnumber, birthdate, company, contact, hmo) {
+function submitform(name, accountnumber, birthdate, company, contact, hmo, validity, benefit, remarks) {
     var fd = new FormData();
     var id = document.getElementById("id").value;
     fd.append('id', id);
@@ -59,6 +63,10 @@ function submitform(name, accountnumber, birthdate, company, contact, hmo) {
     fd.append('company', company);
     fd.append('contact', contact);
     fd.append('hmo', hmo);
+    fd.append('validity', validity);
+    fd.append('benefit', benefit);
+    fd.append('remarks', remarks);
+
 
     $.ajax({
         url: "services/updateHMOService.php",
