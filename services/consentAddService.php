@@ -57,7 +57,16 @@ class ServiceClass
 
             $stmt->execute();
 
-            $consentId = $this->conn->lastInsertId();
+            $consentId = 0;
+            $query = "select * from consent order by id desc limit 1";
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute();
+            if ($stmt->rowCount() > 0) {
+                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    $consentId = $row["id"];
+                }
+            }
+
 
             // Step 3: Insert medhistory into consentmedhistory
             $query = "INSERT INTO consentmedhistory (clientid, consentid, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10,
