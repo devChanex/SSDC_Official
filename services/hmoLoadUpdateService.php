@@ -59,7 +59,7 @@ class ServiceClass
                             <input type="Text" name="treatment" id="contact" placeholder="Contact Number"
                                 class="form-control" value="' . $row["contact"] . '">
                             <label for="validity">Validity:</label>
-                            <input type="date" name="treatment" id="validity" placeholder="Account Number"
+                            <input type="text" name="treatment" id="validity" placeholder="Validity"
                                 class="form-control" value="' . $row['validity'] . '">
 
                             <label for="benefit">Dental Benefits:</label>

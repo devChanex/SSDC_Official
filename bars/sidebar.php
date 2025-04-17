@@ -74,7 +74,7 @@ echo '
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="treatmentList.php">Treatment List</a>
-                        <a class="collapse-item" href="calendar.php">Clinic Calendar</a>
+                     
                     </div>
                 </div>
             </li>
