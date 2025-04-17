@@ -53,7 +53,7 @@ function addConsent() {
 
 }
 
-function submitform(dateSigned, dentistSignature, patientSignature, dentistName) {
+function submitform(dateSigned, dentistSignature, patientSignature, dentistName, clientId) {
     var fd = new FormData();
     fd.append('dateSigned', dateSigned);
     fd.append('dentistSignature', dentistSignature);
