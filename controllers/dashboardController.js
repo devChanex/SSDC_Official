@@ -15,12 +15,12 @@ function loadEarningsBar() {
         contentType: false,
         type: 'POST',
         success: function (result) {
-             var data = JSON.parse(result);
-            
-           
-         chartBar("earningsbar",data.label,data.datas,1000000,"Earnings: ");
-         //you can uncomment this for checking
-        //  document.getElementById("jsResult").innerHTML=result;
+            var data = JSON.parse(result);
+
+
+            chartBar("earningsbar", data.label, data.datas, 1000000, "Earnings: ");
+            //you can uncomment this for checking
+            //  document.getElementById("jsResult").innerHTML=result;
         }
     });
 
@@ -35,12 +35,12 @@ function loadMonthlyEarningsBar() {
         contentType: false,
         type: 'POST',
         success: function (result) {
-             var data = JSON.parse(result);
-            
-           
-         chartBar("monthlyearningsbar",data.label,data.datas,300000,"Earnings: ");
-         //you can uncomment this for checking
-        //  document.getElementById("jsResult").innerHTML=result;
+            var data = JSON.parse(result);
+
+
+            chartBar("monthlyearningsbar", data.label, data.datas, 300000, "Earnings: ");
+            //you can uncomment this for checking
+            //  document.getElementById("jsResult").innerHTML=result;
         }
     });
 
@@ -55,12 +55,12 @@ function loadPatientsBar() {
         contentType: false,
         type: 'POST',
         success: function (result) {
-             var data = JSON.parse(result);
-            
-           
-         chartBar2("patientsbar",data.label,data.datas,800,"Patients: ");
-         //you can uncomment this for checking
-        //  document.getElementById("jsResult").innerHTML=result;
+            var data = JSON.parse(result);
+
+
+            chartBar2("patientsbar", data.label, data.datas, 800, "Patients: ");
+            //you can uncomment this for checking
+            //  document.getElementById("jsResult").innerHTML=result;
         }
     });
 
@@ -75,12 +75,12 @@ function loadMonthlyPatientsBar() {
         contentType: false,
         type: 'POST',
         success: function (result) {
-             var data = JSON.parse(result);
-            
-           
-         chartBar2("monthlypatientsbar",data.label,data.datas,100,"Patients: ");
-         //you can uncomment this for checking
-        //  document.getElementById("jsResult").innerHTML=result;
+            var data = JSON.parse(result);
+
+
+            chartBar2("monthlypatientsbar", data.label, data.datas, 100, "Patients: ");
+            //you can uncomment this for checking
+            //  document.getElementById("jsResult").innerHTML=result;
         }
     });
 
@@ -96,7 +96,7 @@ function loadDashPatient() {
         contentType: false,
         type: 'POST',
         success: function (result) {
-            document.getElementById("dashPatient").innerHTML=formatThis(result);
+            document.getElementById("dashPatient").innerHTML = formatThis(result);
         }
     });
 
@@ -110,7 +110,7 @@ function loadDashEarnings() {
         contentType: false,
         type: 'POST',
         success: function (result) {
-            document.getElementById("dashEarnings").innerHTML=formatThis(result);
+            document.getElementById("dashEarnings").innerHTML = formatThis(result);
         }
     });
 
@@ -125,7 +125,7 @@ function loadDashAppointments() {
         contentType: false,
         type: 'POST',
         success: function (result) {
-            document.getElementById("dashAppointments").innerHTML=formatThis(result);
+            document.getElementById("dashhmoRecord").innerHTML = formatThis(result);
         }
     });
 
@@ -139,7 +139,7 @@ function loadDashPendings() {
         contentType: false,
         type: 'POST',
         success: function (result) {
-            document.getElementById("dashPendings").innerHTML=formatThis(result);
+            document.getElementById("dashPendings").innerHTML = formatThis(result);
         }
     });
 
