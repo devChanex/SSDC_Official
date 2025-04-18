@@ -97,7 +97,7 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1"><a
-                                                    href="pendingAppointmentList.php">HMO Records</a></div>
+                                                    href="hmoList.php">HMO Records</a></div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
                                                     <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"
@@ -121,7 +121,7 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                <a href="pendingAppointmentList.php"> Consent Records</a>
+                                                <a href="consentList.php"> Consent Records</a>
                                             </div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800" id="dashConsent">0
                                             </div>
