@@ -139,7 +139,7 @@ function loadDashPendings() {
         contentType: false,
         type: 'POST',
         success: function (result) {
-            document.getElementById("dashPendings").innerHTML = formatThis(result);
+            document.getElementById("dashConsent").innerHTML = formatThis(result);
         }
     });
 

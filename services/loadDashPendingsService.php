@@ -26,17 +26,17 @@ class ServiceClass
 
 
 
-        $query = "SELECT count(clientid) as 'appointment' FROM bookappointmentinfo where Status='Pending'";
+        $query = "SELECT count(id) as 'consent' FROM consent where status='Active'";
         $stmt = $this->conn->prepare($query);
-    
+
         $stmt->execute();
-        $count=0;
+        $count = 0;
         if ($stmt->rowCount() > 0) {
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $count = $row["appointment"];
+                $count = $row["consent"];
             }
         }
-     return $count;
+        return $count;
     }
 
 }
