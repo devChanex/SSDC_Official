@@ -7,18 +7,18 @@ echo '
  <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-dark bg-white topbar mb-4 static-top shadow">
 
+
+                     
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
-
+  Smile Save Dental Care
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                       
-
                        
                        
                         <div class="topbar-divider d-none d-sm-block"></div>

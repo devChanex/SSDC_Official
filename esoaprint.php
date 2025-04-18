@@ -24,26 +24,12 @@
 
 <body id="page-top">
 
-    <!-- Page Wrapper -->
-    <div id="wrapper">
 
 
+    <!-- Page Heading -->
 
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
-
-            <!-- Main Content -->
-            <div id="content">
-
-
-
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
-
-                    <!-- Page Heading -->
-
-                    <input type="hidden" name="lastName" id="soaid" value="<?php echo $_GET['soaid']; ?>">
-                    <div class="card-body" id="printbodyResult">
+    <input type="hidden" name="lastName" id="soaid" value="<?php echo $_GET['soaid']; ?>">
+    <div class="card-body" id="printbodyResult">
 
 
 
@@ -53,30 +39,20 @@
 
 
 
-                        <!-- END OF YOUR ADDITIONAL CODE SNIPPET -->
+        <!-- END OF YOUR ADDITIONAL CODE SNIPPET -->
 
 
-                    </div>
-                </div>
-                <!-- /.container-fluid -->
+    </div>
+    <!-- /.container-fluid -->
 
-            </div>
-            <!-- End of Main Content -->
+    <!-- Bootstrap core JavaScript-->
 
 
-
-            <!-- Bootstrap core JavaScript-->
-            <script src="vendor/jquery/jquery.min.js"></script>
-            <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-            <!-- Core plugin JavaScript-->
-            <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-            <!-- Custom scripts for all pages-->
-            <script src="js/sb-admin-2.min.js"></script>
-            <script src="controllers/logOutConroller.js"></script>
-            <script src="controllers/sessionController.js"></script>
-            <script src="controllers/printesoaController.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+    <script src="controllers/logOutConroller.js"></script>
+    <script src="controllers/sessionController.js"></script>
+    <script src="controllers/printesoaController.js"></script>
 
 </body>
 
