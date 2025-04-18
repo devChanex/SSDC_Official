@@ -26,14 +26,14 @@ class ServiceClass
 
 
 
-        $query = "SELECT count(name) FROM hmo where status='Active'";
+        $query = "SELECT count(name) as 'num' FROM hmo where status='Active'";
         $stmt = $this->conn->prepare($query);
 
         $stmt->execute();
         $count = 0;
         if ($stmt->rowCount() > 0) {
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $count = $row["appointment"];
+                $count = $row["num"];
             }
         }
         return $count;
