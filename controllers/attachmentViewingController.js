@@ -87,7 +87,13 @@ function capturePhoto() {
             loadattachment();
 
 
+        },
+        error: function (xhr, status, error) {
+            console.error("AJAX Error:", status, error);
+            console.error("Response Text:", xhr.responseText);
+            toastError("An error occurred while uploading the attachment." + error + xhr.responseText);
         }
+
     });
     toastSuccess("Processing...");
     closeCameraModal();
