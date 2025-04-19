@@ -83,6 +83,7 @@ function capturePhoto() {
         contentType: false,
         type: 'POST',
         success: function (result) {
+            console.log(result);
             toastSuccess(result);
             loadattachment();
 
