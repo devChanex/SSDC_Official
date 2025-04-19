@@ -28,7 +28,7 @@ function add() {
         document.getElementById("treatmentList").innerHTML += "<tr><td>" + treatment + "</td><td>" + details + "</td><td>" + remarks + "</td><td>" + price + "</td><td><button class=\"btn btn-danger btn-circle btn-sm\" onclick=\"deleteTreatment(this)\" title=\"Delete treatment\"><i class=\"fas fa-times\"></i></button></td></tr>";
         computeTotal();
     } else {
-        alert("All Field is required.")
+        toastError("All Field is required.")
     }
 }
 function deleteTreatment(o) {
@@ -108,9 +108,9 @@ function submit() {
     var clientid = document.getElementById("clientid").value;
     var hmo = document.getElementById("hmo").value;
     if (rowCount == 0) {
-        alert("You do not have any treatment added.");
+        toastError("You do not have any treatment added.");
     } else if (dentist == "" || dates == "" || time == "") {
-        alert("All Field is required.");
+        toastError("All Field is required.");
 
     } else {
         submitform(dentist, dates, time, clientid, total, hmo);
@@ -141,7 +141,7 @@ function submitform(dentist, dates, time, clientid, total, hmo) {
                 if (parseInt(result) > 0) {
                     submitSubSoa(result);
                 } else {
-                    alert(result);
+                    toastError(result);
                 }
 
             }
@@ -171,9 +171,7 @@ function submitSubSoa(soaid) {
 
 
     }
-    //  document.getElementById("bodyResult").innerHTML='<object type="text/html" data="addTreatmentHistory.php" ></object>';
-    $("#bodyResult").load("esoaprint.php?soaid=" + soaid);
-    document.getElementById("divPrinter").style = "block";
+
 
 }
 
@@ -194,7 +192,7 @@ function submitSubSoatoService(treatment, details, remarks, price, clientid, soa
         contentType: false,
         type: 'POST',
         success: function (result) {
-            console.log("sub added");
+            toastRedirect("successToast", "E-SOA successfully submitted", "soaViewing.php?soaid=" + soaid);
         }
     });
 

@@ -19,7 +19,7 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
+    <link href="css/custom.css" rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -206,6 +206,7 @@
             <script src="controllers/sessionController.js"></script>
             <script src="controllers/eSoaController.js"></script>
             <script src="controllers/divPrinterController.js"></script>
+            <script src="js/custom.js"></script>
 </body>
 
 </html>

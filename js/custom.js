@@ -18,3 +18,15 @@ function toastReload(toastType, message) {
         location.reload();
     }, 2000);
 }
+
+function toastError(message) {
+    let toastElement = $("#errorToast");
+    toastElement.find(".toast-body").html(message);
+    toastElement.toast({ delay: 3000 }).toast("show");
+}
+
+function toastSuccess(message) {
+    let toastElement = $("#successToast");
+    toastElement.find(".toast-body").html(message);
+    toastElement.toast({ delay: 3000 }).toast("show");
+}

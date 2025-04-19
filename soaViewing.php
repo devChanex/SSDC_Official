@@ -46,9 +46,14 @@
                     <div class="card shadow mb-12">
                         <div class="card-header py-3 <?php echo $cards; ?>">
                             Electronic Statement of Account
-                            <button id="divPrinter" class="btn btn-success btn-sm btn-circle float-right"
+                            <button id="divPrinter" class="btn btn-secondary btn-sm btn-circle float-right"
                                 onclick="printDiv('bodyResult')" title="Print E-SOA"><i
                                     class="fas fa-print"></i></button>
+
+                            <a href="attachment.php?soaid=<?php echo $_GET["soaid"]; ?>"
+                                class="btn btn-primary btn-sm btn-circle float-right" title="View Attachment"><i
+                                    class="fas fa-paperclip"></i></a>
+
                         </div>
                         <input type="hidden" id="soaid" value="<?php echo $_GET["soaid"]; ?>">
                         <div class="card-body" id="bodyResult">
