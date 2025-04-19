@@ -42,8 +42,8 @@ class ServiceClass
                 <td>' . $row["contact"] . '</td>
 
                 <td align="center">
-                <a href="updatehmo.php?id=' . $row["id"] . '" class="btn btn-warning btn-circle" title="Update treatment"><i class="fas fa-edit"></i></a>
-                <a href="#" class="btn btn-danger btn-circle" onclick="deletehmo(\'' . $row["id"] . '\')" title="Delete treatment"><i class="fas fa-trash"></i></a>
+                <a href="updatehmo.php?id=' . $row["id"] . '" class="btn btn-warning btn-circle" title="Update record"><i class="fas fa-edit"></i></a>
+                <a href="#" class="btn btn-danger btn-circle" onclick="deletehmo(\'' . $row["id"] . '\')" title="Delete record"><i class="fas fa-trash"></i></a>
                 
                 
                 </td>

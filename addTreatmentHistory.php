@@ -43,7 +43,7 @@
                     <!-- Page Heading -->
                     <div class="card shadow mb-12">
                         <div class="card-header py-3 <?php echo $cards; ?>">
-                            Treatment History
+                            Create SOA - Treatment
                             <button id="divPrinter" class="btn btn-success btn-sm float-right"
                                 onclick="location.reload()" title="Print E-SOA">Add New</button>
                             <button id="divPrinter" class="btn btn-success btn-sm btn-circle float-right"
@@ -172,7 +172,8 @@
                                 <div class="col-lg-12" style="text-align:center;">
                                     <div id="formResult"></div>
                                     <button class="btn btn-success" onclick="submit()">Submit</button>
-                                    <button class="btn btn-danger" onclick="cancel()">Cancel</button>
+                                    <button class="btn btn-danger"
+                                        onclick="window.location.href = 'clientTreatmentList.php';">Cancel</button>
                                 </div>
                             </div>
 
