@@ -218,15 +218,7 @@
                 <!-- End of Main Content -->
 
                 <?php include_once('bars/footer.php'); ?>
-                <!-- Modal -->
-                <div id="cameraModal">
-                    <div id="modalContent">
-                        <video id="video" width="320" height="240" autoplay playsinline></video><br>
-                        <button onclick="capturePhoto()">Capture</button>
-                        <button onclick="switchCamera()">Switch Camera</button>
-                        <button onclick="closeCameraModal()">Cancel</button>
-                    </div>
-                </div>
+
                 <!-- Bootstrap core JavaScript-->
                 <script src="vendor/jquery/jquery.min.js"></script>
                 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

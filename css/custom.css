@@ -8,23 +8,40 @@
 }
 
 #cameraModal {
-    display: none;
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.8);
-    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    /* Optional overlay */
+    z-index: 9999;
+    display: flex;
     align-items: center;
-    z-index: 1000;
+    justify-content: center;
 }
 
 #modalContent {
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    text-align: center;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#video {
+    width: 100%;
+    height: auto;
+    max-height: 80vh;
+    /* Optional: limit video height */
+    object-fit: cover;
+}
+
+#modalContent button {
+    margin: 10px 5px;
+    padding: 10px 20px;
+    font-size: 16px;
 }
 
 .toast-container {

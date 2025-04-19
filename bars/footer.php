@@ -43,6 +43,19 @@ echo '
 </div>
 
 
+<!-- Camera Modal -->
+<div id="cameraModal" style="display: none;">
+    <div id="modalContent">
+        <video id="video" autoplay playsinline></video>
+        <div>
+            <button onclick="capturePhoto()">Capture</button>
+            <button onclick="switchCamera()">Switch Camera</button>
+            <button onclick="closeCameraModal()">Cancel</button>
+        </div>
+    </div>
+</div>
+
+
 ';
 
 ?>

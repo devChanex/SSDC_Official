@@ -212,14 +212,7 @@
 
                 </div>
                 <!-- /.container-fluid -->
-                <div id="cameraModal">
-                    <div id="modalContent">
-                        <video id="video" width="320" height="240" autoplay playsinline></video><br>
-                        <button onclick="capturePhoto()">Capture</button>
-                        <button onclick="switchCamera()">Switch Camera</button>
-                        <button onclick="closeCameraModal()">Cancel</button>
-                    </div>
-                </div>
+
             </div>
             <!-- End of Main Content -->
 
