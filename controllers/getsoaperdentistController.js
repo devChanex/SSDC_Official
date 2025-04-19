@@ -1,7 +1,6 @@
 getclientdata();
 function getclientdata() {
-    //  document.getElementById("content-table").style.zoom = "70%";
-    //alert("G");
+
     var clientname = document.getElementById("clientname").value;
     var from = document.getElementById("from").value;
     var to = document.getElementById("to").value;
@@ -11,7 +10,7 @@ function getclientdata() {
     fd.append("from", from);
     fd.append("to", to);
     $.ajax({
-        url: "services/soaperclientservice.php",
+        url: "services/soaperdentistservice.php",
         data: fd,
         processData: false,
         contentType: false,
