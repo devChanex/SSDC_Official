@@ -9,18 +9,31 @@ let currentFacingMode = "user"; // "user" for front, "environment" for back
 
 function openCameraModal() {
     modal.style.display = 'flex';
-    navigator.mediaDevices.getUserMedia({
+
+    const constraints = {
         video: { facingMode: "user" },
         audio: false
-    }).then(s => {
-        stream = s;
-        video.srcObject = stream;
-        video.play();
-    }).catch(err => {
-        alert('Camera access denied or not supported on this browser.');
-        console.error(err);
-    });
+    };
+
+    navigator.mediaDevices.getUserMedia(constraints)
+        .then(s => {
+            stream = s;
+            video.srcObject = stream;
+            video.play();
+
+            // Flip video for front cam
+            if (constraints.video.facingMode === "user") {
+                video.style.transform = "scaleX(-1)";
+            } else {
+                video.style.transform = "scaleX(1)";
+            }
+        })
+        .catch(err => {
+            alert('Camera access denied or not supported on this browser.');
+            console.error(err);
+        });
 }
+
 
 
 function closeCameraModal() {
