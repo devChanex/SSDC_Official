@@ -51,20 +51,20 @@ echo '
    
     </li>
         <li class="nav-item">
-    <a class="nav-link" href="#" data-toggle="collapse" data-target="#clientTreatment" aria-expanded="false"
-        aria-controls="config">
-        <i class="fas fa-tooth"></i>
-        <span>Client Treatment</span>
-    </a>
-    <div id="clientTreatment" class="collapse" aria-labelledby="clientTreatment" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="clientTreatmentList.php">Client Treatment List</a>
-            <a class="collapse-item" href="allSoaList.php">SOA List</a>
+                <a class="nav-link" href="#" data-toggle="collapse" data-target="#clientTreatment" aria-expanded="false"
+                    aria-controls="clientTreatment">
+                    <i class="fas fa-tooth"></i>
+                    <span>Client Treatment</span>
+                </a>
+            <div id="clientTreatment" class="collapse" aria-labelledby="clientTreatment" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="clientTreatmentList.php">Client Treatment List</a>
+                    <a class="collapse-item" href="allSoaList.php">SOA List</a>
 
-        </div>
-    </div>
-</li>
-            <li class="nav-item">
+                </div>
+            </div>
+        </li>
+        <li class="nav-item">
                 <a class="nav-link" href="#" data-toggle="collapse" data-target="#config" aria-expanded="false"
                     aria-controls="config">
                     <i class="fas fa-cog"></i>
