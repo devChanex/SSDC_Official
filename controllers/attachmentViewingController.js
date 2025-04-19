@@ -76,9 +76,10 @@ function capturePhoto() {
         success: function (result) {
             toastSuccess(result);
             loadattachment();
+            closeCameraModal();
 
         }
     });
 
-    closeCameraModal();
+
 }
