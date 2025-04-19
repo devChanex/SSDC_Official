@@ -31,7 +31,7 @@
 }
 
 #video {
-    width: 90%;
+    width: 100%;
     height: auto;
     max-height: 80vh;
     /* Optional: limit video height */

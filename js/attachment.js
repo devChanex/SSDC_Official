@@ -30,8 +30,8 @@ function openCameraModal() {
                 video.style.transform = "scaleX(1)";
             }
 
-            canvas.height = video.offsetHeight;
-            canvas.width = video.offsetWidth;
+            // canvas.height = video.offsetHeight;
+            // canvas.width = video.offsetWidth;
         })
         .catch(err => {
             alert('Camera access denied or not supported on this browser.');
