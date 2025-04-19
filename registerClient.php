@@ -40,8 +40,8 @@
 
                     <!-- Page Heading -->
                     <div class="card shadow mb-12">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">CLIENT REGISTRATION</h6>
+                        <div class="card-header py-3 <?php echo $cards; ?>">
+                            <h6 class="m-0 font-weight-bold">CLIENT REGISTRATION</h6>
                         </div>
                         <div class="card-body" id="bodyResult">
                             <div class="card-body" id="bodyResult">

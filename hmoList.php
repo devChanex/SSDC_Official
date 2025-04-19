@@ -42,11 +42,11 @@
 
 
                 <!-- Begin Page Content -->
-                <div class="container-fluid" id="content-table" style="padding-left:20%;padding-right:20%;">
+                <div class="container-fluid" id="content-table">
 
                     <!-- Page Heading -->
                     <div class="card shadow mb-12">
-                        <div class="card-header py-3">
+                        <div class="card-header py-3 <?php echo $cards; ?>">
                             <strong>HMO List</strong>
                             <a href="addhmo.php" class="btn btn-warning btn-circle float-right" title="Add Record"><i
                                     class="fas fa-plus"></i></a>

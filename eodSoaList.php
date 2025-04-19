@@ -44,11 +44,11 @@
 
                     <!-- Page Heading -->
                     <div class="card shadow mb-12">
-                        <div class="card-header py-3">
+                        <div class="card-header py-3 <?php echo $cards; ?>">
                             <button id="divPrinter" class="btn btn-success btn-sm btn-circle float-right"
                                 onclick="printDiv('bodyResult')" title="Print E-SOA"><i
                                     class="fas fa-print"></i></button>
-                            <!--                            <h6 class="m-0 font-weight-bold text-primary">SOA List -<?php echo $_GET["name"]; ?></h6> -->
+                            <!--                            <h6 class="m-0 font-weight-bold">SOA List -<?php echo $_GET["name"]; ?></h6> -->
                             <!--                        <input type="hidden" id="clientid" value="<?php echo $_GET["clientid"]; ?>"> -->
                             Date:
                             <input type="hidden" id="dateid" value=<?php

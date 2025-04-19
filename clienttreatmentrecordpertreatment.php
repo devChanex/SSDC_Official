@@ -44,7 +44,7 @@
 
                     <!-- Page Heading -->
                     <div class="card shadow mb-12">
-                        <div class="card-header py-3">
+                        <div class="card-header py-3 <?php echo $cards; ?>">
 
                             <div class="row float-right" style-"float: right;">
                                 Treatment:<input type="text" id="ctreatment" onkeydown="getclientdata();">
@@ -56,9 +56,10 @@
                                     value="Print">
 
                             </div>
-                            <h6 class="m-0 font-weight-bold text-primary">RECORDS OF SOA AS OF:
+                            <h6 class="m-0 font-weight-bold">RECORDS OF SOA AS OF:
                                 <?php $dToday = date('Y-m-d');
-                                echo $dToday; ?></h6>
+                                echo $dToday; ?>
+                            </h6>
 
                         </div>
 

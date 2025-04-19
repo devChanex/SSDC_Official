@@ -42,8 +42,8 @@
 
                     <!-- Page Heading -->
                     <div class="card shadow mb-12">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">TREATMENT UPDATE</h6>
+                        <div class="card-header py-3 <?php echo $cards; ?>">
+                            <h6 class="m-0 font-weight-bold">TREATMENT UPDATE</h6>
                         </div>
                         <div class="card-body" id="bodyResult">
                             <!-- USE THIS SPACE FOR YOUR ADDITIONAL CODE SNIPPET -->

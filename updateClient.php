@@ -43,8 +43,8 @@
 
                     <!-- Page Heading -->
                     <div class="card shadow mb-12">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">CLIENT INFORMATION - UPDATE</h6>
+                        <div class="card-header py-3 <?php echo $cards; ?>">
+                            <h6 class="m-0 font-weight-bold">CLIENT INFORMATION - UPDATE</h6>
                         </div>
                         <div class="card-body" id="bodyResult">
                             <h5 class="mb-3">PERSONAL INFORMATION</h5>

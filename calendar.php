@@ -54,7 +54,7 @@ error_reporting(0);
 
                     <!-- Page Heading -->
                     <div class="card shadow">
-                        <div class="card-header py-3">
+                        <div class="card-header py-3 <?php echo $cards; ?>">
                             <strong>Clinic Calendar</strong>
 
                         </div>

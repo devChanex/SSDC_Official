@@ -42,7 +42,7 @@
 
                     <!-- Page Heading -->
                     <div class="card shadow mb-12">
-                        <div class="card-header py-3">
+                        <div class="card-header py-3 <?php echo $cards; ?>">
                             Treatment History
                             <button id="divPrinter" class="btn btn-success btn-sm float-right"
                                 onclick="location.reload()" title="Print E-SOA">Add New</button>

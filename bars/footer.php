@@ -4,7 +4,9 @@ echo '
 <footer class="sticky-footer bg-white">
     <div class="container my-auto">
         <div class="copyright text-center my-auto">
-            <span>Copyright &copy; SSDC 2020</span>
+             
+        <img src="img/logoRevised.png" class="img-fluid" style="max-height: 30px;">
+   
         </div>
     </div>
 </footer>

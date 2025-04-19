@@ -1,5 +1,5 @@
 <?php
-
+include_once("properties.php");
 error_reporting(0);
 session_start();
 
@@ -13,7 +13,13 @@ echo '
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
-  Smile Save Dental Care
+                    
+                    <strong>
+
+';
+
+echo $systemname;
+echo '</strong>
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">

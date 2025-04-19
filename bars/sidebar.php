@@ -1,10 +1,10 @@
 <?php
 
-
+include_once("properties.php");
 
 echo '
  <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-danger sidebar sidebar-dark  toggled" id="accordionSidebar">
+        <ul class="navbar-nav ' . $sidebarColor . ' sidebar sidebar-dark  toggled" id="accordionSidebar">
 
           
 

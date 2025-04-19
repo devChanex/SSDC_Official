@@ -43,8 +43,8 @@
 
                     <!-- Page Heading -->
                     <div class="card shadow mb-12">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">HMO UPDATE</h6>
+                        <div class="card-header py-3 <?php echo $cards; ?>">
+                            <h6 class="m-0 font-weight-bold">HMO UPDATE</h6>
                         </div>
                         <input type="hidden" class="form-control" id="id" value="<?php echo $_GET['id']; ?>">
 

@@ -45,7 +45,7 @@
 
                     <!-- Page Heading -->
                     <div class="card shadow mb-12">
-                        <div class="card-header py-3">
+                        <div class="card-header py-3 <?php echo $cards; ?>">
                             <strong>Consent List</strong>
 
                         </div>

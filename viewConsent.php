@@ -45,8 +45,8 @@
 
                     <!-- Page Heading -->
                     <div class="card shadow mb-12">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">View Consent</h6>
+                        <div class="card-header py-3 <?php echo $cards; ?>">
+                            <h6 class="m-0 font-weight-bold">View Consent</h6>
                         </div>
                         <div class="card-body" id="bodyResult">
                             <input type="hidden" value="<?php echo $_GET['consentid']; ?>" id="consentId">

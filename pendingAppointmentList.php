@@ -43,8 +43,8 @@
 
                     <!-- Page Heading -->
                     <div class="card shadow mb-12">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Pending Appointment List</h6>
+                        <div class="card-header py-3 <?php echo $cards; ?>">
+                            <h6 class="m-0 font-weight-bold">Pending Appointment List</h6>
                         </div>
                         <div class="card-body">
                             <!-- USE THIS SPACE FOR YOUR ADDITIONAL CODE SNIPPET -->

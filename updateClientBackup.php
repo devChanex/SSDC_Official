@@ -42,8 +42,8 @@
 
                     <!-- Page Heading -->
                     <div class="card shadow mb-12">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">CLIENT PROFILE UPDATE</h6>
+                        <div class="card-header py-3 <?php echo $cards; ?>">
+                            <h6 class="m-0 font-weight-bold">CLIENT PROFILE UPDATE</h6>
                         </div>
                         <div class="card-body" id="bodyResult" style="padding-left:20%;padding-right:20%;">
                             <!-- USE THIS SPACE FOR YOUR ADDITIONAL CODE SNIPPET -->

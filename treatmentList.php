@@ -44,7 +44,7 @@
 
                     <!-- Page Heading -->
                     <div class="card shadow mb-12">
-                        <div class="card-header py-3">
+                        <div class="card-header py-3 <?php echo $cards; ?>">
                             <strong>Treatment List</strong>
                             <a href="addTreatment.php" class="btn btn-warning btn-circle float-right"
                                 title="Add treatment"><i class="fas fa-plus"></i></a>

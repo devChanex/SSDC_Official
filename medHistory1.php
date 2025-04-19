@@ -41,9 +41,10 @@
 
                     <!-- Page Heading -->
                     <div class="card shadow mb-12">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Client Medical History -
-                                <?php echo ucwords($_GET['clientname']); ?> </h6>
+                        <div class="card-header py-3 <?php echo $cards; ?>">
+                            <h6 class="m-0 font-weight-bold">Client Medical History -
+                                <?php echo ucwords($_GET['clientname']); ?>
+                            </h6>
                         </div>
                         <div class="card-body">
 

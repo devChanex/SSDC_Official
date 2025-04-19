@@ -143,8 +143,8 @@
 
                             <!-- Bar Chart -->
                             <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Yearly Earnings Overview</h6>
+                                <div class="card-header py-3 <?php echo $cards; ?>">
+                                    <h6 class="m-0 font-weight-bold">Yearly Earnings Overview</h6>
                                 </div>
                                 <div class="card-body">
                                     <div class="chart-bar">
@@ -159,8 +159,8 @@
 
                             <!-- Bar Chart -->
                             <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Montly Earnings Overview</h6>
+                                <div class="card-header py-3 <?php echo $cards; ?>">
+                                    <h6 class="m-0 font-weight-bold">Montly Earnings Overview</h6>
                                 </div>
                                 <div class="card-body">
                                     <div class="chart-bar">
@@ -175,8 +175,8 @@
 
                             <!-- Bar Chart -->
                             <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Patients Statistic Report</h6>
+                                <div class="card-header py-3 <?php echo $cards; ?>">
+                                    <h6 class="m-0 font-weight-bold">Patients Statistic Report</h6>
                                 </div>
                                 <div class="card-body">
                                     <div class="chart-bar">
@@ -191,8 +191,8 @@
 
                             <!-- Bar Chart -->
                             <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Montly Patients Record</h6>
+                                <div class="card-header py-3 <?php echo $cards; ?>">
+                                    <h6 class="m-0 font-weight-bold">Montly Patients Record</h6>
                                 </div>
                                 <div class="card-body">
                                     <div class="chart-bar">
