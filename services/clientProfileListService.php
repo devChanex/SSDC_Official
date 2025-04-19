@@ -68,7 +68,7 @@ class ServiceClass
 
                 }
 
-                $imgBase64 = base64_encode($row["photo"]);
+
                 echo '
                 <a href="updateClient.php?civilStatus=' . $row["civilstatus"] . '&company=' . $row["company"] . '&cardNumber=' . $row["cardnumber"] . '&hmo=' . $row["hmo"] . '&religion=' . $row["religion"] . '&clientid=' . $row["clientid"] . '&lname=' . $row["lname"] . '&fname=' . $row["fname"] . '&mname=' . $row["mdname"] . '&nick=' . $row["nickname"] . '&age=' . $row["age"] . '&sex=' . $row["sex"] . '&occupation=' . $row["occupation"] . '
                 &birthDate=' . $row["birthDate"] . '&mobileNumber=' . $row["mobileNumber"] . '&homeAddress=' . $row["homeAddress"] . '
@@ -77,18 +77,18 @@ class ServiceClass
                 <a href="#" class="btn btn-danger btn-circle" onclick="deleteClient(\'' . $row["clientid"] . '\')" title="Delete Client Profile"><i class="fas fa-trash"></i></a>
 
                 ';
-
-
-                if ($row["photo"] != null) {
-                    echo '<a href="#" class="btn btn-primary btn-circle" 
-   data-toggle="modal" 
-   data-target="#ViewModal" 
-   data-img="data:image/jpeg;base64,' . $imgBase64 . '" 
-   onclick="showProfilePhoto(this)" 
-   title="View Client Profile">
-   <i class="fas fa-eye"></i>
-</a>';
-                }
+                //View Photo
+// $imgBase64 = base64_encode($row["photo"]);
+//                 if ($row["photo"] != null) {
+//                     echo '<a href="#" class="btn btn-primary btn-circle" 
+//    data-toggle="modal" 
+//    data-target="#ViewModal" 
+//    data-img="data:image/jpeg;base64,' . $imgBase64 . '" 
+//    onclick="showProfilePhoto(this)" 
+//    title="View Client Profile">
+//    <i class="fas fa-eye"></i>
+// </a>';
+//                }
 
                 echo '
                 <a href="addConsent.php?civilStatus=' . $row["civilstatus"] . '&company=' . $row["company"] . '&cardNumber=' . $row["cardnumber"] . '&hmo=' . $row["hmo"] . '&religion=' . $row["religion"] . '&clientid=' . $row["clientid"] . '&lname=' . $row["lname"] . '&fname=' . $row["fname"] . '&mname=' . $row["mdname"] . '&nick=' . $row["nickname"] . '&age=' . $row["age"] . '&sex=' . $row["sex"] . '&occupation=' . $row["occupation"] . '
