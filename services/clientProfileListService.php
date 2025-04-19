@@ -48,7 +48,7 @@ class ServiceClass
                 <td>' . $row["hmo"] . '</td>
      
                
-                <td>';
+                <td align="center">';
 
                 //medhistory checker
 
