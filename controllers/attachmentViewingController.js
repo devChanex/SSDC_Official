@@ -40,11 +40,20 @@ function deletePhoto() {
 }
 
 
-function openPhotoModal(img, id) {
-    const modalImg = document.getElementById('modalImage');
+// function openPhotoModal(img, id) {
+//     const modalImg = document.getElementById('modalImage');
+//     document.getElementById("attachmentid").value = id;
+//     modalImg.src = img.src;
+//     $('#photoModal').modal('show');
+// }
+
+function openPhotoModal(imgElement, id) {
+    var modalImage = document.getElementById('modalImage');
+    modalImage.src = imgElement.src; // Set the modal image source to the clicked image's source
+    modalImage.style.maxWidth = "none"; // Allow image to show at its natural size without constraining width
+    modalImage.style.maxHeight = "none"; // Allow image to show at its natural size without constraining height
     document.getElementById("attachmentid").value = id;
-    modalImg.src = img.src;
-    $('#photoModal').modal('show');
+    $('#photoModal').modal('show'); // Show the modal (using Bootstrap modal)
 }
 
 
@@ -76,10 +85,11 @@ function capturePhoto() {
         success: function (result) {
             toastSuccess(result);
             loadattachment();
-            closeCameraModal();
+
 
         }
     });
-
+    toastSuccess("Processing...");
+    closeCameraModal();
 
 }

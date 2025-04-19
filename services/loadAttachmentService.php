@@ -40,7 +40,7 @@ class ServiceClass
                     $imageSrc = 'data:image/png;base64,' . $imageData;
                     echo '
  <div class="col-6 mb-4">
-      <img src="' . $imageSrc . '" class="img-fluid rounded shadow-sm photo-thumb" alt="Photo 1" onclick="openPhotoModal(this,\'' . $row["id"] . '\')">
+      <img src="' . $imageSrc . '" class="img-fluid rounded shadow-sm" alt="Photo 1" onclick="openPhotoModal(this,\'' . $row["id"] . '\')">
     </div>
 ';
 
