@@ -49,7 +49,7 @@
                             <div class="row float-right" style-"float: right;">
                                 Date From : <input type="date" id="from" onchange="getclientdata();">
                                 Date To : <input type="date" id="to" onchange="getclientdata();">
-                                <input type="button" class="btn btn-success" onclick="getclientdata();" value="Search">
+
                                 <input type="button" class="btn btn-primary" onclick="printDiv('daterange')"
                                     value="Print">
 
