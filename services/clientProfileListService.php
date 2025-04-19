@@ -37,10 +37,10 @@ class ServiceClass
                 $fullname = $row["lname"] . ', ' . $row["fname"] . ' ' . $row["mdname"];
                 echo '
                 <tr>
-                <td>' . $fullname . '</td>
-                <td>' . $row["nickname"] . '</td>
+                <td>' . ucfirst(strtolower($fullname)) . '</td>
+                <td>' . ucfirst(strtolower($row["nickname"])) . '</td>
                 <td>' . $age . '</td>
-                <td>' . $row["sex"] . '</td>
+                <td>' . ucfirst(strtolower($row["sex"])) . '</td>
         
                 <td>' . $row["mobileNumber"] . '</td>
                
