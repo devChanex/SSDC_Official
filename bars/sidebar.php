@@ -1,26 +1,34 @@
 <?php
 
 include_once("properties.php");
-
+session_start();
 echo '
  <!-- Sidebar -->
         <ul class="navbar-nav ' . $sidebarColor . ' sidebar sidebar-dark  toggled" id="accordionSidebar">
-
-          
-
-             <li class="nav-item">
+<li class="nav-item">
                 <a class="nav-link" href="basecode.php">
                 
                  <strong>SSDC</strong></a>
             </li>
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-            <!-- Nav Item - Dashboard -->
+
+          
+';
+
+if ($_SESSION["username"] == $superuser) {
+    echo '
+   <!-- Nav Item - Dashboard -->
             <li class="nav-item">
                 <a class="nav-link" href="basecode.php">
                     <i class="fas fa-fw fa-home"></i>
                     <span>Dashboard</span></a>
             </li>
+';
+}
+echo '
+            
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+          
            
          <li class="nav-item">
                 <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
@@ -78,6 +86,10 @@ echo '
                     </div>
                 </div>
             </li>
+            ';
+
+if ($_SESSION["username"] == $superuser) {
+    echo '
 <li class="nav-item">
     <a class="nav-link" href="#" data-toggle="collapse" data-target="#report" aria-expanded="false"
         aria-controls="config">
@@ -96,7 +108,10 @@ echo '
         </div>
     </div>
 </li>
-        </ul>
+        
         <!-- End of Sidebar -->
 
 ';
+}
+
+echo '</ul>';
