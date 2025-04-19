@@ -37,19 +37,19 @@ echo '
                 </div>
             </li>
 
-              <li class="nav-item">
+    <li class="nav-item">
     <a class="nav-link" href="consentList.php" >
         <i class="fas fa-file"></i>
         <span>Consent List</span>
     </a>
-
+    </li>
         <li class="nav-item">
     <a class="nav-link" href="hmoList.php" >
         <i class="fas fa-heart"></i>
         <span>HMO</span>
     </a>
    
-</li>
+    </li>
         <li class="nav-item">
     <a class="nav-link" href="#" data-toggle="collapse" data-target="#clientTreatment" aria-expanded="false"
         aria-controls="config">
