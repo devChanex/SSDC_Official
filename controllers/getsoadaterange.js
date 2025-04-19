@@ -15,6 +15,7 @@ function getclientdata() {
         contentType: false,
         type: 'POST',
         success: function (result) {
+
             document.getElementById("resultResponsez").innerHTML = result;
 
         }
