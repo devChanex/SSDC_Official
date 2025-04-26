@@ -21,6 +21,7 @@
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
 
 </head>
 
@@ -46,6 +47,8 @@
                     <div class="card shadow mb-12">
                         <div class="card-header py-3 <?php echo $cards; ?>">
                             Electronic Statement of Account
+
+
                             <button id="divPrinter" class="btn btn-secondary btn-sm btn-circle float-right"
                                 onclick="printDiv('bodyResult')" title="Print E-SOA"><i
                                     class="fas fa-print"></i></button>
@@ -54,6 +57,8 @@
                                 class="btn btn-primary btn-sm btn-circle float-right" title="View Attachment"><i
                                     class="fas fa-paperclip"></i></a>
 
+                            <button id="divPrinter" class="btn btn-warning btn-sm btn-circle float-right"
+                                onclick="signature()"><i class="fas fa-check"></i></button>
                         </div>
                         <input type="hidden" id="soaid" value="<?php echo $_GET["soaid"]; ?>">
                         <div class="card-body" id="bodyResult">
@@ -65,7 +70,15 @@
 
                 </div>
                 <!-- /.container-fluid -->
-
+                <div id="signature-modal">
+                    <div class="modal-content">
+                        <h3>Draw your Signature</h3>
+                        <canvas id="signature-pad"></canvas><br>
+                        <button onclick="clearPad()">Clear</button>
+                        <button onclick="confirmSignature()">Done</button>
+                        <button onclick="closeSignatureModal()">Cancel</button>
+                    </div>
+                </div>
             </div>
             <!-- End of Main Content -->
 
@@ -91,7 +104,8 @@
             <script src="controllers/sessionController.js"></script>
             <script src="controllers/soaViewingController.js"></script>
             <script src="controllers/divPrinterController.js"></script>
-
+            <script src="js/signature.js"></script>
+            <script src="js/custom.js"></script>
 
 
 </body>
