@@ -73,7 +73,7 @@ class ServiceClass
             </html>";
             $headers = "MIME-Version: 1.0" . "\r\n";
             $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-            $headers .= 'From: <ServiceBot@kbfdentalcare.com>' . "\r\n";
+            $headers .= 'From: <ServiceBot@smilesavedental.ph>' . "\r\n";
             mail($_SESSION["supportemail"], "SmileSaveDental Ticket#" . $ticketid, $msg, $headers);
 
 
