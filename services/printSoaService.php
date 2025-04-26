@@ -146,8 +146,70 @@ class ServiceClass
 </tbody>
 </table>
 
-                </div>
-                
+<hr>
+<strong>Patient Consent and Acknowledgment</strong><br>
+I hereby acknowledge that the dentist has explained to me the nature of the dental procedure(s), including the potential risks, benefits, and alternative treatment options. I confirm that I have had the opportunity to ask questions and that all my concerns have been addressed to my satisfaction.
+By signing below, I voluntarily consent to the proposed treatment and authorize the dentist to proceed as discussed.
+<br><br>
+';
+
+                    if ($row && !empty($row['signature'])) {
+                        $imageData = base64_encode($row['signature']);
+                        $imageType = "png"; // Or "png" depending on what your DB stores
+                        $img = "data:image/{$imageType};base64,{$imageData}";
+
+                        echo '
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label>Patient Signature</label>
+                                    <div class="border rounded p-3 signature-box"
+                                        style="height: 80px; cursor: pointer;" 
+                                        id="patient-signature-box">
+                                    <img src="' . $img . '" alt="Patient signature" style="width: 100%; height: 100%; object-fit: contain;">
+
+                                                
+                                        
+                                    </div>
+                                    <input type="hidden" name="patient_signature" id="patient-signature-input" value="' . $img . '" onchange="changeSignature()">
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="dateSigned" id="dateSigned">Date Signed: <u>_____' . $row["dateSigned"] . '_______</u></label>
+                                    
+                                </div>
+                            </div>
+
+                        ';
+
+                    } else {
+                        echo '
+                         <div class="row">
+                                <div class="col-sm-6">
+                                    <label>Patient Signature</label>
+                                    <div class="border rounded p-3 signature-box"
+                                        style="height: 80px; cursor: pointer;" 
+                                        id="patient-signature-box">
+                                   
+                                                
+                                        
+                                    </div>
+                                    <input type="hidden" name="patient_signature" id="patient-signature-input" value="" onchange="changeSignature()">
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="dateSigned" id="dateSigned">Date Signed: <u>________________________</u></label>
+                                    
+                                </div>
+                            </div>
+                        
+                        ';
+
+                    }
+
+
+
+                    echo '
+
+
+
             </div>
             <hr>
                 

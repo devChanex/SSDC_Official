@@ -22,6 +22,55 @@ function loadSoa() {
 }
 
 
+function signature() {
+
+    // var soaid = document.getElementById("soaid").value;
+    var soaid = document.getElementById("soaid").value;
+    var fd = new FormData();
+    fd.append("soaid", soaid)
+    $.ajax({
+        url: "services/signatureCheckerService.php",
+        data: fd,
+        processData: false,
+        contentType: false,
+        type: 'POST',
+        success: function (result) {
+            if (result == "true") {
+                openSignatureModal(function (sigData) {
+                    setSignature('patient', sigData);
+                });
+            } else if (result == "false") {
+                toastError("This is already signed by the patient.");
+
+            } else {
+
+            }
+        }
+    });
+}
+
+function changeSignature() {
+    var soaid = document.getElementById("soaid").value;
+    var patientSignature = document.getElementById("patient-signature-input").value;
+    var fd = new FormData();
+    fd.append("soaid", soaid)
+    fd.append("patientSignature", patientSignature);
+    $.ajax({
+        url: "services/changeSignatureService.php",
+        data: fd,
+        processData: false,
+        contentType: false,
+        type: 'POST',
+        success: function (result) {
+            if (result == "success") {
+                toastSuccess("Successfully Signed.");
+                loadSoa();
+            } else {
+                toastError("An Error occured: " + result);
+            }
+        }
+    });
+}
 
 function createTicket(ref, currentvalue, column, table, refname) {
     var value = prompt("Your about to update" + table + "." + column + " for reference # " + ref + " with current value of " + currentvalue + ". Please input new value", "");

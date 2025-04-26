@@ -79,7 +79,7 @@ function setSignature(role, sigData) {
 
     // Set hidden input
     input.value = sigData;
-
+    input.dispatchEvent(new Event('change'));
     // Show image preview inside the div
     box.innerHTML = `<img src="${sigData}" alt="${role} signature" style="width: 100%; height: 100%; object-fit: contain;">`;
 
