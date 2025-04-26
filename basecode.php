@@ -1,6 +1,7 @@
 <?php
 include_once("bars/properties.php");
-
+session_start();
+error_reporting(0);
 if ($_SESSION["username"] != $superuser) {
     header("Location: clientProfileList.php");
     exit();
