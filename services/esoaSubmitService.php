@@ -8,8 +8,9 @@ $time = urldecode($_POST['time']);
 $clientid = urldecode($_POST['clientid']);
 $total = urldecode($_POST['total']);
 $hmo = urldecode($_POST['hmo']);
+$agreement = urldecode($_POST['agreement']);
 $service = new ServiceClass();
-$result = $service->submitEsoa($dentist, $date, $time, $clientid, $total, $hmo);
+$result = $service->process($dentist, $date, $time, $clientid, $total, $hmo, $agreement);
 echo $result;
 //USE THIS AS YOUR BASIS
 class ServiceClass
@@ -28,10 +29,10 @@ class ServiceClass
 		$stmt = $this->conn->prepare($sql);
 		return $stmt;
 	}
-	public function submitEsoa($dentist, $date, $time, $clientid, $total, $hmo)
+	public function process($dentist, $date, $time, $clientid, $total, $hmo, $agreement)
 	{
 		try {
-			$query = "Insert into treatmentsoa(date,time,clientid,dentist,total,hmoaccredited) values (:a,:b,:c,:d,:e,:f)";
+			$query = "Insert into treatmentsoa(date,time,clientid,dentist,total,hmoaccredited,agreement) values (:a,:b,:c,:d,:e,:f,:g)";
 			$stmt = $this->conn->prepare($query);
 			$stmt->bindParam(':a', $date);
 			$stmt->bindParam(':b', $time);
@@ -39,6 +40,8 @@ class ServiceClass
 			$stmt->bindParam(':d', $dentist);
 			$stmt->bindParam(':e', $total);
 			$stmt->bindParam(':f', $hmo);
+			$stmt->bindParam(':g', $agreement);
+
 			$stmt->execute();
 
 

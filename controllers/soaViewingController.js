@@ -16,6 +16,25 @@ function loadSoa() {
         type: 'POST',
         success: function (result) {
             document.getElementById("bodyResult").innerHTML = result;
+            loadPayment();
+        }
+    });
+
+}
+
+function loadPayment() {
+
+    var soaid = document.getElementById("soaid").value;
+    var fd = new FormData();
+    fd.append("soaid", soaid)
+    $.ajax({
+        url: "services/loadPaymentService.php",
+        data: fd,
+        processData: false,
+        contentType: false,
+        type: 'POST',
+        success: function (result) {
+            document.getElementById("paymentResult").innerHTML = result;
         }
     });
 
@@ -53,7 +72,7 @@ function changeSignature() {
     var soaid = document.getElementById("soaid").value;
     var patientSignature = document.getElementById("patient-signature-input").value;
     var fd = new FormData();
-    fd.append("soaid", soaid)
+    fd.append("soaid", soaid);
     fd.append("patientSignature", patientSignature);
     $.ajax({
         url: "services/changeSignatureService.php",
@@ -96,4 +115,36 @@ function createTicket(ref, currentvalue, column, table, refname) {
 
     }
 
+}
+
+function submitPaymentForm() {
+    var soaid = document.getElementById("soaid").value;
+    var amount = document.getElementById("paymentAmount").value;
+    var date = document.getElementById("paymentDate").value;
+    var paymentTypeOption = document.getElementById("paymentType");
+    var paymentType = paymentTypeOption.value;
+
+
+    var fd = new FormData();
+    fd.append("soaid", soaid);
+    fd.append("date", date);
+    fd.append("amount", amount);
+    fd.append("paymentType", paymentType);
+    $.ajax({
+        url: "services/addPaymentService.php",
+        data: fd,
+        processData: false,
+        contentType: false,
+        type: 'POST',
+        success: function (result) {
+            if (result == "success") {
+                $('#paymentModal').modal('hide');
+                document.getElementById("paymentForm").reset();
+                toastSuccess("Payment Added.");
+                loadPayment();
+            } else {
+                toastError("An Error occured: " + result);
+            }
+        }
+    });
 }

@@ -94,6 +94,7 @@
                                     <label for="Age">Age</label>
                                     <input type="Text" name="age" id="age" placeholder="Age" class="form-control"
                                         value="<?php echo $_GET['age']; ?>" readonly>
+
                                 </div>
                                 <div class="col-lg-6">
                                     <label for="lastName">Time</label>
@@ -166,6 +167,14 @@
 
                                 </div>
 
+                            </div>
+                            <hr>
+                            <div class"row>
+                                <div class="col-sm=12">
+                                    <label for="agreement">Agreement</label>
+                                    <textarea id="agreement" class="form-control" name="Agreement"
+                                        placeholder="Input Agreement Here"></textarea>
+                                </div>
                             </div>
                             <hr>
                             <div class="row">

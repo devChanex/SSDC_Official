@@ -43,14 +43,14 @@ class ServiceClass
                 <td>' . $row["treatment"] . '</td>
                 <td>' . $row["price"] . '</td>
                 <td>' . $row["date"] . '</td>
-                <td>';
+                <td align="center">';
 
 
 
                 echo '
                 
                 <a class="btn btn-success btn-circle" href="soaViewing.php?soaid=' . $row["soaid"] . '&name=' . $fullname . '" title="View SOA"><i class="fas fa-eye"></i></a>
-              <a class="btn btn-primary btn-circle" href="attachment.php?soaid=' . $row["soaid"] . '&name=' . $fullname . '" title="View SOA"><i class="fas fa-paperclip"></i></a>
+              <a class="btn btn-primary btn-circle" href="attachment.php?soaid=' . $row["soaid"] . '&name=' . $fullname . '" title="View Attachment"><i class="fas fa-paperclip"></i></a>
               
                 
                 

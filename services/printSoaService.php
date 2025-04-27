@@ -85,14 +85,11 @@ class ServiceClass
 
 
 
-                    echo '</strong>
-                           
-                           
-                    </div>
+                    echo '</strong></div>
                  
 
                 </div>
-          <hr>
+       
             <div class="row">
                 
 
@@ -101,7 +98,6 @@ class ServiceClass
 <thead>
 <tr>
 <th>Treatment</th>
-<th>Details</th>
 <th>Remarks</th>
 <th>Price</th>
 
@@ -121,8 +117,8 @@ class ServiceClass
                             $total += $row2["price"];
                             echo '
                             <tr>
-                            <td onclick="createTicket(\'' . $row2["tsubid"] . '\',\'' . $row2["treatment"] . '\',\'treatment\',\'treatmentsub\',\'tsubid\');">' . $row2["treatment"] . '</td>
-                            <td onclick="createTicket(\'' . $row2["tsubid"] . '\',\'' . $row2["details"] . '\',\'details\',\'treatmentsub\',\'tsubid\');">' . $row2["details"] . '</td>
+                            <td onclick="createTicket(\'' . $row2["tsubid"] . '\',\'' . $row2["treatment"] . '\',\'treatment\',\'treatmentsub\',\'tsubid\');" style="white-space: nowrap; width: 1%;">' . $row2["treatment"] . '</td>
+                           
                             <td onclick="createTicket(\'' . $row2["tsubid"] . '\',\'' . $row2["remarks"] . '\',\'remarks\',\'treatmentsub\',\'tsubid\');">' . $row2["remarks"] . '</td>
                             <td onclick="createTicket(\'' . $row2["tsubid"] . '\',\'' . $row2["price"] . '\',\'price\',\'treatmentsub\',\'tsubid\');">' . $row2["price"] . '</td>
                             </tr>
@@ -132,7 +128,7 @@ class ServiceClass
                         echo '
                                             <strong>
                                             <tr>
-                                            <td colspan="3">Total</td>
+                                            <td colspan="2">Total</td>
                                             <td onclick="createTicket(\'' . $soaid . '\',\'' . $row["total"] . '\',\'total\',\'treatmentsoa\',\'soaid\');">' . $row["total"] . '</td>
                                             
                                             </tr>
@@ -145,7 +141,12 @@ class ServiceClass
 
 </tbody>
 </table>
+<hr>
+<strong>Agreement:</strong>
+';
+                    echo !empty($row["agreement"]) ? '<br>' . $row["agreement"] : 'N/A';
 
+                    echo '
 <hr>
 <strong>Patient Consent and Acknowledgment</strong><br>
 I hereby acknowledge that the dentist has explained to me the nature of the dental procedure(s), including the potential risks, benefits, and alternative treatment options. I confirm that I have had the opportunity to ask questions and that all my concerns have been addressed to my satisfaction.

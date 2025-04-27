@@ -18,6 +18,8 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+    <link href="css/custom.css" rel="stylesheet">
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
@@ -44,8 +46,8 @@
                     <!-- Page Heading -->
                     <div class="card shadow mb-12">
                         <div class="card-header py-3 <?php echo $cards; ?>">
-                            <h6 class="m-0 font-weight-bold">SOA List -<?php echo $_GET["name"]; ?></h6>
-                            <input type="hidden" id="clientid" value="<?php echo $_GET["clientid"]; ?>">
+                            <h6 class="m-0 font-weight-bold">E-SOA / XRay Attachment</h6>
+
                         </div>
                         <div class="card-body">
                             <!-- USE THIS SPACE FOR YOUR ADDITIONAL CODE SNIPPET -->
@@ -59,6 +61,7 @@
                                                 <th>Time</th>
                                                 <th>Dentist</th>
                                                 <th>Total</th>
+                                                <th>Balance</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -68,6 +71,7 @@
                                                 <th>Time</th>
                                                 <th>Dentist</th>
                                                 <th>Total</th>
+                                                <th>Balance</th>
                                                 <th>Action</th>
                                             </tr>
                                         </tfoot>
@@ -116,6 +120,7 @@
             <script src="controllers/logOutConroller.js"></script>
             <script src="controllers/sessionController.js"></script>
             <script src="controllers/getSoaListController.js"></script>
+            <script src="js/custom.js"></script>
 
 
 

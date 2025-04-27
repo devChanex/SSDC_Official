@@ -9,7 +9,11 @@ function add() {
     var validity = document.getElementById("validity").value;
     var benefit = document.getElementById("benefit").value;
     var remarks = document.getElementById("remarks").value;
+    var verification = document.getElementById("verification");
+    var verificationStatus = verification.value;
 
+    var agent = document.getElementById("agent").value;
+    var remarks = document.getElementById("remarks").value;
 
     var msg = '';
     if (name == "") {
@@ -20,7 +24,7 @@ function add() {
 
 
     if (msg == '') {
-        submitform(name, accountnumber, birthdate, company, contact, hmo, validity, benefit, remarks);
+        submitform(name, accountnumber, birthdate, company, contact, hmo, validity, benefit, remarks, verificationStatus, agent);
     } else {
         showToast("errorToast", msg);
     }
@@ -29,7 +33,7 @@ function add() {
 
 }
 
-function submitform(name, accountnumber, birthdate, company, contact, hmo, validity, benefit, remarks) {
+function submitform(name, accountnumber, birthdate, company, contact, hmo, validity, benefit, remarks, verificationStatus, agent) {
     var fd = new FormData();
     fd.append('name', name);
     fd.append('accountnumber', accountnumber);
@@ -40,6 +44,9 @@ function submitform(name, accountnumber, birthdate, company, contact, hmo, valid
     fd.append('validity', validity);
     fd.append('benefit', benefit);
     fd.append('remarks', remarks);
+    fd.append('verification', verificationStatus);
+
+    fd.append('agent', agent);
 
     $.ajax({
         url: "services/hmoAddService.php",
