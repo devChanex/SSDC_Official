@@ -31,18 +31,18 @@ class ServiceClass
 
                 $payment = 0;
                 $soaid = $row["soaid"];
-                // $query2 = "SELECT amount FROM payments WHERE soaid = :x";
-                // $stmt2 = $this->conn->prepare($query2);
-                // $stmt2->bindParam(':x', $soaid);
-                // $stmt2->execute();
-                // if ($stmt2->rowCount() > 0) {
-                //     echo 'hey1';
-                //     while ($row2 = $stmt2->fetch(PDO::FETCH_ASSOC)) {
-                //         $payment += $row2["amount"];
-                //     }
-                // } else {
-                //     echo 'hey2';
-                // }
+                $query2 = "SELECT amount FROM payments WHERE soaid = :x";
+                $stmt2 = $this->conn->prepare($query2);
+                $stmt2->bindParam(':x', $soaid);
+                $stmt2->execute();
+                if ($stmt2->rowCount() > 0) {
+                    echo 'hey1';
+                    while ($row2 = $stmt2->fetch(PDO::FETCH_ASSOC)) {
+                        $payment += $row2["amount"];
+                    }
+                } else {
+                    echo 'hey2';
+                }
                 echo '
                     <tr>
                     <td>' . $row["date"] . '</td>
@@ -50,7 +50,7 @@ class ServiceClass
                     <td>' . $row["time"] . '</td>
                     <td>' . $row["dentist"] . '</td>
                     <td>' . $row["total"] . '</td>
-                    <td>' . $row["total"] . '</td>
+                    <td>' . ($row["total"] - $payment) . '</td>
                     <td style="text-align:center;">';
                 echo '<a class="btn btn-success btn-circle" href="soaViewing.php?soaid=' . $row["soaid"] . '" title="View SOA"><i class="fas fa-eye"></i></a>
                       <a class="btn btn-primary btn-circle" href="attachment.php?soaid=' . $row["soaid"] . ' title="View Attachment"><i class="fas fa-paperclip"></i></a>
