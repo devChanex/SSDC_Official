@@ -19,11 +19,10 @@ $patientbase64 = str_replace(' ', '+', $patientbase64);
 $patientSignature = base64_decode($patientbase64);
 $dateSigned = urldecode($_POST['dateSigned']);
 $dentistName = urldecode($_POST['dentistName']);
-$clientId = urldecode($_POST['clientId']);
 //echo'<script>alert("tesT");</script>';
 //INHERITANCE -- CREATING NEW INSTANCE OF A CLASS (INSTANTIATE)
 $service = new ServiceClass();
-$result = $service->addTreatment($dentistSignature, $patientSignature, $dateSigned, $dentistName, $clientId);
+$result = $service->addTreatment($dentistSignature, $patientSignature, $dateSigned, $dentistName);
 echo $result;
 //USE THIS AS YOUR BASIS
 class ServiceClass
@@ -42,10 +41,21 @@ class ServiceClass
         $stmt = $this->conn->prepare($sql);
         return $stmt;
     }
-    public function addTreatment($dentistSignature, $patientSignature, $dateSigned, $dentistName, $clientId)
+    public function addTreatment($dentistSignature, $patientSignature, $dateSigned, $dentistName)
     {
         //:a,:b parameter
         try {
+            $clientId = 0;
+            $query = "select clientid from clientprofile order by clientid desc limit 1";
+            $stmt = $this->conn->prepare($query);
+
+            $stmt->execute();
+            if ($stmt->rowCount() > 0) {
+                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    $clientId = $row["clientid"];
+                }
+
+            }
 
             $query = "Insert into consent (clientId,clientSignature,dentistSignature,date,dentist,status) values (:a,:b,:c,:d,:e,'Active')";
             $stmt = $this->conn->prepare($query);

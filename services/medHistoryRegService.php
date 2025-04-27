@@ -2,8 +2,6 @@
 //Service for Registration
 
 require_once('databaseService.php');
-
-$clientId = urldecode($_POST['clientId']);
 $q1 = urldecode($_POST['q1']);
 $q2 = urldecode($_POST['q2']);
 $q3 = urldecode($_POST['q3']);
@@ -34,7 +32,7 @@ $q27 = urldecode($_POST['q27']);
 //echo'<script>alert("tesT");</script>';
 //INHERITANCE -- CREATING NEW INSTANCE OF A CLASS (INSTANTIATE)
 $service = new ServiceClass();
-$result = $service->addMedHistory($clientId, $q1, $q2, $q3, $q4, $q5, $q6, $q7, $q8, $q9, $q10, $q11, $q12, $q13, $q14, $q15, $q16, $q17, $q18, $q19, $q20, $q21, $q22, $q23, $q24, $q25, $q26, $q27);
+$result = $service->addMedHistory($q1, $q2, $q3, $q4, $q5, $q6, $q7, $q8, $q9, $q10, $q11, $q12, $q13, $q14, $q15, $q16, $q17, $q18, $q19, $q20, $q21, $q22, $q23, $q24, $q25, $q26, $q27);
 echo $result;
 //USE THIS AS YOUR BASIS
 class ServiceClass
@@ -53,10 +51,20 @@ class ServiceClass
 		$stmt = $this->conn->prepare($sql);
 		return $stmt;
 	}
-	public function addMedHistory($clientId, $q1, $q2, $q3, $q4, $q5, $q6, $q7, $q8, $q9, $q10, $q11, $q12, $q13, $q14, $q15, $q16, $q17, $q18, $q19, $q20, $q21, $q22, $q23, $q24, $q25, $q26, $q27)
+	public function addMedHistory($q1, $q2, $q3, $q4, $q5, $q6, $q7, $q8, $q9, $q10, $q11, $q12, $q13, $q14, $q15, $q16, $q17, $q18, $q19, $q20, $q21, $q22, $q23, $q24, $q25, $q26, $q27)
 	{
 		//:a,:b parameter
 		try {
+			$clientId = 0;
+			$query = "select clientid from clientprofile order by clientid desc limit 1";
+			$stmt = $this->conn->prepare($query);
+			$stmt->execute();
+			if ($stmt->rowCount() > 0) {
+				while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+					$clientId = $row["clientid"];
+				}
+
+			}
 
 			$query = "Insert into medhistory (clientid,q1,q2,q3,q4,q5,q6,q7,q8,q9,q10,q11,q12,q13,q14,q15,q16,q17,q18,q19,q20,q21,q22,q23,q24,q25,q26,q27) values(:clientid,:q1,:q2,:q3,:q4,:q5,:q6,:q7,:q8,:q9,:q10,:q11,:q12,:q13,:q14,:q15,:q16,:q17,:q18,:q19,:q20,:q21,:q22,:q23,:q24,:q25,:q26,:q27)";
 			//$query = "Insert intoclientprofile(q1,q2,q3,q4,q5,q6,q7,q8,q9,q10,q11,q12,q13,q14,q15,q16,q17,q18,q19,q20,q21,q22) values (:q1,:q2,:q3,:q4,:q5,:q6,:q7,:q8,:q9,:q10,:q11,:q12,:q13,:q14,:q15,:q16,:q17,:q18,:q19,:q20,:q21,:q22)";
