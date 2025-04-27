@@ -23,27 +23,26 @@ class ServiceClass
     public function loadClientSoa()
     {
 
-        echo 'test';
         $query = "select date,time,soaid,dentist,total from treatmentsoa a";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         if ($stmt->rowCount() > 0) {
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                echo 'hey0';
+
                 $payment = 0;
                 $soaid = $row["soaid"];
-                $query2 = "SELECT amount FROM payments WHERE soaid = :x";
-                $stmt2 = $this->conn->prepare($query2);
-                $stmt2->bindParam(':x', $soaid);
-                $stmt2->execute();
-                if ($stmt2->rowCount() > 0) {
-                    echo 'hey1';
-                    while ($row2 = $stmt2->fetch(PDO::FETCH_ASSOC)) {
-                        $payment += $row2["amount"];
-                    }
-                } else {
-                    echo 'hey2';
-                }
+                // $query2 = "SELECT amount FROM payments WHERE soaid = :x";
+                // $stmt2 = $this->conn->prepare($query2);
+                // $stmt2->bindParam(':x', $soaid);
+                // $stmt2->execute();
+                // if ($stmt2->rowCount() > 0) {
+                //     echo 'hey1';
+                //     while ($row2 = $stmt2->fetch(PDO::FETCH_ASSOC)) {
+                //         $payment += $row2["amount"];
+                //     }
+                // } else {
+                //     echo 'hey2';
+                // }
                 echo '
                     <tr>
                     <td>' . $row["date"] . '</td>
@@ -58,8 +57,6 @@ class ServiceClass
                    </td>
                 </tr>';
             }
-        } else {
-            echo 'hey3';
         }
     }
 }
