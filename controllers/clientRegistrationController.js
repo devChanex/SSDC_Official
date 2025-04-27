@@ -131,7 +131,7 @@ function submitClientform(type) {
     var msg = '';
     if (!dateSigned) {
         msg = 'Date signed is Required';
-    } else if (dentistSignature == '' || patientSignature == '') {
+    } else if (patientSignature == '') {
         msg = 'Incomplete Signature';
     } else if (dentistName == '') {
         msg = "Dentist Name is required.";
