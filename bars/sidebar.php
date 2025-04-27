@@ -67,7 +67,7 @@ echo '
    
     </li>
         <li class="nav-item">
-                <a class="nav-link" href="allSoaList.php" >
+                <a class="nav-link" href="soaList.php" >
                     <i class="fas fa-credit-card"></i>
                     <span>E-SOA/Xray</span>
                 </a>

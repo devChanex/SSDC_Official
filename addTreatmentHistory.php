@@ -94,16 +94,7 @@
                                     <label for="Age">Age</label>
                                     <input type="Text" name="age" id="age" placeholder="Age" class="form-control"
                                         value="<?php echo $_GET['age']; ?>" readonly>
-                                    <label for="paymentType">Payment Type: </label>
-                                    <select id="paymentType" name="paymentType" class="form-control mb-2">
 
-                                        <option value="Cash">Cash</option>
-                                        <option value="Credit Card">Credit Card</option>
-                                        <option value="Debit Card">Debit Card</option>
-                                        <option value="Credit Card">GCash</option>
-                                        <option value="Bank Transfer">Bank Transfer</option>
-
-                                    </select>
                                 </div>
                                 <div class="col-lg-6">
                                     <label for="lastName">Time</label>

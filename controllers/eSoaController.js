@@ -123,8 +123,7 @@ function submit() {
 function submitform(dentist, dates, time, clientid, total, hmo) {
 
     var agreement = document.getElementById("agreement").value;
-    var paymentTypeOption = document.getElementById("paymentType");
-    var paymentType = paymentTypeOption.value;
+
     var confirmation = confirm('Are you sure you want to submit this form?');
     if (confirmation) {
         var fd = new FormData();
@@ -135,7 +134,7 @@ function submitform(dentist, dates, time, clientid, total, hmo) {
         fd.append('total', total);
         fd.append('hmo', hmo);
         fd.append('agreement', agreement);
-        fd.append('paymentType', paymentType);
+
         $.ajax({
             url: "services/esoaSubmitService.php",
             data: fd,
