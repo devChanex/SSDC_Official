@@ -13,8 +13,12 @@ function getclientdata() {
             $('#dataTable').find('tbody').append(result);
             $('#dataTable').DataTable().draw();
 
-        }
+        },
 
+        error: function (xhr, status, error) {
+            toastEr("Error occurred: " + status + " - " + error);
+            console.error(xhr.responseText);  // To see the error response from the server
+        }
     });
     document.getElementById("content-table").style.zoom = "60%";
 }
