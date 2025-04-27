@@ -236,10 +236,10 @@
 
                                         <label>Dentist Signature</label>
                                         <div class="border rounded p-3 signature-box"
-                                            style="height: 80px; cursor: pointer;" id="dentist-signature-box">
-                                            <img src="" alt="signature"
+                                            style="height: 80px; cursor: pointer;" id="dentist-signature-boxs">
+                                            <img src="img/e-sign.png" alt="signature"
                                                 style="width: 100%; height: 100%; object-fit: contain;"
-                                                id="dentistSignature">
+                                                id="dentistSignatures">
                                         </div>
                                     </div>
 

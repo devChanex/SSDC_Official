@@ -34,13 +34,13 @@ class ServiceClass
                 echo '
                 <tr>
               
-                <td>' . $row["name"] . '</td>
+                <td>' . ucwords(strtolower($row["name"])) . '</td>
                 <td>' . $row["hmo"] . '</td>
                   <td>' . $row["accountnumber"] . '</td>
                 <td>' . $row["dob"] . '</td>
                   <td>' . $row["company"] . '</td>
                 <td>' . $row["contact"] . '</td>
-                <td>' . $row["agent"] . '</td>
+                <td>' . ucwords(strtolower($row["agent"])) . '</td>
                 <td>' . $row["verificationStatus"] . '</td>
 
                 <td align="center">

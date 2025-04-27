@@ -125,12 +125,15 @@
                                     <select id="treatment" name="treatment" class="form-control">
 
                                     </select>
-                                    <label for="treatment">Remarks</label>
-                                    <input type="Text" name="remarks" id="remarks" placeholder="Input Remarks"
-                                        class="form-control" value="">
+                                    <label for="diagnosis">Diagnosis</label>
+                                    <textarea id="diagnosis" class="form-control" name="diagnosis"
+                                        placeholder="Diagnosis"></textarea>
                                     <label for="treatment">Details</label>
                                     <textarea id="details" class="form-control" name="details"
                                         placeholder="Details"></textarea>
+                                    <label for="treatment">Remarks</label>
+                                    <input type="Text" name="remarks" id="remarks" placeholder="Input Remarks"
+                                        class="form-control" value="">
                                     <label for="lastName">Treatment Fee</label>
                                     <input type="number" name="price" id="price" placeholder="Input fee"
                                         class="form-control" value="">
@@ -143,6 +146,7 @@
                                         <thead>
                                             <tr>
                                                 <th>Treatment</th>
+                                                <th>Diagnosis</th>
                                                 <th>Details</th>
                                                 <th>Remarks</th>
                                                 <th>Price</th>
@@ -152,6 +156,7 @@
                                         <tfoot>
                                             <tr>
                                                 <th>Treatment</th>
+                                                <th>Diagnosis</th>
                                                 <th>Details</th>
                                                 <th>Remarks</th>
                                                 <th>Price</th>

@@ -58,6 +58,7 @@
                                                 <th>Date</th>
                                                 <th>Dentist</th>
                                                 <th>Treatment</th>
+                                                <th>Diagnosis</th>
                                                 <th>Remarks</th>
                                                 <th>Details</th>
 
@@ -68,6 +69,7 @@
                                                 <th>Date</th>
                                                 <th>Dentist</th>
                                                 <th>Treatment</th>
+                                                <th>Diagnosis</th>
                                                 <th>Remarks</th>
                                                 <th>Details</th>
                                             </tr>

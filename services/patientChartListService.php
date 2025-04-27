@@ -27,7 +27,7 @@ class ServiceClass
 
 
 
-        $query = "select date,dentist,treatment,remarks,details from treatmentsoa a inner join treatmentsub b on a.soaid=b.soaid where a.clientid=:a order by Date";
+        $query = "select date,dentist,treatment,remarks,details,diagnosis from treatmentsoa a inner join treatmentsub b on a.soaid=b.soaid where a.clientid=:a order by Date";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':a', $clientid);
         $stmt->execute();
@@ -39,6 +39,7 @@ class ServiceClass
                 <td>' . $row["date"] . '</td>
                 <td>' . $row["dentist"] . '</td>
                 <td>' . $row["treatment"] . '</td>
+                 <td>' . $row["diagnosis"] . '</td>
                 <td>' . $row["remarks"] . '</td>
                 <td>' . $row["details"] . '</td>
           

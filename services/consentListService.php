@@ -33,7 +33,7 @@ class ServiceClass
 
                 echo '
                 <tr>
-                <td>' . $row["fullname"] . '</td>
+                <td>' . ucwords(strtolower($row["fullname"])) . '</td>
                 <td>' . $row["dentist"] . '</td>
                 <td>' . $row["date"] . '</td>
                
