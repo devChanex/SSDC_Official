@@ -24,11 +24,22 @@ class ServiceClass
     {
 
 
-        $query = "select a.*,(SELECT IFNULL(SUM(b.amount), 0) FROM payments b WHERE b.soaid = a.soaid) AS 'payment'  from treatmentsoa a";
+        $query = "select date,time,soaid,dentist,total from treatmentsoa a";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         if ($stmt->rowCount() > 0) {
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+
+                $payment = 0;
+                $query2 = "SELECT IFNULL(SUM(amount), 0) as payment FROM payments WHERE soaid = :x";
+                $stmt2 = $this->conn->prepare($query2);
+                $stmt2->bindParam(':x', $row["soaid"]);
+                $stmt2->execute();
+                if ($stmt2->rowCount() > 0) {
+                    while ($row2 = $stmt2->fetch(PDO::FETCH_ASSOC)) {
+                        $payment = $row2["payment"];
+                    }
+                }
                 echo '
                 <tr>
                 <td>' . $row["date"] . '</td>
@@ -36,7 +47,7 @@ class ServiceClass
                 <td>' . $row["time"] . '</td>
                 <td>' . $row["dentist"] . '</td>
                 <td>' . $row["total"] . '</td>
-                <td>' . $row["total"] - $row["payment"] . '</td>
+                <td>' . $row["total"] - $payment . '</td>
                 <td style="text-align:center;">';
                 echo '<a class="btn btn-success btn-circle" href="soaViewing.php?soaid=' . $row["soaid"] . '" title="View SOA"><i class="fas fa-eye"></i></a>
                   <a class="btn btn-primary btn-circle" href="attachment.php?soaid=' . $row["soaid"] . ' title="View Attachment"><i class="fas fa-paperclip"></i></a>
