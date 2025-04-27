@@ -16,7 +16,7 @@ function getclientdata() {
         },
 
         error: function (xhr, status, error) {
-            toastEr("Error occurred: " + status + " - " + error);
+            console.error("Error occurred: " + status + " - " + error);
             console.error(xhr.responseText);  // To see the error response from the server
         }
     });
