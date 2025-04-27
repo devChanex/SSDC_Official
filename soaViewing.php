@@ -142,10 +142,11 @@
                                         </form>
                                     </div>
                                     <div class="modal-footer">
+
+                                        <button type="button" class="btn btn-primary" onclick="submitPaymentForm()">Save
+                                            Payment</button>
                                         <button type="button" class="btn btn-secondary"
                                             data-dismiss="modal">Cancel</button>
-                                        <button class="btn btn-primary" onclick="submitPaymentForm()">Save
-                                            Payment</button>
                                     </div>
                                 </div>
                             </div>

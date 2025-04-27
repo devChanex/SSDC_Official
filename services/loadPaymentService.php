@@ -79,7 +79,7 @@ class ServiceClass
 
                 <tr>
                     <td colspan="2">
-                    Total Payment:
+                    Total Balamce:
                     </td>
                     <td align="right">
                     ' . number_format($soaTotal - $totalPayment, 2) . '
