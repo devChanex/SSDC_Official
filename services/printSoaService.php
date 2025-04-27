@@ -162,7 +162,7 @@ By signing below, I voluntarily consent to the proposed treatment and authorize 
                         echo '
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <label>Patient Signature</label>
+                                    <label>Patient’s/Guardian’s Signature</label>
                                     <div class="border rounded p-3 signature-box"
                                         style="height: 80px; cursor: pointer;" 
                                         id="patient-signature-box">
@@ -185,7 +185,7 @@ By signing below, I voluntarily consent to the proposed treatment and authorize 
                         echo '
                          <div class="row">
                                 <div class="col-sm-6">
-                                    <label>Patient Signature</label>
+                                    <label>Patient’s/Guardian’s Signature</label>
                                     <div class="border rounded p-3 signature-box"
                                         style="height: 80px; cursor: pointer;" 
                                         id="patient-signature-box">
