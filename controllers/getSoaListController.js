@@ -3,7 +3,7 @@ function getclientdata() {
 
     var fd = new FormData();
     $.ajax({
-        url: "services/clientSoaListService.php",
+        url: "services/clientSoaListService2.php",
         data: fd,
         processData: false,
         contentType: false,
