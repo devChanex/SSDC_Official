@@ -31,13 +31,13 @@ class ServiceClass
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
                 $payment = 0;
-                $query2 = "SELECT IFNULL(SUM(amount), 0) as payment FROM payments WHERE soaid = :x";
+                $query2 = "SELECT amount FROM payments WHERE soaid = :x";
                 $stmt2 = $this->conn->prepare($query2);
                 $stmt2->bindParam(':x', $row["soaid"]);
                 $stmt2->execute();
                 if ($stmt2->rowCount() > 0) {
                     while ($row2 = $stmt2->fetch(PDO::FETCH_ASSOC)) {
-                        $payment = $row2["payment"];
+                        $payment += $row2["amount"];
                     }
                 }
                 echo '
