@@ -1,5 +1,4 @@
 loadPatientSignature("patientSignature");
-loadPatientSignature("dentistSignature");
 function loadPatientSignature(signature) {
     var consentId = document.getElementById("consentId").value;
     var fd = new FormData();
