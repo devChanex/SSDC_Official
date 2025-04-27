@@ -19,13 +19,15 @@ function add() {
     var treatment = e.value;
     var remarks = document.getElementById("remarks").value;
     var details = document.getElementById("details").value;
+
+    var diagnosis = document.getElementById("diagnosis").value;
     var price = document.getElementById("price").value;
     if (price == null || price == "") {
         price = 0;
     }
 
     if (remarks != "" && details != "") {
-        document.getElementById("treatmentList").innerHTML += "<tr><td>" + treatment + "</td><td>" + details + "</td><td>" + remarks + "</td><td>" + price + "</td><td><button class=\"btn btn-danger btn-circle btn-sm\" onclick=\"deleteTreatment(this)\" title=\"Delete treatment\"><i class=\"fas fa-times\"></i></button></td></tr>";
+        document.getElementById("treatmentList").innerHTML += "<tr><td>" + treatment + "</td><td>" + diagnosis + "</td><td>" + details + "</td><td>" + remarks + "</td><td>" + price + "</td><td><button class=\"btn btn-danger btn-circle btn-sm\" onclick=\"deleteTreatment(this)\" title=\"Delete treatment\"><i class=\"fas fa-times\"></i></button></td></tr>";
         computeTotal();
     } else {
         toastError("All Field is required.")
@@ -48,14 +50,14 @@ function computeTotal() {
     for (let i in table.rows) {
         let row = table.rows[i]
         for (let j in row.cells) {
-            if (j == 3) {
+            if (j == 4) {
                 let col = row.cells[j]
                 total += parseFloat(col.innerHTML);
             }
 
         }
     }
-    document.getElementById("treatmentList").innerHTML += "<td colspan=\"3\">Total</td><td>" + total + "</td><td></td></tr>";
+    document.getElementById("treatmentList").innerHTML += "<td colspan=\"4\">Total</td><td>" + total + "</td><td></td></tr>";
 
 
 }
@@ -71,14 +73,14 @@ function recomputeTotal() {
     for (let i in table.rows) {
         let row = table.rows[i]
         for (let j in row.cells) {
-            if (j == 3) {
+            if (j == 4) {
                 let col = row.cells[j]
                 total += parseFloat(col.innerHTML);
             }
 
         }
     }
-    document.getElementById("treatmentList").innerHTML += "<td colspan=\"3\">Total</td><td>" + total + "</td><td></td></tr>";
+    document.getElementById("treatmentList").innerHTML += "<td colspan=\"4\">Total</td><td>" + total + "</td><td></td></tr>";
 
 
 }
@@ -162,12 +164,13 @@ function submitSubSoa(soaid) {
         let row = table.rows[i]
         if (i < rowCount - 1) {
             var treatment = row.cells[0].innerHTML;
-            var details = row.cells[1].innerHTML;
-            var remarks = row.cells[2].innerHTML;
-            var price = parseFloat(row.cells[3].innerHTML);
+            var diagnosis = row.cells[1].innerHTML;
+            var details = row.cells[2].innerHTML;
+            var remarks = row.cells[3].innerHTML;
+            var price = parseFloat(row.cells[4].innerHTML);
 
             if (treatment) {
-                submitSubSoatoService(treatment, details, remarks, price, clientid, soaid);
+                submitSubSoatoService(treatment, diagnosis, details, remarks, price, clientid, soaid);
             }
 
 
@@ -180,11 +183,12 @@ function submitSubSoa(soaid) {
 
 }
 
-function submitSubSoatoService(treatment, details, remarks, price, clientid, soaid) {
+function submitSubSoatoService(treatment, diagnosis, details, remarks, price, clientid, soaid) {
 
 
     var fd = new FormData();
     fd.append('treatment', treatment);
+    fd.append('diagnosis', diagnosis);
     fd.append('details', details);
     fd.append('remarks', remarks);
     fd.append('price', price);
