@@ -135,7 +135,7 @@
                                                     <option value="Credit Card">Credit Card</option>
                                                     <option value="Debit Card">Debit Card</option>
                                                     <option value="Cash">Cash</option>
-                                                    <option value="GCash">Cash</option>
+                                                    <option value="GCash">GCash</option>
                                                     <option value="Bank Transfer">Bank Transfer</option>
                                                 </select>
                                             </div>

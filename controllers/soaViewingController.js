@@ -138,7 +138,9 @@ function submitPaymentForm() {
         type: 'POST',
         success: function (result) {
             if (result == "success") {
-                toastSuccess("Successfully Signed.");
+                $('#paymentModal').modal('hide');
+                document.getElementById("paymentForm").reset();
+                toastSuccess("Payment Added.");
                 loadPayment();
             } else {
                 toastError("An Error occured: " + result);
