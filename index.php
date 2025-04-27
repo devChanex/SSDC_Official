@@ -546,9 +546,9 @@
                                             placeholder="Enter full name" value="Dr. Maria Regina I. Valencia" readonly>
                                         <label>Dentist Signature</label>
                                         <div class="border rounded p-3 signature-box"
-                                            style="height: 80px; cursor: pointer;" id="dentist-signature-box" onclick="openSignatureModal(function(sigData) {
-                 setSignature('dentist', sigData);
-             })">
+                                            style="height: 80px; cursor: pointer;" id="dentist-signature-box">
+                                            <img src="img/e-sign.png" alt="${role} signature"
+                                                style="height: 100%; width: auto; display: block; margin: 0 auto;">
                                         </div>
                                         <input type="hidden" name="dentist_signature" id="dentist-signature-input">
                                     </div>
