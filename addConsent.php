@@ -218,7 +218,7 @@
                                     <div class="form-group col-md-6">
                                         <label for="dateSigned">Date</label>
                                         <input type="date" class="form-control" id="dateSigned">
-                                        <label>Patient Signature</label>
+                                        <label>Patient's/Guardian's Signature</label>
                                         <div class="border rounded p-3 signature-box"
                                             style="height: 80px; cursor: pointer;" id="patient-signature-box" onclick="openSignatureModal(function(sigData) {
                  setSignature('patient', sigData);
