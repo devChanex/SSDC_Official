@@ -66,6 +66,7 @@
                                                 <th>Dentist</th>
                                                 <th>Treatment</th>
                                                 <th>Price</th>
+                                                <th>Balance</th>
                                                 <th>Date</th>
                                                 <th>Action</th>
                                             </tr>
@@ -78,6 +79,7 @@
                                                 <th>Dentist</th>
                                                 <th>Treatment</th>
                                                 <th>Price</th>
+                                                <th>Balance</th>
                                                 <th>Date</th>
                                                 <th>Action</th>
                                             </tr>

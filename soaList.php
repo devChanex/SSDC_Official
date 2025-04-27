@@ -44,8 +44,8 @@
                     <!-- Page Heading -->
                     <div class="card shadow mb-12">
                         <div class="card-header py-3 <?php echo $cards; ?>">
-                            <h6 class="m-0 font-weight-bold">SOA List -<?php echo $_GET["name"]; ?></h6>
-                            <input type="hidden" id="clientid" value="<?php echo $_GET["clientid"]; ?>">
+                            <h6 class="m-0 font-weight-bold">E-SOA / XRay Attachment</h6>
+
                         </div>
                         <div class="card-body">
                             <!-- USE THIS SPACE FOR YOUR ADDITIONAL CODE SNIPPET -->
@@ -59,6 +59,7 @@
                                                 <th>Time</th>
                                                 <th>Dentist</th>
                                                 <th>Total</th>
+                                                <th>Balance</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -68,6 +69,7 @@
                                                 <th>Time</th>
                                                 <th>Dentist</th>
                                                 <th>Total</th>
+                                                <th>Balance</th>
                                                 <th>Action</th>
                                             </tr>
                                         </tfoot>

@@ -29,20 +29,28 @@ echo '
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
           
-           
-         <li class="nav-item">
-                <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
-                    aria-controls="collapseTwo">
+         ';
+//  <li class="nav-item">
+//         <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+//             aria-controls="collapseTwo">
+//             <i class="fas fa-address-card"></i>
+//             <span>Client Profile</span>
+//             </a>
+//         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+//             data-parent="#accordionSidebar">
+//             <div class="bg-white py-2 collapse-inner rounded">
+//                 <a class="collapse-item" href="clientProfileList.php">View List</a>
+// 		<a class="collapse-item" href="registerClient.php">Register Client</a>
+//             </div>
+//         </div>
+//     </li>
+echo '
+                <li class="nav-item">
+                <a class="nav-link" href="clientProfileList.php" >
                     <i class="fas fa-address-card"></i>
                     <span>Client Profile</span>
                     </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="clientProfileList.php">View List</a>
-				<a class="collapse-item" href="registerClient.php">Register Client</a>
-                    </div>
-                </div>
+               
             </li>
 
     <li class="nav-item">
@@ -59,18 +67,10 @@ echo '
    
     </li>
         <li class="nav-item">
-                <a class="nav-link" href="#" data-toggle="collapse" data-target="#clientTreatment" aria-expanded="false"
-                    aria-controls="clientTreatment">
-                    <i class="fas fa-tooth"></i>
-                    <span>Client Treatment</span>
+                <a class="nav-link" href="allSoaList.php" >
+                    <i class="fas fa-credit-card"></i>
+                    <span>E-SOA/Xray</span>
                 </a>
-            <div id="clientTreatment" class="collapse" aria-labelledby="clientTreatment" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="clientTreatmentList.php">Client Treatment List</a>
-                    <a class="collapse-item" href="allSoaList.php">SOA List</a>
-
-                </div>
-            </div>
         </li>
         <li class="nav-item">
                 <a class="nav-link" href="#" data-toggle="collapse" data-target="#config" aria-expanded="false"

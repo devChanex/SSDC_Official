@@ -1,8 +1,12 @@
 getclientdata();
 function getclientdata() {
+    var id = document.getElementById("clientid").value;
+
+    //  document.getElementById("content-table").style.zoom = "70%";
     var fd = new FormData();
+    fd.append('id', id);
     $.ajax({
-        url: "services/clientSoaListService.php",
+        url: "services/patientChartListService.php",
         data: fd,
         processData: false,
         contentType: false,

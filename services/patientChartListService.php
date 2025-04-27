@@ -1,7 +1,9 @@
 <?php
 require_once('databaseService.php');
 $service = new ServiceClass();
-$result = $service->loadClientSoa();
+
+$clientid = urldecode($_POST['id']);
+$result = $service->process($clientid);
 
 class ServiceClass
 {
@@ -20,27 +22,27 @@ class ServiceClass
         return $stmt;
     }
     //DO NOT INCLUDE THIS CODE
-    public function loadClientSoa()
+    public function process($clientid)
     {
 
 
-        $query = "select a.*,(SELECT IFNULL(SUM(b.amount), 0) FROM payments b WHERE b.soaid = a.soaid) AS 'payment'  from treatmentsoa a";
+
+        $query = "select date,dentist,treatment,remarks,details from treatmentsoa a inner join treatmentsub b on a.soaid=b.soaid where a.clientid=:a order by Date";
         $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':a', $clientid);
         $stmt->execute();
         if ($stmt->rowCount() > 0) {
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+
                 echo '
                 <tr>
                 <td>' . $row["date"] . '</td>
-         
-                <td>' . $row["time"] . '</td>
                 <td>' . $row["dentist"] . '</td>
-                <td>' . $row["total"] . '</td>
-                <td>' . $row["total"] - $row["payment"] . '</td>
-                <td style="text-align:center;">';
-                echo '<a class="btn btn-success btn-circle" href="soaViewing.php?soaid=' . $row["soaid"] . '" title="View SOA"><i class="fas fa-eye"></i></a>
-                  <a class="btn btn-primary btn-circle" href="attachment.php?soaid=' . $row["soaid"] . ' title="View Attachment"><i class="fas fa-paperclip"></i></a>
-               </td>
+                <td>' . $row["treatment"] . '</td>
+                <td>' . $row["remarks"] . '</td>
+                <td>' . $row["details"] . '</td>
+          
+                
             </tr>';
             }
         }

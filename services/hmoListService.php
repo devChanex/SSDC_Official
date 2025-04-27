@@ -40,6 +40,8 @@ class ServiceClass
                 <td>' . $row["dob"] . '</td>
                   <td>' . $row["company"] . '</td>
                 <td>' . $row["contact"] . '</td>
+                <td>' . $row["agent"] . '</td>
+                <td>' . $row["verificationStatus"] . '</td>
 
                 <td align="center">
                 <a href="updatehmo.php?id=' . $row["id"] . '" class="btn btn-warning btn-circle" title="Update record"><i class="fas fa-edit"></i></a>

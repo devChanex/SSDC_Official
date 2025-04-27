@@ -13,8 +13,11 @@ $hmo = urldecode($_POST['hmo']);
 $validity = urldecode($_POST['validity']);
 $benefit = urldecode($_POST['benefit']);
 $remarks = urldecode($_POST['remarks']);
+
+$verification = urldecode($_POST['verification']);
+$agent = urldecode($_POST['agent']);
 $service = new ServiceClass();
-$result = $service->process($id, $name, $accountnumber, $birthdate, $company, $contact, $hmo, $validity, $benefit, $remarks);
+$result = $service->process($id, $name, $accountnumber, $birthdate, $company, $contact, $hmo, $validity, $benefit, $remarks, $verification, $agent);
 echo $result;
 class ServiceClass
 {
@@ -32,12 +35,12 @@ class ServiceClass
         $stmt = $this->conn->prepare($sql);
         return $stmt;
     }
-    public function process($id, $name, $accountnumber, $birthdate, $company, $contact, $hmo, $validity, $benefit, $remarks)
+    public function process($id, $name, $accountnumber, $birthdate, $company, $contact, $hmo, $validity, $benefit, $remarks, $verification, $agent)
     {
 
         try {
 
-            $query = "update hmo set accountnumber=:a, hmo=:b, name=:c, dob=:d, company=:e, contact=:f,validity=:h,dentalbenefits=:i,remarks=:j where id=:g";
+            $query = "update hmo set verificationStatus=:k,agent=:l,accountnumber=:a, hmo=:b, name=:c, dob=:d, company=:e, contact=:f,validity=:h,dentalbenefits=:i,remarks=:j where id=:g";
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':a', $accountnumber);
             $stmt->bindParam(':b', $hmo);
@@ -50,6 +53,8 @@ class ServiceClass
             $stmt->bindParam(':h', $validity);
             $stmt->bindParam(':i', $benefit);
             $stmt->bindParam(':j', $remarks);
+            $stmt->bindParam(':k', $verification);
+            $stmt->bindParam(':l', $agent);
             $stmt->execute();
             return "success";
         } catch (Exception $e) {

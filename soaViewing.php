@@ -43,31 +43,115 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid" id="content-table">
 
-                    <!-- Page Heading -->
-                    <div class="card shadow mb-12">
-                        <div class="card-header py-3 <?php echo $cards; ?>">
-                            Electronic Statement of Account
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <!-- Page Heading -->
+                            <div class="card shadow mb-12">
+                                <div class="card-header py-3 <?php echo $cards; ?>">
+                                    Electronic Statement of Account
 
 
-                            <button id="divPrinter" class="btn btn-secondary btn-sm btn-circle float-right"
-                                onclick="printDiv('bodyResult')" title="Print E-SOA"><i
-                                    class="fas fa-print"></i></button>
+                                    <button id="divPrinter" class="btn btn-secondary btn-sm btn-circle float-right"
+                                        onclick="printDiv('bodyResult')" title="Print E-SOA"><i
+                                            class="fas fa-print"></i></button>
 
-                            <a href="attachment.php?soaid=<?php echo $_GET["soaid"]; ?>"
-                                class="btn btn-primary btn-sm btn-circle float-right" title="View Attachment"><i
-                                    class="fas fa-paperclip"></i></a>
+                                    <a href="attachment.php?soaid=<?php echo $_GET["soaid"]; ?>"
+                                        class="btn btn-primary btn-sm btn-circle float-right" title="View Attachment"><i
+                                            class="fas fa-paperclip"></i></a>
 
-                            <button id="divPrinter" class="btn btn-warning btn-sm btn-circle float-right"
-                                onclick="signature()"><i class="fas fa-check"></i></button>
+                                    <button id="divPrinter" class="btn btn-warning btn-sm btn-circle float-right"
+                                        onclick="signature()"><i class="fas fa-check"></i></button>
+                                </div>
+                                <input type="hidden" id="soaid" value="<?php echo $_GET["soaid"]; ?>">
+                                <div class="card-body" id="bodyResult">
+                                    <!-- USE THIS SPACE FOR YOUR ADDITIONAL CODE SNIPPET -->
+
+                                    <!-- END OF YOUR ADDITIONAL CODE SNIPPET -->
+                                </div>
+                            </div>
+
                         </div>
-                        <input type="hidden" id="soaid" value="<?php echo $_GET["soaid"]; ?>">
-                        <div class="card-body" id="bodyResult">
-                            <!-- USE THIS SPACE FOR YOUR ADDITIONAL CODE SNIPPET -->
+                        <div class="col-lg-4">
+                            <!-- Page Heading -->
+                            <div class="card shadow mb-12">
+                                <div class="card-header py-3 <?php echo $cards; ?>">
+                                    Payments
 
-                            <!-- END OF YOUR ADDITIONAL CODE SNIPPET -->
+
+                                    <button id="divPrinter" class="btn btn-primary btn-sm btn-circle float-right"
+                                        data-toggle="modal" data-target="#paymentModal" title="Add Payment"><i
+                                            class="fas fa-credit-card"></i></button>
+
+                                </div>
+
+                                <div class="card-body">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Amount</th>
+                                                <th>Payment Type</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="paymentResult">
+
+                                        </tbody>
+
+                                    </table>
+                                    <!-- USE THIS SPACE FOR YOUR ADDITIONAL CODE SNIPPET -->
+
+                                    <!-- END OF YOUR ADDITIONAL CODE SNIPPET -->
+                                </div>
+                            </div>
+
                         </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="paymentModal" tabindex="-1" role="dialog"
+                            aria-labelledby="paymentModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="paymentModalLabel">Add Payment</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form id="paymentForm">
+                                            <div class="form-group">
+                                                <label for="paymentDate">Date</label>
+                                                <input type="date" class="form-control" id="paymentDate"
+                                                    name="paymentDate" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="paymentAmount">Amount</label>
+                                                <input type="number" class="form-control" id="paymentAmount"
+                                                    name="paymentAmount" required step="0.01">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="paymentType">Payment Type</label>
+                                                <select class="form-control" id="paymentType" name="paymentType"
+                                                    required>
+                                                    <option value="Credit Card">Credit Card</option>
+                                                    <option value="Debit Card">Debit Card</option>
+                                                    <option value="Cash">Cash</option>
+                                                    <option value="GCash">Cash</option>
+                                                    <option value="Bank Transfer">Bank Transfer</option>
+                                                </select>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Cancel</button>
+                                        <button class="btn btn-primary" onclick="submitPaymentForm()">Save
+                                            Payment</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
-
                 </div>
                 <!-- /.container-fluid -->
                 <div id="signature-modal">

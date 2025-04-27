@@ -25,7 +25,7 @@ class ServiceClass
 
 
 
-        $query = "select b.*,concat(b.lname,', ',b.fname, ' ', b.mdname) as fullname,a.id,a.dentist,a.date from consent a inner join clientprofile b on a.clientid=b.clientid where status='Active'";
+        $query = "select b.*,concat(b.lname,', ',b.fname, ' ', b.mdname) as fullname,a.id,a.dentist,a.date from consent a inner join clientprofile b on a.clientid=b.clientid where a.status='Active'";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         if ($stmt->rowCount() > 0) {

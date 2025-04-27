@@ -69,6 +69,25 @@ class ServiceClass
                             <label for="remarks">Remarks:</label>
                             <textarea id="remarks" style="width: 100%;" class="form-control" rows="4"
                                 placeholder="Enter remarks here...">' . $row['remarks'] . '</textarea>
+
+                            <label for="HMO">Verification Status:</label>
+                            <select id="verification" name="verification" class="form-control mb-2">';
+
+
+                $statuss = ['Pending', 'Verified'];
+                foreach ($statuss as $status) {
+                    $selected = ($row["verificationStatus"] ?? '') == $status ? 'selected' : '';
+                    echo "<option value=\"$status\" $selected>$status</option>";
+                }
+
+                echo '
+
+                              
+
+                            </select>
+                            <label for="validity">Agent:</label>
+                            <input type="text" name="treatment" id="agent" placeholder="Agent Name" class="form-control"
+                                value="' . $row['agent'] . '">    
                             <div id="formResult"></div>
                             <br>
                             <button class="btn btn-success" onclick="update()">Submit</button>

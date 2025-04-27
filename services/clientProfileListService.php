@@ -25,7 +25,7 @@ class ServiceClass
 
 
 
-        $query = "select * from clientprofile";
+        $query = "SELECT * FROM clientprofile WHERE status != 'Deleted' OR status IS NULL";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         if ($stmt->rowCount() > 0) {
@@ -75,6 +75,7 @@ class ServiceClass
                 &guardianName=' . $row["guardianName"] . '&gOccupation=' . $row["gOccupation"] . '&refferedBy=' . $row["refferedBy"] . '
                 " class="btn btn-warning btn-circle" title="Update Client Profile"><i class="fas fa-edit"></i></a>
                 <a href="#" class="btn btn-danger btn-circle" onclick="deleteClient(\'' . $row["clientid"] . '\')" title="Delete Client Profile"><i class="fas fa-trash"></i></a>
+                
 
                 ';
                 //View Photo
@@ -95,7 +96,12 @@ class ServiceClass
                 &birthDate=' . $row["birthDate"] . '&mobileNumber=' . $row["mobileNumber"] . '&homeAddress=' . $row["homeAddress"] . '
                 &guardianName=' . $row["guardianName"] . '&gOccupation=' . $row["gOccupation"] . '&refferedBy=' . $row["refferedBy"] . '
                 " class="btn btn-secondary btn-circle" title="Add Client Consent"><i class="fas fa-file"></i></a>
-                
+                <a href="addTreatmentHistory.php?company=' . $row["company"] . '&cardnumber=' . $row["cardnumber"] . '&hmo=' . $row["hmo"] . '&clientid=' . $row["clientid"] . '&birthDate=' . $row["birthDate"] . '&clientname=' . $fullname . '&age=' . $row["age"] . '&address=' . $row["homeAddress"] . '"
+                 class="btn btn-warning btn-circle" title="Add Treatment"><i class="fas fa-plus"></i></a>
+                 
+    
+                 <a href="patientChartList.php?id=' . $row["clientid"] . '&clientname=' . $fullname . '"
+                 class="btn btn-success btn-circle" title="View Patient Chart"><i class="fas fa-chart-bar"></i></a>
 
                 ';
                 echo '

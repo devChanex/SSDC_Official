@@ -89,7 +89,16 @@
                             <label for="remarks">Remarks:</label>
                             <textarea id="remarks" style="width: 100%;" class="form-control" rows="4"
                                 placeholder="Enter remarks here..."></textarea>
+                            <label for="HMO">Verification Status:</label>
+                            <select id="verification" name="verification" class="form-control mb-2">
 
+                                <option value="Pending">Pending</option>
+                                <option value="Verified">Verified</option>
+
+                            </select>
+                            <label for="validity">Agent:</label>
+                            <input type="text" name="treatment" id="agent" placeholder="Agent Name" class="form-control"
+                                value="">
                             <div id="formResult"></div>
                             <br>
                             <button class="btn btn-success" onclick="add()">Submit</button>
