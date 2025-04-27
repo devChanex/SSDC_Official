@@ -23,7 +23,7 @@ class ServiceClass
     public function loadClientSoa()
     {
 
-        $query = "select date,time,soaid,dentist,total from treatmentsoa";
+        $query = "select a.date,a.time,a.soaid,a.dentist,a.total, concat(b.lname,', ',b.fname, ' ', b.mdname) as fullname from treatmentsoa a inner join clientprofile b on a.clientid=b.clientid";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         if ($stmt->rowCount() > 0) {
@@ -48,7 +48,9 @@ class ServiceClass
                     <td>' . $row["date"] . '</td>
 
                     <td>' . $row["time"] . '</td>
-                    <td>' . $row["dentist"] . '</td>
+                     <td>' . ucwords(strtolower($row["fullname"])) . '</td>
+                      <td>' . ucwords(strtolower($row["dentist"])) . '</td>
+      
                     <td>' . $row["total"] . '</td>
                     <td>' . ($row["total"] - $payment) . '</td>
                     <td style="text-align:center;">';

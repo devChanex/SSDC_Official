@@ -59,6 +59,7 @@
                                             <tr>
                                                 <th>Date</th>
                                                 <th>Time</th>
+                                                <th>Patient</th>
                                                 <th>Dentist</th>
                                                 <th>Total</th>
                                                 <th>Balance</th>
@@ -69,6 +70,7 @@
                                             <tr>
                                                 <th>Date</th>
                                                 <th>Time</th>
+                                                <th>Patient</th>
                                                 <th>Dentist</th>
                                                 <th>Total</th>
                                                 <th>Balance</th>
