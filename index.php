@@ -543,7 +543,7 @@
                                     <div class="form-group col-md-6">
                                         <label for="patientName">Dentist's Name</label>
                                         <input type="text" class="form-control" id="dentistName"
-                                            placeholder="Enter full name">
+                                            placeholder="Enter full name" value="Dr. Maria Regina I. Valencia" readonly>
                                         <label>Dentist Signature</label>
                                         <div class="border rounded p-3 signature-box"
                                             style="height: 80px; cursor: pointer;" id="dentist-signature-box" onclick="openSignatureModal(function(sigData) {
