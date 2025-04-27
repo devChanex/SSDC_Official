@@ -23,7 +23,7 @@ class ServiceClass
     public function loadClientSoa()
     {
 
-        $query = "select date,time,soaid,dentist,total from treatmentsoa a";
+        $query = "select date,time,soaid,dentist,total from treatmentsoa";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         if ($stmt->rowCount() > 0) {
