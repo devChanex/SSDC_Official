@@ -1,6 +1,6 @@
 getclientdata();
 function getclientdata() {
-    alert("test");
+
     var fd = new FormData();
     $.ajax({
         url: "services/clientSoaListService.php",
