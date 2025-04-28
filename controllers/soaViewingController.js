@@ -118,6 +118,8 @@ function createTicket(ref, currentvalue, column, table, refname) {
 }
 
 function submitPaymentForm() {
+    $('#paymentModal').modal('hide');
+
     var soaid = document.getElementById("soaid").value;
     var amount = document.getElementById("paymentAmount").value;
     var date = document.getElementById("paymentDate").value;
@@ -138,7 +140,7 @@ function submitPaymentForm() {
         type: 'POST',
         success: function (result) {
             if (result == "success") {
-                $('#paymentModal').modal('hide');
+
                 document.getElementById("paymentForm").reset();
                 toastSuccess("Payment Added.");
                 loadPayment();
@@ -147,4 +149,27 @@ function submitPaymentForm() {
             }
         }
     });
+}
+
+function deletePayment(ref, amount) {
+
+    if (confirm("Do you want to delete this payment amounting to " + amount + "?")) {
+        var fd = new FormData();
+        fd.append("ref", ref);
+        $.ajax({
+            url: "services/paymentDeletionService.php",
+            data: fd,
+            processData: false,
+            contentType: false,
+            type: 'POST',
+            success: function (result) {
+                if (result == 'Success') {
+                    toastSuccess("Payment deleted.");
+                    loadPayment();
+                } else {
+                    toastError("An Error occured: " + result);
+                }
+            }
+        });
+    }
 }

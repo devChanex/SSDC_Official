@@ -71,8 +71,15 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <label for="lastName">Dentist</label>
-                                    <input type="Text" name="lastName" id="dentist" placeholder="Assigned Dentist"
-                                        class="form-control" value="">
+
+
+                                    <select name="dentist" id="dentist" class="form-control">
+                                        <?php
+                                        foreach ($dentist as $d) {
+                                            echo '<option value="' . htmlspecialchars($d) . '">' . htmlspecialchars($d) . '</option>';
+                                        }
+                                        ?>
+                                    </select>
 
                                 </div>
                                 <div class="col-lg-6">
