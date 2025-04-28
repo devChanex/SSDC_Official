@@ -91,6 +91,7 @@
                                                 <th>Date</th>
                                                 <th>Amount</th>
                                                 <th>Payment Type</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody id="paymentResult">

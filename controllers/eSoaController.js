@@ -26,15 +26,20 @@ function add() {
         price = 0;
     }
 
-    if (remarks != "" && details != "") {
-        document.getElementById("treatmentList").innerHTML += "<tr><td>" + treatment + "</td><td>" + diagnosis + "</td><td>" + details + "</td><td>" + remarks + "</td><td>" + price + "</td><td><button class=\"btn btn-danger btn-circle btn-sm\" onclick=\"deleteTreatment(this)\" title=\"Delete treatment\"><i class=\"fas fa-times\"></i></button></td></tr>";
-        computeTotal();
-    } else {
-        toastError("All Field is required.")
-    }
+
+    document.getElementById("treatmentList").innerHTML += "<tr><td>" + treatment + "</td><td>" + diagnosis + "</td><td>" + details + "</td><td>" + remarks + "</td><td>" + price + "</td><td><button class=\"btn btn-danger btn-circle btn-sm\" onclick=\"deleteTreatment(this)\" title=\"Delete treatment\"><i class=\"fas fa-times\"></i></button></td></tr>";
+    computeTotal();
+
 }
 function deleteTreatment(o) {
+
     $(o).closest('tr').remove();
+
+    var table = document.getElementById("treatmentList");
+    var rowCount = table.rows.length;
+    if (rowCount == 1) {
+        table.deleteRow(0);
+    }
     recomputeTotal();
 }
 
@@ -67,6 +72,7 @@ function recomputeTotal() {
     var rowCount = table.rows.length;
     if (rowCount > 1) {
         table.deleteRow(rowCount - 1);
+
     }
 
     var total = 0;
@@ -104,7 +110,9 @@ function submit() {
 
     }
 
-    var dentist = document.getElementById("dentist").value;
+
+    var e = document.getElementById("dentist");
+    var dentist = e.value;
     var dates = document.getElementById("date").value;
     var time = document.getElementById("time").value;
     var clientid = document.getElementById("clientid").value;

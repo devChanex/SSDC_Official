@@ -29,12 +29,41 @@ class ServiceClass
 
         $dateToday = date("Y-m-d");
 
-        $query = "SELECT tsoa.soaid, cp.clientid, cp.lname, cp.fname, cp.mdname, tsoa.dentist, tsub.treatment, tsub.price, tsoa.date FROM clientprofile cp INNER JOIN treatmentsub tsub ON tsub.clientid = cp.clientid INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid WHERE (tsoa.date BETWEEN :a AND :b) AND tsoa.dentist LIKE '%" . $clientname . "%'";
 
 
-        $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':a', $fromdate);
-        $stmt->bindParam(':b', $todate);
+
+        if (!empty($fromdate) && !empty($todate)) {
+            // If both dates are provided
+            $query = "SELECT tsoa.soaid, cp.clientid, cp.lname, cp.fname, cp.mdname, tsoa.dentist, tsub.treatment, tsub.price, tsoa.date FROM clientprofile cp INNER JOIN treatmentsub tsub ON tsub.clientid = cp.clientid INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid WHERE (tsoa.date BETWEEN :a AND :b) AND tsoa.dentist LIKE '%" . $clientname . "%'";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':a', $fromdate);
+            $stmt->bindParam(':b', $todate);
+
+        } elseif (empty($fromdate) && !empty($todate)) {
+            // If only todate is provided
+            $query = "SELECT tsoa.soaid, cp.clientid, cp.lname, cp.fname, cp.mdname, tsoa.dentist, tsub.treatment, tsub.price, tsoa.date FROM clientprofile cp INNER JOIN treatmentsub tsub ON tsub.clientid = cp.clientid INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid WHERE (tsoa.date <= :b) AND tsoa.dentist LIKE '%" . $clientname . "%'";
+
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':b', $todate);
+
+        } elseif (!empty($fromdate) && empty($todate)) {
+            // If only todate is provided
+            $query = "SELECT tsoa.soaid, cp.clientid, cp.lname, cp.fname, cp.mdname, tsoa.dentist, tsub.treatment, tsub.price, tsoa.date FROM clientprofile cp INNER JOIN treatmentsub tsub ON tsub.clientid = cp.clientid INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid WHERE (tsoa.date >= :b) AND tsoa.dentist LIKE '%" . $clientname . "%'";
+
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':b', $fromdate);
+
+
+
+        } else {
+            // No filtering if both dates are empty
+            $query = "SELECT tsoa.soaid, cp.clientid, cp.lname, cp.fname, cp.mdname, tsoa.dentist, tsub.treatment, tsub.price, tsoa.date FROM clientprofile cp INNER JOIN treatmentsub tsub ON tsub.clientid = cp.clientid INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid WHERE tsoa.dentist LIKE '%" . $clientname . "%'";
+
+            $stmt = $this->conn->prepare($query);
+        }
+
+
+
         $stmt->execute();
         $total = 0;
         if ($stmt->rowCount() > 0) {

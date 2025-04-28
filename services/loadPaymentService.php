@@ -59,6 +59,12 @@ class ServiceClass
                     <td>
                     ' . $row["paymenttype"] . '
                     </td>
+
+                    <td align="center">
+
+                   
+                     <a href="#" title="View Medical History"  class="btn btn-danger btn-sm btn-circle" onclick="deletePayment(\'' . $row["id"] . '\', \'' . $row["amount"] . '\')"><i class="fas fa-times"></i></a>
+                    </td>
                 </tr>
                 
                     ';
@@ -74,7 +80,7 @@ class ServiceClass
                     <td align="right">
                     ' . number_format($totalPayment, 2) . '
                     </td>
-                   
+                   <td></td>
                 </tr>
 
                 <tr>
@@ -84,7 +90,7 @@ class ServiceClass
                     <td align="right">
                     ' . number_format($soaTotal - $totalPayment, 2) . '
                     </td>
-                   
+                      <td></td>
                 </tr>
             
             ';

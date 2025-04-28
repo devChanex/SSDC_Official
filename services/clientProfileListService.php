@@ -48,32 +48,59 @@ class ServiceClass
                 <td>' . ucwords($row["hmo"]) . '</td>
      
                
-                <td align="center">';
+                <td align="center">
+                 <a href="updateClient.php?civilStatus=' . $row["civilstatus"] . '&company=' . $row["company"] . '&cardNumber=' . $row["cardnumber"] . '&hmo=' . $row["hmo"] . '&religion=' . $row["religion"] . '&clientid=' . $row["clientid"] . '&lname=' . $row["lname"] . '&fname=' . $row["fname"] . '&mname=' . $row["mdname"] . '&nick=' . $row["nickname"] . '&age=' . $row["age"] . '&sex=' . $row["sex"] . '&occupation=' . $row["occupation"] . '
+                &birthDate=' . $row["birthDate"] . '&mobileNumber=' . $row["mobileNumber"] . '&homeAddress=' . $row["homeAddress"] . '
+                &guardianName=' . $row["guardianName"] . '&gOccupation=' . $row["gOccupation"] . '&refferedBy=' . $row["refferedBy"] . '
+                " class="btn btn-warning btn-circle" title="Update Client Profile"><i class="fas fa-edit"></i></a>';
 
                 //medhistory checker
 
-                $query2 = "select * from medhistory where clientid=:a";
+                // $query2 = "select * from medhistory where clientid=:a";
+                // $stmt2 = $this->conn->prepare($query2);
+                // $stmt2->bindParam(':a', $row["clientid"]);
+                // $stmt2->execute();
+                // if ($stmt2->rowCount() > 0) {
+
+                echo '
+                       <a href="medHistoryView.php?clientid=' . $row["clientid"] . '&clientname=' . $fullname . '" title="View Medical History"  class="btn btn-secondary  btn-circle"><i class="fas fa-history"></i></a>
+                ';
+
+                $query2 = "select clientId from consent where clientid=:a";
                 $stmt2 = $this->conn->prepare($query2);
                 $stmt2->bindParam(':a', $row["clientid"]);
                 $stmt2->execute();
                 if ($stmt2->rowCount() > 0) {
-
-                    echo '
-                       <a href="medHistoryView.php?clientid=' . $row["clientid"] . '&clientname=' . $fullname . '" title="View Medical History"  class="btn btn-primary  btn-circle"><i class="fas fa-history"></i></a>
-                       ';
-
+                    echo ' 
+                     <a href="addConsent.php?civilStatus=' . $row["civilstatus"] . '&company=' . $row["company"] . '&cardNumber=' . $row["cardnumber"] . '&hmo=' . $row["hmo"] . '&religion=' . $row["religion"] . '&clientid=' . $row["clientid"] . '&lname=' . $row["lname"] . '&fname=' . $row["fname"] . '&mname=' . $row["mdname"] . '&nick=' . $row["nickname"] . '&age=' . $row["age"] . '&sex=' . $row["sex"] . '&occupation=' . $row["occupation"] . '&birthDate=' . $row["birthDate"] . '&mobileNumber=' . $row["mobileNumber"] . '&homeAddress=' . $row["homeAddress"] . '&guardianName=' . $row["guardianName"] . '&gOccupation=' . $row["gOccupation"] . '&refferedBy=' . $row["refferedBy"] . '" class="btn btn-primary btn-circle" title="Add Client Consent"><i class="fas fa-file"></i></a>
+                 ';
                 } else {
-                    echo ' <a href="medHistory.php?clientid=' . $row["clientid"] . '&clientname=' . $fullname . '" title="Add Medical History" class="btn btn-success btn-circle"><i class="fas fa-history"></i></a>
-                    ';
+                    echo ' 
+                     <a href="addConsent.php?civilStatus=' . $row["civilstatus"] . '&company=' . $row["company"] . '&cardNumber=' . $row["cardnumber"] . '&hmo=' . $row["hmo"] . '&religion=' . $row["religion"] . '&clientid=' . $row["clientid"] . '&lname=' . $row["lname"] . '&fname=' . $row["fname"] . '&mname=' . $row["mdname"] . '&nick=' . $row["nickname"] . '&age=' . $row["age"] . '&sex=' . $row["sex"] . '&occupation=' . $row["occupation"] . '&birthDate=' . $row["birthDate"] . '&mobileNumber=' . $row["mobileNumber"] . '&homeAddress=' . $row["homeAddress"] . '&guardianName=' . $row["guardianName"] . '&gOccupation=' . $row["gOccupation"] . '&refferedBy=' . $row["refferedBy"] . '" class="btn btn-success btn-circle" title="Add Client Consent"><i class="fas fa-file"></i></a>
+                 ';
 
                 }
 
 
                 echo '
-                <a href="updateClient.php?civilStatus=' . $row["civilstatus"] . '&company=' . $row["company"] . '&cardNumber=' . $row["cardnumber"] . '&hmo=' . $row["hmo"] . '&religion=' . $row["religion"] . '&clientid=' . $row["clientid"] . '&lname=' . $row["lname"] . '&fname=' . $row["fname"] . '&mname=' . $row["mdname"] . '&nick=' . $row["nickname"] . '&age=' . $row["age"] . '&sex=' . $row["sex"] . '&occupation=' . $row["occupation"] . '
-                &birthDate=' . $row["birthDate"] . '&mobileNumber=' . $row["mobileNumber"] . '&homeAddress=' . $row["homeAddress"] . '
-                &guardianName=' . $row["guardianName"] . '&gOccupation=' . $row["gOccupation"] . '&refferedBy=' . $row["refferedBy"] . '
-                " class="btn btn-warning btn-circle" title="Update Client Profile"><i class="fas fa-edit"></i></a>
+                <a href="addTreatmentHistory.php?company=' . $row["company"] . '&cardnumber=' . $row["cardnumber"] . '&hmo=' . $row["hmo"] . '&clientid=' . $row["clientid"] . '&birthDate=' . $row["birthDate"] . '&clientname=' . $fullname . '&age=' . $row["age"] . '&address=' . $row["homeAddress"] . '" class="btn btn-warning btn-circle" title="Add Treatment"><i class="fas fa-plus"></i></a>
+
+
+                  <a href="patientChartList.php?id=' . $row["clientid"] . '&clientname=' . $fullname . '"
+                 class="btn btn-success btn-circle" title="View Patient Chart"><i class="fas fa-chart-bar"></i></a>
+
+                      
+                       ';
+
+                // } else {
+                //     echo ' <a href="medHistory.php?clientid=' . $row["clientid"] . '&clientname=' . $fullname . '" title="Add Medical History" class="btn btn-success btn-circle"><i class="fas fa-history"></i></a>
+                //     ';
+
+                // }
+
+
+                echo '
+               
                 <a href="#" class="btn btn-danger btn-circle" onclick="deleteClient(\'' . $row["clientid"] . '\')" title="Delete Client Profile"><i class="fas fa-trash"></i></a>
                 
 
@@ -92,17 +119,9 @@ class ServiceClass
 //                }
 
                 echo '
-                <a href="addConsent.php?civilStatus=' . $row["civilstatus"] . '&company=' . $row["company"] . '&cardNumber=' . $row["cardnumber"] . '&hmo=' . $row["hmo"] . '&religion=' . $row["religion"] . '&clientid=' . $row["clientid"] . '&lname=' . $row["lname"] . '&fname=' . $row["fname"] . '&mname=' . $row["mdname"] . '&nick=' . $row["nickname"] . '&age=' . $row["age"] . '&sex=' . $row["sex"] . '&occupation=' . $row["occupation"] . '
-                &birthDate=' . $row["birthDate"] . '&mobileNumber=' . $row["mobileNumber"] . '&homeAddress=' . $row["homeAddress"] . '
-                &guardianName=' . $row["guardianName"] . '&gOccupation=' . $row["gOccupation"] . '&refferedBy=' . $row["refferedBy"] . '
-                " class="btn btn-secondary btn-circle" title="Add Client Consent"><i class="fas fa-file"></i></a>
-                <a href="addTreatmentHistory.php?company=' . $row["company"] . '&cardnumber=' . $row["cardnumber"] . '&hmo=' . $row["hmo"] . '&clientid=' . $row["clientid"] . '&birthDate=' . $row["birthDate"] . '&clientname=' . $fullname . '&age=' . $row["age"] . '&address=' . $row["homeAddress"] . '"
-                 class="btn btn-warning btn-circle" title="Add Treatment"><i class="fas fa-plus"></i></a>
-                 
+               
     
-                 <a href="patientChartList.php?id=' . $row["clientid"] . '&clientname=' . $fullname . '"
-                 class="btn btn-success btn-circle" title="View Patient Chart"><i class="fas fa-chart-bar"></i></a>
-
+                
                 ';
                 echo '
                 
