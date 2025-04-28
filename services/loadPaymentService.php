@@ -61,36 +61,41 @@ class ServiceClass
                     </td>
 
                     <td align="center">
-
-                   
                      <a href="#" title="View Medical History"  class="btn btn-danger btn-sm btn-circle" onclick="deletePayment(\'' . $row["id"] . '\', \'' . $row["amount"] . '\')"><i class="fas fa-times"></i></a>
                     </td>
                 </tr>
                 
                     ';
                 }
+            } else {
+
+                echo '
+                <tr>
+                <td align="center" colspan="4">No Payment Yet</td>
+                </tr>
+                ';
             }
 
             echo '
-            <br>
+         
                 <tr>
-                    <td colspan="2">
+                    <td colspan="3">
                     Total Payment:
                     </td>
                     <td align="right">
                     ' . number_format($totalPayment, 2) . '
                     </td>
-                   <td></td>
+                  
                 </tr>
 
                 <tr>
-                    <td colspan="2">
-                    Remaining Balamce:
+                    <td colspan="3">
+                    Remaining Balance:
                     </td>
                     <td align="right">
                     ' . number_format($soaTotal - $totalPayment, 2) . '
                     </td>
-                      <td></td>
+                     
                 </tr>
             
             ';
