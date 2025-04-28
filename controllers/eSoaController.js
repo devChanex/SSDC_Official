@@ -30,6 +30,12 @@ function add() {
     document.getElementById("treatmentList").innerHTML += "<tr><td>" + treatment + "</td><td>" + diagnosis + "</td><td>" + details + "</td><td>" + remarks + "</td><td>" + price + "</td><td><button class=\"btn btn-success btn-circle btn-sm\" onclick=\"editTreatment(this,'" + treatment + "','" + diagnosis + "','" + details + "','" + remarks + "','" + price + "')\" title=\"Edit treatment\"><i class=\"fas fa-edit\"></i></button><button class=\"btn btn-danger btn-circle btn-sm\" onclick=\"deleteTreatment(this)\" title=\"Delete treatment\"><i class=\"fas fa-times\"></i></button></td></tr>";
     computeTotal();
 
+
+    document.getElementById("remarks").value = "";
+    var details = document.getElementById("details").value = "";
+    document.getElementById("diagnosis").value = "";
+    document.getElementById("price").value = 0;
+
 }
 
 function editTreatment(o, treatment, diagnosis, details, remarks, price) {
