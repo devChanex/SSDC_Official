@@ -41,6 +41,8 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid" id="content-table">
+                    <div class="row" id="patientCards">
+                    </div>
 
                     <!-- Page Heading -->
                     <div class="card shadow mb-12">
