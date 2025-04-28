@@ -27,9 +27,26 @@ function add() {
     }
 
 
-    document.getElementById("treatmentList").innerHTML += "<tr><td>" + treatment + "</td><td>" + diagnosis + "</td><td>" + details + "</td><td>" + remarks + "</td><td>" + price + "</td><td><button class=\"btn btn-danger btn-circle btn-sm\" onclick=\"deleteTreatment(this)\" title=\"Delete treatment\"><i class=\"fas fa-times\"></i></button></td></tr>";
+    document.getElementById("treatmentList").innerHTML += "<tr><td>" + treatment + "</td><td>" + diagnosis + "</td><td>" + details + "</td><td>" + remarks + "</td><td>" + price + "</td><td><button class=\"btn btn-success btn-circle btn-sm\" onclick=\"editTreatment(this,'" + treatment + "','" + diagnosis + "','" + details + "','" + remarks + "','" + price + "')\" title=\"Edit treatment\"><i class=\"fas fa-edit\"></i></button><button class=\"btn btn-danger btn-circle btn-sm\" onclick=\"deleteTreatment(this)\" title=\"Delete treatment\"><i class=\"fas fa-times\"></i></button></td></tr>";
     computeTotal();
 
+}
+
+function editTreatment(o, treatment, diagnosis, details, remarks, price) {
+    document.getElementById("treatment").value = treatment;
+    document.getElementById("remarks").value = remarks;
+    var details = document.getElementById("details").value = details;
+    document.getElementById("diagnosis").value = diagnosis;
+    document.getElementById("price").value = price;
+    $(o).closest('tr').remove();
+
+    var table = document.getElementById("treatmentList");
+    var rowCount = table.rows.length;
+    if (rowCount == 1) {
+        table.deleteRow(0);
+    }
+
+    recomputeTotal();
 }
 function deleteTreatment(o) {
 
