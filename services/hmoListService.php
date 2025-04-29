@@ -37,6 +37,7 @@ class ServiceClass
                 <td>' . ucwords(strtolower($row["name"])) . '</td>
                 <td>' . $row["hmo"] . '</td>
                   <td>' . $row["accountnumber"] . '</td>
+                  <td>' . $row["hmotype"] . '</td>
                 <td>' . $row["dob"] . '</td>
                   <td>' . $row["company"] . '</td>
                 <td>' . $row["contact"] . '</td>
