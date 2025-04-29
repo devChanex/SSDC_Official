@@ -22,6 +22,8 @@ function loadDetails() {
 
 
 function update() {
+    var hmotype = document.querySelector('input[name="hmoType"]:checked').value;
+
     var name = document.getElementById("name").value;
     var accountnumber = document.getElementById("accountnumber").value;
     var birthdate = document.getElementById("birthdate").value;
@@ -47,7 +49,7 @@ function update() {
 
 
     if (msg == '') {
-        submitform(name, accountnumber, birthdate, company, contact, hmo, validity, benefit, remarks, verificationStatus, agent);
+        submitform(name, accountnumber, birthdate, company, contact, hmo, validity, benefit, remarks, verificationStatus, agent, hmotype);
     } else {
         showToast("errorToast", msg);
     }
@@ -56,7 +58,7 @@ function update() {
 
 }
 
-function submitform(name, accountnumber, birthdate, company, contact, hmo, validity, benefit, remarks, verificationStatus, agent) {
+function submitform(name, accountnumber, birthdate, company, contact, hmo, validity, benefit, remarks, verificationStatus, agent, hmotype) {
     var fd = new FormData();
     var id = document.getElementById("id").value;
     fd.append('id', id);
@@ -71,6 +73,7 @@ function submitform(name, accountnumber, birthdate, company, contact, hmo, valid
     fd.append('remarks', remarks);
     fd.append('verification', verificationStatus);
     fd.append('agent', agent);
+    fd.append('hmotype', hmotype);
 
     $.ajax({
         url: "services/updateHMOService.php",

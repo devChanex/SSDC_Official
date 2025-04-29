@@ -58,6 +58,26 @@ class ServiceClass
                             <label for="treatment">Contact Number</label>
                             <input type="Text" name="treatment" id="contact" placeholder="Contact Number"
                                 class="form-control" value="' . $row["contact"] . '">
+
+                                  <div class="form-group">
+                                <label>HMO Membership Type</label>
+                                <br>
+                         
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="hmoType" id="hmoPrincipal"
+                                    value="Principal" ' . ($row["hmotype"] == "Principal" ? "checked" : "") . '>
+                                <label class="form-check-label" for="hmoPrincipal">
+                                    Principal
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="hmoType" id="hmoDependent"
+                                    value="Dependent" ' . ($row["hmotype"] == "Dependent" ? "checked" : "") . '>
+                                <label class="form-check-label" for="hmoDependent">
+                                    Dependent
+                                </label>
+                            </div>
+                            <br>
                             <label for="validity">Validity:</label>
                             <input type="text" name="treatment" id="validity" placeholder="Validity"
                                 class="form-control" value="' . $row['validity'] . '">

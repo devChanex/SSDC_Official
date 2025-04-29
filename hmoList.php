@@ -62,6 +62,7 @@
                                                 <th>Name</th>
                                                 <th>HMO</th>
                                                 <th>Account Number</th>
+                                                <th>Membership Type</th>
                                                 <th>Birthdate</th>
                                                 <th>Company</th>
                                                 <th>Contact</th>
@@ -75,6 +76,7 @@
                                                 <th>Name</th>
                                                 <th>HMO</th>
                                                 <th>Account Number</th>
+                                                <th>Membership Type</th>
                                                 <th>Birthdate</th>
                                                 <th>Company</th>
                                                 <th>Contact</th>
