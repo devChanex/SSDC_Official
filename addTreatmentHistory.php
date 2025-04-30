@@ -149,7 +149,7 @@
                                 </div>
 
                                 <div class="col-lg-6">
-                                    <table class="table" width="100%" cellspacing="0" style="font-size:12px;">
+                                    <table class="table text-dark" width="100%" cellspacing="0" style="font-size:12px;">
                                         <thead>
                                             <tr>
                                                 <th>Treatment</th>

@@ -69,7 +69,7 @@
                             <!-- USE THIS SPACE FOR YOUR ADDITIONAL CODE SNIPPET -->
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table" width="100%" cellspacing="0">
+                                    <table class="table text-dark" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
                                                 <th>SOA ID</th>
