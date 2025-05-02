@@ -30,7 +30,7 @@ class ServiceClass
         $dateToday = date("Y-m-d");
         if (!empty($fromdate) && !empty($todate)) {
             // If both dates are provided
-            $query = "SELECT tsoa.soaid, cp.clientid, cp.lname, cp.fname, cp.mdname, tsoa.dentist, tsub.treatment, tsub.price, tsoa.date 
+            $query = "SELECT tsoa.soaid, cp.clientid,tsoa.hmoaccredited, cp.lname, cp.fname, cp.mdname, tsoa.dentist, tsub.treatment, tsub.price, tsoa.date 
                       FROM clientprofile cp 
                       INNER JOIN treatmentsub tsub ON tsub.clientid = cp.clientid 
                       INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid 
@@ -42,7 +42,7 @@ class ServiceClass
 
         } elseif (empty($fromdate) && !empty($todate)) {
             // If only todate is provided
-            $query = "SELECT tsoa.soaid, cp.clientid, cp.lname, cp.fname, cp.mdname, tsoa.dentist, tsub.treatment, tsub.price, tsoa.date 
+            $query = "SELECT tsoa.soaid, cp.clientid,tsoa.hmoaccredited, cp.lname, cp.fname, cp.mdname, tsoa.dentist, tsub.treatment, tsub.price, tsoa.date 
                       FROM clientprofile cp 
                       INNER JOIN treatmentsub tsub ON tsub.clientid = cp.clientid 
                       INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid 
@@ -53,7 +53,7 @@ class ServiceClass
 
         } elseif (!empty($fromdate) && empty($todate)) {
             // If only todate is provided
-            $query = "SELECT tsoa.soaid, cp.clientid, cp.lname, cp.fname, cp.mdname, tsoa.dentist, tsub.treatment, tsub.price, tsoa.date 
+            $query = "SELECT tsoa.soaid, cp.clientid,tsoa.hmoaccredited, cp.lname, cp.fname, cp.mdname, tsoa.dentist, tsub.treatment, tsub.price, tsoa.date 
                       FROM clientprofile cp 
                       INNER JOIN treatmentsub tsub ON tsub.clientid = cp.clientid 
                       INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid 
@@ -66,7 +66,7 @@ class ServiceClass
 
         } else {
             // No filtering if both dates are empty
-            $query = "SELECT tsoa.soaid, cp.clientid, cp.lname, cp.fname, cp.mdname, tsoa.dentist, tsub.treatment, tsub.price, tsoa.date 
+            $query = "SELECT tsoa.soaid, cp.clientid,tsoa.hmoaccredited, cp.lname, cp.fname, cp.mdname, tsoa.dentist, tsub.treatment, tsub.price, tsoa.date 
                       FROM clientprofile cp 
                       INNER JOIN treatmentsub tsub ON tsub.clientid = cp.clientid 
                       INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid";
@@ -85,7 +85,19 @@ class ServiceClass
                 <tr>
                 <td>' . $row["soaid"] . '</td>
 
-                <td>' . $fullname . '</td>
+                <td>' . $fullname . '</td>';
+                $hmo = $row["hmoaccredited"];
+                $hmoDisplay = '';
+
+                if (!empty($hmo)) {
+                    $parts = explode('|', $hmo);
+                    $hmoDisplay = trim($parts[0]);
+                }
+
+                echo '  <td>' . $hmoDisplay . '</td>';
+
+
+                echo '
                 <td>' . $row["dentist"] . '</td>
                 <td>' . $row["treatment"] . '</td>
                 <td style="text-align:right;">' . number_format($row["price"], 2) . '</td>
@@ -96,10 +108,10 @@ class ServiceClass
         echo '
 <tr>
               
-                <td colspan="4">Total </td>
+                <td colspan="5">Total </td>
                 
                 <td style="text-align:right;"><strong>' . number_format($total, 2) . '</strong></td>
-                <td>-</td>      
+                <td></td>      
             </tr>
 ';
     }

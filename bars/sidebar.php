@@ -88,8 +88,8 @@ echo '
             </li>
             ';
 
-if ($_SESSION["username"] == $superuser) {
-    echo '
+// if ($_SESSION["username"] == $superuser) {
+echo '
 <li class="nav-item">
     <a class="nav-link" href="#" data-toggle="collapse" data-target="#report" aria-expanded="false"
         aria-controls="config">
@@ -103,6 +103,8 @@ if ($_SESSION["username"] == $superuser) {
              <a class="collapse-item" href="soaperdentist.php">SOA Summary per Dentist</a>
             <a class="collapse-item" href="clienttreatmentrecordperdate.php">CT Records per Date</a>
             <a class="collapse-item" href="clienttreatmentrecordperclient.php">CT Records per Client</a>
+            
+<a class="collapse-item" href="clienttreatmentrecordperdentist.php">CT Records per Dentist</a>
            
         </div>
     </div>
@@ -112,8 +114,7 @@ if ($_SESSION["username"] == $superuser) {
 
 ';
 
-    // <a class="collapse-item" href="clienttreatmentrecordperdentist.php">CT Records per Dentist</a>
 // <a class="collapse-item" href="clienttreatmentrecordpertreatment.php">CT Records per Treatment</a>
-}
+// }
 
 echo '</ul>';
