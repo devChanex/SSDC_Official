@@ -72,6 +72,7 @@
                                             <tr>
                                                 <th>SOA ID</th>
                                                 <th>Full Name</th>
+                                                <th>HMO</th>
                                                 <th>Dentist</th>
                                                 <th>Treatment</th>
                                                 <th>Price</th>

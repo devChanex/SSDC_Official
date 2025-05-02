@@ -34,7 +34,7 @@ class ServiceClass
 
         if (!empty($fromdate) && !empty($todate)) {
             // If both dates are provided
-            $query = "SELECT tsoa.soaid, cp.clientid, cp.lname, cp.fname, cp.mdname, tsoa.dentist, tsub.treatment, tsub.details, tsub.remarks,  tsub.price, tsoa.date, tsoa.time FROM clientprofile cp INNER JOIN treatmentsub tsub ON tsub.clientid = cp.clientid INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid WHERE (tsoa.date BETWEEN :a AND :b) AND CONCAT(cp.lname,', ',cp.fname,' ' ,cp.mdname) LIKE '%" . $clientname . "%'";
+            $query = "SELECT tsoa.soaid, cp.clientid,tsoa.hmoaccredited, cp.lname, cp.fname, cp.mdname, tsoa.dentist, tsub.treatment, tsub.details, tsub.remarks,  tsub.price, tsoa.date, tsoa.time FROM clientprofile cp INNER JOIN treatmentsub tsub ON tsub.clientid = cp.clientid INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid WHERE (tsoa.date BETWEEN :a AND :b) AND CONCAT(cp.lname,', ',cp.fname,' ' ,cp.mdname) LIKE '%" . $clientname . "%'";
 
 
             $stmt = $this->conn->prepare($query);
@@ -43,7 +43,7 @@ class ServiceClass
 
         } elseif (empty($fromdate) && !empty($todate)) {
             // If only todate is provided
-            $query = "SELECT tsoa.soaid, cp.clientid, cp.lname, cp.fname, cp.mdname, tsoa.dentist, tsub.treatment, tsub.details, tsub.remarks,  tsub.price, tsoa.date, tsoa.time FROM clientprofile cp INNER JOIN treatmentsub tsub ON tsub.clientid = cp.clientid INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid WHERE (tsoa.date BETWEEN <= :b) AND CONCAT(cp.lname,', ',cp.fname,' ' ,cp.mdname) LIKE '%" . $clientname . "%'";
+            $query = "SELECT tsoa.soaid, cp.clientid,tsoa.hmoaccredited, cp.lname, cp.fname, cp.mdname, tsoa.dentist, tsub.treatment, tsub.details, tsub.remarks,  tsub.price, tsoa.date, tsoa.time FROM clientprofile cp INNER JOIN treatmentsub tsub ON tsub.clientid = cp.clientid INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid WHERE (tsoa.date BETWEEN <= :b) AND CONCAT(cp.lname,', ',cp.fname,' ' ,cp.mdname) LIKE '%" . $clientname . "%'";
 
 
             $stmt = $this->conn->prepare($query);
@@ -51,7 +51,7 @@ class ServiceClass
 
         } elseif (!empty($fromdate) && empty($todate)) {
             // If only todate is provided
-            $query = "SELECT tsoa.soaid, cp.clientid, cp.lname, cp.fname, cp.mdname, tsoa.dentist, tsub.treatment, tsub.details, tsub.remarks,  tsub.price, tsoa.date, tsoa.time FROM clientprofile cp INNER JOIN treatmentsub tsub ON tsub.clientid = cp.clientid INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid WHERE (tsoa.date BETWEEN >= :b) AND CONCAT(cp.lname,', ',cp.fname,' ' ,cp.mdname) LIKE '%" . $clientname . "%'";
+            $query = "SELECT tsoa.soaid, cp.clientid,tsoa.hmoaccredited, cp.lname, cp.fname, cp.mdname, tsoa.dentist, tsub.treatment, tsub.details, tsub.remarks,  tsub.price, tsoa.date, tsoa.time FROM clientprofile cp INNER JOIN treatmentsub tsub ON tsub.clientid = cp.clientid INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid WHERE (tsoa.date BETWEEN >= :b) AND CONCAT(cp.lname,', ',cp.fname,' ' ,cp.mdname) LIKE '%" . $clientname . "%'";
 
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':b', $fromdate);
@@ -60,7 +60,7 @@ class ServiceClass
 
         } else {
             // No filtering if both dates are empty
-            $query = "SELECT tsoa.soaid, cp.clientid, cp.lname, cp.fname, cp.mdname, tsoa.dentist, tsub.treatment, tsub.details, tsub.remarks,  tsub.price, tsoa.date, tsoa.time FROM clientprofile cp INNER JOIN treatmentsub tsub ON tsub.clientid = cp.clientid INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid WHERE  CONCAT(cp.lname,', ',cp.fname,' ' ,cp.mdname) LIKE '%" . $clientname . "%'";
+            $query = "SELECT tsoa.soaid, cp.clientid,tsoa.hmoaccredited, cp.lname, cp.fname, cp.mdname, tsoa.dentist, tsub.treatment, tsub.details, tsub.remarks,  tsub.price, tsoa.date, tsoa.time FROM clientprofile cp INNER JOIN treatmentsub tsub ON tsub.clientid = cp.clientid INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid WHERE  CONCAT(cp.lname,', ',cp.fname,' ' ,cp.mdname) LIKE '%" . $clientname . "%'";
 
             $stmt = $this->conn->prepare($query);
         }
@@ -75,7 +75,19 @@ class ServiceClass
                 <tr>
                 <td>' . $row["soaid"] . '</td>
 
-                <td>' . $fullname . '</td>
+                <td>' . $fullname . '</td>';
+                $hmo = $row["hmoaccredited"];
+                $hmoDisplay = '';
+
+                if (!empty($hmo)) {
+                    $parts = explode('|', $hmo);
+                    $hmoDisplay = trim($parts[0]);
+                }
+
+                echo '  <td>' . $hmoDisplay . '</td>';
+
+
+                echo '
                 <td>' . $row["dentist"] . '</td>
                 <td>' . $row["treatment"] . '</td>
                 <td>' . $row["details"] . '</td>
@@ -86,24 +98,11 @@ class ServiceClass
                 
             </tr>';
             }
-        } else {
-            echo '
-<tr>
-<td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>      
-            </tr>
-';
-
         }
         echo '
 <tr>
               
-                <td colspan="8">Total </td>
+                <td colspan="9">Total </td>
                 
                 <td style="text-align:right;"><strong>' . number_format($total, 2) . '</strong></td>
                      
