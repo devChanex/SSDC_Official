@@ -23,7 +23,7 @@
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
     <link href="css/custom.css" rel="stylesheet">
-
+    <link href="css/sortable.css" rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -54,45 +54,48 @@
                         <div class="card-body">
                             <!-- USE THIS SPACE FOR YOUR ADDITIONAL CODE SNIPPET -->
                             <div class="card-body">
+                                <div class="card-header py-3 d-flex justify-content-between">
+                                    <h6 class="m-0 font-weight-bold"></h6>
+                                    <div class="d-flex align-items-center gap-2 ms-auto">
+                                        <strong>Search: </strong><input type="search" id="tableSearch"
+                                            class="form-control form-control-sm" placeholder="" style="width: 300px;"
+                                            oninput="getclientdata();">
+
+                                    </div>
+                                </div>
                                 <div class="table-responsive">
-                                    <table class="table table-bordered text-dark" id="dataTable" width="100%"
+                                    <table class="table table-bordered text-dark" id="sortableTable" width="100%"
                                         cellspacing="0">
                                         <thead>
                                             <tr>
 
-                                                <th>Name</th>
-                                                <th>HMO</th>
-                                                <th>Account Number</th>
-                                                <th>Membership Type</th>
-                                                <th>Birthdate</th>
-                                                <th>Company</th>
-                                                <th>Contact</th>
-                                                <th>Agent</th>
-                                                <th>Status</th>
-                                                <th>Action</th>
+                                                <th onclick="sortTable(this)">Name<span class="sort-icon"></span></th>
+                                                <th onclick="sortTable(this)">HMO<span class="sort-icon"></span></th>
+                                                <th onclick="sortTable(this)">Account Number<span
+                                                        class="sort-icon"></span></th>
+                                                <th onclick="sortTable(this)">Membership Type<span
+                                                        class="sort-icon"></span></th>
+                                                <th onclick="sortTable(this)">Birthdate<span class="sort-icon"></span>
+                                                </th>
+                                                <th onclick="sortTable(this)">Company<span class="sort-icon"></span>
+                                                </th>
+                                                <th onclick="sortTable(this)">Contact<span class="sort-icon"></span>
+                                                </th>
+                                                <th onclick="sortTable(this)">Agent<span class="sort-icon"></span></th>
+                                                <th onclick="sortTable(this)">Status<span class="sort-icon"></span></th>
+                                                <th onclick="sortTable(this)">Action<span class="sort-icon"></span></th>
                                             </tr>
                                         </thead>
-                                        <tfoot>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>HMO</th>
-                                                <th>Account Number</th>
-                                                <th>Membership Type</th>
-                                                <th>Birthdate</th>
-                                                <th>Company</th>
-                                                <th>Contact</th>
-                                                <th>Agent</th>
-                                                <th>Status</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </tfoot>
-                                        <tbody id="resultResponsez">
+
+                                        <tbody id="resultResponseBody">
 
 
 
                                         </tbody>
                                     </table>
                                 </div>
+                                <input type="hidden" id="currentPage" value="1">
+                                <div id="pagination"></div>
                             </div>
 
 
@@ -132,7 +135,7 @@
             <script src="controllers/sessionController.js"></script>
             <script src="controllers/getHMOListController.js"></script>
             <script src="js/custom.js"></script>
-
+            <script src="js/sortable.js"></script>
 
 
 

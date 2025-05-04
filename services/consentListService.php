@@ -1,7 +1,11 @@
 <?php
 require_once('databaseService.php');
 $service = new ServiceClass();
-$result = $service->loadTreatmentList();
+$search = urldecode($_POST['search']);
+$searchParam = '%' . $search . '%';
+$page = isset($_POST['page']) ? (int) $_POST['page'] : 1;
+$itemPerPage = isset($_POST['item']) ? (int) $_POST['item'] : 10;
+$result = $service->process($searchParam, $page, $itemPerPage);
 
 class ServiceClass
 {
@@ -20,13 +24,27 @@ class ServiceClass
         return $stmt;
     }
     //DO NOT INCLUDE THIS CODE
-    public function loadTreatmentList()
+    public function process($search, $page, $itemPerPage)
     {
 
+        $offset = ($page - 1) * $itemPerPage;  // Calculate the offset for pagination
 
+        $searchFields = ['dentist', 'date', "concat(b.lname,', ',b.fname, ' ', b.mdname)"];
+        $dynamics = '';
 
-        $query = "select b.*,concat(b.lname,', ',b.fname, ' ', b.mdname) as fullname,a.id,a.dentist,a.date from consent a inner join clientprofile b on a.clientid=b.clientid where a.status='Active'";
+        if (!empty($search)) {
+            $orConditions = [];
+            foreach ($searchFields as $field) {
+                $orConditions[] = "$field LIKE :search";
+            }
+            $dynamics = 'AND (' . implode(' OR ', $orConditions) . ')';
+        }
+        $dynamics .= '  LIMIT :limit OFFSET :offset';
+        $query = "select b.*,concat(b.lname,', ',b.fname, ' ', b.mdname) as fullname,a.id,a.dentist,a.date from consent a inner join clientprofile b on a.clientid=b.clientid where a.status='Active' $dynamics";
         $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':search', $search, PDO::PARAM_STR);
+        $stmt->bindParam(':limit', $itemPerPage, PDO::PARAM_INT);  // Ensure itemPerPage is treated as an integer
+        $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);  // 
         $stmt->execute();
         if ($stmt->rowCount() > 0) {
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {

@@ -1,7 +1,11 @@
 <?php
 require_once('databaseService.php');
 $service = new ServiceClass();
-$result = $service->loadClientSoa();
+$search = urldecode($_POST['search']);
+$searchParam = '%' . $search . '%';
+$page = isset($_POST['page']) ? (int) $_POST['page'] : 1;
+$itemPerPage = isset($_POST['item']) ? (int) $_POST['item'] : 10;
+$result = $service->process($searchParam, $page, $itemPerPage);
 
 class ServiceClass
 {
@@ -20,11 +24,28 @@ class ServiceClass
         return $stmt;
     }
     //DO NOT INCLUDE THIS CODE
-    public function loadClientSoa()
+    public function process($search, $page, $itemPerPage)
     {
+        $offset = ($page - 1) * $itemPerPage;  // Calculate the offset for pagination
 
-        $query = "select a.date,a.time,a.soaid,a.dentist,a.total, concat(b.lname,', ',b.fname, ' ', b.mdname) as fullname from treatmentsoa a inner join clientprofile b on a.clientid=b.clientid";
+        $searchFields = ['a.dentist', 'a.date', "concat(b.lname,', ',b.fname, ' ', b.mdname)"];
+        $dynamics = '';
+
+        if (!empty($search)) {
+            $orConditions = [];
+            foreach ($searchFields as $field) {
+                $orConditions[] = "$field LIKE :search";
+            }
+            $dynamics = 'WHERE (' . implode(' OR ', $orConditions) . ')';
+        }
+        $dynamics .= '  LIMIT :limit OFFSET :offset';
+
+        $query = "select a.date,a.time,a.soaid,a.dentist,a.total, concat(b.lname,', ',b.fname, ' ', b.mdname) as fullname from treatmentsoa a inner join clientprofile b on a.clientid=b.clientid  $dynamics";
+
         $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':search', $search, PDO::PARAM_STR);
+        $stmt->bindParam(':limit', $itemPerPage, PDO::PARAM_INT);  // Ensure itemPerPage is treated as an integer
+        $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
         $stmt->execute();
         if ($stmt->rowCount() > 0) {
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -36,12 +57,10 @@ class ServiceClass
                 $stmt2->bindParam(':x', $soaid);
                 $stmt2->execute();
                 if ($stmt2->rowCount() > 0) {
-                    echo 'hey1';
+
                     while ($row2 = $stmt2->fetch(PDO::FETCH_ASSOC)) {
                         $payment += $row2["amount"];
                     }
-                } else {
-                    echo 'hey2';
                 }
                 echo '
                     <tr>
