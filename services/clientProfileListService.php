@@ -1,7 +1,12 @@
 <?php
 require_once('databaseService.php');
 $service = new ServiceClass();
-$result = $service->loadClientProfile();
+
+$search = urldecode($_POST['search']);
+$searchParam = '%' . $search . '%';
+$page = isset($_POST['page']) ? (int) $_POST['page'] : 1;
+$itemPerPage = isset($_POST['item']) ? (int) $_POST['item'] : 10;
+$result = $service->process($searchParam, $page, $itemPerPage);
 
 class ServiceClass
 {
@@ -20,13 +25,30 @@ class ServiceClass
         return $stmt;
     }
     //DO NOT INCLUDE THIS CODE
-    public function loadClientProfile()
+    public function process($search, $page, $itemPerPage)
     {
 
+        $offset = ($page - 1) * $itemPerPage;  // Calculate the offset for pagination
 
+        $searchFields = ['hmo', 'nickname', 'sex', 'mobilenumber', "CONCAT(lname, ', ', fname, ' ', mdname)"];
+        $dynamics = '';
 
-        $query = "SELECT * FROM clientprofile WHERE status != 'Deleted' OR status IS NULL";
+        if (!empty($search)) {
+            $orConditions = [];
+            foreach ($searchFields as $field) {
+                $orConditions[] = "$field LIKE :search";
+            }
+            $dynamics = 'AND (' . implode(' OR ', $orConditions) . ')';
+        }
+
+        $dynamics .= '  LIMIT :limit OFFSET :offset';
+        // Using prepared statements for query to avoid SQL injection
+        $query = "SELECT * FROM clientprofile a WHERE (status != 'Deleted' OR status IS NULL) $dynamics";
+
         $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':search', $search, PDO::PARAM_STR);
+        $stmt->bindParam(':limit', $itemPerPage, PDO::PARAM_INT);  // Ensure itemPerPage is treated as an integer
+        $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);  // Ensure offset is treated as an integer
         $stmt->execute();
         if ($stmt->rowCount() > 0) {
 
@@ -105,18 +127,7 @@ class ServiceClass
                 
 
                 ';
-                //View Photo
-// $imgBase64 = base64_encode($row["photo"]);
-//                 if ($row["photo"] != null) {
-//                     echo '<a href="#" class="btn btn-primary btn-circle" 
-//    data-toggle="modal" 
-//    data-target="#ViewModal" 
-//    data-img="data:image/jpeg;base64,' . $imgBase64 . '" 
-//    onclick="showProfilePhoto(this)" 
-//    title="View Client Profile">
-//    <i class="fas fa-eye"></i>
-// </a>';
-//                }
+
 
                 echo '
                

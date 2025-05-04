@@ -30,3 +30,8 @@ function toastSuccess(message) {
     toastElement.find(".toast-body").html(message);
     toastElement.toast({ delay: 3000 }).toast("show");
 }
+
+
+
+
+

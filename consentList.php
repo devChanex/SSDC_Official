@@ -22,7 +22,7 @@
     <link href="css/custom.css" rel="stylesheet">
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
+    <link href="css/sortable.css" rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -52,32 +52,39 @@
                         <div class="card-body">
                             <!-- USE THIS SPACE FOR YOUR ADDITIONAL CODE SNIPPET -->
                             <div class="card-body">
+                                <div class="card-header py-3 d-flex justify-content-between">
+                                    <h6 class="m-0 font-weight-bold"></h6>
+                                    <div class="d-flex align-items-center gap-2 ms-auto">
+                                        <strong>Search: </strong><input type="search" id="tableSearch"
+                                            class="form-control form-control-sm" placeholder="" style="width: 300px;"
+                                            oninput="getclientdata();">
+
+                                    </div>
+                                </div>
                                 <div class="table-responsive">
-                                    <table class="table table-bordered text-dark" id="dataTable" width="100%"
+                                    <table class="table table-bordered text-dark" id="sortableTable" width="100%"
                                         cellspacing="0">
                                         <thead>
                                             <tr>
-                                                <th>Client Name</th>
-                                                <th>Dentist Name</th>
-                                                <th>Date</th>
-                                                <th>Action</th>
+                                                <th onclick="sortTable(this)">Client Name<span class="sort-icon"></span>
+                                                </th>
+                                                <th onclick="sortTable(this)">Dentist Name<span
+                                                        class="sort-icon"></span></th>
+                                                <th onclick="sortTable(this)">Date<span class="sort-icon"></span></th>
+                                                <th onclick="sortTable(this)">Action<span class="sort-icon"></span></th>
                                             </tr>
                                         </thead>
-                                        <tfoot>
-                                            <tr>
-                                                <th>Client Name</th>
-                                                <th>Dentist Name</th>
-                                                <th>Date</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </tfoot>
-                                        <tbody id="resultResponsez">
+
+                                        <tbody id="resultResponseBody">
 
 
 
                                         </tbody>
                                     </table>
                                 </div>
+                                <input type="hidden" id="currentPage" value="1">
+                                <div id="pagination"></div>
+
                             </div>
 
 
@@ -119,6 +126,7 @@
             <script src="controllers/sessionController.js"></script>
             <script src="controllers/getConsentListController.js"></script>
             <script src="controllers/deleteTreatmentController.js"></script>
+            <script src="js/sortable.js"></script>
 
 
 

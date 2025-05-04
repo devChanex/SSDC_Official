@@ -21,6 +21,7 @@
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="css/sortable.css" rel="stylesheet">
 
 </head>
 
@@ -44,54 +45,54 @@
 
                     <!-- Page Heading -->
                     <div class="card shadow mb-12">
-                        <div class="card-header py-3 <?php echo $cards; ?>">
+                        <div class="card-header py-3 d-flex justify-content-between <?php echo $cards; ?>">
                             <h6 class="m-0 font-weight-bold">Client Profile List</h6>
                             <a href="https://registration.smilesavedental.ph"
-                                class="btn btn-primary float-right">Register</a>
+                                class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                    class="fas fa-plus fa-sm text-white-50"></i> Register</a>
                         </div>
                         <div class="card-body">
-                            <!-- USE THIS SPACE FOR YOUR ADDITIONAL CODE SNIPPET -->
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered text-dark" id="dataTable" width="100%"
-                                        cellspacing="0">
-                                        <thead>
-                                            <tr>
+                            <div class="card-header py-3 d-flex justify-content-between">
+                                <h6 class="m-0 font-weight-bold"></h6>
+                                <div class="d-flex align-items-center gap-2 ms-auto">
+                                    <strong>Search: </strong><input type="search" id="tableSearch"
+                                        class="form-control form-control-sm" placeholder="" style="width: 300px;"
+                                        oninput="getclientdata();">
 
-                                                <th>Name</th>
-                                                <th>Nick Name</th>
-                                                <th>Age</th>
-                                                <th>Gender</th>
-                                                <th>Mobile Number</th>
-
-
-                                                <th>HMO</th>
-
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tfoot>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Nick Name</th>
-                                                <th>Age</th>
-                                                <th>Gender</th>
-                                                <th>Mobile Number</th>
-
-
-                                                <th>HMO</th>
-
-                                                <th>Action</th>
-                                            </tr>
-                                        </tfoot>
-                                        <tbody id="resultResponsez">
-
-
-
-                                        </tbody>
-                                    </table>
                                 </div>
                             </div>
+                            <div class="table-responsive">
+                                <table class="table table-bordered text-dark" id="sortableTable" width="100%"
+                                    cellspacing="0">
+                                    <thead>
+                                        <tr>
+
+                                            <th onclick="sortTable(this)">Name <span class="sort-icon"></span></th>
+                                            <th onclick="sortTable(this)">Nick Name <span class="sort-icon"></span>
+                                            </th>
+                                            <th onclick="sortTable(this)">Age <span class="sort-icon"></span></th>
+                                            <th onclick="sortTable(this)">Gender <span class="sort-icon"></span>
+                                            </th>
+                                            <th onclick="sortTable(this)">Mobile Number <span class="sort-icon"></span>
+                                            </th>
+                                            <th onclick="sortTable(this)">HMO <span class="sort-icon"></span></th>
+                                            <th>Action</th>
+                                            <!-- No onclick, since actions typically aren't sortable -->
+
+
+
+                                        </tr>
+                                    </thead>
+
+                                    <tbody id="resultResponseBody">
+
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <input type="hidden" id="currentPage" value="1">
+                            <div id="pagination"></div>
 
 
                             <!--Update Document-->
@@ -122,6 +123,7 @@
 
                             <!-- END OF YOUR ADDITIONAL CODE SNIPPET -->
                         </div>
+
                     </div>
 
                 </div>
@@ -152,6 +154,7 @@
             <script src="controllers/sessionController.js"></script>
             <script src="controllers/getClientProfileController.js"></script>
             <script src="controllers/deleteClientProfileController.js"></script>
+            <script src="js/sortable.js"></script>
 
 
 
