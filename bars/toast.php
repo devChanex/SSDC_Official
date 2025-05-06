@@ -2,9 +2,19 @@
 
 echo '
 <!-- Toast Container (Centered) -->
-<div class="toast-container position-fixed top-50 start-50 translate-middle p-3">
+<div class="toast-container position-fixed top-50 start-50 translate-middle p-3" stylestyle="
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 99999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+">
     <!-- Success Toast -->
-    <div id="successToast" class="toast hide bg-success text-white" role="alert" aria-live="assertive" aria-atomic="true">
+    <div id="successToast" class="toast hide bg-success text-white" role="alert" aria-live="assertive" aria-atomic="true" >
         <div class="toast-header bg-success text-white">
             <strong class="me-auto"><i class="fas fa-check-circle"></i> Success</strong>
         </div>
