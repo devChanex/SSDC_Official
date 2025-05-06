@@ -66,6 +66,7 @@
                                                 <th>Details</th>
                                                 <th>HMO</th>
                                                 <th>Fee</th>
+                                                <th>Action</th>
 
                                             </tr>
                                         </thead>
@@ -81,6 +82,60 @@
 
 
 
+                            <!-- Edit Modal -->
+
+                            <div class="modal fade" id="editModal" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+                                <div class="modal-dialog modal-xl " role="document">
+                                    <div class="modal-content ">
+                                        <form id="editForm">
+                                            <div class="modal-header <?php echo $cards; ?>">
+                                                <h5 class="modal-title" id="editModalLabel">Edit Treatment</h5>
+                                                <button type="button" class="close" data-dismiss="modal">
+                                                    <span>&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <input type="hidden" name="soaid" id="edit-soaid">
+                                                <input type="hidden" name="tsubid" id="edit-tsubid">
+
+                                                <div class="form-group">
+                                                    <label>Treatment</label>
+                                                    <input type="text" class="form-control" name="treatment"
+                                                        id="edit-treatment">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Diagnosis</label>
+
+                                                    <textarea class="form-control" name="diagnosis" id="edit-diagnosis"
+                                                        rows="4"></textarea>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Remarks</label>
+                                                    <input type="text" class="form-control" name="remarks"
+                                                        id="edit-remarks">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Details</label>
+                                                    <textarea class="form-control" name="details" id="edit-details"
+                                                        rows="4"></textarea>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label>Price</label>
+                                                    <input type="number" step="0.01" class="form-control" name="price"
+                                                        id="edit-price">
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary"
+                                                    onclick="updateTreatment()">Save changes</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
 
 
 
