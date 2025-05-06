@@ -27,7 +27,7 @@ class ServiceClass
 
 
 
-        $query = "select date,dentist,treatment,remarks,details,diagnosis from treatmentsoa a inner join treatmentsub b on a.soaid=b.soaid where a.clientid=:a order by Date";
+        $query = "select hmoaccredited,price,date,dentist,treatment,remarks,details,diagnosis from treatmentsoa a inner join treatmentsub b on a.soaid=b.soaid where a.clientid=:a order by Date";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':a', $clientid);
         $stmt->execute();
@@ -41,8 +41,20 @@ class ServiceClass
                 <td>' . $row["treatment"] . '</td>
                  <td>' . $row["diagnosis"] . '</td>
                 <td>' . $row["remarks"] . '</td>
-                <td>' . $row["details"] . '</td>
-          
+                <td>' . $row["details"] . '</td>';
+                $hmo = $row["hmoaccredited"];
+                $hmoDisplay = '';
+
+                if (!empty($hmo)) {
+                    $parts = explode('|', $hmo);
+                    $hmoDisplay = trim($parts[0]);
+                }
+
+                echo '  <td>' . $hmoDisplay . '</td>';
+
+
+                echo '
+          <td>' . number_format($row["price"], 2) . '</td>
                 
             </tr>';
             }

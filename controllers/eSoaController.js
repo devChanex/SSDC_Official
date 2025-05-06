@@ -19,32 +19,63 @@ function add() {
     var treatment = e.value;
     var remarks = document.getElementById("remarks").value;
     var details = document.getElementById("details").value;
-
     var diagnosis = document.getElementById("diagnosis").value;
-    var price = document.getElementById("price").value;
-    if (price == null || price == "") {
-        price = 0;
-    }
+    var price = document.getElementById("price").value || 0;
 
+    var detailsForDisplay = details.replace(/\n/g, "<br>");
+    var remarksForDisplay = remarks.replace(/\n/g, "<br>");
+    var diagnosisForDisplay = diagnosis.replace(/\n/g, "<br>");
 
-    document.getElementById("treatmentList").innerHTML += "<tr><td>" + treatment + "</td><td>" + diagnosis + "</td><td>" + details + "</td><td>" + remarks + "</td><td>" + price + "</td><td><button class=\"btn btn-success btn-circle btn-sm\" onclick=\"editTreatment(this,'" + treatment + "','" + diagnosis + "','" + details + "','" + remarks + "','" + price + "')\" title=\"Edit treatment\"><i class=\"fas fa-edit\"></i></button><button class=\"btn btn-danger btn-circle btn-sm\" onclick=\"deleteTreatment(this)\" title=\"Delete treatment\"><i class=\"fas fa-times\"></i></button></td></tr>";
+    document.getElementById("treatmentList").innerHTML += `
+        <tr>
+            <td>${treatment}</td>
+            <td>${diagnosisForDisplay}</td>
+            <td>${detailsForDisplay}</td>
+            <td>${remarksForDisplay}</td>
+            <td>${price}</td>
+            <td>
+                <button class="btn btn-success btn-circle btn-sm"
+                    onclick="editTreatment(this)"
+                    data-treatment="${encodeURIComponent(treatment)}"
+                    data-diagnosis="${encodeURIComponent(diagnosis)}"
+                    data-details="${encodeURIComponent(details)}"
+                    data-remarks="${encodeURIComponent(remarks)}"
+                    data-price="${encodeURIComponent(price)}"
+                    title="Edit treatment">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button class="btn btn-danger btn-circle btn-sm"
+                    onclick="deleteTreatment(this)" title="Delete treatment">
+                    <i class="fas fa-times"></i>
+                </button>
+            </td>
+        </tr>
+    `;
+
     computeTotal();
 
-
+    // Reset form
     document.getElementById("remarks").value = "";
-    var details = document.getElementById("details").value = "";
+    document.getElementById("details").value = "";
     document.getElementById("diagnosis").value = "";
     document.getElementById("price").value = 0;
-
 }
 
-function editTreatment(o, treatment, diagnosis, details, remarks, price) {
+
+function editTreatment(button) {
+    var treatment = decodeURIComponent(button.getAttribute("data-treatment"));
+    var diagnosis = decodeURIComponent(button.getAttribute("data-diagnosis"));
+    var details = decodeURIComponent(button.getAttribute("data-details"));
+    var remarks = decodeURIComponent(button.getAttribute("data-remarks"));
+    var price = decodeURIComponent(button.getAttribute("data-price"));
+
     document.getElementById("treatment").value = treatment;
     document.getElementById("remarks").value = remarks;
-    var details = document.getElementById("details").value = details;
+    document.getElementById("details").value = details;
     document.getElementById("diagnosis").value = diagnosis;
     document.getElementById("price").value = price;
-    $(o).closest('tr').remove();
+
+    $(button).closest('tr').remove();
 
     var table = document.getElementById("treatmentList");
     var rowCount = table.rows.length;

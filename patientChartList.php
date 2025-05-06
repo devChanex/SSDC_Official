@@ -21,6 +21,7 @@
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
 
 </head>
 
@@ -54,7 +55,7 @@
                             <!-- USE THIS SPACE FOR YOUR ADDITIONAL CODE SNIPPET -->
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table " id="dataTable">
+                                    <table class="table text-dark" id="dataTable">
                                         <thead>
                                             <tr>
                                                 <th>Date</th>
@@ -63,19 +64,12 @@
                                                 <th>Diagnosis</th>
                                                 <th>Remarks</th>
                                                 <th>Details</th>
+                                                <th>HMO</th>
+                                                <th>Fee</th>
 
                                             </tr>
                                         </thead>
-                                        <tfoot>
-                                            <tr>
-                                                <th>Date</th>
-                                                <th>Dentist</th>
-                                                <th>Treatment</th>
-                                                <th>Diagnosis</th>
-                                                <th>Remarks</th>
-                                                <th>Details</th>
-                                            </tr>
-                                        </tfoot>
+
                                         <tbody id="resultResponsez">
 
 

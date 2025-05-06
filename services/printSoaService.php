@@ -97,8 +97,7 @@ class ServiceClass
                 <table class="table" width="100%" cellspacing="0" style="font-size:12px;">
 <thead>
 <tr>
-<th>Treatment</th>
-<th>Remarks</th>
+<th width="50%">Treatment</th>
 <th>Price</th>
 
 </tr>
@@ -117,9 +116,9 @@ class ServiceClass
                             $total += $row2["price"];
                             echo '
                             <tr>
-                            <td onclick="createTicket(\'' . $row2["tsubid"] . '\',\'' . $row2["treatment"] . '\',\'treatment\',\'treatmentsub\',\'tsubid\');" style="white-space: nowrap; width: 1%;">' . $row2["treatment"] . '</td>
+                            <td width="50%" onclick="createTicket(\'' . $row2["tsubid"] . '\',\'' . $row2["treatment"] . '\',\'treatment\',\'treatmentsub\',\'tsubid\');" style="white-space: nowrap; width: 1%;">' . $row2["treatment"] . '</td>
                            
-                            <td onclick="createTicket(\'' . $row2["tsubid"] . '\',\'' . $row2["remarks"] . '\',\'remarks\',\'treatmentsub\',\'tsubid\');">' . $row2["remarks"] . '</td>
+                           
                             <td onclick="createTicket(\'' . $row2["tsubid"] . '\',\'' . $row2["price"] . '\',\'price\',\'treatmentsub\',\'tsubid\');">' . $row2["price"] . '</td>
                             </tr>
                             
@@ -128,7 +127,7 @@ class ServiceClass
                         echo '
                                             <strong>
                                             <tr>
-                                            <td colspan="2">Total</td>
+                                            <td colspan="1">Total</td>
                                             <td onclick="createTicket(\'' . $soaid . '\',\'' . $row["total"] . '\',\'total\',\'treatmentsoa\',\'soaid\');">' . $row["total"] . '</td>
                                             
                                             </tr>
