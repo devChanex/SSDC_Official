@@ -68,6 +68,10 @@ class ServiceClass
     data-toggle="modal" data-target="#editModal">
     <i class="fas fa-edit"></i>
   </button>
+
+   <button class="btn btn-danger" onclick="deleteTreatment(' . $row["soaid"] . ',' . $row["tsubid"] . ')">
+    <i class="fas fa-trash"></i>
+  </button>
 </td>
 
                 
