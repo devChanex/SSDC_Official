@@ -50,6 +50,7 @@ echo '
         <div>
             <button onclick="capturePhoto()">Capture</button>
             <button onclick="switchCamera()">Switch Camera</button>
+            <button onclick="mirror()">Mirror</button>
             <button onclick="closeCameraModal()">Cancel</button>
         </div>
     </div>

@@ -7,6 +7,12 @@ let stream;
 
 let currentFacingMode = "user"; // "user" for front, "environment" for back
 
+let isMirrored = false;
+
+function mirror() {
+    isMirrored = !isMirrored;
+    video.style.transform = isMirrored ? "scaleX(-1)" : "scaleX(1)";
+}
 function openCameraModal() {
 
 
