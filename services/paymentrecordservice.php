@@ -30,7 +30,7 @@ class ServiceClass
         $dateToday = date("Y-m-d");
         if (!empty($fromdate) && !empty($todate)) {
             // If both dates are provided
-            $query = "SELECT tsoa.soaid,tsoa.hmoaccredited, cp.clientid, cp.lname, cp.fname, cp.mdname, tsoa.dentist,  tpay.amount,tpay.paymenttype,tpay.date FROM clientprofile cp INNER JOIN treatmentsoa tsoa ON tsoa.soaid = cp.clientid inner join payments tpay on tsoa.soaid = tpay.soaid WHERE (tpay.date BETWEEN :a AND :b) and tpay.paymentType like '%" . $paymentType . "%' order by tpay.date asc";
+            $query = "SELECT tsoa.soaid,tsoa.hmoaccredited, cp.clientid, cp.lname, cp.fname, cp.mdname, tsoa.dentist,  tpay.amount,tpay.paymenttype,tpay.date FROM clientprofile cp INNER JOIN treatmentsoa tsoa ON tsoa.clientid = cp.clientid inner join payments tpay on tsoa.soaid = tpay.soaid WHERE (tpay.date BETWEEN :a AND :b) and tpay.paymentType like '%" . $paymentType . "%' order by tpay.date asc";
 
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':a', $fromdate);
@@ -40,7 +40,7 @@ class ServiceClass
             // If only todate is provided
 
 
-            $query = "SELECT tsoa.soaid,tsoa.hmoaccredited, cp.clientid, cp.lname, cp.fname, cp.mdname, tsoa.dentist,  tpay.amount,tpay.paymenttype,tpay.date FROM clientprofile cp INNER JOIN treatmentsoa tsoa ON tsoa.soaid = cp.clientid inner join payments tpay on tsoa.soaid = tpay.soaid WHERE (tpay.date <= :b) and tpay.paymentType like '%" . $paymentType . "%' order by tpay.date asc";
+            $query = "SELECT tsoa.soaid,tsoa.hmoaccredited, cp.clientid, cp.lname, cp.fname, cp.mdname, tsoa.dentist,  tpay.amount,tpay.paymenttype,tpay.date FROM clientprofile cp INNER JOIN treatmentsoa tsoa ON tsoa.clientid = cp.clientid inner join payments tpay on tsoa.soaid = tpay.soaid WHERE (tpay.date <= :b) and tpay.paymentType like '%" . $paymentType . "%' order by tpay.date asc";
 
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':b', $todate);
@@ -48,7 +48,7 @@ class ServiceClass
         } elseif (!empty($fromdate) && empty($todate)) {
             // If only todate is provided
 
-            $query = "SELECT tsoa.soaid,tsoa.hmoaccredited, cp.clientid, cp.lname, cp.fname, cp.mdname, tsoa.dentist,  tpay.amount,tpay.paymenttype,tpay.date FROM clientprofile cp INNER JOIN treatmentsoa tsoa ON tsoa.soaid = cp.clientid inner join payments tpay on tsoa.soaid = tpay.soaid WHERE (tpay.date >= :b) and tpay.paymentType like '%" . $paymentType . "%' order by tpay.date asc";
+            $query = "SELECT tsoa.soaid,tsoa.hmoaccredited, cp.clientid, cp.lname, cp.fname, cp.mdname, tsoa.dentist,  tpay.amount,tpay.paymenttype,tpay.date FROM clientprofile cp INNER JOIN treatmentsoa tsoa ON tsoa.clientid = cp.clientid inner join payments tpay on tsoa.soaid = tpay.soaid WHERE (tpay.date >= :b) and tpay.paymentType like '%" . $paymentType . "%' order by tpay.date asc";
 
 
             $stmt = $this->conn->prepare($query);
@@ -59,7 +59,7 @@ class ServiceClass
         } else {
             // No filtering if both dates are empty
 
-            $query = "SELECT tsoa.soaid,tsoa.hmoaccredited, cp.clientid, cp.lname, cp.fname, cp.mdname, tsoa.dentist,  tpay.amount,tpay.paymenttype,tpay.date FROM clientprofile cp INNER JOIN treatmentsoa tsoa ON tsoa.soaid = cp.clientid inner join payments tpay on tsoa.soaid = tpay.soaid WHERE tpay.paymentType like '%" . $paymentType . "%' order by tpay.date asc";
+            $query = "SELECT tsoa.soaid,tsoa.hmoaccredited, cp.clientid, cp.lname, cp.fname, cp.mdname, tsoa.dentist,  tpay.amount,tpay.paymenttype,tpay.date FROM clientprofile cp INNER JOIN treatmentsoa tsoa ON tsoa.clientid = cp.clientid inner join payments tpay on tsoa.soaid = tpay.soaid WHERE tpay.paymentType like '%" . $paymentType . "%' order by tpay.date asc";
 
             $stmt = $this->conn->prepare($query);
 
