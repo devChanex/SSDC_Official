@@ -27,6 +27,10 @@ function getclientdata() {
     });
     document.getElementById("content-table").style.zoom = "60%";
 }
+function search() {
+    document.getElementById("currentPage").value = 1;
+    getclientdata();
+}
 
 function setPage(page) {
     document.getElementById("currentPage").value = page;

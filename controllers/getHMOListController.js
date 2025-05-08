@@ -29,6 +29,10 @@ function setPage(page) {
     getclientdata();
 
 }
+function search() {
+    document.getElementById("currentPage").value = 1;
+    getclientdata();
+}
 
 
 function getPagination() {
