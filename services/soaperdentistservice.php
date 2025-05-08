@@ -90,7 +90,7 @@ class ServiceClass
                 <td>' . $row["dentist"] . '</td>
                 <td>' . $row["treatment"] . '</td>
                 <td style="text-align:right;">' . number_format($row["price"], 2) . '</td>
-               <td>' . date("m/d/Y", strtotime($row["date"])) . '</td>
+                  <td>' . date("m/d/Y", strtotime($row["date"])) . '</td>
             </tr>';
             }
         }
