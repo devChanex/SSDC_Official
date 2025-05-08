@@ -105,6 +105,8 @@ echo '
             <a class="collapse-item" href="clienttreatmentrecordperclient.php">CT Records per Client</a>
             
 <a class="collapse-item" href="clienttreatmentrecordperdentist.php">CT Records per Dentist</a>
+
+<a class="collapse-item" href="paymentsrecord.php">Payments</a>
            
         </div>
     </div>

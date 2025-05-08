@@ -36,7 +36,7 @@ class ServiceClass
 
                 echo '
                 <tr>
-                <td>' . $row["date"] . '</td>
+                <td>' . date("m/d/Y", strtotime($row["date"])) . '</td>
                 <td>' . $row["dentist"] . '</td>
                 <td>' . $row["treatment"] . '</td>
                  <td>' . $row["diagnosis"] . '</td>

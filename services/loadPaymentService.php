@@ -50,9 +50,7 @@ class ServiceClass
                     $totalPayment += $row["amount"];
                     echo '
                 <tr>
-                    <td>
-                    ' . $row["date"] . '
-                    </td>
+                    <td>' . date("m/d/Y", strtotime($row["date"])) . '</td>
                     <td>
                     ' . number_format($row["amount"], 2) . '
                     </td>

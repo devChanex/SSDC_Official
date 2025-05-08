@@ -55,7 +55,7 @@ class ServiceClass
                            
                     </div>
                     <div class="col-md-6">
-                            Date :<strong>' . $row["date"] . '</strong>
+                            Date :<strong>' . date("m/d/Y", strtotime($row["date"])) . '</strong>
                            
                            
                     </div>

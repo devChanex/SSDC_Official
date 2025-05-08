@@ -53,7 +53,7 @@ class ServiceClass
                 <tr>
                 <td>' . ucwords(strtolower($row["fullname"])) . '</td>
                 <td>' . $row["dentist"] . '</td>
-                <td>' . $row["date"] . '</td>
+                 <td>' . date("m/d/Y", strtotime($row["date"])) . '</td>
                
                 <td align="center">
                 

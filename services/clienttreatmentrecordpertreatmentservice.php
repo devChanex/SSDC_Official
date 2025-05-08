@@ -51,27 +51,12 @@ class ServiceClass
                 <td>' . $row["treatment"] . '</td>
                 <td>' . $row["details"] . '</td>
                 <td>' . $row["remarks"] . '</td>
-                <td>' . $row["date"] . '</td>
+                 <td>' . date("m/d/Y", strtotime($row["date"])) . '</td>
                 <td>' . $row["time"] . '</td>
                 <td style="text-align:right;">' . number_format($row["price"], 2) . '</td>
                 
             </tr>';
             }
-        } else {
-            echo '
-<tr>
-<td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>      
-                <td>-</td>
-                <td>-</td>  
-            </tr>
-';
-
         }
         echo '
 <tr>

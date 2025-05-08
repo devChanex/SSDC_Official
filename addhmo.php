@@ -110,6 +110,9 @@
                             <label for="remarks">Remarks:</label>
                             <textarea id="remarks" style="width: 100%;" class="form-control" rows="4"
                                 placeholder="Enter remarks here..."></textarea>
+                            <label for="validity">Approval Code:</label>
+                            <input type="text" name="approvalCode" id="approvalCode" placeholder="Approval Code"
+                                class="form-control" value="">
                             <label for="HMO">Verification Status:</label>
                             <select id="verification" name="verification" class="form-control mb-2">
 
