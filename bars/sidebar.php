@@ -53,12 +53,7 @@ echo '
                
             </li>
 
-    <li class="nav-item">
-    <a class="nav-link" href="consentList.php" >
-        <i class="fas fa-file"></i>
-        <span>Consent List</span>
-    </a>
-    </li>
+   
         <li class="nav-item">
     <a class="nav-link" href="hmoList.php" >
         <i class="fas fa-heart"></i>
@@ -118,5 +113,10 @@ echo '
 
 // <a class="collapse-item" href="clienttreatmentrecordpertreatment.php">CT Records per Treatment</a>
 // }
-
+// <li class="nav-item">
+// <a class="nav-link" href="consentList.php" >
+//     <i class="fas fa-file"></i>
+//     <span>Consent List</span>
+// </a>
+// </li>
 echo '</ul>';
