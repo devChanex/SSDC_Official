@@ -92,7 +92,7 @@ class ServiceClass
                 
                 <td>' . $row["paymenttype"] . '</td>
                 
-                <td>' . date("m/d/Y", strtotime($row["date"])) . '</td>
+                <td>' . date("Y/m/d", strtotime($row["date"])) . '</td>
                 <td style="text-align:right;">' . number_format($row["amount"], 2) . '</td>
              
             </tr>';

@@ -64,8 +64,7 @@ class ServiceClass
                 }
                 echo '
                     <tr>
-                   <td>' . date("m/d/Y", strtotime($row["date"])) . '</td>
-
+                    <td>' . date("Y/m/d", strtotime($row["date"])) . '</td>
                     <td>' . $row["time"] . '</td>
                      <td>' . ucwords(strtolower($row["fullname"])) . '</td>
                       <td>' . ucwords(strtolower($row["dentist"])) . '</td>
