@@ -133,11 +133,14 @@
                                                 <label for="paymentType">Payment Type</label>
                                                 <select class="form-control" id="paymentType" name="paymentType"
                                                     required>
-                                                    <option value="Credit Card">Credit Card</option>
-                                                    <option value="Debit Card">Debit Card</option>
                                                     <option value="Cash">Cash</option>
                                                     <option value="GCash">GCash</option>
+                                                    <option value="Maya">Maya</option>
                                                     <option value="Bank Transfer">Bank Transfer</option>
+                                                    <option value="Credit Card">Credit Card</option>
+                                                    <option value="Debit Card">Debit Card</option>
+
+
                                                 </select>
                                             </div>
                                         </form>

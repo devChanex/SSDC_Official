@@ -50,11 +50,14 @@
                                 <label for="paymentType">Mode of Payment: </label>
                                 <select id="paymentType" name="paymentType" onchange="getclientdata();">
                                     <option value="">All</option>
-                                    <option value="Credit Card">Credit Card</option>
-                                    <option value="Debit Card">Debit Card</option>
                                     <option value="Cash">Cash</option>
                                     <option value="GCash">GCash</option>
+                                    <option value="Maya">Maya</option>
                                     <option value="Bank Transfer">Bank Transfer</option>
+                                    <option value="Credit Card">Credit Card</option>
+                                    <option value="Debit Card">Debit Card</option>
+
+
                                 </select>
                                 Date From : <input type="date" id="from" onchange="getclientdata();">
                                 Date To : <input type="date" id="to" onchange="getclientdata();">
