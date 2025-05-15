@@ -52,6 +52,7 @@
                                     <option value="">All</option>
                                     <option value="Cash">Cash</option>
                                     <option value="GCash">GCash</option>
+                                    <option value="Cheque">Cheque</option>
                                     <option value="Maya">Maya</option>
                                     <option value="Bank Transfer">Bank Transfer</option>
                                     <option value="Credit Card">Credit Card</option>
