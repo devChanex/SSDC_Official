@@ -78,7 +78,7 @@ function loadMonthlyPatientsBar() {
             var data = JSON.parse(result);
 
 
-            chartBar2("monthlypatientsbar", data.label, data.datas, 100, "Patients: ");
+            chartBar2("monthlypatientsbar", data.label, data.datas, 500, "Patients: ");
             //you can uncomment this for checking
             //  document.getElementById("jsResult").innerHTML=result;
         }
