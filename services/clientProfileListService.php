@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once('databaseService.php');
 $service = new ServiceClass();
 
@@ -27,6 +28,7 @@ class ServiceClass
     //DO NOT INCLUDE THIS CODE
     public function process($search, $page, $itemPerPage)
     {
+        $superuser = "ssdc_admin2020";
 
         $offset = ($page - 1) * $itemPerPage;  // Calculate the offset for pagination
 
@@ -126,20 +128,18 @@ class ServiceClass
 
                 // }
 
-
-                echo '
+                if ($_SESSION["username"] == $superuser) {
+                    echo '
                
-                <a href="#" class="btn btn-danger btn-circle" onclick="deleteClient(\'' . $row["clientid"] . '\')" title="Delete Client Profile"><i class="fas fa-trash"></i></a>
-                
-
-                ';
-
-
-                echo '
-               
+                    <a href="#" class="btn btn-danger btn-circle" onclick="deleteClient(\'' . $row["clientid"] . '\')" title="Delete Client Profile"><i class="fas fa-trash"></i></a>
+                    
     
-                
-                ';
+                    ';
+                }
+
+
+
+
                 echo '
                 
                 

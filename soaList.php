@@ -96,7 +96,49 @@
                             <!-- END OF YOUR ADDITIONAL CODE SNIPPET -->
                         </div>
                     </div>
+                    <div class="modal fade" id="editModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
 
+                        <div class="modal-dialog modal-xl " role="document">
+                            <div class="modal-content ">
+                                <form id="editForm">
+                                    <div class="modal-header <?php echo $cards; ?>">
+                                        <h5 class="modal-title" id="editModalLabel">Edit SOA Details</h5>
+                                        <button type="button" class="close" data-dismiss="modal">
+                                            <span>&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input type="hidden" name="soaid" id="edit-soaid">
+
+                                        <div class="form-group">
+                                            <label>Dentist</label>
+                                            <select name="dentist" id="edit-dentist" class="form-control">
+                                                <?php
+                                                foreach ($dentist as $d) {
+                                                    echo '<option value="' . htmlspecialchars($d) . '">' . htmlspecialchars($d) . '</option>';
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Date</label>
+                                            <input type="date" class="form-control" name="remarks" id="edit-date">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Time</label>
+                                            <input type="text" class="form-control" name="remarks" id="edit-time">
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" onclick="updateSoa()">Save
+                                            changes</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- /.container-fluid -->
 

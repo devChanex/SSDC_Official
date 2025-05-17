@@ -1,5 +1,6 @@
 <?php
 require_once('databaseService.php');
+session_start();
 $service = new ServiceClass();
 
 $clientid = urldecode($_POST['id']);
@@ -24,7 +25,7 @@ class ServiceClass
     //DO NOT INCLUDE THIS CODE
     public function process($clientid)
     {
-
+        $superuser = "ssdc_admin2020";
 
 
         $query = "select a.soaid,tsubid,hmoaccredited,price,date,dentist,treatment,remarks,details,diagnosis from treatmentsoa a inner join treatmentsub b on a.soaid=b.soaid where a.clientid=:a order by Date";
@@ -68,10 +69,14 @@ class ServiceClass
     data-toggle="modal" data-target="#editModal">
     <i class="fas fa-edit"></i>
   </button>
+';
 
-   <button class="btn btn-danger" onclick="deleteTreatment(' . $row["soaid"] . ',' . $row["tsubid"] . ')">
+                if ($_SESSION["username"] == $superuser) {
+                    echo '<button class="btn btn-danger" onclick="deleteTreatment(' . $row["soaid"] . ',' . $row["tsubid"] . ')">
     <i class="fas fa-trash"></i>
-  </button>
+  </button>';
+                }
+                echo '
 </td>
 
                 

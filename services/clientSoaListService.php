@@ -72,7 +72,18 @@ class ServiceClass
                     <td>' . $row["total"] . '</td>
                     <td>' . ($row["total"] - $payment) . '</td>
                     <td style="text-align:center;">';
-                echo '<a class="btn btn-success btn-circle" href="soaViewing.php?soaid=' . $row["soaid"] . '" title="View SOA"><i class="fas fa-eye"></i></a>
+                echo '
+               
+                <button class="btn btn-warning edit-btn btn-circle"
+    data-soaid="' . $row["soaid"] . '"
+     data-dentist="' . $row["dentist"] . '"
+    data-date="' . htmlspecialchars($row["date"], ENT_QUOTES) . '"
+    data-time="' . htmlspecialchars($row["time"], ENT_QUOTES) . '"
+    
+    data-toggle="modal" data-target="#editModal">
+    <i class="fas fa-edit"></i>
+  </button>
+                <a class="btn btn-success btn-circle" href="soaViewing.php?soaid=' . $row["soaid"] . '" title="View SOA"><i class="fas fa-eye"></i></a>
                       <a class="btn btn-primary btn-circle" href="attachment.php?soaid=' . $row["soaid"] . ' title="View Attachment"><i class="fas fa-paperclip"></i></a>
                    </td>
                 </tr>';
