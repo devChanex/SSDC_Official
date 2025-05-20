@@ -26,7 +26,7 @@ class ServiceClass
 
 
 
-        $query = "SELECT count(id) as 'consent' FROM consent where status='Active'";
+        $query = "SELECT count(id) as 'consent' FROM consent inner join clientprofile on consent.clientId=clientprofile.clientid where consent.status='Active'";
         $stmt = $this->conn->prepare($query);
 
         $stmt->execute();
