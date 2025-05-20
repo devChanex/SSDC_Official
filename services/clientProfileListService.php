@@ -73,7 +73,7 @@ class ServiceClass
      
                
                 <td align="center">
-                 <a href="updateClient.php?civilStatus=' . $row["civilstatus"] . '&company=' . $row["company"] . '&cardNumber=' . $row["cardnumber"] . '&hmo=' . $row["hmo"] . '&religion=' . $row["religion"] . '&clientid=' . $row["clientid"] . '&lname=' . $row["lname"] . '&fname=' . $row["fname"] . '&mname=' . $row["mdname"] . '&nick=' . $row["nickname"] . '&age=' . $row["age"] . '&sex=' . $row["sex"] . '&occupation=' . $row["occupation"] . '
+                 <a href="updateClient.php?civilStatus=' . $row["civilstatus"] . '&company=' . $row["company"] . '&cardNumber=' . $row["cardnumber"] . '&hmo=' . $row["hmo"] . '&religion=' . $row["religion"] . '&clientid=' . $row["clientid"] . '&lname=' . $row["lname"] . '&fname=' . $row["fname"] . '&mname=' . $row["mdname"] . '&nick=' . $row["nickname"] . '&age=' . $age . '&sex=' . $row["sex"] . '&occupation=' . $row["occupation"] . '
                 &birthDate=' . $row["birthDate"] . '&mobileNumber=' . $row["mobileNumber"] . '&homeAddress=' . $row["homeAddress"] . '
                 &guardianName=' . $row["guardianName"] . '&gOccupation=' . $row["gOccupation"] . '&refferedBy=' . $row["refferedBy"] . '
                 " class="btn btn-warning btn-circle" title="Update Client Profile"><i class="fas fa-edit"></i></a>';
@@ -106,14 +106,14 @@ class ServiceClass
 
                 } else {
                     echo ' 
-                     <a href="addConsent.php?civilStatus=' . $row["civilstatus"] . '&company=' . $row["company"] . '&cardNumber=' . $row["cardnumber"] . '&hmo=' . $row["hmo"] . '&religion=' . $row["religion"] . '&clientid=' . $row["clientid"] . '&lname=' . $row["lname"] . '&fname=' . $row["fname"] . '&mname=' . $row["mdname"] . '&nick=' . $row["nickname"] . '&age=' . $row["age"] . '&sex=' . $row["sex"] . '&occupation=' . $row["occupation"] . '&birthDate=' . $row["birthDate"] . '&mobileNumber=' . $row["mobileNumber"] . '&homeAddress=' . $row["homeAddress"] . '&guardianName=' . $row["guardianName"] . '&gOccupation=' . $row["gOccupation"] . '&refferedBy=' . $row["refferedBy"] . '" class="btn btn-success btn-circle" title="Add Client Consent"><i class="fas fa-file"></i></a>
+                     <a href="addConsent.php?civilStatus=' . $row["civilstatus"] . '&company=' . $row["company"] . '&cardNumber=' . $row["cardnumber"] . '&hmo=' . $row["hmo"] . '&religion=' . $row["religion"] . '&clientid=' . $row["clientid"] . '&lname=' . $row["lname"] . '&fname=' . $row["fname"] . '&mname=' . $row["mdname"] . '&nick=' . $row["nickname"] . '&age=' . $age . '&sex=' . $row["sex"] . '&occupation=' . $row["occupation"] . '&birthDate=' . $row["birthDate"] . '&mobileNumber=' . $row["mobileNumber"] . '&homeAddress=' . $row["homeAddress"] . '&guardianName=' . $row["guardianName"] . '&gOccupation=' . $row["gOccupation"] . '&refferedBy=' . $row["refferedBy"] . '" class="btn btn-success btn-circle" title="Add Client Consent"><i class="fas fa-file"></i></a>
                  ';
 
                 }
 
 
                 echo '
-                <a href="addTreatmentHistory.php?company=' . $row["company"] . '&cardnumber=' . $row["cardnumber"] . '&hmo=' . $row["hmo"] . '&clientid=' . $row["clientid"] . '&birthDate=' . $row["birthDate"] . '&clientname=' . $fullname . '&age=' . $row["age"] . '&address=' . $row["homeAddress"] . '" class="btn btn-warning btn-circle" title="Add Treatment"><i class="fas fa-plus"></i></a>
+                <a href="addTreatmentHistory.php?company=' . $row["company"] . '&cardnumber=' . $row["cardnumber"] . '&hmo=' . $row["hmo"] . '&clientid=' . $row["clientid"] . '&birthDate=' . $row["birthDate"] . '&clientname=' . $fullname . '&age=' . $age . '&address=' . $row["homeAddress"] . '" class="btn btn-warning btn-circle" title="Add Treatment"><i class="fas fa-plus"></i></a>
 
 
                   <a href="patientChartList.php?id=' . $row["clientid"] . '&clientname=' . $fullname . '"
