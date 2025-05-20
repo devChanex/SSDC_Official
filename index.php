@@ -65,7 +65,7 @@
                         <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
                             <div class="card shadow mb-12">
                                 <div class="card-header py-3 <?php echo $cards; ?>">
-                                    <h6 class="m-0 font-weight-bold">CLIENT REGISTRATION</h6>
+                                    <h6 class="m-0 font-weight-bold">PATIENT REGISTRATION</h6>
                                 </div>
                                 <div class="card-body" id="bodyResult">
                                     <div class="card-body" id="bodyResult">
@@ -243,7 +243,7 @@
                         <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
                             <div class="card shadow mb-12">
                                 <div class="card-header py-3 <?php echo $cards; ?>">
-                                    <h6 class="m-0 font-weight-bold">Client Medical History
+                                    <h6 class="m-0 font-weight-bold">Patient Medical History
                                     </h6>
                                 </div>
                                 <div class="card-body" id="bodyResult" style="padding-right:20%;padding-left:20%">
