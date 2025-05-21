@@ -43,9 +43,9 @@ class ServiceClass
             $dynamics = 'AND (' . implode(' OR ', $orConditions) . ')';
         }
 
-        $dynamics .= '  LIMIT :limit OFFSET :offset';
+        $dynamics .= 'ORDER BY CONCAT(lname, \', \', fname, \' \', mdname) ASC LIMIT :limit OFFSET :offset';
         // Using prepared statements for query to avoid SQL injection
-        $query = "SELECT * FROM clientprofile a WHERE (status != 'Deleted' OR status IS NULL) $dynamics";
+        $query = "SELECT * FROM clientprofile a WHERE (status != 'Deleted' OR status IS NULL) $dynamics ";
 
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':search', $search, PDO::PARAM_STR);

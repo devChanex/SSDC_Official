@@ -44,6 +44,7 @@ class ServiceClass
             }
             $dynamics = 'AND (' . implode(' OR ', $orConditions) . ')';
         }
+        $dynamics .= 'ORDER BY CONCAT(lname, \', \', fname, \' \', mdname)';
         // Using prepared statements for query to avoid SQL injection
         $query = "SELECT count(clientid) as itemCount FROM clientprofile a WHERE (status != 'Deleted' OR status IS NULL) $dynamics";
 
