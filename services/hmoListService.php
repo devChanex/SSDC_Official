@@ -39,7 +39,7 @@ class ServiceClass
             }
             $dynamics = 'AND (' . implode(' OR ', $orConditions) . ')';
         }
-        $dynamics .= '  LIMIT :limit OFFSET :offset';
+        $dynamics .= 'ORDER BY name ASC  LIMIT :limit OFFSET :offset';
 
         $query = "select * from hmo where status='Active' $dynamics";
         $stmt = $this->conn->prepare($query);
