@@ -145,69 +145,70 @@ function submitClientform(type) {
     }
 
     message = "";
-    const imageBlob = document.getElementById('capturedPhoto').value;
-    var lastName = document.getElementById("lastName").value;
-    var firstName = document.getElementById("firstName").value;
-    var middleName = document.getElementById("middleName").value;
-    var nickName = document.getElementById("nickName").value;
-    var age = document.getElementById("age").value; //age
-    var e = document.getElementById("gender");
-    var gender = e.value;
-    var cStatus = document.getElementById("civilStatus");
-    var civilStatus = cStatus.value;
-    var hmoOption = document.getElementById("hmo");
-    var hmo = hmoOption.value;
-    var cardNumber = document.getElementById("cardNumber").value;
-    var company = document.getElementById("company").value;
-    var religion = document.getElementById("religion").value;
-    const base64Image = document.getElementById('capturedPhoto').value;
-    var birthday = document.getElementById("birthday").value;
-    var occupation = document.getElementById("occupation").value;
-    var homeAddress = document.getElementById("homeAddress").value;
-    var contactNumber = document.getElementById("contactNumber").value;
-    var guardianName = document.getElementById("guardianName").value;
-    var guardianOccupation = document.getElementById("guardianOccupation").value;
-    var referredBy = document.getElementById("referredBy").value;
-    var fd = new FormData();
-    fd.append('lastName', lastName);
-    fd.append('lastName', lastName);
-    fd.append('firstName', firstName);
-    fd.append('middleName', middleName);
-    fd.append('nickName', nickName);
-    fd.append('gender', gender);
-    fd.append('age', age);
-    fd.append('birthday', birthday);
-    fd.append('occupation', occupation);
-    fd.append('homeAddress', homeAddress);
-    fd.append('contactNumber', contactNumber);
-    fd.append('guardianName', guardianName);
-    fd.append('guardianOccupation', guardianOccupation);
-    fd.append('referredBy', referredBy);
-    fd.append('civilStatus', civilStatus);
-    fd.append('religion', religion);
-    fd.append('profilePhoto', imageBlob);
-    fd.append('company', company);
-    fd.append('hmo', hmo);
+    if (confirm("Are you sure you want to proceed?")) {
+        const imageBlob = document.getElementById('capturedPhoto').value;
+        var lastName = document.getElementById("lastName").value;
+        var firstName = document.getElementById("firstName").value;
+        var middleName = document.getElementById("middleName").value;
+        var nickName = document.getElementById("nickName").value;
+        var age = document.getElementById("age").value; //age
+        var e = document.getElementById("gender");
+        var gender = e.value;
+        var cStatus = document.getElementById("civilStatus");
+        var civilStatus = cStatus.value;
+        var hmoOption = document.getElementById("hmo");
+        var hmo = hmoOption.value;
+        var cardNumber = document.getElementById("cardNumber").value;
+        var company = document.getElementById("company").value;
+        var religion = document.getElementById("religion").value;
+        const base64Image = document.getElementById('capturedPhoto').value;
+        var birthday = document.getElementById("birthday").value;
+        var occupation = document.getElementById("occupation").value;
+        var homeAddress = document.getElementById("homeAddress").value;
+        var contactNumber = document.getElementById("contactNumber").value;
+        var guardianName = document.getElementById("guardianName").value;
+        var guardianOccupation = document.getElementById("guardianOccupation").value;
+        var referredBy = document.getElementById("referredBy").value;
+        var fd = new FormData();
+        fd.append('lastName', lastName);
+        fd.append('lastName', lastName);
+        fd.append('firstName', firstName);
+        fd.append('middleName', middleName);
+        fd.append('nickName', nickName);
+        fd.append('gender', gender);
+        fd.append('age', age);
+        fd.append('birthday', birthday);
+        fd.append('occupation', occupation);
+        fd.append('homeAddress', homeAddress);
+        fd.append('contactNumber', contactNumber);
+        fd.append('guardianName', guardianName);
+        fd.append('guardianOccupation', guardianOccupation);
+        fd.append('referredBy', referredBy);
+        fd.append('civilStatus', civilStatus);
+        fd.append('religion', religion);
+        fd.append('profilePhoto', imageBlob);
+        fd.append('company', company);
+        fd.append('hmo', hmo);
 
-    fd.append('cardNumber', cardNumber);
-    $.ajax({
-        url: "services/clientRegistrationService.php",
-        data: fd,
-        processData: false,
-        contentType: false,
-        type: 'POST',
-        success: function (result) {
-            result = result.trim();
-            if (result == "success") {
-                message += "Patient Profile Recorded.<br>"
-                submitMedHistory(type);
-            } else {
-                toastError(result);
+        fd.append('cardNumber', cardNumber);
+        $.ajax({
+            url: "services/clientRegistrationService.php",
+            data: fd,
+            processData: false,
+            contentType: false,
+            type: 'POST',
+            success: function (result) {
+                result = result.trim();
+                if (result == "success") {
+                    message += "Patient Profile Recorded.<br>"
+                    submitMedHistory(type);
+                } else {
+                    toastError(result);
+                }
             }
-        }
-    });
+        });
 
-
+    }
 
 }
 function reloadPage() {
