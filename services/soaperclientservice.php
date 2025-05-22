@@ -70,7 +70,7 @@ class ServiceClass
                 $total += $row["price"];
                 $fullname = $row["lname"] . ', ' . $row["fname"] . ' ' . $row["mdname"];
                 echo '
-                <tr>
+                <tr style="color: black;">
                 <td>' . $row["soaid"] . '</td>
 
                 <td>' . $fullname . '</td>';

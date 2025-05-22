@@ -63,7 +63,7 @@ class ServiceClass
                     }
                 }
                 echo '
-                    <tr>
+                    <tr style="color: black;">
                     <td>' . date("Y/m/d", strtotime($row["date"])) . '</td>
                     <td>' . $row["time"] . '</td>
                      <td>' . ucwords(strtolower($row["fullname"])) . '</td>

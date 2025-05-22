@@ -60,7 +60,7 @@ class ServiceClass
                 $age = $today->diff($dob)->y;
                 $fullname = $row["lname"] . ', ' . $row["fname"] . ' ' . $row["mdname"];
                 echo '
-                <tr>
+                <tr style="color: black;">
                 <td>' . ucwords(strtolower($fullname)) . '</td>
                 <td>' . ucwords(strtolower($row["nickname"])) . '</td>
                 <td>' . $age . '</td>

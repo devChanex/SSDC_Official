@@ -35,7 +35,7 @@ class ServiceClass
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 $fullname = $row["lname"] . ', ' . $row["fname"] . ' ' . $row["mdname"];
                 echo '
-                <tr>
+                <tr style="color: black;">
                 <td>' . $row["soaid"] . '</td>
 
                 <td>' . $fullname . '</td>

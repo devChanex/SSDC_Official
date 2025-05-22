@@ -79,7 +79,7 @@ class ServiceClass
                 <div class="col-lg-12">
                 <table class="table text-dark" width="100%" cellspacing="0" style="font-size:12px;">
 <thead>
-<tr>
+<tr style="color: black;">
 <th>Treatment</th>
 <th>Details</th>
 <th>Remarks</th>
@@ -100,7 +100,7 @@ class ServiceClass
                         while ($row2 = $stmt2->fetch(PDO::FETCH_ASSOC)) {
                             $total += $row2["price"];
                             echo '
-        <tr>
+        <tr style="color: black;">
         <td>' . $row2["treatment"] . '</td>
         <td>' . $row2["details"] . '</td>
         <td>' . $row2["remarks"] . '</td>
@@ -111,7 +111,7 @@ class ServiceClass
                         }
                         echo '
                         <strong>
-                        <tr>
+                        <tr style="color: black;">
                         <td colspan="3">Total</td>
                         <td>' . $total . '</td>
                         

@@ -65,7 +65,7 @@ class ServiceClass
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 $total += $row["price"];
                 echo '
-                <tr>
+                <tr style="color: black;">
                 <td>' . $row["soaid"] . '</td>
                 <td>' . $row["dentist"] . '</td>';
                 $hmo = $row["hmoaccredited"];
