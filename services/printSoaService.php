@@ -143,13 +143,13 @@ class ServiceClass
 <hr>
 <strong>Agreement:</strong>
 ';
-                    echo !empty($row["agreement"]) ? '<br>' . $row["agreement"] : 'N/A';
+                    echo !empty($row["agreement"]) ? '<br><p style=" text-align: justify; text-indent: 2em;">' . $row["agreement"] . '</p>' : 'N/A';
+
 
                     echo '
 <hr>
 <strong>Patient Consent and Acknowledgment</strong><br>
-I hereby acknowledge that the dentist has explained to me the nature of the dental procedure(s), including the potential risks, benefits, and alternative treatment options. I confirm that I have had the opportunity to ask questions and that all my concerns have been addressed to my satisfaction.
-By signing below, I voluntarily consent to the proposed treatment and authorize the dentist to proceed as discussed.
+<p style=" text-align: justify; text-indent: 2em;">I hereby acknowledge that the dentist has explained to me the nature of the dental procedure(s), including the potential risks, benefits, and alternative treatment options. I confirm that I have had the opportunity to ask questions and that all my concerns have been addressed to my satisfaction. By signing below, I voluntarily consent to the proposed treatment and authorize the dentist to proceed as discussed.</p>
 <br><br>
 ';
 
