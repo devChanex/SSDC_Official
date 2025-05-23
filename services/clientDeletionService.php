@@ -26,7 +26,7 @@ class ServiceClass
 	{
 
 		try {
-			$query = "Update clientprofile set status='Deleted' where clientid =:a";
+			$query = "delete from clientprofile where clientid =:a";
 			$stmt = $this->conn->prepare($query);
 			$stmt->bindParam(':a', $clientId);
 			$stmt->execute();
