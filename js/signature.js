@@ -1,34 +1,47 @@
-const modalSignature = document.getElementById('signature-modal');
-const canvasSignature = document.getElementById('signature-pad');
-const ctx = canvasSignature.getContext('2d');
+const modal = document.getElementById('signature-modal');
+const canvas = document.getElementById('signature-pad');
+const ctx = canvas.getContext('2d');
 
 let signatureCallback = null;
 let drawing = false;
 
 // Mouse Events
-canvasSignature.addEventListener('mousedown', startPosition);
-canvasSignature.addEventListener('mousemove', draw);
-canvasSignature.addEventListener('mouseup', endPosition);
-canvasSignature.addEventListener('mouseout', endPosition);
+canvas.addEventListener('mousedown', startPosition);
+canvas.addEventListener('mousemove', draw);
+canvas.addEventListener('mouseup', endPosition);
+canvas.addEventListener('mouseout', endPosition);
 
 // Touch Events
-canvasSignature.addEventListener('touchstart', startPosition, { passive: false });
-canvasSignature.addEventListener('touchmove', draw, { passive: false });
-canvasSignature.addEventListener('touchend', endPosition);
+canvas.addEventListener('touchstart', startPosition, { passive: false });
+canvas.addEventListener('touchmove', draw, { passive: false });
+canvas.addEventListener('touchend', endPosition);
+window.addEventListener('resize', resizeCanvas);
 
+
+function resizeCanvas() {
+    const rect = canvas.getBoundingClientRect();
+    canvas.width = rect.width;
+    canvas.height = rect.height;
+}
 function getXY(e) {
+    const rect = canvas.getBoundingClientRect();
+    let clientX, clientY;
+
     if (e.touches && e.touches.length > 0) {
-        const rect = canvasSignature.getBoundingClientRect();
-        return {
-            x: e.touches[0].clientX - rect.left,
-            y: e.touches[0].clientY - rect.top
-        };
+        clientX = e.touches[0].clientX;
+        clientY = e.touches[0].clientY;
+    } else if (e.changedTouches && e.changedTouches.length > 0) {
+        clientX = e.changedTouches[0].clientX;
+        clientY = e.changedTouches[0].clientY;
     } else {
-        return {
-            x: e.offsetX,
-            y: e.offsetY
-        };
+        clientX = e.clientX;
+        clientY = e.clientY;
     }
+
+    return {
+        x: clientX - rect.left,
+        y: clientY - rect.top
+    };
 }
 
 function startPosition(e) {
@@ -45,29 +58,38 @@ function draw(e) {
     const pos = getXY(e);
     ctx.lineTo(pos.x, pos.y);
     ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(pos.x, pos.y);
 }
 
 function endPosition(e) {
+    if (drawing) {
+        ctx.closePath();
+    }
     drawing = false;
 }
 
 
 function clearPad() {
-    ctx.clearRect(0, 0, canvasSignature.width, canvasSignature.height);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
 function openSignatureModal(callback) {
     signatureCallback = callback;
     clearPad();
-    modalSignature.style.display = "flex";
+    modal.style.display = "flex";
+    setTimeout(() => {
+        resizeCanvas();
+        clearPad();
+    }, 10);
 }
 
 function closeSignatureModal() {
-    modalSignature.style.display = "none";
+    modal.style.display = "none";
 }
 
 function confirmSignature() {
-    const dataURL = canvasSignature.toDataURL('image/png');
+    const dataURL = canvas.toDataURL('image/png');
     if (typeof signatureCallback === "function") {
         signatureCallback(dataURL);
     }
