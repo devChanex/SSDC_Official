@@ -143,7 +143,9 @@ class ServiceClass
 <hr>
 <strong>Agreement:</strong>
 ';
-                    echo !empty($row["agreement"]) ? '<br><p style=" text-align: justify; text-indent: 2em;">' . $row["agreement"] . '</p>' : 'N/A';
+                    echo !empty($row["agreement"])
+                        ? '<br><p style="text-align: justify; text-indent: 2em;">' . nl2br($row["agreement"]) . '</p>'
+                        : 'N/A';
 
 
                     echo '

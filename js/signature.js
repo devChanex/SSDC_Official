@@ -15,20 +15,36 @@ canvas.addEventListener('mouseout', endPosition);
 canvas.addEventListener('touchstart', startPosition, { passive: false });
 canvas.addEventListener('touchmove', draw, { passive: false });
 canvas.addEventListener('touchend', endPosition);
+window.addEventListener('resize', resizeCanvas);
 
+
+function resizeCanvas() {
+    const rect = canvas.getBoundingClientRect();
+    canvas.width = rect.width;
+    canvas.height = rect.height;
+    console.log('canvas.width:', canvas.width, 'canvas.height:', canvas.height);
+    console.log('canvas.style.width:', canvas.style.width, 'canvas.style.height:', canvas.style.height);
+    console.log('getBoundingClientRect:', canvas.getBoundingClientRect());
+}
 function getXY(e) {
+    const rect = canvas.getBoundingClientRect();
+    let clientX, clientY;
+
     if (e.touches && e.touches.length > 0) {
-        const rect = canvas.getBoundingClientRect();
-        return {
-            x: e.touches[0].clientX - rect.left,
-            y: e.touches[0].clientY - rect.top
-        };
+        clientX = e.touches[0].clientX;
+        clientY = e.touches[0].clientY;
+    } else if (e.changedTouches && e.changedTouches.length > 0) {
+        clientX = e.changedTouches[0].clientX;
+        clientY = e.changedTouches[0].clientY;
     } else {
-        return {
-            x: e.offsetX,
-            y: e.offsetY
-        };
+        clientX = e.clientX;
+        clientY = e.clientY;
     }
+
+    return {
+        x: clientX - rect.left,
+        y: clientY - rect.top
+    };
 }
 
 function startPosition(e) {
@@ -45,9 +61,14 @@ function draw(e) {
     const pos = getXY(e);
     ctx.lineTo(pos.x, pos.y);
     ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(pos.x, pos.y);
 }
 
 function endPosition(e) {
+    if (drawing) {
+        ctx.closePath();
+    }
     drawing = false;
 }
 
@@ -60,6 +81,10 @@ function openSignatureModal(callback) {
     signatureCallback = callback;
     clearPad();
     modal.style.display = "flex";
+    setTimeout(() => {
+        resizeCanvas();
+        clearPad();
+    }, 10);
 }
 
 function closeSignatureModal() {
