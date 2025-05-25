@@ -15,13 +15,14 @@ canvas.addEventListener('mouseout', endPosition);
 canvas.addEventListener('touchstart', startPosition, { passive: false });
 canvas.addEventListener('touchmove', draw, { passive: false });
 canvas.addEventListener('touchend', endPosition);
-window.addEventListener('resize', resizeCanvas);
+
 
 
 function resizeCanvas() {
     const rect = canvas.getBoundingClientRect();
     canvas.width = rect.width;
     canvas.height = rect.height;
+
 }
 function getXY(e) {
     const rect = canvas.getBoundingClientRect();
@@ -80,7 +81,7 @@ function openSignatureModal(callback) {
     modal.style.display = "flex";
     setTimeout(() => {
         resizeCanvas();
-        clearPad();
+
     }, 10);
 }
 
