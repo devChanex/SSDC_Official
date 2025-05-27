@@ -1,7 +1,8 @@
 const modalSignature = document.getElementById('signature-modal');
 const canvasSignature = document.getElementById('signature-pad');
 const ctx = canvasSignature.getContext('2d');
-
+ctx.strokeStyle = "#222"; // Set stroke color (black-ish)
+ctx.lineWidth = 3;
 let signatureCallback = null;
 let drawing = false;
 
@@ -22,6 +23,8 @@ function resizeCanvas() {
     const rect = canvasSignature.getBoundingClientRect();
     canvasSignature.width = rect.width;
     canvasSignature.height = rect.height;
+    ctx.strokeStyle = "#222";
+    ctx.lineWidth = 3;
 
 }
 function getXY(e) {
