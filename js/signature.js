@@ -1,31 +1,31 @@
-const modal = document.getElementById('signature-modal');
-const canvas = document.getElementById('signature-pad');
-const ctx = canvas.getContext('2d');
+const modalSignature = document.getElementById('signature-modal');
+const canvasSignature = document.getElementById('signature-pad');
+const ctx = canvasSignature.getContext('2d');
 
 let signatureCallback = null;
 let drawing = false;
 
 // Mouse Events
-canvas.addEventListener('mousedown', startPosition);
-canvas.addEventListener('mousemove', draw);
-canvas.addEventListener('mouseup', endPosition);
-canvas.addEventListener('mouseout', endPosition);
+canvasSignature.addEventListener('mousedown', startPosition);
+canvasSignature.addEventListener('mousemove', draw);
+canvasSignature.addEventListener('mouseup', endPosition);
+canvasSignature.addEventListener('mouseout', endPosition);
 
 // Touch Events
-canvas.addEventListener('touchstart', startPosition, { passive: false });
-canvas.addEventListener('touchmove', draw, { passive: false });
-canvas.addEventListener('touchend', endPosition);
+canvasSignature.addEventListener('touchstart', startPosition, { passive: false });
+canvasSignature.addEventListener('touchmove', draw, { passive: false });
+canvasSignature.addEventListener('touchend', endPosition);
 
 
 
 function resizeCanvas() {
-    const rect = canvas.getBoundingClientRect();
-    canvas.width = rect.width;
-    canvas.height = rect.height;
+    const rect = canvasSignature.getBoundingClientRect();
+    canvasSignature.width = rect.width;
+    canvasSignature.height = rect.height;
 
 }
 function getXY(e) {
-    const rect = canvas.getBoundingClientRect();
+    const rect = canvasSignature.getBoundingClientRect();
     let clientX, clientY;
 
     if (e.touches && e.touches.length > 0) {
@@ -72,13 +72,13 @@ function endPosition(e) {
 
 
 function clearPad() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0, 0, canvasSignature.width, canvasSignature.height);
 }
 
 function openSignatureModal(callback) {
     signatureCallback = callback;
     clearPad();
-    modal.style.display = "flex";
+    modalSignature.style.display = "flex";
     setTimeout(() => {
         resizeCanvas();
 
@@ -86,11 +86,11 @@ function openSignatureModal(callback) {
 }
 
 function closeSignatureModal() {
-    modal.style.display = "none";
+    modalSignature.style.display = "none";
 }
 
 function confirmSignature() {
-    const dataURL = canvas.toDataURL('image/png');
+    const dataURL = canvasSignature.toDataURL('image/png');
     if (typeof signatureCallback === "function") {
         signatureCallback(dataURL);
     }
