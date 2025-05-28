@@ -29,7 +29,7 @@ class ServiceClass
         $totalPayment = 0;
         $balance = 0;
 
-        $query = "select sum(total) as fee from treatmentsoa where clientid=:a";
+        $query = "select sum(price) as fee from treatmentsub where clientid=:a";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':a', $clientid);
         $stmt->execute();
@@ -40,7 +40,7 @@ class ServiceClass
             }
         }
 
-        $query = "select sum(amount) as fee from payments inner join treatmentsoa on payments.soaid=treatmentsoa.soaid where clientid=:a";
+        $query = "select sum(amount) as fee from treatmentsubpayment where tsubid in (select tsubid from treatmentsub where clientid=:a)";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':a', $clientid);
         $stmt->execute();

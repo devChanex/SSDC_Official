@@ -1,0 +1,225 @@
+<?php
+require_once('databaseService.php');
+$service = new ServiceClass();
+$fromdate = urldecode($_POST['from']);
+$todate = urldecode($_POST['to']);
+$group = urldecode($_POST['group']);
+
+$result = $service->loadClientTreatment($fromdate, $todate, $group);
+
+class ServiceClass
+{
+
+    private $conn;
+    public function __construct()
+    {
+        $database = new Database();
+        $db = $database->dbConnection();
+        $this->conn = $db;
+    }
+
+    public function runQuery($sql)
+    {
+        $stmt = $this->conn->prepare($sql);
+        return $stmt;
+    }
+    //DO NOT INCLUDE THIS CODE
+    public function loadClientTreatment($fromdate, $todate, $group)
+    {
+        $key = 'tsubpay.paymenttype';
+        if ($group == 'Dentist') {
+            $key = 'tsoa.dentist';
+        } else if ($group == 'Patient') {
+            $key = 'concat (cp.lname, ", ", cp.fname, " ", cp.mdname)';
+        }
+
+        //MAIN
+        $dateToday = date("Y-m-d");
+        if (!empty($fromdate) && !empty($todate)) {
+            // If both dates are provided
+            $query0 = "SELECT DISTINCT $key as 'result' FROM clientprofile cp 
+                      INNER JOIN treatmentsub tsub ON tsub.clientid = cp.clientid 
+                      INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid
+                      INNER JOIN treatmentsubpayment tsubpay ON tsubpay.tsubid = tsub.tsubid
+                      WHERE (tsubpay.paymentdate BETWEEN :a AND :b) order by  $key";
+
+            $stmt0 = $this->conn->prepare($query0);
+            $stmt0->bindParam(':a', $fromdate);
+            $stmt0->bindParam(':b', $todate);
+
+        } elseif (empty($fromdate) && !empty($todate)) {
+            // If only todate is provided
+            $query0 = "SELECT DISTINCT $key as 'result' FROM clientprofile cp 
+                      INNER JOIN treatmentsub tsub ON tsub.clientid = cp.clientid 
+                      INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid
+                      INNER JOIN treatmentsubpayment tsubpay ON tsubpay.tsubid = tsub.tsubid
+                      WHERE (tsubpay.paymentdate <= :b) order by  $key";
+
+            $stmt0 = $this->conn->prepare($query0);
+            $stmt0->bindParam(':b', $todate);
+
+        } elseif (!empty($fromdate) && empty($todate)) {
+            // If only todate is provided
+            $query0 = "SELECT DISTINCT $key  as 'result' FROM clientprofile cp 
+                      INNER JOIN treatmentsub tsub ON tsub.clientid = cp.clientid 
+                      INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid
+                      INNER JOIN treatmentsubpayment tsubpay ON tsubpay.tsubid = tsub.tsubid
+                      WHERE tsubpay.paymentdate >= :b order by  $key";
+
+            $stmt0 = $this->conn->prepare($query0);
+            $stmt0->bindParam(':b', $fromdate);
+
+
+
+        } else {
+            // No filtering if both dates are empty
+            $query0 = "SELECT DISTINCT $key  as 'result' FROM clientprofile cp 
+                      INNER JOIN treatmentsub tsub ON tsub.clientid = cp.clientid 
+                      INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid
+                      INNER JOIN treatmentsubpayment tsubpay ON tsubpay.tsubid = tsub.tsubid
+                     ";
+
+            $stmt0 = $this->conn->prepare($query0);
+        }
+
+
+        $stmt0->execute();
+        $paymentType = '';
+        $totalIncome = 0;
+        if ($stmt0->rowCount() > 0) {
+            while ($row0 = $stmt0->fetch(PDO::FETCH_ASSOC)) {
+
+                $sortkey = $row0["result"];
+                echo '<div class="row-"><h4>' . $group . ': ' . $sortkey . '</h4></div>';
+
+                if (!empty($fromdate) && !empty($todate)) {
+                    // If both dates are provided
+                    $query = "SELECT tsoa.soaid, cp.clientid,tsub.hmo, cp.lname, cp.fname, cp.mdname, tsoa.dentist, tsub.treatment, tsubpay.amount, tsubpay.paymentdate, tsubpay.paymenttype 
+                      FROM clientprofile cp 
+                      INNER JOIN treatmentsub tsub ON tsub.clientid = cp.clientid 
+                      INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid
+                      INNER JOIN treatmentsubpayment tsubpay ON tsubpay.tsubid = tsub.tsubid
+                      WHERE (tsubpay.paymentdate BETWEEN :a AND :b) and $key = :c";
+
+                    $stmt = $this->conn->prepare($query);
+                    $stmt->bindParam(':a', $fromdate);
+                    $stmt->bindParam(':b', $todate);
+                    $stmt->bindParam(':c', $sortkey);
+
+                } elseif (empty($fromdate) && !empty($todate)) {
+                    // If only todate is provided
+                    $query = "SELECT tsoa.soaid, cp.clientid,tsub.hmo, cp.lname, cp.fname, cp.mdname, tsoa.dentist, tsub.treatment, tsubpay.amount, tsubpay.paymentdate, tsubpay.paymenttype 
+                      FROM clientprofile cp 
+                      INNER JOIN treatmentsub tsub ON tsub.clientid = cp.clientid 
+                      INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid
+                      INNER JOIN treatmentsubpayment tsubpay ON tsubpay.tsubid = tsub.tsubid
+                      WHERE (tsubpay.paymentdate <= :b) and $key = :c";
+
+                    $stmt = $this->conn->prepare($query);
+                    $stmt->bindParam(':b', $todate);
+                    $stmt->bindParam(':c', $sortkey);
+
+                } elseif (!empty($fromdate) && empty($todate)) {
+                    // If only todate is provided
+                    $query = "SELECT tsoa.soaid, cp.clientid,tsub.hmo, cp.lname, cp.fname, cp.mdname, tsoa.dentist, tsub.treatment, tsubpay.amount, tsubpay.paymentdate, tsubpay.paymenttype 
+                      FROM clientprofile cp 
+                      INNER JOIN treatmentsub tsub ON tsub.clientid = cp.clientid 
+                      INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid
+                      INNER JOIN treatmentsubpayment tsubpay ON tsubpay.tsubid = tsub.tsubid
+                      WHERE (tsubpay.paymentdate >= :b) and $key = :c";
+
+                    $stmt = $this->conn->prepare($query);
+                    $stmt->bindParam(':b', $fromdate);
+                    $stmt->bindParam(':c', $sortkey);
+
+
+
+                } else {
+                    // No filtering if both dates are empty
+                    $query = "SELECT tsoa.soaid, cp.clientid,tsub.hmo, cp.lname, cp.fname, cp.mdname, tsoa.dentist, tsub.treatment, tsubpay.amount, tsubpay.paymentdate, tsubpay.paymenttype 
+                      FROM clientprofile cp 
+                      INNER JOIN treatmentsub tsub ON tsub.clientid = cp.clientid 
+                      INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid
+                      INNER JOIN treatmentsubpayment tsubpay ON tsubpay.tsubid = tsub.tsubid where $key = :c
+                     ";
+
+                    $stmt = $this->conn->prepare($query);
+                    $stmt->bindParam(':c', $sortkey);
+                }
+
+
+                $stmt->execute();
+                $total = 0;
+
+                echo '
+        
+           <div class="table-responsive">
+                                    <table class="table text-dark" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>SOA ID</th>
+                                                <th>Full Name</th>
+                                                <th>HMO</th>
+                                                <th>Dentist</th>
+                                                <th>Treatment</th>
+                                                <th>Payment</th>
+                                                <th>PaymentType</th>
+                                                <th>Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="resultResponsez">
+                                      ';
+                if ($stmt->rowCount() > 0) {
+                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                        $total += $row["amount"];
+                        $fullname = $row["lname"] . ', ' . $row["fname"] . ' ' . $row["mdname"];
+                        echo '
+                <tr style="color: black;">
+                <td>' . $row["soaid"] . '</td>
+
+                <td>' . $fullname . '</td>';
+                        $hmo = $row["hmo"];
+                        $hmoDisplay = '';
+
+                        if (empty($hmo)) {
+                            $hmoDisplay = '-';
+                        } else {
+                            $hmoDisplay = $hmo;
+                        }
+
+                        echo '  <td>' . $hmoDisplay . '</td>';
+
+
+                        echo '
+                <td>' . $row["dentist"] . '</td>
+                <td>' . $row["treatment"] . '</td>
+                <td style="text-align:right;">' . number_format($row["amount"], 2) . '</td>
+                <td>' . $row["paymenttype"] . '</td>
+               <td>' . date("Y/m/d", strtotime($row["paymentdate"])) . '</td>
+            </tr>';
+                    }
+                }
+                echo '
+<tr>
+              
+                <td colspan="5">Total </td>
+                
+                <td style="text-align:right;"><strong>' . number_format($total, 2) . '</strong></td>
+                <td colspan="2"></td>      
+            </tr>
+';
+
+                echo '  </tbody>
+                                    </table>
+                                </div> <hr>';
+                $totalIncome += $total;
+            }
+
+        }
+        echo '<div class="row justify-content-center text-center"><strong>Total Income: ' . number_format($totalIncome, 2) . '</strong></div>';
+        //ENDMAIN
+
+
+
+    }
+}

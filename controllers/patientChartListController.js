@@ -117,7 +117,7 @@ function updateTreatment() {
             getclientdata(); // Refresh the data table after update
             getPatientCards(); // Refresh the patient cards after update    
             // Optionally refresh data or show a success toast
-            toastSuccess('Treatment updated successfully!');
+            toastReload('successToast', 'Treatment updated successfully!');
         },
         error: function () {
             toastError('Failed to update treatment.');

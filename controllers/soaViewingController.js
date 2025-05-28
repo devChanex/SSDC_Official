@@ -16,31 +16,46 @@ function loadSoa() {
         type: 'POST',
         success: function (result) {
             document.getElementById("bodyResult").innerHTML = result;
-            loadPayment();
+            // loadPayment();
         }
     });
 
 }
 
-function loadPayment() {
+// function loadPayment() {
 
-    var soaid = document.getElementById("soaid").value;
-    var fd = new FormData();
-    fd.append("soaid", soaid)
-    $.ajax({
-        url: "services/loadPaymentService.php",
-        data: fd,
-        processData: false,
-        contentType: false,
-        type: 'POST',
-        success: function (result) {
-            document.getElementById("paymentResult").innerHTML = result;
+//     var soaid = document.getElementById("soaid").value;
+//     var fd = new FormData();
+//     fd.append("soaid", soaid)
+//     $.ajax({
+//         url: "services/loadPaymentService.php",
+//         data: fd,
+//         processData: false,
+//         contentType: false,
+//         type: 'POST',
+//         success: function (result) {
+//             document.getElementById("paymentResult").innerHTML = result;
+//         }
+//     });
+
+// }
+
+function showPaymentModal(tsubid, hmo, balance) {
+    if (balance > 0) {
+        $('#remainingBalance').val(balance);
+        $('#paymenttsubid').val(tsubid);
+        if (hmo != '') {
+            $('#paymentType').val("HMO");
+        } else {
+            $('#paymentType').val("Cash");
         }
-    });
+
+        $('#paymentModal').modal('show');
+    } else {
+        toastError("No remaining balance to pay.");
+    }
 
 }
-
-
 function signature() {
 
     // var soaid = document.getElementById("soaid").value;
@@ -118,37 +133,49 @@ function createTicket(ref, currentvalue, column, table, refname) {
 }
 
 function submitPaymentForm() {
-    $('#paymentModal').modal('hide');
-
-    var soaid = document.getElementById("soaid").value;
+    var remainingBalance = document.getElementById("remainingBalance").value;
     var amount = document.getElementById("paymentAmount").value;
-    var date = document.getElementById("paymentDate").value;
-    var paymentTypeOption = document.getElementById("paymentType");
-    var paymentType = paymentTypeOption.value;
+
+    if (amount <= remainingBalance) {
+        $('#paymentModal').modal('hide');
+
+        var soaid = document.getElementById("soaid").value;
+
+        var date = document.getElementById("paymentDate").value;
+        var tsubid = document.getElementById("paymenttsubid").value;
+        var paymentTypeOption = document.getElementById("paymentType");
+
+        var paymentType = paymentTypeOption.value;
 
 
-    var fd = new FormData();
-    fd.append("soaid", soaid);
-    fd.append("date", date);
-    fd.append("amount", amount);
-    fd.append("paymentType", paymentType);
-    $.ajax({
-        url: "services/addPaymentService.php",
-        data: fd,
-        processData: false,
-        contentType: false,
-        type: 'POST',
-        success: function (result) {
-            if (result == "success") {
+        var fd = new FormData();
+        fd.append("tsubid", tsubid);
+        fd.append("date", date);
+        fd.append("amount", amount);
+        fd.append("paymentType", paymentType);
+        $.ajax({
+            url: "services/addPaymentService.php",
+            data: fd,
+            processData: false,
+            contentType: false,
+            type: 'POST',
+            success: function (result) {
+                if (result == "success") {
 
-                document.getElementById("paymentForm").reset();
-                toastSuccess("Payment Added.");
-                loadPayment();
-            } else {
-                toastError("An Error occured: " + result);
+                    document.getElementById("paymentForm").reset();
+                    toastReload("successToast", "Payment Added.");
+
+                } else {
+                    toastError("An Error occured: " + result);
+                }
             }
-        }
-    });
+        });
+
+    } else {
+        toastError("Payment amount cannot be greater than the remaining balance.");
+    }
+
+
 }
 
 function deletePayment(ref, amount) {

@@ -21,6 +21,12 @@ function add() {
     var details = document.getElementById("details").value;
     var diagnosis = document.getElementById("diagnosis").value;
     var price = document.getElementById("price").value || 0;
+    var hmo = "";
+    var isHmo = document.getElementById("hmoCovered").checked;
+
+    if (isHmo) {
+        hmo = document.getElementById("hmo").value;
+    }
 
     var detailsForDisplay = details.replace(/\n/g, "<br>");
     var remarksForDisplay = remarks.replace(/\n/g, "<br>");
@@ -33,6 +39,7 @@ function add() {
             <td>${detailsForDisplay}</td>
             <td>${remarksForDisplay}</td>
             <td>${price}</td>
+            <td>${hmo}</td>
             <td>
                 <button class="btn btn-success btn-circle btn-sm"
                     onclick="editTreatment(this)"
@@ -40,6 +47,7 @@ function add() {
                     data-diagnosis="${encodeURIComponent(diagnosis)}"
                     data-details="${encodeURIComponent(details)}"
                     data-remarks="${encodeURIComponent(remarks)}"
+                    data-hmo="${encodeURIComponent(hmo)}"
                     data-price="${encodeURIComponent(price)}"
                     title="Edit treatment">
                     <i class="fas fa-edit"></i>
@@ -68,6 +76,15 @@ function editTreatment(button) {
     var details = decodeURIComponent(button.getAttribute("data-details"));
     var remarks = decodeURIComponent(button.getAttribute("data-remarks"));
     var price = decodeURIComponent(button.getAttribute("data-price"));
+    var hmo = decodeURIComponent(button.getAttribute("data-hmo"));
+
+    if (hmo != "") {
+        document.getElementById("hmoCovered").checked = true;
+
+    } else {
+        document.getElementById("hmoCovered").checked = false;
+
+    }
 
     document.getElementById("treatment").value = treatment;
     document.getElementById("remarks").value = remarks;
@@ -230,9 +247,10 @@ function submitSubSoa(soaid) {
             var details = row.cells[2].innerHTML;
             var remarks = row.cells[3].innerHTML;
             var price = parseFloat(row.cells[4].innerHTML);
+            var hmo = row.cells[5].innerHTML;
 
             if (treatment) {
-                submitSubSoatoService(treatment, diagnosis, details, remarks, price, clientid, soaid);
+                submitSubSoatoService(treatment, diagnosis, details, remarks, price, clientid, soaid, hmo);
             }
 
 
@@ -245,7 +263,7 @@ function submitSubSoa(soaid) {
 
 }
 
-function submitSubSoatoService(treatment, diagnosis, details, remarks, price, clientid, soaid) {
+function submitSubSoatoService(treatment, diagnosis, details, remarks, price, clientid, soaid, hmo) {
 
 
     var fd = new FormData();
@@ -256,6 +274,7 @@ function submitSubSoatoService(treatment, diagnosis, details, remarks, price, cl
     fd.append('price', price);
     fd.append('clientid', clientid);
     fd.append('soaid', soaid);
+    fd.append('hmo', hmo);
     $.ajax({
         url: "services/esoaSubmitSubService.php",
         data: fd,

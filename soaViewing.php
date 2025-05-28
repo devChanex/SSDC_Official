@@ -44,7 +44,7 @@
                 <div class="container-fluid" id="content-table">
 
                     <div class="row">
-                        <div class="col-lg-8">
+                        <div class="col-lg-12">
                             <!-- Page Heading -->
                             <div class="card shadow mb-12">
                                 <div class="card-header py-3 <?php echo $cards; ?>">
@@ -71,41 +71,7 @@
                             </div>
 
                         </div>
-                        <div class="col-lg-4">
-                            <!-- Page Heading -->
-                            <div class="card shadow mb-12">
-                                <div class="card-header py-3 <?php echo $cards; ?>">
-                                    Payments
 
-
-                                    <button id="divPrinter" class="btn btn-primary btn-sm btn-circle float-right"
-                                        data-toggle="modal" data-target="#paymentModal" title="Add Payment"><i
-                                            class="fas fa-credit-card"></i></button>
-
-                                </div>
-
-                                <div class="card-body">
-                                    <table class="table table-bordered text-dark">
-                                        <thead>
-                                            <tr>
-                                                <th>Date</th>
-                                                <th>Amount</th>
-                                                <th>Payment Type</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="paymentResult">
-
-                                        </tbody>
-
-                                    </table>
-                                    <!-- USE THIS SPACE FOR YOUR ADDITIONAL CODE SNIPPET -->
-
-                                    <!-- END OF YOUR ADDITIONAL CODE SNIPPET -->
-                                </div>
-                            </div>
-
-                        </div>
                         <!-- Modal -->
                         <div class="modal fade" id="paymentModal" tabindex="-1" role="dialog"
                             aria-labelledby="paymentModalLabel" aria-hidden="true">
@@ -119,6 +85,8 @@
                                     </div>
                                     <div class="modal-body">
                                         <form id="paymentForm">
+                                            <input type="hidden" id="paymenttsubid">
+                                            <input type="hidden" id="remainingBalance">
                                             <div class="form-group">
                                                 <label for="paymentDate">Date</label>
                                                 <input type="date" class="form-control" id="paymentDate"
@@ -136,6 +104,7 @@
                                                     <option value="Cash">Cash</option>
                                                     <option value="GCash">GCash</option>
                                                     <option value="Cheque">Cheque</option>
+                                                    <option value="HMO">HMO</option>
                                                     <option value="Maya">Maya</option>
                                                     <option value="Bank Transfer">Bank Transfer</option>
                                                     <option value="Credit Card">Credit Card</option>

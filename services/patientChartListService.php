@@ -28,7 +28,7 @@ class ServiceClass
         $superuser = "ssdc_admin2020";
 
 
-        $query = "select a.soaid,tsubid,hmoaccredited,price,date,dentist,treatment,remarks,details,diagnosis from treatmentsoa a inner join treatmentsub b on a.soaid=b.soaid where a.clientid=:a order by Date";
+        $query = "select a.soaid,tsubid,hmo,price,date,dentist,treatment,remarks,details,diagnosis from treatmentsoa a inner join treatmentsub b on a.soaid=b.soaid where a.clientid=:a order by Date";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':a', $clientid);
         $stmt->execute();
@@ -44,18 +44,115 @@ class ServiceClass
                 <td>' . $row["remarks"] . '</td>
                 <td>' . $row["details"] . '</td>';
                 $hmo = $row["hmoaccredited"];
+                $hmo = $row["hmo"];
                 $hmoDisplay = '';
 
-                if (!empty($hmo)) {
-                    $parts = explode('|', $hmo);
-                    $hmoDisplay = trim($parts[0]);
+                if (empty($hmo)) {
+                    $hmoDisplay = '-';
+                } else {
+                    $hmoDisplay = $hmo;
                 }
-
                 echo '  <td>' . $hmoDisplay . '</td>';
 
 
                 echo '
-          <td>' . number_format($row["price"], 2) . '</td>
+          <td>' . number_format($row["price"], 2) . '</td>';
+
+                $tsubid = $row["tsubid"];
+                $query3 = "select * from treatmentsubpayment where tsubid=:a order by paymentdate asc";
+                $stmt3 = $this->conn->prepare($query3);
+                $stmt3->bindParam(':a', $tsubid);
+                $totalPayments = 0;
+                $stmt3->execute();
+                echo '';
+                if ($stmt3->rowCount() > 0) {
+                    //paymentamount
+
+                    $paymentrow = 0;
+                    echo '<td style="text-align:right;">';
+
+                    $stmt4 = $this->conn->prepare($query3);
+                    $stmt4->bindParam(':a', $tsubid);
+                    $stmt4->execute();
+                    echo '';
+                    if ($stmt4->rowCount() > 0) {
+
+                        while ($row4 = $stmt4->fetch(PDO::FETCH_ASSOC)) {
+                            if ($paymentrow > 0) {
+                                echo '<br>';
+                            }
+
+
+                            $totalPayments = $totalPayments + $row4["amount"];
+                            echo number_format($row4["amount"], 2);
+
+                            $paymentrow++;
+
+                        }
+                    }
+
+                    echo '</td>';
+                    //paymenttype
+                    echo '<td style="text-align:center;">';
+                    $paymentrow = 0;
+                    $stmt5 = $this->conn->prepare($query3);
+                    $stmt5->bindParam(':a', $tsubid);
+                    $stmt5->execute();
+                    echo '';
+                    if ($stmt5->rowCount() > 0) {
+                        while ($row5 = $stmt5->fetch(PDO::FETCH_ASSOC)) {
+                            if ($paymentrow > 0) {
+                                echo '<br>';
+                            }
+
+                            echo $row5["paymenttype"];
+
+
+                            $paymentrow++;
+                        }
+                    }
+                    echo '</td>';
+
+                    //paymentdate
+                    echo '<td style="text-align:center;">';
+                    $paymentrow = 0;
+                    $stmt6 = $this->conn->prepare($query3);
+                    $stmt6->bindParam(':a', $tsubid);
+                    $stmt6->execute();
+                    echo '';
+                    if ($stmt6->rowCount() > 0) {
+                        while ($row6 = $stmt6->fetch(PDO::FETCH_ASSOC)) {
+
+                            if ($paymentrow > 0) {
+                                echo '<br>';
+                            }
+                            echo $row6["paymentdate"];
+
+
+                            $paymentrow++;
+                        }
+                    }
+                    echo '</td>';
+
+                    $remainingBalance = $row["price"] - $totalPayments;
+                    $totalBalance += $remainingBalance;
+                    echo '
+                              <td style="text-align:right;">' . number_format($remainingBalance, 2) . '</td>';
+                } else {
+                    if ($row["price"] == 0) {
+                        echo '
+                                    <td  style="text-align:right;">' . number_format(0, 2) . '</td>
+                                    <td></td>
+                                    <td></td>
+                                    
+                                   <td style="text-align:center;">' . number_format(0, 2) . '</td>';
+                    } else {
+                        echo '<td colspan="3" style="text-align:center;" >No Payment Yet</td>
+                                    <td style="text-align:right;" >' . number_format($row["price"], 2) . '</td>
+                                    ';
+                    }
+                }
+                echo '
           
           <td align="center">
   <button class="btn btn-success edit-btn"

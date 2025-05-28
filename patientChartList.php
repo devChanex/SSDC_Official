@@ -66,6 +66,10 @@
                                                 <th>Details</th>
                                                 <th>HMO</th>
                                                 <th>Fee</th>
+                                                <th>Payment</th>
+                                                <th>Payment Type</th>
+                                                <th>Payment Date</th>
+                                                <th>Balance</th>
                                                 <th>Action</th>
 
                                             </tr>
@@ -167,6 +171,7 @@
 
             <!-- Custom scripts for all pages-->
             <script src="js/sb-admin-2.min.js"></script>
+            <script src="js/custom.js"></script>
             <script src="controllers/logOutConroller.js"></script>
             <script src="controllers/sessionController.js"></script>
             <script src="controllers/patientChartListController.js"></script>

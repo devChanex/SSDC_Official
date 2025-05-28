@@ -111,15 +111,18 @@
                                     <input type="Text" name="address" id="address" placeholder="Address"
                                         class="form-control" value="<?php echo $_GET['address']; ?>" readonly>
                                     <label for="Address">HMO Accredited:</label>
-                                    <input type="Text" name="address" id="hmo" placeholder="" class="form-control"
-                                        value="<?php
 
-                                        if ($_GET['hmo'] != "") {
-                                            echo $_GET['hmo'] . ' | ' . $_GET["cardnumber"] . ' | ' . $_GET["company"];
-
+                                    <select id="hmo" name="hmo" class="form-control mb-2">
+                                        <option value="">-- Select HMO --</option>
+                                        <?php
+                                        $hmos = ['Flexicare', 'Intellicare', 'Avega', 'Medicard', 'Health Partners Dental Access, Inc.', 'Dental Network Company', 'Cocolife'];
+                                        foreach ($hmos as $hmo) {
+                                            $selected = ($_GET['hmo'] ?? '') == $hmo ? 'selected' : '';
+                                            echo "<option value=\"$hmo\" $selected>$hmo</option>";
                                         }
+                                        ?>
+                                    </select>
 
-                                        ?>" readonly>
 
                                 </div>
 
@@ -144,6 +147,13 @@
                                     <label for="lastName">Treatment Fee</label>
                                     <input type="number" name="price" id="price" placeholder="Input fee"
                                         class="form-control" value="">
+                                    <div class="form-check mt-2">
+                                        <input class="form-check-input" type="checkbox" value="1" id="hmoCovered"
+                                            name="hmoCovered">
+                                        <label class="form-check-label" for="hmoCovered">
+                                            Covered by HMO
+                                        </label>
+                                    </div>
                                     <br>
                                     <button class="btn btn-primary form-control" onclick="add()">Add</button>
                                 </div>
@@ -157,19 +167,11 @@
                                                 <th>Details</th>
                                                 <th>Remarks</th>
                                                 <th>Price</th>
+                                                <th>HMO</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
-                                        <tfoot>
-                                            <tr>
-                                                <th>Treatment</th>
-                                                <th>Diagnosis</th>
-                                                <th>Details</th>
-                                                <th>Remarks</th>
-                                                <th>Price</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </tfoot>
+
                                         <tbody id="treatmentList">
                                             <!-- <tr>
                -->
