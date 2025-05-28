@@ -145,7 +145,7 @@ class ServiceClass
                                     <td></td>
                                     <td></td>
                                     
-                                   <td style="text-align:center;">' . number_format(0, 2) . '</td>';
+                                   <td style="text-align:right;">' . number_format(0, 2) . '</td>';
                     } else {
                         echo '<td colspan="3" style="text-align:center;" >No Payment Yet</td>
                                     <td style="text-align:right;" >' . number_format($row["price"], 2) . '</td>

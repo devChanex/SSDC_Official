@@ -52,7 +52,7 @@ class ServiceClass
 
                 $payment = 0;
                 $soaid = $row["soaid"];
-                $query2 = "SELECT amount FROM payments WHERE soaid = :x";
+                $query2 = "SELECT amount FROM treatmentsubpayment WHERE tsubid in (select tsubid from treatmentsub where soaid=:x)";
                 $stmt2 = $this->conn->prepare($query2);
                 $stmt2->bindParam(':x', $soaid);
                 $stmt2->execute();
