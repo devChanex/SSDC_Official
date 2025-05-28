@@ -53,7 +53,7 @@ function addPatientPersonalInfo() {
     else if (religion == "") {
         msg = "Religion is required";
     }
-    else if (age <= 1) {
+    else if (age <= 0) {
         msg = "Please review Birth date";
     }
     else if (birthday == null) {
@@ -81,6 +81,7 @@ function addPatientPersonalInfo() {
         // submitClientform(lastName, firstName, middleName, nickName, gender, age, birthday, occupation, homeAddress, contactNumber, guardianName, guardianOccupation, referredBy, civilStatus, religion, base64Image, hmo, cardNumber, company);
         switchToTab1("tab2-tab");
     } else {
+
         showToast("errorToast", msg);
     }
 
