@@ -86,7 +86,12 @@
                                     <div class="modal-body">
                                         <form id="paymentForm">
                                             <input type="hidden" id="paymenttsubid">
-                                            <input type="hidden" id="remainingBalance">
+
+                                            <div class="form-group">
+                                                <label for="paymentAmount">Remaining Balance</label>
+                                                <input type="text" class="form-control" id="remainingBalance"
+                                                    name="remainingBalance" readonly>
+                                            </div>
                                             <div class="form-group">
                                                 <label for="paymentDate">Date</label>
                                                 <input type="date" class="form-control" id="paymentDate"
