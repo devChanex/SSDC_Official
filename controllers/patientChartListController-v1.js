@@ -53,7 +53,6 @@ $(document).on('click', '.edit-btn', function () {
     $('#edit-diagnosis').val($(this).data('diagnosis').replace(/<br\s*\/?>/gi, '\n'));
     $('#edit-remarks').val($(this).data('remarks'));
     $('#edit-details').val($(this).data('details').replace(/<br\s*\/?>/gi, '\n'));
-
     $('#edit-hmo').val($(this).data('hmo'));
     $('#edit-price').val($(this).data('price'));
 });
@@ -97,6 +96,7 @@ function updateTreatment() {
     var remarks = document.getElementById('edit-remarks').value;
     var details = document.getElementById('edit-details').value.replace(/\n/g, '<br>');;
     var price = document.getElementById('edit-price').value;
+    var hmo = document.getElementById('edit-hmo').value;
     var fd = new FormData();
     fd.append('soaid', soaid);
     fd.append('tsubid', tsubid);
@@ -105,6 +105,7 @@ function updateTreatment() {
     fd.append('remarks', remarks);
     fd.append('details', details);
     fd.append('price', price);
+    fd.append('hmo', hmo);
     $.ajax({
         url: "services/updateTreatmentPatientChartService.php",
         data: fd,

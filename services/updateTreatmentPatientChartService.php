@@ -8,7 +8,8 @@ $diagnosis = $_POST['diagnosis'];
 $remarks = $_POST['remarks'];
 $details = $_POST['details'];
 $price = $_POST['price'];
-$result = $service->process($soaid, $tsubid, $treatment, $diagnosis, $remarks, $details, $price);
+$hmo = $_POST['hmo'];
+$result = $service->process($soaid, $tsubid, $treatment, $diagnosis, $remarks, $details, $price, $hmo);
 
 class ServiceClass
 {
@@ -27,10 +28,10 @@ class ServiceClass
         return $stmt;
     }
     //DO NOT INCLUDE THIS CODE
-    public function process($soaid, $tsubid, $treatment, $diagnosis, $remarks, $details, $price)
+    public function process($soaid, $tsubid, $treatment, $diagnosis, $remarks, $details, $price, $hmo)
     {
 
-        $query = "update treatmentsub set treatment=:a,diagnosis=:b,remarks=:c,details=:d,price=:e where soaid=:f and tsubid=:g";
+        $query = "update treatmentsub set treatment=:a,diagnosis=:b,remarks=:c,details=:d,price=:e,hmo=:h where soaid=:f and tsubid=:g";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':a', $treatment);
         $stmt->bindParam(':b', $diagnosis);
@@ -39,6 +40,7 @@ class ServiceClass
         $stmt->bindParam(':e', $price);
         $stmt->bindParam(':f', $soaid);
         $stmt->bindParam(':g', $tsubid);
+        $stmt->bindParam(':h', $hmo);
         $stmt->execute();
 
         $totalFee = 0;

@@ -163,6 +163,7 @@ class ServiceClass
     data-remarks="' . htmlspecialchars($row["remarks"], ENT_QUOTES) . '"
     data-details="' . htmlspecialchars($row["details"], ENT_QUOTES) . '"
     data-price="' . $row["price"] . '"
+    data-hmo="' . $row["hmo"] . '"
     data-toggle="modal" data-target="#editModal">
     <i class="fas fa-edit"></i>
   </button>

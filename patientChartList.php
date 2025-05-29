@@ -131,6 +131,20 @@
                                                     <input type="number" step="0.01" class="form-control" name="price"
                                                         id="edit-price">
                                                 </div>
+                                                HMO:
+                                                <select id="edit-hmo" name="hmo" class="form-control mb-2">
+                                                    <option value=""></option>
+                                                    <option value="Flexicare">Flexicare</option>
+                                                    <option value="Intellicare">Intellicare</option>
+                                                    <option value="Avega">Avega</option>
+                                                    <option value="Medicard">Medicard</option>
+                                                    <option value="Health Partners Dental Access, Inc.">Health Partners
+                                                        Dental
+                                                        Access, Inc.</option>
+                                                    <option value="Dental Network Company">Dental Network Company
+                                                    </option>
+                                                    <option value="Cocolife">Cocolife</option>
+                                                </select>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-primary"
@@ -174,7 +188,7 @@
             <script src="js/custom.js"></script>
             <script src="controllers/logOutConroller.js"></script>
             <script src="controllers/sessionController.js"></script>
-            <script src="controllers/patientChartListController.js"></script>
+            <script src="controllers/patientChartListController-v1.js"></script>
 
 
 
