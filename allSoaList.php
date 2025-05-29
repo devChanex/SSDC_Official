@@ -131,7 +131,7 @@
             <script src="controllers/sessionController.js"></script>
             <script src="controllers/getAllSoaListController.js"></script>
             <script src="controllers/soaViewingController.js"></script>
-            <script src="controllers/divPrinterController.js"></script>
+            <script src="controllers/divPrinterController-v1.js"></script>
 
 
 
