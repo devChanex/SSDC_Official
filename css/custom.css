@@ -111,3 +111,16 @@
 .clickable {
     cursor: pointer;
 }
+
+.underline-on-hover {
+    text-decoration: none;
+    color: inherit;
+    font-weight: normal;
+    /* optional: prevent color change */
+}
+
+.underline-on-hover:hover {
+    text-decoration: underline !important;
+    font-weight: bold;
+    color: black
+}

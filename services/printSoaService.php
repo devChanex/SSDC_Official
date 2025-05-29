@@ -157,7 +157,7 @@ class ServiceClass
 
 
                                         $totalPayments = $totalPayments + $row4["amount"];
-                                        echo number_format($row4["amount"], 2);
+                                        echo '<a href="#" class="underline-on-hover" style=" text-decoration: none;" onclick="deletePayment(\'' . $row4["tsubpayid"] . '\',\'' . $row4["amount"] . '\');" class="text-dark">' . number_format($row4["amount"], 2) . '</a>';
 
                                         $paymentrow++;
 

@@ -27,7 +27,7 @@ class ServiceClass
     {
         try {
 
-            $query = "delete from payments where id=:a";
+            $query = "delete from treatmentsubpayment where tsubpayid=:a";
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':a', $ref);
             $stmt->execute();

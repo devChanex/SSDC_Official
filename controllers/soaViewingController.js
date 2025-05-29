@@ -22,23 +22,9 @@ function loadSoa() {
 
 }
 
-// function loadPayment() {
 
-//     var soaid = document.getElementById("soaid").value;
-//     var fd = new FormData();
-//     fd.append("soaid", soaid)
-//     $.ajax({
-//         url: "services/loadPaymentService.php",
-//         data: fd,
-//         processData: false,
-//         contentType: false,
-//         type: 'POST',
-//         success: function (result) {
-//             document.getElementById("paymentResult").innerHTML = result;
-//         }
-//     });
 
-// }
+
 
 function showPaymentModal(tsubid, hmo, balance) {
     if (balance > 0) {
@@ -163,7 +149,9 @@ function submitPaymentForm() {
                 if (result == "success") {
 
                     document.getElementById("paymentForm").reset();
-                    toastReload("successToast", "Payment Added.");
+                    loadSoa();
+                    toastSuccess("Payment Added.");
+                    // toastReload("successToast", "Payment Added.");
 
                 } else {
                     toastError("An Error occured: " + result);
@@ -191,8 +179,9 @@ function deletePayment(ref, amount) {
             type: 'POST',
             success: function (result) {
                 if (result == 'Success') {
-                    toastSuccess("Payment deleted.");
-                    loadPayment();
+
+                    toastSuccess("Payment Deleted.");
+                    loadSoa();
                 } else {
                     toastError("An Error occured: " + result);
                 }
