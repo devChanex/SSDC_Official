@@ -89,7 +89,7 @@
 
                                             <div class="form-group">
                                                 <label for="paymentAmount">Remaining Balance</label>
-                                                <input type="text" class="form-control" id="remainingBalance"
+                                                <input type="number" class="form-control" id="remainingBalance"
                                                     name="remainingBalance" readonly>
                                             </div>
                                             <div class="form-group">
