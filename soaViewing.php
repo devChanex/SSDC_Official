@@ -166,7 +166,7 @@
             <script src="js/sb-admin-2.min.js"></script>
             <script src="controllers/logOutConroller.js"></script>
             <script src="controllers/sessionController.js"></script>
-            <script src="controllers/soaViewingController-v5.js"></script>
+            <script src="controllers/soaViewingController-v6.js"></script>
             <script src="controllers/divPrinterController-v1.js"></script>
             <script src="js/signature.js"></script>
             <script src="js/custom.js"></script>

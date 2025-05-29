@@ -30,12 +30,6 @@ function showPaymentModal(tsubid, hmo, balance) {
     if (balance > 0) {
         $('#remainingBalance').val(balance);
         $('#paymenttsubid').val(tsubid);
-        if (hmo != '') {
-            $('#paymentType').val("HMO");
-        } else {
-            $('#paymentType').val("Cash");
-        }
-
         $('#paymentModal').modal('show');
     } else {
         toastError("No remaining balance to pay.");
