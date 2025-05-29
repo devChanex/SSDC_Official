@@ -122,7 +122,7 @@ function submitPaymentForm() {
     var remainingBalance = parseFloat(document.getElementById("remainingBalance").value);
     var amount = parseFloat(document.getElementById("paymentAmount").value);
 
-    if (amount > remainingBalance) {
+    if (amount <= remainingBalance) {
         $('#paymentModal').modal('hide');
 
         var soaid = document.getElementById("soaid").value;
