@@ -119,8 +119,8 @@ function createTicket(ref, currentvalue, column, table, refname) {
 }
 
 function submitPaymentForm() {
-    var remainingBalance = document.getElementById("remainingBalance").value;
-    var amount = document.getElementById("paymentAmount").value;
+    var remainingBalance = parseFloat(document.getElementById("remainingBalance").value);
+    var amount = parseFloat(document.getElementById("paymentAmount").value);
 
     if (amount > remainingBalance) {
         $('#paymentModal').modal('hide');

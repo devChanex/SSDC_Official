@@ -130,7 +130,7 @@
             <script src="controllers/logOutConroller.js"></script>
             <script src="controllers/sessionController.js"></script>
             <script src="controllers/getAllSoaListController.js"></script>
-            <script src="controllers/soaViewingController-v3.js"></script>
+            <script src="controllers/soaViewingController-v4.js"></script>
             <script src="controllers/divPrinterController-v1.js"></script>
 
 
