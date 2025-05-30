@@ -1,8 +1,10 @@
+changeDate("from");
 getclientdata();
 function getclientdata() {
     //  document.getElementById("content-table").style.zoom = "70%";
-    //alert("G");
     var group = document.getElementById("group").value;
+
+    //alert("G");
     var from = document.getElementById("from").value;
     var to = document.getElementById("to").value;
     document.getElementById("h3id").innerHTML = "DATE RANGE: " + from + " - " + to;
@@ -12,7 +14,7 @@ function getclientdata() {
     fd.append("to", to);
     fd.append("group", group);
     $.ajax({
-        url: "services/statementofaccountsService.php",
+        url: "services/incomedaterangeservice.php",
         data: fd,
         processData: false,
         contentType: false,

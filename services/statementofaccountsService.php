@@ -88,7 +88,7 @@ class ServiceClass
                 $dateToday = date("Y-m-d");
                 if (!empty($fromdate) && !empty($todate)) {
                     // If both dates are provided
-                    $query = "SELECT tsoa.soaid, cp.clientid,tsoa.hmoaccredited, cp.lname, cp.fname, cp.mdname, tsoa.dentist,tsub.tsubid, tsub.treatment, tsub.price, tsoa.date 
+                    $query = "SELECT tsoa.soaid, cp.clientid,tsoa.hmoaccredited,tsub.hmo, cp.lname, cp.fname, cp.mdname, tsoa.dentist,tsub.tsubid, tsub.treatment, tsub.price, tsoa.date 
                       FROM clientprofile cp 
                       INNER JOIN treatmentsub tsub ON tsub.clientid = cp.clientid 
                       INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid 
@@ -100,7 +100,7 @@ class ServiceClass
                     $stmt->bindParam(':c', $sortkey);
                 } elseif (empty($fromdate) && !empty($todate)) {
                     // If only todate is provided
-                    $query = "SELECT tsoa.soaid, cp.clientid,tsoa.hmoaccredited, cp.lname, cp.fname, cp.mdname, tsoa.dentist,tsub.tsubid, tsub.treatment, tsub.price, tsoa.date 
+                    $query = "SELECT tsoa.soaid, cp.clientid,tsoa.hmoaccredited,tsub.hmo, cp.lname, cp.fname, cp.mdname, tsoa.dentist,tsub.tsubid, tsub.treatment, tsub.price, tsoa.date 
                       FROM clientprofile cp 
                       INNER JOIN treatmentsub tsub ON tsub.clientid = cp.clientid 
                       INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid 
@@ -111,7 +111,7 @@ class ServiceClass
                     $stmt->bindParam(':c', $sortkey);
                 } elseif (!empty($fromdate) && empty($todate)) {
                     // If only todate is provided
-                    $query = "SELECT tsoa.soaid, cp.clientid,tsoa.hmoaccredited, cp.lname, cp.fname, cp.mdname, tsoa.dentist,tsub.tsubid, tsub.treatment, tsub.price, tsoa.date 
+                    $query = "SELECT tsoa.soaid, cp.clientid,tsoa.hmoaccredited,tsub.hmo, cp.lname, cp.fname, cp.mdname, tsoa.dentist,tsub.tsubid, tsub.treatment, tsub.price, tsoa.date 
                       FROM clientprofile cp 
                       INNER JOIN treatmentsub tsub ON tsub.clientid = cp.clientid 
                       INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid 

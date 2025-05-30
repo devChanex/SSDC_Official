@@ -31,7 +31,23 @@ function toastSuccess(message) {
     toastElement.toast({ delay: 3000 }).toast("show");
 }
 
+function changeDate(inputId) {
+    const dateInput = document.getElementById(inputId);
 
+    // Get today's date
+    const today = new Date();
+
+    // First day of the current month
+    const year = today.getFullYear();
+    const month = today.getMonth() + 1; // months are 0-indexed
+    const day = 1;
+
+    // Pad month and day with leading zeros
+    const formatted = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+
+    // Set the value of the input
+    dateInput.value = formatted;
+}
 
 
 
