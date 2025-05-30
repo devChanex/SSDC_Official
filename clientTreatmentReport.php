@@ -68,7 +68,7 @@
 
                         </div>
 
-                        <div class="card-body" id="daterange" style="position: relative;">
+                        <div class="card-body" id="daterange">
                             <div>
                                 <div style=" text-align:left;">
                                     <h2 style="margin:0; font-weight:bold; font-size: 1.5rem;">Smile Save Dental Care
