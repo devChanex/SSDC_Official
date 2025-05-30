@@ -84,24 +84,30 @@
                                 <div style="width:180px;"></div> <!-- Spacer for symmetry, adjust width as needed -->
                             </div>
                             <!-- USE THIS SPACE FOR YOUR ADDITIONAL CODE SNIPPET -->
-                            <div id="loading"
-                                style="display:none; position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.8); z-index:9999;">
-                                <div class="text-center"
-                                    style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);">
-                                    <div class="spinner-border text-primary mb-3" style="width: 3rem; height: 3rem;"
-                                        role="status">
-                                        <span class="sr-only">Loading...</span>
+                            <div>
+                                <div id="loading" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+            background:rgba(255,255,255,0.7); backdrop-filter: blur(3px);
+            z-index:9999;">
+
+                                    <div class="d-flex flex-column align-items-center justify-content-center"
+                                        style="height: 100%;">
+                                        <div class="spinner-grow text-primary mb-3" role="status"
+                                            style="width: 3rem; height: 3rem;">
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
+                                        <div class="h5 font-weight-bold text-primary">Loading, please wait...</div>
                                     </div>
-                                    <div class="h5 font-weight-bold text-primary">Please wait...</div>
                                 </div>
+
+
+
+                                <div class="card-body" id="resultResponse">
+
+                                </div>
+
+
+
                             </div>
-
-
-
-                            <div class="card-body" id="resultResponse">
-
-                            </div>
-
 
 
 
