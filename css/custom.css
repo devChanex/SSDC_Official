@@ -124,3 +124,7 @@
     font-weight: bold;
     color: black
 }
+
+#loading {
+    transition: opacity 0.3s ease;
+}

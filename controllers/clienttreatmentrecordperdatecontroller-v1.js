@@ -6,6 +6,7 @@ function getclientdata() {
     var from = document.getElementById("from").value;
     var to = document.getElementById("to").value;
     document.getElementById("h3id").innerHTML = "DATE RANGE: " + from + " to " + to;
+    $("#loading").fadeIn();
     var fd = new FormData();
     fd.append("from", from);
     fd.append("to", to);
@@ -18,6 +19,11 @@ function getclientdata() {
         type: 'POST',
         success: function (result) {
             document.getElementById("resultResponse").innerHTML = result;
+
+        },
+        complete: function () {
+
+            $("#loading").fadeOut();
 
         }
 
