@@ -98,7 +98,16 @@ echo '
 <a class="collapse-item" href="statementofaccounts.php">Statement of Account</a>
 <a class="collapse-item" href="clientTreatmentReport.php">Client Treatments</a>
 <a class="collapse-item" href="incomedaterange.php">Income Statement</a>
-           
+<a class="collapse-item" href="dailytransactionsummary.php">Daily Transaction Summary</a>
+          
+  <a class="collapse-item" href="soadaterange.php">SOA Summary per Date</a>
+    <a class="collapse-item" href="soaperclient.php">SOA Summary per Client</a>
+     <a class="collapse-item" href="soaperdentist.php">SOA Summary per Dentist</a>
+     
+  
+     <a class="collapse-item" href="clienttreatmentrecordperdentist.php">CT Records per Dentist</a>
+    <a class="collapse-item" href="clienttreatmentrecordperclient.php">CT Records per Client</a>
+
         </div>
     </div>
 </li>

@@ -33,6 +33,8 @@ class ServiceClass
             $key = 'concat (cp.lname, ", ", cp.fname, " ", cp.mdname)';
         }
 
+        $grandAccumulatedPayments = 0;
+
         //MAIN
         $dateToday = date("Y-m-d");
         if (!empty($fromdate) && !empty($todate)) {
@@ -208,6 +210,16 @@ class ServiceClass
                 <td colspan="2"></td>      
             </tr>
 ';
+                $grandAccumulatedPayments += $total;
+                echo '
+<tr>
+              
+                <td colspan="5">Grand Total </td>
+                
+                <td style="text-align:right;"><strong>' . number_format($grandAccumulatedPayments, 2) . '</strong></td>
+                <td colspan="2"></td>      
+            </tr>
+';
 
                 echo '  </tbody>
                                     </table>
@@ -216,7 +228,7 @@ class ServiceClass
             }
 
         }
-        echo '<div class="row justify-content-center text-center"><strong>Total Income: ' . number_format($totalIncome, 2) . '</strong></div>';
+
         //ENDMAIN
 
 

@@ -2,9 +2,8 @@
 require_once('databaseService.php');
 $service = new ServiceClass();
 $fromdate = urldecode($_POST['from']);
-$todate = urldecode($_POST['to']);
 $group = urldecode($_POST['group']);
-$result = $service->loadClientTreatment($fromdate, $todate, $group);
+$result = $service->loadClientTreatment($fromdate, $group);
 
 class ServiceClass
 {
@@ -23,7 +22,7 @@ class ServiceClass
         return $stmt;
     }
     //DO NOT INCLUDE THIS CODE
-    public function loadClientTreatment($fromdate, $todate, $group)
+    public function loadClientTreatment($fromdate, $group)
     {
         $key = 'tsoa.soaid';
         if ($group == 'Dentist') {
@@ -34,52 +33,17 @@ class ServiceClass
         $grandTotal = 0;
         $grandAccumulatedPayments = 0;
         $grandTotalBalance = 0;
+        $grandtotalOtherPayments = 0;
         //START GROUPING 
-        if (!empty($fromdate) && !empty($todate)) {
-            // If both dates are provided
-            $query0 = "SELECT DISTINCT $key  as 'result'
-                      FROM clientprofile cp 
-                      INNER JOIN treatmentsub tsub ON tsub.clientid = cp.clientid 
-                      INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid 
-                      WHERE (tsoa.date BETWEEN :a AND :b) order by  $key";
 
-            $stmt0 = $this->conn->prepare($query0);
-            $stmt0->bindParam(':a', $fromdate);
-            $stmt0->bindParam(':b', $todate);
+        // If both dates are provided
+        $query0 = "SELECT result FROM (SELECT DISTINCT $key AS result FROM clientprofile cp INNER JOIN treatmentsub tsub ON tsub.clientid = cp.clientid INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid WHERE tsoa.date = :a 
+        UNION 
+        SELECT DISTINCT $key AS result FROM clientprofile cp INNER JOIN treatmentsub tsub ON tsub.clientid = cp.clientid INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid INNER JOIN treatmentsubpayment tsp ON tsp.tsubid = tsub.tsubid WHERE (tsoa.date < :a) AND tsp.paymentDate = :a) AS combined_results ORDER BY  result";
 
-        } elseif (empty($fromdate) && !empty($todate)) {
-            // If only todate is provided
-            $query0 = "SELECT DISTINCT $key  as 'result'
-                      FROM clientprofile cp 
-                      INNER JOIN treatmentsub tsub ON tsub.clientid = cp.clientid 
-                      INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid 
-                      WHERE (tsoa.date <= :b) order by  $key";
+        $stmt0 = $this->conn->prepare($query0);
+        $stmt0->bindParam(':a', $fromdate);
 
-            $stmt0 = $this->conn->prepare($query0);
-            $stmt0->bindParam(':b', $todate);
-
-        } elseif (!empty($fromdate) && empty($todate)) {
-            // If only todate is provided
-            $query0 = "SELECT DISTINCT $key  as 'result'
-                      FROM clientprofile cp 
-                      INNER JOIN treatmentsub tsub ON tsub.clientid = cp.clientid 
-                      INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid 
-                      WHERE (tsoa.date >= :b) order by  $key";
-
-            $stmt0 = $this->conn->prepare($query0);
-            $stmt0->bindParam(':b', $fromdate);
-
-
-
-        } else {
-            // No filtering if both dates are empty
-            $query0 = "SELECT DISTINCT $key  as 'result'
-                      FROM clientprofile cp 
-                      INNER JOIN treatmentsub tsub ON tsub.clientid = cp.clientid 
-                      INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid order by  $key";
-
-            $stmt0 = $this->conn->prepare($query0);
-        }
 
         $stmt0->execute();
 
@@ -89,57 +53,24 @@ class ServiceClass
                 echo '<div class="row-"><h4>' . $group . ': ' . $sortkey . '</h4></div>';
 
                 $dateToday = date("Y-m-d");
-                if (!empty($fromdate) && !empty($todate)) {
-                    // If both dates are provided
-                    $query = "SELECT tsoa.soaid, cp.clientid,tsoa.hmoaccredited,tsub.hmo, cp.lname, cp.fname, cp.mdname, tsoa.dentist,tsub.tsubid, tsub.treatment, tsub.price, tsoa.date 
+
+                // If both dates are provided
+                $query = "SELECT tsoa.soaid, cp.clientid,tsoa.hmoaccredited,tsub.hmo, cp.lname, cp.fname, cp.mdname, tsoa.dentist,tsub.tsubid, tsub.treatment, tsub.price, tsoa.date 
                       FROM clientprofile cp 
                       INNER JOIN treatmentsub tsub ON tsub.clientid = cp.clientid 
                       INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid 
-                      WHERE (tsoa.date BETWEEN :a AND :b) and $key = :c ";
+                      WHERE (tsoa.date=:a) and $key = :c ";
 
-                    $stmt = $this->conn->prepare($query);
-                    $stmt->bindParam(':a', $fromdate);
-                    $stmt->bindParam(':b', $todate);
-                    $stmt->bindParam(':c', $sortkey);
-                } elseif (empty($fromdate) && !empty($todate)) {
-                    // If only todate is provided
-                    $query = "SELECT tsoa.soaid, cp.clientid,tsoa.hmoaccredited,tsub.hmo, cp.lname, cp.fname, cp.mdname, tsoa.dentist,tsub.tsubid, tsub.treatment, tsub.price, tsoa.date 
-                      FROM clientprofile cp 
-                      INNER JOIN treatmentsub tsub ON tsub.clientid = cp.clientid 
-                      INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid 
-                      WHERE (tsoa.date <= :b) and $key = :c";
-
-                    $stmt = $this->conn->prepare($query);
-                    $stmt->bindParam(':b', $todate);
-                    $stmt->bindParam(':c', $sortkey);
-                } elseif (!empty($fromdate) && empty($todate)) {
-                    // If only todate is provided
-                    $query = "SELECT tsoa.soaid, cp.clientid,tsoa.hmoaccredited,tsub.hmo, cp.lname, cp.fname, cp.mdname, tsoa.dentist,tsub.tsubid, tsub.treatment, tsub.price, tsoa.date 
-                      FROM clientprofile cp 
-                      INNER JOIN treatmentsub tsub ON tsub.clientid = cp.clientid 
-                      INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid 
-                      WHERE (tsoa.date >= :b) and $key = :c";
-
-                    $stmt = $this->conn->prepare($query);
-                    $stmt->bindParam(':b', $fromdate);
-                    $stmt->bindParam(':c', $sortkey);
-
-
-                } else {
-                    // No filtering if both dates are empty
-                    $query = "SELECT tsoa.soaid, cp.clientid,tsub.hmo, cp.lname, cp.fname, cp.mdname, tsoa.dentist,tsub.tsubid, tsub.treatment, tsub.price, tsoa.date 
-                      FROM clientprofile cp 
-                      INNER JOIN treatmentsub tsub ON tsub.clientid = cp.clientid 
-                      INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid where $key = :c";
-
-                    $stmt = $this->conn->prepare($query);
-                    $stmt->bindParam(':c', $sortkey);
-                }
+                $stmt = $this->conn->prepare($query);
+                $stmt->bindParam(':a', $fromdate);
+                $stmt->bindParam(':c', $sortkey);
 
 
                 $stmt->execute();
                 $total = 0;
                 $AccumulatedPayments = 0;
+
+                $totalOtherPayments = 0;
                 echo '    <div class="table-responsive">
                                     <table class="table text-dark" width="100%" cellspacing="0">
                                         <thead>
@@ -274,6 +205,139 @@ class ServiceClass
 
                     }
                 }
+
+                //PAYMENT SOA NOT TODAY
+                $query12 = "SELECT tsoa.soaid, cp.clientid,tsoa.hmoaccredited,tsub.hmo, cp.lname, cp.fname, cp.mdname, tsoa.dentist,tsub.tsubid, tsub.treatment, tsub.price, tsoa.date ,tsoa.dentist
+                      FROM clientprofile cp INNER JOIN treatmentsub tsub ON tsub.clientid = cp.clientid INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid INNER JOIN treatmentsubpayment tsp ON tsp.tsubid = tsub.tsubid WHERE (tsoa.date < :a) AND tsp.paymentDate = :a and $key = :c ";
+
+                $stmt12 = $this->conn->prepare($query12);
+                $stmt12->bindParam(':a', $fromdate);
+                $stmt12->bindParam(':c', $sortkey);
+                $stmt12->execute();
+                if ($stmt12->rowCount() > 0) {
+                    while ($row12 = $stmt12->fetch(PDO::FETCH_ASSOC)) {
+
+                        $fullname = $row12["lname"] . ', ' . $row12["fname"] . ' ' . $row12["mdname"];
+                        echo '
+                <tr style="color: black;">
+                <td>' . $row12["soaid"] . '</td>
+
+                <td>' . $fullname . '</td>';
+                        $hmo = $row12["hmo"];
+                        $hmoDisplay = '';
+
+                        if (empty($hmo)) {
+                            $hmoDisplay = '-';
+                        } else {
+                            $hmoDisplay = $hmo;
+                        }
+
+                        echo '  <td>' . $hmoDisplay . '</td>';
+
+
+                        echo '
+                <td>' . $row12["dentist"] . '</td>
+                <td>' . $row12["treatment"] . '</td>
+                <td style="text-align:right;">-</td>
+               <td>' . date("Y/m/d", strtotime($row12["date"])) . '</td>';
+                        $tsubid = $row12["tsubid"];
+                        $query13 = "select * from treatmentsubpayment where tsubid=:a and paymentDate=:b order by paymentdate asc";
+                        $stmt13 = $this->conn->prepare($query13);
+                        $stmt13->bindParam(':a', $tsubid);
+                        $stmt13->bindParam(':b', $fromdate);
+                        $totalPayments = 0;
+                        $stmt13->execute();
+                        echo '';
+                        if ($stmt13->rowCount() > 0) {
+                            //paymentamount
+
+                            $paymentrow = 0;
+                            echo '<td style="text-align:right;">';
+
+                            $stmt14 = $this->conn->prepare($query13);
+                            $stmt14->bindParam(':a', $tsubid);
+                            $stmt14->bindParam(':b', $fromdate);
+                            $stmt14->execute();
+                            echo '';
+                            if ($stmt14->rowCount() > 0) {
+
+                                while ($row14 = $stmt14->fetch(PDO::FETCH_ASSOC)) {
+                                    if ($paymentrow > 0) {
+                                        echo '<br>';
+                                    }
+
+
+                                    $totalPayments = $totalPayments + $row14["amount"];
+                                    echo number_format($row14["amount"], 2);
+                                    $AccumulatedPayments += $row14["amount"];
+                                    $totalOtherPayments += $row14["amount"];
+                                    $grandtotalOtherPayments += $row14["amount"];
+                                    $paymentrow++;
+
+                                }
+                            }
+
+                            echo '</td>';
+                            //paymenttype
+                            echo '<td style="text-align:center;">';
+                            $paymentrow = 0;
+                            $stmt15 = $this->conn->prepare($query13);
+                            $stmt15->bindParam(':a', $tsubid);
+                            $stmt15->bindParam(':b', $fromdate);
+                            $stmt15->execute();
+                            echo '';
+                            if ($stmt15->rowCount() > 0) {
+                                while ($row15 = $stmt15->fetch(PDO::FETCH_ASSOC)) {
+                                    if ($paymentrow > 0) {
+                                        echo '<br>';
+                                    }
+
+                                    echo $row15["paymenttype"];
+
+
+                                    $paymentrow++;
+                                }
+                            }
+                            echo '</td>';
+
+                            //paymentdate
+                            echo '<td style="text-align:right;">';
+                            $paymentrow = 0;
+                            $stmt16 = $this->conn->prepare($query13);
+                            $stmt16->bindParam(':a', $tsubid);
+                            $stmt16->bindParam(':b', $fromdate);
+                            $stmt16->execute();
+                            echo '';
+                            if ($stmt16->rowCount() > 0) {
+                                while ($row16 = $stmt16->fetch(PDO::FETCH_ASSOC)) {
+
+                                    if ($paymentrow > 0) {
+                                        echo '<br>';
+                                    }
+                                    echo $row16["paymentdate"];
+
+
+                                    $paymentrow++;
+                                }
+                            }
+                            echo '</td>';
+                        } else {
+                            echo '<td style="text-align:right;">0.00</td>';
+                            echo '<td style="text-align:center;">-</td>';
+                            echo '<td style="text-align:right;">-</td>';
+
+                        }
+
+                        echo '<td style="text-align:right;">-</td>';
+                        echo '
+
+            </tr>';
+
+                    }
+                }
+                //END PAYMENT SOA NOT TODAY
+
+
                 echo '
 <tr>
               
@@ -284,7 +348,7 @@ class ServiceClass
                 <td style="text-align:right;"><strong>' . number_format($AccumulatedPayments, 2) . '</strong></td>  
                 <td></td>      
                 <td></td>
-                <td style="text-align:right;"><strong>' . number_format(($total - $AccumulatedPayments), 2) . '</strong></td>
+                <td style="text-align:right;"><strong>' . number_format(($total - ($AccumulatedPayments - $totalOtherPayments)), 2) . '</strong></td>
             </tr>
 ';
                 $grandTotal += $total;
@@ -319,7 +383,7 @@ class ServiceClass
     
     <div style="display: flex; justify-content: space-between;">
         <span><strong>Outstanding Balance:</strong></span>
-        <span>₱' . number_format($grandTotalBalance, 2) . '</span>
+        <span>₱' . number_format($grandTotalBalance + $grandtotalOtherPayments, 2) . '</span>
     </div>
 </div>
 ';
