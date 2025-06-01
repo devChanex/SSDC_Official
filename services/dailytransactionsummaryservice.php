@@ -379,12 +379,50 @@ class ServiceClass
         <span><strong>Grand Total:</strong></span>
         <span>₱' . number_format($grandTotal, 2) . '</span>
     </div>
+     <strong>Mode of Payment:</strong>
+   ';
+        $query0 = "select DISTINCT(paymenttype) from treatmentsubpayment where paymentdate = :a";
+
+        $stmt0 = $this->conn->prepare($query0);
+        $stmt0->bindParam(':a', $fromdate);
+
+
+        $stmt0->execute();
+
+        if ($stmt0->rowCount() > 0) {
+            while ($row0 = $stmt0->fetch(PDO::FETCH_ASSOC)) {
+                $paymentType = $row0["paymenttype"];
+
+                $query1 = "select sum(amount) as 'total' from treatmentsubpayment where paymentdate = :a and paymenttype = :b";
+
+                $stmt1 = $this->conn->prepare($query1);
+                $stmt1->bindParam(':a', $fromdate);
+                $stmt1->bindParam(':b', $paymentType);
+
+
+                $stmt1->execute();
+
+                if ($stmt1->rowCount() > 0) {
+                    while ($row1 = $stmt1->fetch(PDO::FETCH_ASSOC)) {
+                        echo '
+  <div style="display: flex; justify-content: space-between;">
+        <span><strong>' . $paymentType . ':</strong></span>
+        <span>₱' . number_format($row1["total"], 2) . '</span>
+    </div>
+';
+                    }
+                }
+
+            }
+        }
+
+        echo '
+        <hr>
+     <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
     
-    <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
         <span><strong>Total Payments:</strong></span>
         <span>₱' . number_format($grandAccumulatedPayments, 2) . '</span>
     </div>
-    
     <div style="display: flex; justify-content: space-between;">
         <span><strong>Outstanding Balance:</strong></span>
         <span>₱' . number_format($grandTotalBalance + $grandtotalOtherPayments, 2) . '</span>
