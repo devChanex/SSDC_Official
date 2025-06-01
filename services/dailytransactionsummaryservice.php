@@ -117,9 +117,10 @@ class ServiceClass
                 <td style="text-align:right;">' . number_format($row["price"], 2) . '</td>
                <td>' . date("Y/m/d", strtotime($row["date"])) . '</td>';
                         $tsubid = $row["tsubid"];
-                        $query3 = "select * from treatmentsubpayment where tsubid=:a order by paymentdate asc";
+                        $query3 = "select * from treatmentsubpayment where tsubid=:a and paymentdate <= :b order by paymentdate asc";
                         $stmt3 = $this->conn->prepare($query3);
                         $stmt3->bindParam(':a', $tsubid);
+                        $stmt3->bindParam(':b', $fromdate);
                         $totalPayments = 0;
                         $stmt3->execute();
                         echo '';
@@ -131,6 +132,7 @@ class ServiceClass
 
                             $stmt4 = $this->conn->prepare($query3);
                             $stmt4->bindParam(':a', $tsubid);
+                            $stmt4->bindParam(':b', $fromdate);
                             $stmt4->execute();
                             echo '';
                             if ($stmt4->rowCount() > 0) {
@@ -155,6 +157,7 @@ class ServiceClass
                             $paymentrow = 0;
                             $stmt5 = $this->conn->prepare($query3);
                             $stmt5->bindParam(':a', $tsubid);
+                            $stmt5->bindParam(':b', $fromdate);
                             $stmt5->execute();
                             echo '';
                             if ($stmt5->rowCount() > 0) {
@@ -176,6 +179,7 @@ class ServiceClass
                             $paymentrow = 0;
                             $stmt6 = $this->conn->prepare($query3);
                             $stmt6->bindParam(':a', $tsubid);
+                            $stmt6->bindParam(':b', $fromdate);
                             $stmt6->execute();
                             echo '';
                             if ($stmt6->rowCount() > 0) {
