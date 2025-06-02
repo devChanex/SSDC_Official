@@ -4,7 +4,7 @@ $service = new ServiceClass();
 
 $search = urldecode($_POST['search']);
 $searchParam = '%' . $search . '%';
-$itemPerPage = isset($_POST['item']) ? (int) $_POST['item'] : 10;
+$itemPerPage = isset($_POST['item']) ? (int) $_POST['item'] : 20;
 
 $page = isset($_POST['page']) ? (int) $_POST['page'] : 1;
 $paginationData = $service->process($searchParam, $itemPerPage, $page);
