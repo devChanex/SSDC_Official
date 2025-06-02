@@ -241,12 +241,12 @@ class ServiceClass
                                             <strong>
                                             <tr>
                                             <td colspan="1">Total</td>
-                                            <td style="text-align:right;" onclick="createTicket(\'' . $soaid . '\',\'' . $row["total"] . '\',\'total\',\'treatmentsoa\',\'soaid\');">' . number_format($row["total"], 2) . '</td>
+                                            <td style="text-align:right;">' . number_format($row["total"], 2) . '</td>
                                             <td></td>
                                               <td style="text-align:right;">' . number_format($totalPaymentSoa, 2) . '</td>
                                                 <td></td>
                                                   <td></td>
-                                                    <td style="text-align:right;">' . number_format($totalBalance, 2) . '</td>
+                                                    <td style="text-align:right;">' . number_format($row["total"] - $totalPaymentSoa, 2) . '</td>
                                             </tr>
                                             </strong>
                                             ';
