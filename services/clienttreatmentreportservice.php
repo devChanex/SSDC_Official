@@ -4,7 +4,8 @@ $service = new ServiceClass();
 $fromdate = urldecode($_POST['from']);
 $todate = urldecode($_POST['to']);
 $group = urldecode($_POST['group']);
-$result = $service->loadClientTreatment($fromdate, $todate, $group);
+$dentist = urldecode($_POST['dentist']);
+$result = $service->loadClientTreatment($fromdate, $todate, $group, $dentist);
 
 
 class ServiceClass
@@ -24,7 +25,7 @@ class ServiceClass
         return $stmt;
     }
     //DO NOT INCLUDE THIS CODE
-    public function loadClientTreatment($fromdate, $todate, $group)
+    public function loadClientTreatment($fromdate, $todate, $group, $dentist)
     {
 
         $key = 'tsoa.soaid';
@@ -38,34 +39,63 @@ class ServiceClass
         $grandTotalBalance = 0;
         $dateToday = date("Y-m-d");
         //GROUPING
-        if (!empty($fromdate) && !empty($todate)) {
-            // If both dates are provided
-            $query0 = "SELECT DISTINCT $key as 'result' FROM treatmentsub tsub INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid INNER JOIN clientprofile cp ON tsub.clientId=cp.clientid WHERE (tsoa.date BETWEEN :a AND :b) order by  $key";
-            $stmt0 = $this->conn->prepare($query0);
-            $stmt0->bindParam(':a', $fromdate);
-            $stmt0->bindParam(':b', $todate);
+        if ($dentist == 'All') {
+            if (!empty($fromdate) && !empty($todate)) {
+                // If both dates are provided
+                $query0 = "SELECT DISTINCT $key as 'result' FROM treatmentsub tsub INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid INNER JOIN clientprofile cp ON tsub.clientId=cp.clientid WHERE (tsoa.date BETWEEN :a AND :b) order by  $key";
+                $stmt0 = $this->conn->prepare($query0);
+                $stmt0->bindParam(':a', $fromdate);
+                $stmt0->bindParam(':b', $todate);
 
-        } elseif (empty($fromdate) && !empty($todate)) {
-            // If only todate is provided
-            $query0 = "SELECT DISTINCT $key  as 'result' FROM treatmentsub tsub INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid  INNER JOIN clientprofile cp ON tsub.clientId=cp.clientid WHERE (tsoa.date <= :b) order by  $key";
-            $stmt0 = $this->conn->prepare($query0);
-            $stmt0->bindParam(':b', $todate);
+            } elseif (empty($fromdate) && !empty($todate)) {
+                // If only todate is provided
+                $query0 = "SELECT DISTINCT $key  as 'result' FROM treatmentsub tsub INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid  INNER JOIN clientprofile cp ON tsub.clientId=cp.clientid WHERE (tsoa.date <= :b) order by  $key";
+                $stmt0 = $this->conn->prepare($query0);
+                $stmt0->bindParam(':b', $todate);
 
-        } elseif (!empty($fromdate) && empty($todate)) {
-            // If only todate is provided
-            $query0 = "SELECT DISTINCT $key  as 'result' FROM treatmentsub tsub INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid  INNER JOIN clientprofile cp ON tsub.clientId=cp.clientid WHERE tsoa.date >= :b order by  $key";
+            } elseif (!empty($fromdate) && empty($todate)) {
+                // If only todate is provided
+                $query0 = "SELECT DISTINCT $key  as 'result' FROM treatmentsub tsub INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid  INNER JOIN clientprofile cp ON tsub.clientId=cp.clientid WHERE tsoa.date >= :b order by  $key";
 
-            $stmt0 = $this->conn->prepare($query0);
-            $stmt0->bindParam(':b', $fromdate);
+                $stmt0 = $this->conn->prepare($query0);
+                $stmt0->bindParam(':b', $fromdate);
 
+            } else {
+                // No filtering if both dates are empty
+                $query0 = "SELECT DISTINCT $key  as 'result' FROM treatmentsub tsub INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid INNER JOIN clientprofile cp ON tsub.clientId=cp.clientid order by  $key";
 
-
+                $stmt0 = $this->conn->prepare($query0);
+            }
         } else {
-            // No filtering if both dates are empty
-            $query0 = "SELECT DISTINCT $key  as 'result' FROM treatmentsub tsub INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid INNER JOIN clientprofile cp ON tsub.clientId=cp.clientid order by  $key";
+            if (!empty($fromdate) && !empty($todate)) {
+                // If both dates are provided
+                $query0 = "SELECT DISTINCT $key as 'result' FROM treatmentsub tsub INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid INNER JOIN clientprofile cp ON tsub.clientId=cp.clientid WHERE (tsoa.date BETWEEN :a AND :b) and dentist=:x order by  $key";
+                $stmt0 = $this->conn->prepare($query0);
+                $stmt0->bindParam(':a', $fromdate);
+                $stmt0->bindParam(':b', $todate);
 
-            $stmt0 = $this->conn->prepare($query0);
+            } elseif (empty($fromdate) && !empty($todate)) {
+                // If only todate is provided
+                $query0 = "SELECT DISTINCT $key  as 'result' FROM treatmentsub tsub INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid  INNER JOIN clientprofile cp ON tsub.clientId=cp.clientid WHERE (tsoa.date <= :b) and dentist=:x order by  $key";
+                $stmt0 = $this->conn->prepare($query0);
+                $stmt0->bindParam(':b', $todate);
+
+            } elseif (!empty($fromdate) && empty($todate)) {
+                // If only todate is provided
+                $query0 = "SELECT DISTINCT $key  as 'result' FROM treatmentsub tsub INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid  INNER JOIN clientprofile cp ON tsub.clientId=cp.clientid WHERE tsoa.date >= :b and dentist=:x order by  $key";
+
+                $stmt0 = $this->conn->prepare($query0);
+                $stmt0->bindParam(':b', $fromdate);
+
+            } else {
+                // No filtering if both dates are empty
+                $query0 = "SELECT DISTINCT $key  as 'result' FROM treatmentsub tsub INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid INNER JOIN clientprofile cp ON tsub.clientId=cp.clientid where dentist=:x order by  $key";
+
+                $stmt0 = $this->conn->prepare($query0);
+            }
+            $stmt0->bindParam(':x', $dentist);
         }
+
 
         $stmt0->execute();
         if ($stmt0->rowCount() > 0) {
@@ -73,35 +103,72 @@ class ServiceClass
 
                 $sortkey = $row0["result"];
                 echo '<div class="row-"><h4>' . $group . ': ' . $sortkey . '</h4></div>';
-                if (!empty($fromdate) && !empty($todate)) {
-                    // If both dates are provided
-                    $query = "SELECT  tsub.treatment, tsub.price,tsub.hmo, tsub.remarks, tsub.details, tsoa.date, tsub.tsubid,tsoa.time, tsoa.soaid, tsoa.dentist FROM treatmentsub tsub INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid INNER JOIN clientprofile cp ON tsub.clientId=cp.clientid WHERE (tsoa.date BETWEEN :a AND :b) and $key = :c";
-                    $stmt = $this->conn->prepare($query);
-                    $stmt->bindParam(':a', $fromdate);
-                    $stmt->bindParam(':b', $todate);
-                    $stmt->bindParam(':c', $sortkey);
-                } elseif (empty($fromdate) && !empty($todate)) {
-                    // If only todate is provided
-                    $query = "SELECT  tsub.treatment, tsub.price,tsub.hmo, tsub.remarks, tsub.details, tsoa.date,tsub.tsubid, tsoa.time, tsoa.soaid, tsoa.dentist FROM treatmentsub tsub INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid INNER JOIN clientprofile cp ON tsub.clientId=cp.clientid WHERE (tsoa.date <= :b) and $key = :c";
-                    $stmt = $this->conn->prepare($query);
-                    $stmt->bindParam(':b', $todate);
-                    $stmt->bindParam(':c', $sortkey);
-                } elseif (!empty($fromdate) && empty($todate)) {
-                    // If only todate is provided
-                    $query = "SELECT  tsub.treatment, tsub.price,tsub.hmo, tsub.remarks, tsub.details, tsoa.date, tsub.tsubid,tsoa.time, tsoa.soaid, tsoa.dentist FROM treatmentsub tsub INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid INNER JOIN clientprofile cp ON tsub.clientId=cp.clientid WHERE (tsoa.date  >= :b) and $key = :c";
 
-                    $stmt = $this->conn->prepare($query);
-                    $stmt->bindParam(':b', $fromdate);
-                    $stmt->bindParam(':c', $sortkey);
+                if ($dentist == 'All') {
+                    if (!empty($fromdate) && !empty($todate)) {
+                        // If both dates are provided
+                        $query = "SELECT  tsub.treatment, tsub.price,tsub.hmo, tsub.remarks, tsub.details, tsoa.date, tsub.tsubid,tsoa.time, tsoa.soaid, tsoa.dentist FROM treatmentsub tsub INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid INNER JOIN clientprofile cp ON tsub.clientId=cp.clientid WHERE (tsoa.date BETWEEN :a AND :b) and $key = :c";
+                        $stmt = $this->conn->prepare($query);
+                        $stmt->bindParam(':a', $fromdate);
+                        $stmt->bindParam(':b', $todate);
+                        $stmt->bindParam(':c', $sortkey);
+                    } elseif (empty($fromdate) && !empty($todate)) {
+                        // If only todate is provided
+                        $query = "SELECT  tsub.treatment, tsub.price,tsub.hmo, tsub.remarks, tsub.details, tsoa.date,tsub.tsubid, tsoa.time, tsoa.soaid, tsoa.dentist FROM treatmentsub tsub INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid INNER JOIN clientprofile cp ON tsub.clientId=cp.clientid WHERE (tsoa.date <= :b) and $key = :c";
+                        $stmt = $this->conn->prepare($query);
+                        $stmt->bindParam(':b', $todate);
+                        $stmt->bindParam(':c', $sortkey);
+                    } elseif (!empty($fromdate) && empty($todate)) {
+                        // If only todate is provided
+                        $query = "SELECT  tsub.treatment, tsub.price,tsub.hmo, tsub.remarks, tsub.details, tsoa.date, tsub.tsubid,tsoa.time, tsoa.soaid, tsoa.dentist FROM treatmentsub tsub INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid INNER JOIN clientprofile cp ON tsub.clientId=cp.clientid WHERE (tsoa.date  >= :b) and $key = :c";
+
+                        $stmt = $this->conn->prepare($query);
+                        $stmt->bindParam(':b', $fromdate);
+                        $stmt->bindParam(':c', $sortkey);
+
+
+                    } else {
+                        // No filtering if both dates are empty
+                        $query = "SELECT  tsub.treatment, tsub.price,tsub.hmo, tsub.remarks, tsub.details, tsoa.date,tsub.tsubid, tsoa.time, tsoa.soaid, tsoa.dentist FROM treatmentsub tsub INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid INNER JOIN clientprofile cp ON tsub.clientId=cp.clientid where $key = :c";
+
+                        $stmt = $this->conn->prepare($query);
+                        $stmt->bindParam(':c', $sortkey);
+                    }
 
 
                 } else {
-                    // No filtering if both dates are empty
-                    $query = "SELECT  tsub.treatment, tsub.price,tsub.hmo, tsub.remarks, tsub.details, tsoa.date,tsub.tsubid, tsoa.time, tsoa.soaid, tsoa.dentist FROM treatmentsub tsub INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid INNER JOIN clientprofile cp ON tsub.clientId=cp.clientid where $key = :c";
+                    if (!empty($fromdate) && !empty($todate)) {
+                        // If both dates are provided
+                        $query = "SELECT  tsub.treatment, tsub.price,tsub.hmo, tsub.remarks, tsub.details, tsoa.date, tsub.tsubid,tsoa.time, tsoa.soaid, tsoa.dentist FROM treatmentsub tsub INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid INNER JOIN clientprofile cp ON tsub.clientId=cp.clientid WHERE (tsoa.date BETWEEN :a AND :b) and $key = :c and dentist=:x";
+                        $stmt = $this->conn->prepare($query);
+                        $stmt->bindParam(':a', $fromdate);
+                        $stmt->bindParam(':b', $todate);
+                        $stmt->bindParam(':c', $sortkey);
+                    } elseif (empty($fromdate) && !empty($todate)) {
+                        // If only todate is provided
+                        $query = "SELECT  tsub.treatment, tsub.price,tsub.hmo, tsub.remarks, tsub.details, tsoa.date,tsub.tsubid, tsoa.time, tsoa.soaid, tsoa.dentist FROM treatmentsub tsub INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid INNER JOIN clientprofile cp ON tsub.clientId=cp.clientid WHERE (tsoa.date <= :b) and $key = :c and dentist=:x";
+                        $stmt = $this->conn->prepare($query);
+                        $stmt->bindParam(':b', $todate);
+                        $stmt->bindParam(':c', $sortkey);
+                    } elseif (!empty($fromdate) && empty($todate)) {
+                        // If only todate is provided
+                        $query = "SELECT  tsub.treatment, tsub.price,tsub.hmo, tsub.remarks, tsub.details, tsoa.date, tsub.tsubid,tsoa.time, tsoa.soaid, tsoa.dentist FROM treatmentsub tsub INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid INNER JOIN clientprofile cp ON tsub.clientId=cp.clientid WHERE (tsoa.date  >= :b) and $key = :c and dentist=:x";
 
-                    $stmt = $this->conn->prepare($query);
-                    $stmt->bindParam(':c', $sortkey);
+                        $stmt = $this->conn->prepare($query);
+                        $stmt->bindParam(':b', $fromdate);
+                        $stmt->bindParam(':c', $sortkey);
+
+
+                    } else {
+                        // No filtering if both dates are empty
+                        $query = "SELECT  tsub.treatment, tsub.price,tsub.hmo, tsub.remarks, tsub.details, tsoa.date,tsub.tsubid, tsoa.time, tsoa.soaid, tsoa.dentist FROM treatmentsub tsub INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid INNER JOIN clientprofile cp ON tsub.clientId=cp.clientid where $key = :c and dentist=:x";
+
+                        $stmt = $this->conn->prepare($query);
+                        $stmt->bindParam(':c', $sortkey);
+                    }
+                    $stmt->bindParam(':x', $dentist);
                 }
+
 
                 $stmt->execute();
                 $total = 0;

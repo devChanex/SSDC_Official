@@ -47,6 +47,17 @@
                         <div class="card-header py-3 <?php echo $cards; ?>">
 
                             <div class="row float-right" style-"float: right;">
+                                <label for="lastName">Dentist</label>
+
+
+                                <select name="dentist" id="dentist" onchange="getclientdata();">
+                                    <option value="All">All</option>
+                                    <?php
+                                    foreach ($dentist as $d) {
+                                        echo '<option value="' . htmlspecialchars($d) . '">' . htmlspecialchars($d) . '</option>';
+                                    }
+                                    ?>
+                                </select>
                                 Group By :
                                 <select id="group" name="group" onchange="getclientdata();">
 
@@ -144,7 +155,7 @@
             <script src="js/custom.js"></script>
             <script src="controllers/logOutConroller.js"></script>
             <script src="controllers/sessionController.js"></script>
-            <script src="controllers/clienttreatmentrecordperdatecontroller-v2.js"></script>
+            <script src="controllers/clienttreatmentrecordperdatecontroller-v3.js"></script>
             <script src="controllers/divPrinterController-v1.js"></script>
 
 
