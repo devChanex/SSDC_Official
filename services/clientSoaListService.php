@@ -4,7 +4,7 @@ $service = new ServiceClass();
 $search = urldecode($_POST['search']);
 $searchParam = '%' . $search . '%';
 $page = isset($_POST['page']) ? (int) $_POST['page'] : 1;
-$itemPerPage = isset($_POST['item']) ? (int) $_POST['item'] : 20;
+$itemPerPage = isset($_POST['item']) ? (int) $_POST['item'] : 10;
 $result = $service->process($searchParam, $page, $itemPerPage);
 
 class ServiceClass
