@@ -133,7 +133,7 @@
             <script src="controllers/logOutConroller.js"></script>
             <script src="controllers/sessionController.js"></script>
             <script src="controllers/attachmentViewingController.js"></script>
-            <script src="js/custom.js"></script>
+            <script src="js/custom-v1.js"></script>
             <script src="js/attachment.js"></script>
 
 

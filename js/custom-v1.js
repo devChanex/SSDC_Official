@@ -49,5 +49,23 @@ function changeDate(inputId) {
     dateInput.value = formatted;
 }
 
+function changeDateToday(inputId) {
+    const dateInput = document.getElementById(inputId);
+
+    // Get today's date
+    const today = new Date();
+
+    // Extract year, month, and day
+    const year = today.getFullYear();
+    const month = today.getMonth() + 1; // months are 0-indexed
+    const day = today.getDate(); // this gets the current day
+
+    // Pad month and day with leading zeros
+    const formatted = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+
+    // Set the value of the input
+    dateInput.value = formatted;
+}
+
 
 

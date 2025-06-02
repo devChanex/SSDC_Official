@@ -1,4 +1,4 @@
-changeDate("from");
+changeDateToday("from");
 getclientdata();
 function getclientdata() {
     //  document.getElementById("content-table").style.zoom = "70%";
