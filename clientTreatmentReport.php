@@ -89,7 +89,7 @@
                                 </div>
                                 <hr>
                                 <div style="text-align:center;">
-                                    <h2 style="margin:0; font-weight:bold;">CLIENT TREATMENT SUMMARY</h2>
+                                    <h2 style="margin:0; font-weight:bold;">PATIENT TREATMENT SUMMARY</h2>
                                     <h5 id="h3id" style="margin:0;"></h5>
                                 </div>
                                 <div style="width:180px;"></div> <!-- Spacer for symmetry, adjust width as needed -->
