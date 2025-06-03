@@ -123,11 +123,11 @@ class ServiceClass
 
                             echo '
                             <tr>
-                            <td  onclick="createTicket(\'' . $row2["tsubid"] . '\',\'' . $row2["treatment"] . '\',\'treatment\',\'treatmentsub\',\'tsubid\');" >' . $row2["treatment"] . '</td>
+                            <td>' . $row2["treatment"] . '</td>
                            
                            
-                            <td style="text-align:right;" onclick="createTicket(\'' . $row2["tsubid"] . '\',\'' . $row2["price"] . '\',\'price\',\'treatmentsub\',\'tsubid\');">' . number_format($row2["price"], 2) . '</td>
-                            <td style="text-align:center;" onclick="createTicket(\'' . $row2["tsubid"] . '\',\'' . $row2["hmo"] . '\',\'hmo\',\'treatmentsub\',\'tsubid\');">' . (!empty($row2["hmo"]) ? $row2["hmo"] : '-') . '</td>
+                            <td style="text-align:right;" >' . number_format($row2["price"], 2) . '</td>
+                            <td style="text-align:center;">' . (!empty($row2["hmo"]) ? $row2["hmo"] : '-') . '</td>
 
                             ';
 
@@ -147,7 +147,7 @@ class ServiceClass
                                 $stmt4 = $this->conn->prepare($query3);
                                 $stmt4->bindParam(':a', $tsubid);
                                 $stmt4->execute();
-                                echo '';
+
                                 if ($stmt4->rowCount() > 0) {
 
                                     while ($row4 = $stmt4->fetch(PDO::FETCH_ASSOC)) {
@@ -210,7 +210,7 @@ class ServiceClass
                                 $remainingBalance = $row2["price"] - $totalPayments;
                                 $totalBalance += $remainingBalance;
                                 echo '
-                              <td class="clickable" style="text-align:right;" onclick="showPaymentModal(' . $row2["tsubid"] . ',\'' . $row2["hmo"] . '\',' . $remainingBalance . ');">' . number_format($remainingBalance, 2) . '</td>
+                              <td style="text-align:right;"> <a href="#" class="underline-on-hover"  onclick="showPaymentModal(' . $row2["tsubid"] . ',\'' . $row2["hmo"] . '\',' . $remainingBalance . ');">' . number_format($remainingBalance, 2) . '</a></td>
                             </tr>
                             
                             ';
@@ -222,10 +222,10 @@ class ServiceClass
                                     <td></td>
                                     <td></td>
                                     
-                                   <td  class="clickable" style="text-align:right;" onclick="showPaymentModal(' . $row2["tsubid"] . ',\'' . $row2["hmo"] . '\',0);">' . number_format(0, 2) . '</td>';
+                                   <td   style="text-align:right;"> <a href="#" class="underline-on-hover"  onclick="showPaymentModal(' . $row2["tsubid"] . ',\'' . $row2["hmo"] . '\',0);">' . number_format(0, 2) . '</a></td>';
                                 } else {
                                     echo '<td colspan="3" style="text-align:center;" >No Payment Yet</td>
-                                    <td class="clickable" style="text-align:right;" onclick="showPaymentModal(' . $row2["tsubid"] . ',\'' . $row2["hmo"] . '\',' . $row2["price"] . ');">' . number_format($row2["price"], 2) . '</td>
+                                     <td style="text-align:right;"> <a href="#" class="underline-on-hover"  onclick="showPaymentModal(' . $row2["tsubid"] . ',\'' . $row2["hmo"] . '\',' . $row2["price"] . ');">' . number_format($row2["price"], 2) . '</a></td>
                                     ';
                                 }
                             }
