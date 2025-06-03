@@ -31,12 +31,27 @@ function validateLogin(username, password) {
         contentType: false,
         type: 'POST',
         success: function (result) {
-            result = result.trim();
-            console.log(result);
-            if (result == "success") {
-                window.location.href = "basecode.php";
-            } else {
-                document.getElementById("loginResult").innerHTML = "Invalid Username or Password.";
+            try {
+                var data = typeof result === "string" ? JSON.parse(result) : result;
+                if (data.result === "success") {
+
+
+                    const now = new Date();
+                    const formatted = now.toLocaleString('en-US', {
+                        dateStyle: 'medium',
+                        timeStyle: 'short',
+                    });
+
+                    var message = `We detected a new login to your account on ${formatted}. If this was you, no action is needed. If not, please secure your account immediately.`;
+
+                    sendMail(data.email, "Login Notification", "Dear " + username, message);
+
+                    window.location.href = "basecode.php";
+                } else {
+                    document.getElementById("loginResult").innerHTML = "Invalid Username or Password.";
+                }
+            } catch (e) {
+                document.getElementById("loginResult").innerHTML = "Unexpected server response.";
             }
         }
     });
