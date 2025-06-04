@@ -53,9 +53,7 @@ function addPatientPersonalInfo() {
     else if (religion == "") {
         msg = "Religion is required";
     }
-    else if (age <= 0) {
-        msg = "Please review Birth date";
-    }
+
     else if (birthday == null) {
         msg = "Birthday is required";
     }

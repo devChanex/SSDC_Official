@@ -629,7 +629,7 @@
 
 
 
-            <script src="controllers/clientRegistrationController.js"></script>
+            <script src="controllers/clientRegistrationController-v1.js"></script>
 
 
 
