@@ -189,6 +189,8 @@
                                                     <option value="Flexicare">Flexicare</option>
                                                     <option value="Intellicare">Intellicare</option>
                                                     <option value="Avega">Avega</option>
+                                                    <option value="Eastwest">Eastwest</option>
+                                                    <option value="ValuCare">ValuCare</option>
                                                     <option value="Medicard">Medicard</option>
                                                     <option value="Health Partners Dental Access, Inc.">Health Partners
                                                         Dental
