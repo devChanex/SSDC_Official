@@ -73,8 +73,8 @@
                                 <div style=" text-align:left;">
                                     <h2 style="margin:0; font-weight:bold; font-size: 1.5rem;">Smile Save Dental Care
                                     </h2>
-                                    <div style="font-size:14px;">2/F Mondo Bambini Commercial Strip Bldg., Brgy. Zapote,
-                                        Binan City, Laguna</div>
+                                       <div style="font-size:14px;">L22-24 B2 2/F Mondo Bambini Commercial Strip Bldg. Brgy. Zapote, Binan City, Laguna</div>
+                                     <div style="font-size:14px;">Contact: 0919 009 3099 / (049) 539 0277</div>
                                 </div>
                                 <hr>
                                 <div style="text-align:center;">

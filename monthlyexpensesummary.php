@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Smile Save Dental Care</title>
+    <title>Smiles & More</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -47,16 +47,42 @@
                         <div class="card-header py-3 <?php echo $cards; ?>">
 
                             <div class="row float-right" style-"float: right;">
-                                Group By :
-                                <select id="group" name="group" onchange="getclientdata();">
+                                Month :
+                                <select id="month" name="group" onchange="getclientdata();">
 
-                                    <option value="Dentist">Dentist</option>
-                                    <option value="Patient">Patient</option>
-                                    <option value="SOAID">SOAID</option>
+                                    <option value="1">JAN</option>
+                                    <option value="2">FEB</option>
+                                    <option value="3">MAR</option>
+                                    <option value="4">APR</option>
+                                    <option value="5">MAY</option>
+                                    <option value="6">JUN</option>
+                                    <option value="7">JUL</option>
+                                    <option value="8">AUG</option>
+                                    <option value="9">SEP</option>
+                                    <option value="10">OCT</option>
+                                    <option value="11">NOV</option>
+                                    <option value="12">DEC</option>
 
                                 </select>
-                                Date From : <input type="date" id="from" onchange="getclientdata();">
-                                Date To : <input type="date" id="to" onchange="getclientdata();">
+                                Year :
+                                <select id="year" name="group" onchange="getclientdata();">
+
+                                    <option value="2025">2025</option>
+                                    <option value="2026">2026</option>
+                                    <option value="2027">2027</option>
+                                    <option value="2028">2028</option>
+                                    <option value="2029">2029</option>
+                                    <option value="2030">2030</option>
+                                    <option value="2031">2031</option>
+                                    <option value="2032">2032</option>
+                                    <option value="2033">2033</option>
+                                    <option value="2034">2034</option>
+                                    <option value="2035">2035</option>
+
+
+
+                                </select>
+
 
                                 <input type="button" class="btn btn-primary" onclick="printDiv('daterange')"
                                     value="Print">
@@ -72,14 +98,14 @@
                         <div class="card-body" id="daterange">
                             <div>
                                 <div style=" text-align:left;">
-                                    <h2 style="margin:0; font-weight:bold; font-size: 1.5rem;">Smile Save Dental Care
+                                    <h2 style="margin:0; font-weight:bold; font-size: 1.5rem;">Smile Save Dental Clinic
                                     </h2>
                                     <div style="font-size:14px;">L22-24 B2 2/F Mondo Bambini Commercial Strip Bldg. Brgy. Zapote, Binan City, Laguna</div>
                                      <div style="font-size:14px;">Contact: 0919 009 3099 / (049) 539 0277</div>
                                 </div>
                                 <hr>
                                 <div style="text-align:center;">
-                                    <h2 style="margin:0; font-weight:bold;">STATEMENT OF ACCOUNT SUMMARY</h2>
+                                    <h2 style="margin:0; font-weight:bold;">MONTHLY EXPENSE SUMMARY</h2>
                                     <h5 id="h3id" style="margin:0;"></h5>
                                 </div>
                                 <div style="width:180px;"></div> <!-- Spacer for symmetry, adjust width as needed -->
@@ -138,8 +164,8 @@
             <script src="js/sb-admin-2.min.js"></script>
             <script src="controllers/logOutConroller.js"></script>
             <script src="controllers/sessionController.js"></script>
-            <script src="js/custom-v1.js"></script>
-            <script src="controllers/statementofaccountController-v2.js"></script>
+            <script src="js/custom-v2.js"></script>
+            <script src="controllers/monthlyexpensesummaryController.js"></script>
             <script src="controllers/divPrinterController-v1.js"></script>
 
 

@@ -25,6 +25,7 @@ function updatePatientPersonalInfo() {
     var company = document.getElementById("company").value;
 
     var religion = document.getElementById("religion").value;
+    var emailAddress = document.getElementById("emailAddress").value;
     const base64Image = document.getElementById('capturedPhoto').value;
 
     var msg = '';
@@ -72,7 +73,7 @@ function updatePatientPersonalInfo() {
     if (msg == '') {
         var confirmation = confirm("Are you sure you want to update this client profile?");
         if (confirmation) {
-            submitform(clientId, lastName, firstName, middleName, nickName, gender, age, birthday, occupation, homeAddress, contactNumber, guardianName, guardianOccupation, referredBy, civilStatus, religion, base64Image, hmo, cardNumber, company);
+            submitform(clientId, lastName, firstName, middleName, nickName, gender, age, birthday, occupation, homeAddress, contactNumber, guardianName, guardianOccupation, referredBy, civilStatus, religion, base64Image, hmo, cardNumber, company, emailAddress);
         }
     } else {
         showToast("errorToast", msg);
@@ -109,7 +110,7 @@ function computeAge() {
         document.getElementById("age").value = age;
     }
 }
-function submitform(clientId, lastName, firstName, middleName, nickName, gender, age, birthday, occupation, homeAddress, contactNumber, guardianName, guardianOccupation, referredBy, civilStatus, religion, imageBlob, hmo, cardNumber, company) {
+function submitform(clientId, lastName, firstName, middleName, nickName, gender, age, birthday, occupation, homeAddress, contactNumber, guardianName, guardianOccupation, referredBy, civilStatus, religion, imageBlob, hmo, cardNumber, company, emailAddress) {
     var fd = new FormData();
     fd.append('clientId', clientId);
     fd.append('lastName', lastName);
@@ -133,6 +134,7 @@ function submitform(clientId, lastName, firstName, middleName, nickName, gender,
     fd.append('hmo', hmo);
 
     fd.append('cardNumber', cardNumber);
+    fd.append('emailAddress', emailAddress);
     $.ajax({
         url: "services/clientProfileUpdateService.php",
         data: fd,

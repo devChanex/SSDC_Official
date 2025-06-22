@@ -61,33 +61,27 @@ echo '
     </a>
    
     </li>
-
-
         <li class="nav-item">
                 <a class="nav-link" href="soaList.php" >
                     <i class="fas fa-credit-card"></i>
                     <span>E-SOA/Xray</span>
                 </a>
         </li>
-        </li>
-     <li class="nav-item">
-    <a class="nav-link" href="prescriptionList.php" >
-        <i class="fas fa-notes-medical"></i>
-        <span>Prescription</span>
-    </a>
-   
-    </li>
-       
-
-               <li class="nav-item">
-    <a class="nav-link" href="expensesList.php" >
-        <i class="fas fa-shopping-cart"></i>
-        <span>Expenses</span>
-    </a>
-   
-    
+        <li class="nav-item">
+                <a class="nav-link" href="#" data-toggle="collapse" data-target="#config" aria-expanded="false"
+                    aria-controls="config">
+                    <i class="fas fa-cog"></i>
+                    <span>Configurations</span>
+                    </a>
+                <div id="config" class="collapse" aria-labelledby="config"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="treatmentList.php">Treatment List</a>
+                     
+                    </div>
+                </div>
+            </li>
             ';
-
 
 // if ($_SESSION["username"] == $superuser) {
 echo '
@@ -105,28 +99,13 @@ echo '
 <a class="collapse-item" href="clientTreatmentReport.php">Patient Treatments</a>
 <a class="collapse-item" href="incomedaterange.php">Income Statement</a>
 <a class="collapse-item" href="dailytransactionsummary.php">Daily Transaction Summary</a>
-<a class="collapse-item" href="monthlyexpensesummary.php">Monthly Expense Summary</a>
           
  
 
         </div>
     </div>
 </li>
-         <li class="nav-item">
-                <a class="nav-link" href="#" data-toggle="collapse" data-target="#config" aria-expanded="false"
-                    aria-controls="config">
-                    <i class="fas fa-cog"></i>
-                    <span>Configurations</span>
-                    </a>
-                <div id="config" class="collapse" aria-labelledby="config"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="treatmentList.php">Treatment List</a>
-                         <a class="collapse-item" href="medicineList.php">Medicine List</a>
-                     
-                    </div>
-                </div>
-            </li>
+        
         <!-- End of Sidebar -->
 
 ';

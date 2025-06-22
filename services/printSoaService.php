@@ -36,16 +36,20 @@ class ServiceClass
             if ($stmt->rowCount() > 0) {
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     echo '
-                <div class="row">
-                <div class="col-lg-6"><strong>Smile Save Dental Care</strong></div>
-                <div class="col-lg-6" style="text-align:right;">Bringing you, your best smile!</div>
+               <div class="row align-items-center">
+            <div class="col-lg-6 d-flex align-items-center" style="text-align:left;">
+                    <img src="img/logo.png" alt="Company Logo" style="height: 40px; margin-right: 10px;">
+                   <br> <strong>Smiles Save Dental Clinic</strong>
+                </div>
+               
             </div>
             <div class="row">
-                <div class="col-lg-12">2/F Mondo Bambini Commercial Strip Bldg.,
-                                    Brgy. Zapote, Binan City, Laguna</div>
-                <div class="col-lg-12">Contact us: 0919-009-3099</div>
-                <hr>
-                <div class="col-lg-12" style="text-align:center;"><strong>Electronic Statement of Account - ESOA</strong></div>
+                <div class="col-lg-12">
+                   L22-24 B2 2/F Mondo Bambini Commercial Strip Bldg. Brgy. Zapote, Binan City, Laguna
+                </div>
+                <div class="col-lg-12">
+                   Contact: 0919 009 3099 / (049) 539 0277
+                </div>
             </div>
             <hr>
             <!-- USE THIS SPACE FOR YOUR ADDITIONAL CODE SNIPPET --> 
