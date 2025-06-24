@@ -276,7 +276,7 @@ function deleteCart() {
 
 
     $.ajax({
-        url: "services/deleteprescriptionService.php",
+        url: "services/delprescriptionservice.php",
         data: fd,
         processData: false,
         contentType: false,
