@@ -3,16 +3,17 @@ setDentistSignature();
 populatePatientNames();
 
 function setDentistSignature() {
-
     var dentistName = document.getElementById("dentistName").value;
 
-    if (dentistName == 'Dr. Maria Regina I. Valencia') {
+    // Get image filename from the mapping
+    var signatureFile = dentistSignatures[dentistName];
 
-        document.getElementById("dentist-signature-box").innerHTML = '<img src="img/e-sign.png" alt="signature" style = "height: 100%; width: auto; display: block margin: 0 auto;" > ';
+    if (signatureFile) {
+        document.getElementById("dentist-signature-box").innerHTML =
+            '<img src="img/' + signatureFile + '" alt="signature" style="height: 100%; width: auto; display: block; margin: 0 auto;">';
     } else {
         document.getElementById("dentist-signature-box").innerHTML = "";
     }
-
 }
 
 function populatePatientNames() {
