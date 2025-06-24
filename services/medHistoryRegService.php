@@ -29,10 +29,89 @@ $q24 = urldecode($_POST['q24']);
 $q25 = urldecode($_POST['q25']);
 $q26 = urldecode($_POST['q26']);
 $q27 = urldecode($_POST['q27']);
+$q28 = urldecode($_POST['q28']);
+$q29 = urldecode($_POST['q29']);
+$q30 = urldecode($_POST['q30']);
+$q31 = urldecode($_POST['q31']);
+$q32 = urldecode($_POST['q32']);
+$q33 = urldecode($_POST['q33']);
+$q34 = urldecode($_POST['q34']);
+$q35 = urldecode($_POST['q35']);
+$q36 = urldecode($_POST['q36']);
+$q37 = urldecode($_POST['q37']);
+$q38 = urldecode($_POST['q38']);
+$q39 = urldecode($_POST['q39']);
+
+// Additional medical history fields
+$goodhealth = urldecode($_POST['goodhealth']);
+$treatment = urldecode($_POST['treatment']);
+$treatmentCondition = urldecode($_POST['treatmentCondition']);
+$medication = urldecode($_POST['medication']);
+$medicationCondition = urldecode($_POST['medicationCondition']);
+$allergies = urldecode($_POST['allergies']);
+$allergiesCondition = urldecode($_POST['allergiesCondition']);
+$otherAllergyField = urldecode($_POST['otherAllergyField']);
+$pregnant = urldecode($_POST['pregnant']);
+$nursing = urldecode($_POST['nursing']);
+$birthControl = urldecode($_POST['birthControl']);
+$bleeding = urldecode($_POST['bleeding']);
+
 //echo'<script>alert("tesT");</script>';
 //INHERITANCE -- CREATING NEW INSTANCE OF A CLASS (INSTANTIATE)
 $service = new ServiceClass();
-$result = $service->addMedHistory($q1, $q2, $q3, $q4, $q5, $q6, $q7, $q8, $q9, $q10, $q11, $q12, $q13, $q14, $q15, $q16, $q17, $q18, $q19, $q20, $q21, $q22, $q23, $q24, $q25, $q26, $q27);
+$result = $service->addMedHistory(
+	$q1,
+	$q2,
+	$q3,
+	$q4,
+	$q5,
+	$q6,
+	$q7,
+	$q8,
+	$q9,
+	$q10,
+	$q11,
+	$q12,
+	$q13,
+	$q14,
+	$q15,
+	$q16,
+	$q17,
+	$q18,
+	$q19,
+	$q20,
+	$q21,
+	$q22,
+	$q23,
+	$q24,
+	$q25,
+	$q26,
+	$q27,
+	$q28,
+	$q29,
+	$q30,
+	$q31,
+	$q32,
+	$q33,
+	$q34,
+	$q35,
+	$q36,
+	$q37,
+	$q38,
+	$q39,
+	$goodhealth,
+	$treatment,
+	$treatmentCondition,
+	$medication,
+	$medicationCondition,
+	$allergies,
+	$allergiesCondition,
+	$otherAllergyField,
+	$pregnant,
+	$nursing,
+	$birthControl,
+	$bleeding
+);
 echo $result;
 //USE THIS AS YOUR BASIS
 class ServiceClass
@@ -51,8 +130,59 @@ class ServiceClass
 		$stmt = $this->conn->prepare($sql);
 		return $stmt;
 	}
-	public function addMedHistory($q1, $q2, $q3, $q4, $q5, $q6, $q7, $q8, $q9, $q10, $q11, $q12, $q13, $q14, $q15, $q16, $q17, $q18, $q19, $q20, $q21, $q22, $q23, $q24, $q25, $q26, $q27)
-	{
+	public function addMedHistory(
+		$q1,
+		$q2,
+		$q3,
+		$q4,
+		$q5,
+		$q6,
+		$q7,
+		$q8,
+		$q9,
+		$q10,
+		$q11,
+		$q12,
+		$q13,
+		$q14,
+		$q15,
+		$q16,
+		$q17,
+		$q18,
+		$q19,
+		$q20,
+		$q21,
+		$q22,
+		$q23,
+		$q24,
+		$q25,
+		$q26,
+		$q27,
+		$q28,
+		$q29,
+		$q30,
+		$q31,
+		$q32,
+		$q33,
+		$q34,
+		$q35,
+		$q36,
+		$q37,
+		$q38,
+		$q39,
+		$goodhealth,
+		$treatment,
+		$treatmentCondition,
+		$medication,
+		$medicationCondition,
+		$allergies,
+		$allergiesCondition,
+		$otherAllergyField,
+		$pregnant,
+		$nursing,
+		$birthControl,
+		$bleeding
+	) {
 		//:a,:b parameter
 		try {
 			$clientId = 0;
@@ -66,7 +196,8 @@ class ServiceClass
 
 			}
 
-			$query = "Insert into medhistory (clientid,q1,q2,q3,q4,q5,q6,q7,q8,q9,q10,q11,q12,q13,q14,q15,q16,q17,q18,q19,q20,q21,q22,q23,q24,q25,q26,q27) values(:clientid,:q1,:q2,:q3,:q4,:q5,:q6,:q7,:q8,:q9,:q10,:q11,:q12,:q13,:q14,:q15,:q16,:q17,:q18,:q19,:q20,:q21,:q22,:q23,:q24,:q25,:q26,:q27)";
+			$query = "INSERT INTO medhistory (clientid,q1,q2,q3,q4,q5,q6,q7,q8,q9,q10,q11,q12,q13,q14,q15,q16,q17,q18,q19,q20,q21,q22,q23,q24,q25,q26,q27,q28,q29,q30,q31,q32,q33,q34,q35,q36,q37,q38,q39,goodhealth,treatment,treatmentCondition,medication,medicationCondition,allergies,allergiesCondition,allergiesOther,pregnant,nursing,pills,bleeding) VALUES (:clientid,:q1,:q2,:q3,:q4,:q5,:q6,:q7,:q8,:q9,:q10,:q11,:q12,:q13,:q14,:q15,:q16,:q17,:q18,:q19,:q20,:q21,:q22,:q23,:q24,:q25,:q26,:q27,:q28,:q29,:q30,:q31,:q32,:q33,:q34,:q35,:q36,:q37,:q38,:q39,:goodhealth,:treatment,:treatmentCondition,:medication,:medicationCondition,:allergies,:allergiesCondition,:otherAllergyField,:pregnant,:nursing,:birthControl,:bleeding)";
+
 			//$query = "Insert intoclientprofile(q1,q2,q3,q4,q5,q6,q7,q8,q9,q10,q11,q12,q13,q14,q15,q16,q17,q18,q19,q20,q21,q22) values (:q1,:q2,:q3,:q4,:q5,:q6,:q7,:q8,:q9,:q10,:q11,:q12,:q13,:q14,:q15,:q16,:q17,:q18,:q19,:q20,:q21,:q22)";
 			$stmt = $this->conn->prepare($query);
 			$stmt->bindParam(':clientid', $clientId);
@@ -97,6 +228,30 @@ class ServiceClass
 			$stmt->bindParam(':q25', $q25);
 			$stmt->bindParam(':q26', $q26);
 			$stmt->bindParam(':q27', $q27);
+			$stmt->bindParam(':q28', $q28);
+			$stmt->bindParam(':q29', $q29);
+			$stmt->bindParam(':q30', $q30);
+			$stmt->bindParam(':q31', $q31);
+			$stmt->bindParam(':q32', $q32);
+			$stmt->bindParam(':q33', $q33);
+			$stmt->bindParam(':q34', $q34);
+			$stmt->bindParam(':q35', $q35);
+			$stmt->bindParam(':q36', $q36);
+			$stmt->bindParam(':q37', $q37);
+			$stmt->bindParam(':q38', $q38);
+			$stmt->bindParam(':q39', $q39);
+			$stmt->bindParam(':goodhealth', $goodhealth);
+			$stmt->bindParam(':treatment', $treatment);
+			$stmt->bindParam(':treatmentCondition', $treatmentCondition);
+			$stmt->bindParam(':medication', $medication);
+			$stmt->bindParam(':medicationCondition', $medicationCondition);
+			$stmt->bindParam(':allergies', $allergies);
+			$stmt->bindParam(':allergiesCondition', $allergiesCondition);
+			$stmt->bindParam(':otherAllergyField', $otherAllergyField);
+			$stmt->bindParam(':pregnant', $pregnant);
+			$stmt->bindParam(':nursing', $nursing);
+			$stmt->bindParam(':birthControl', $birthControl);
+			$stmt->bindParam(':bleeding', $bleeding);
 
 			$stmt->execute();
 			return "success";

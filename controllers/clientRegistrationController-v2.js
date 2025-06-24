@@ -87,6 +87,37 @@ function addPatientPersonalInfo() {
 
 }
 
+function toggleCondition(isYes, id) {
+    const input = document.getElementById(id);
+    input.disabled = !isYes;
+    if (!isYes) {
+        input.value = '';
+    }
+}
+function toggleConditionCheck(isYes, elementId) {
+    const element = document.getElementById(elementId);
+    if (element) {
+        element.style.display = isYes ? 'block' : 'none';
+
+        // Optional: uncheck all options if hidden
+        if (!isYes) {
+            Array.from(element.querySelectorAll('input')).forEach(input => {
+                if (input.type === 'checkbox' || input.type === 'text') input.checked = false;
+            });
+        }
+    }
+}
+
+function toggleSpecifyInput(checkbox, inputId) {
+    const inputField = document.getElementById(inputId);
+    if (checkbox.checked) {
+        inputField.style.display = 'block';
+    } else {
+        inputField.style.display = 'none';
+        inputField.querySelector('input').value = '';
+    }
+}
+
 function computeAge() {
 
     var birthday = document.getElementById("birthday").value;
@@ -168,6 +199,7 @@ function submitClientform(type) {
         var guardianName = document.getElementById("guardianName").value;
         var guardianOccupation = document.getElementById("guardianOccupation").value;
         var referredBy = document.getElementById("referredBy").value;
+        var emailAddress = document.getElementById("emailAddress").value;
         var fd = new FormData();
         fd.append('lastName', lastName);
         fd.append('lastName', lastName);
@@ -188,6 +220,7 @@ function submitClientform(type) {
         fd.append('profilePhoto', imageBlob);
         fd.append('company', company);
         fd.append('hmo', hmo);
+        fd.append('emailAddress', emailAddress);
 
         fd.append('cardNumber', cardNumber);
         $.ajax({
@@ -243,11 +276,26 @@ function submitMedHistory(type) {
     var q25 = document.getElementById("q25").checked;
     var q26 = document.getElementById("q26").checked;
     var q27 = document.getElementById("q27").value;
+    var q28 = document.getElementById("q28").checked;
+    var q29 = document.getElementById("q29").checked;
+    var q30 = document.getElementById("q30").checked;
+    var q31 = document.getElementById("q31").checked;
+    var q32 = document.getElementById("q32").checked;
+    var q33 = document.getElementById("q33").checked;
+    var q34 = document.getElementById("q34").checked;
+    var q35 = document.getElementById("q35").checked;
+    var q36 = document.getElementById("q36").checked;
+    var q37 = document.getElementById("q37").checked;
+    var q38 = document.getElementById("q38").checked;
+    var q39 = document.getElementById("q39").checked;
+
 
     submitMedHistoryform(
         q1, q2, q3, q4, q5, q6, q7, q8, q9, q10,
         q11, q12, q13, q14, q15, q16, q17, q18, q19, q20,
-        q21, q22, q23, q24, q25, q26, q27, type
+        q21, q22, q23, q24, q25, q26, q27,
+        q28, q29, q30, q31, q32, q33, q34, q35, q36, q37, q38, q39,
+        type
     );
 
 
@@ -256,7 +304,22 @@ function submitMedHistory(type) {
 function submitMedHistoryform(
     q1, q2, q3, q4, q5, q6, q7, q8, q9, q10,
     q11, q12, q13, q14, q15, q16, q17, q18, q19, q20,
-    q21, q22, q23, q24, q25, q26, q27, type) {
+    q21, q22, q23, q24, q25, q26, q27,
+    q28, q29, q30, q31, q32, q33, q34, q35, q36, q37, q38, q39,
+    type) {
+
+    var goodhealth = document.querySelector('input[name="goodHealth"]:checked')?.value || null;
+    var treatment = document.querySelector('input[name="underTreatment"]:checked')?.value || null;
+    var treatmentCondition = document.getElementById("treatmentCondition").value.trim() || null;
+    var medication = document.querySelector('input[name="medication"]:checked')?.value || null;
+    var medicationCondition = document.getElementById("medicationCondition").value.trim() || null;
+    var allergies = document.querySelector('input[name="allergicTo"]:checked')?.value || null;
+    var allergiesCondition = Array.from(document.querySelectorAll('input[name="allergies"]:checked')).map(cb => cb.value) || null;
+    var otherAllergyField = document.getElementById("otherAllergyField").value.trim() || null;
+    var pregnant = document.querySelector('input[name="pregnant"]:checked')?.value || null;
+    var nursing = document.querySelector('input[name="nursing"]:checked')?.value || null;
+    var birthControl = document.querySelector('input[name="birthControl"]:checked')?.value || null;
+    var bleeding = document.getElementById("bleedingTime").value;
     var fd = new FormData();
 
 
@@ -287,6 +350,32 @@ function submitMedHistoryform(
     fd.append('q25', q25);
     fd.append('q26', q26);
     fd.append('q27', q27);
+    fd.append('q28', q28);
+    fd.append('q29', q29);
+    fd.append('q30', q30);
+    fd.append('q31', q31);
+    fd.append('q32', q32);
+    fd.append('q33', q33);
+    fd.append('q34', q34);
+    fd.append('q35', q35);
+    fd.append('q36', q36);
+    fd.append('q37', q37);
+    fd.append('q38', q38);
+    fd.append('q39', q39);
+    fd.append('goodhealth', goodhealth);
+    fd.append('treatment', treatment);
+    fd.append('treatmentCondition', treatmentCondition);
+    fd.append('medication', medication);
+    fd.append('medicationCondition', medicationCondition);
+    fd.append('allergies', allergies);
+    fd.append('allergiesCondition', allergiesCondition.join(','));
+    fd.append('otherAllergyField', otherAllergyField);
+    fd.append('pregnant', pregnant);
+    fd.append('nursing', nursing);
+    fd.append('birthControl', birthControl);
+    fd.append("bleeding", bleeding);
+
+
 
 
     $.ajax({
