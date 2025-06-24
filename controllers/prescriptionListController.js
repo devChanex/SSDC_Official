@@ -274,7 +274,7 @@ function deleteCart() {
     const id = document.getElementById("modal-prescriptionid").value;
     fd.append('id', id);
 
-
+    alert(id);
     $.ajax({
         url: "services/deleteprescriptionService.php",
         data: fd,
