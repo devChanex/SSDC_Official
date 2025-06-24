@@ -268,11 +268,12 @@ function submitCart() {
 
 
 function deleteCart() {
-    const id = document.getElementById("modal-prescriptionid").value;
+
 
     var fd = new FormData();
-
+    const id = document.getElementById("modal-prescriptionid").value;
     fd.append('id', id);
+
 
     $.ajax({
         url: "services/deleteprescriptionService.php",
@@ -294,14 +295,6 @@ function deleteCart() {
 
             $('#deleteExpenseModal').modal('hide');
             getclientdata();
-        },
-        error: function (xhr, status, error) {
-            console.error("AJAX Error:", {
-                status: status,
-                error: error,
-                response: xhr.responseText
-            });
-            toastError("An error occurred while deleting the prescription.");
         }
 
     });
