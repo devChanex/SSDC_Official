@@ -11,9 +11,6 @@ if (strpos($image, 'data:image/png;base64,') === 0) {
 }
 $image = base64_decode($image);
 
-// $conn = new mysqli("localhost", "root", "", "sam_db");
-// $conn = new mysqli("216.218.206.42", "smilesan_admin", "G[aZ=F,G*~OT", "smilesan_official");
-
 $conn = new mysqli("216.218.206.42", "smilesav_user", "H[)dnAZC-6AE", "smilesav_system");
 
 if ($conn->connect_error) {
@@ -32,13 +29,17 @@ if ($checkStmt->num_rows > 0) {
     // Exists → UPDATE
     $sql = "UPDATE toothremarks SET image = ?, remarks = ? WHERE clientid = ? AND tooth = ?";
     $stmt = $conn->prepare($sql);
+
+    $imageParam = null; // init as null
     $stmt->bind_param("bsis", $imageParam, $remarks, $clientid, $tooth);
     $imageParam = $image;
     $stmt->send_long_data(0, $image);
 } else {
     // Doesn't exist → INSERT
-    $sql = "INSERT INTO toothremarks (tooth, image, clientid,remarks) VALUES (?, ?, ?,?)";
+    $sql = "INSERT INTO toothremarks (tooth, image, clientid, remarks) VALUES (?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
+
+    $imageParam = null;
     $stmt->bind_param("sbis", $tooth, $imageParam, $clientid, $remarks);
     $imageParam = $image;
     $stmt->send_long_data(1, $image);
