@@ -110,6 +110,9 @@
                                     <label for="religion">Religion</label>
                                     <input type="text" name="religion" id="religion" placeholder="Religion"
                                         class="form-control mb-2" value="<?php echo $_GET['religion'] ?? ''; ?>">
+                                    <label for="emailAddress">EmailAddress</label>
+                                    <input type="text" name="emailAddress" id="emailAddress" placeholder="Email Address"
+                                        class="form-control mb-2" value="<?php echo $_GET['emailAddress'] ?? ''; ?>">
                                 </div>
                             </div>
 
