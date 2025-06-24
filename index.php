@@ -43,6 +43,25 @@
                 <?php include_once("bars/toast.php"); ?>
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
+ <div class="col-lg-12 d-flex align-items-center justify-content-between">
+                        <!-- Left Side: Logo and Clinic Info -->
+                        <div class="d-flex align-items-center">
+                            <img src="img/logoRevised.png" alt="Logo"
+                                style="max-height:100px; margin-right: 20px;">
+                            <div>
+                                <h4 class="mb-1"><strong>SMILE SAVE DENTAL CARE CLINIC</strong></h4>
+                                <p class="mb-0">L22-24 B2 2/F Mondo Bambini Commercial Strip Bldg. Brgy. Zapote, Binan City, Laguna</p>
+                               <p class="mb-0"> 0919 009 3099 / (049) 539 0277</p>
+                            </div>
+                        </div>
+
+                        <!-- Right Side: Back Button -->
+                        <a href="waiver.php" class="btn btn-warning btn-icon-split">
+                            <span class="icon text-white-50"><i class="fas fa-fw fa-sign"></i></span>
+                            <span class="text">Ortho Waiver</span>
+                        </a>
+                    </div>
+
                     <!-- Nav Tabs -->
                     <ul class="nav nav-tabs" id="myTabs" role="tablist" style="display:none;">
                         <li class="nav-item" role="presentation">
@@ -106,6 +125,7 @@
                                                 <label for="nickName">Nickname</label>
                                                 <input type="text" name="nickName" id="nickName" placeholder="Nickname"
                                                     class="form-control mb-2">
+                                                
                                             </div>
 
                                             <!-- Demographics -->
@@ -130,6 +150,9 @@
                                                 <label for="religion">Religion</label>
                                                 <input type="text" name="religion" id="religion" placeholder="Religion"
                                                     class="form-control mb-2">
+                                                <label for="email">Email Address</label>
+                                                <input type="email" name="emailAddress" id="emailAddress"
+                                                    placeholder="Email Address" class="form-control mb-2">
                                             </div>
                                         </div>
 
@@ -162,6 +185,7 @@
                                                 <label for="referredBy">Referred By</label>
                                                 <input type="text" name="referredBy" id="referredBy"
                                                     placeholder="Referred By" class="form-control mb-2">
+                                                
                                             </div>
 
                                             <div class="col-lg-4 mb-4">
