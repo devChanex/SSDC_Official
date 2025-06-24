@@ -28,7 +28,7 @@ class ServiceClass
     //DO NOT INCLUDE THIS CODE
     public function process($search, $page, $itemPerPage)
     {
-        $superuser = "ssdc_admin2020";
+        $superuser = "nikesarmiento";
 
         $offset = ($page - 1) * $itemPerPage;  // Calculate the offset for pagination
 
@@ -73,9 +73,7 @@ class ServiceClass
      
                
                 <td align="center">
-                 <a href="updateClient.php?civilStatus=' . $row["civilstatus"] . '&company=' . $row["company"] . '&cardNumber=' . $row["cardnumber"] . '&hmo=' . $row["hmo"] . '&religion=' . $row["religion"] . '&clientid=' . $row["clientid"] . '&lname=' . $row["lname"] . '&fname=' . $row["fname"] . '&mname=' . $row["mdname"] . '&nick=' . $row["nickname"] . '&age=' . $age . '&sex=' . $row["sex"] . '&occupation=' . $row["occupation"] . '
-                &birthDate=' . $row["birthDate"] . '&mobileNumber=' . $row["mobileNumber"] . '&homeAddress=' . $row["homeAddress"] . '
-                &guardianName=' . $row["guardianName"] . '&gOccupation=' . $row["gOccupation"] . '&refferedBy=' . $row["refferedBy"] . '
+                 <a href="updateClient.php?civilStatus=' . $row["civilstatus"] . '&company=' . $row["company"] . '&cardNumber=' . $row["cardnumber"] . '&hmo=' . $row["hmo"] . '&religion=' . $row["religion"] . '&clientid=' . $row["clientid"] . '&lname=' . $row["lname"] . '&fname=' . $row["fname"] . '&mname=' . $row["mdname"] . '&nick=' . $row["nickname"] . '&age=' . $age . '&sex=' . $row["sex"] . '&occupation=' . $row["occupation"] . '&birthDate=' . $row["birthDate"] . '&mobileNumber=' . $row["mobileNumber"] . '&homeAddress=' . $row["homeAddress"] . '&guardianName=' . $row["guardianName"] . '&gOccupation=' . $row["gOccupation"] . '&refferedBy=' . $row["refferedBy"] . '&emailAddress=' . $row["emailAddress"] . '
                 " class="btn btn-warning btn-circle" title="Update Client Profile"><i class="fas fa-edit"></i></a>';
 
                 //medhistory checker
@@ -97,17 +95,22 @@ class ServiceClass
                 if ($stmt2->rowCount() > 0) {
 
                     while ($row2 = $stmt2->fetch(PDO::FETCH_ASSOC)) {
-                        echo '<a href="viewConsent.php?dentist=' . $row2["dentist"] . '&date=' . $row2["date"] . '&consentid=' . $row2["id"] . '&civilStatus=' . $row2["civilstatus"] . '&company=' . $row2["company"] . '&cardNumber=' . $row2["cardnumber"] . '&hmo=' . $row2["hmo"] . '&religion=' . $row2["religion"] . '&clientid=' . $row["clientid"] . '&lname=' . $row["lname"] . '&fname=' . $row2["fname"] . '&mname=' . $row2["mdname"] . '&nick=' . $row2["nickname"] . '&age=' . $row2["age"] . '&sex=' . $row["sex"] . '&occupation=' . $row["occupation"] . '
-                        &birthDate=' . $row2["birthDate"] . '&mobileNumber=' . $row2["mobileNumber"] . '&homeAddress=' . $row2["homeAddress"] . '
-                        &guardianName=' . $row2["guardianName"] . '&gOccupation=' . $row2["gOccupation"] . '&refferedBy=' . $row2["refferedBy"] . '
-                        " class="btn btn-primary btn-circle" title="View Client Consent"><i class="fas fa-file"></i></a>
+                        echo '<a href="viewConsent.php?dentist=' . $row2["dentist"] . '&date=' . $row2["date"] . '&consentid=' . $row2["id"] . '&civilStatus=' . $row2["civilstatus"] . '&company=' . $row2["company"] . '&cardNumber=' . $row2["cardnumber"] . '&hmo=' . $row2["hmo"] . '&religion=' . $row2["religion"] . '&clientid=' . $row["clientid"] . '&lname=' . $row["lname"] . '&fname=' . $row2["fname"] . '&mname=' . $row2["mdname"] . '&nick=' . $row2["nickname"] . '&age=' . $row2["age"] . '&sex=' . $row["sex"] . '&occupation=' . $row["occupation"] . '&birthDate=' . $row2["birthDate"] . '&mobileNumber=' . $row2["mobileNumber"] . '&homeAddress=' . $row2["homeAddress"] . '&guardianName=' . $row2["guardianName"] . '&gOccupation=' . $row2["gOccupation"] . '&refferedBy=' . $row2["refferedBy"] . '" class="btn btn-primary btn-circle" title="View Client Consent"><i class="fas fa-file"></i></a>
                         ';
                     }
 
-                } else {
-                    echo ' 
-                     <a href="addConsent.php?civilStatus=' . $row["civilstatus"] . '&company=' . $row["company"] . '&cardNumber=' . $row["cardnumber"] . '&hmo=' . $row["hmo"] . '&religion=' . $row["religion"] . '&clientid=' . $row["clientid"] . '&lname=' . $row["lname"] . '&fname=' . $row["fname"] . '&mname=' . $row["mdname"] . '&nick=' . $row["nickname"] . '&age=' . $age . '&sex=' . $row["sex"] . '&occupation=' . $row["occupation"] . '&birthDate=' . $row["birthDate"] . '&mobileNumber=' . $row["mobileNumber"] . '&homeAddress=' . $row["homeAddress"] . '&guardianName=' . $row["guardianName"] . '&gOccupation=' . $row["gOccupation"] . '&refferedBy=' . $row["refferedBy"] . '" class="btn btn-success btn-circle" title="Add Client Consent"><i class="fas fa-file"></i></a>
-                 ';
+                }
+
+                $query2 = "select clientId from orthowaiver where clientid=:a limit 1";
+                $stmt2 = $this->conn->prepare($query2);
+                $stmt2->bindParam(':a', $row["clientid"]);
+                $stmt2->execute();
+                if ($stmt2->rowCount() > 0) {
+
+                    while ($row2 = $stmt2->fetch(PDO::FETCH_ASSOC)) {
+                        echo '<a href="viewOrthoWaiver.php?clientId=' . $row2["clientId"] . '" class="btn bg-purple btn-circle" title="View Orthodontics Waiver"><i class="fas fa-sign"></i></a>
+                        ';
+                    }
 
                 }
 

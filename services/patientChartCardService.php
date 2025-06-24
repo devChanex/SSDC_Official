@@ -63,7 +63,7 @@ class ServiceClass
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 Total Fee</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="dashPatient">
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="dashPatient" style="margin-left:20px;">
                                                 ' . number_format($totalFee, 2) . '</div>
                                         </div>
                                         <div class="col-auto">
@@ -82,7 +82,7 @@ class ServiceClass
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                 Total Payment</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="dashEarnings">
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="dashEarnings" style="margin-left:20px;">
                                                ' . number_format($totalPayment, 2) . '
                                             </div>
                                         </div>
@@ -103,7 +103,7 @@ class ServiceClass
                                             <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Remaining Balance</div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800" style="margin-left:20px;"
                                                         id="dashhmoRecord">' . number_format($balance, 2) . '</div>
                                                 </div>
 
