@@ -29,13 +29,13 @@ class ServiceClass
 
         $query = "delete from prescription where rxid=:id";
         $stmt = $this->conn->prepare(query: $query);
-        $stmt->bindParam(':id', $rxid, PDO::PARAM_INT);
+        $stmt->bindParam(':id', $rxid);
 
         $stmt->execute();
 
         $query = "delete from prescriptionsub where rxid=:id";
         $stmt = $this->conn->prepare(query: $query);
-        $stmt->bindParam(':id', $rxid, PDO::PARAM_INT);
+        $stmt->bindParam(':id', $rxid);
 
         $stmt->execute();
         echo 'success';
