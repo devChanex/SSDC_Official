@@ -12,7 +12,9 @@ if (strpos($image, 'data:image/png;base64,') === 0) {
 $image = base64_decode($image);
 
 // $conn = new mysqli("localhost", "root", "", "sam_db");
-$conn = new mysqli("216.218.206.42", "smilesan_admin", "G[aZ=F,G*~OT", "smilesan_official");
+// $conn = new mysqli("216.218.206.42", "smilesan_admin", "G[aZ=F,G*~OT", "smilesan_official");
+
+$conn = new mysqli("216.218.206.42", "smilesav_user", "H[)dnAZC-6AE", "smilesav_system");
 
 if ($conn->connect_error) {
     echo json_encode(["status" => "error", "message" => $conn->connect_error]);
