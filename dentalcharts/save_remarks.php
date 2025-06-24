@@ -10,7 +10,7 @@ if (strpos($image, 'data:image/png;base64,') === 0) {
     $image = substr($image, strlen('data:image/png;base64,'));
 }
 $image = base64_decode($image);
-
+//test
 // $conn = new mysqli("localhost", "root", "", "sam_db");
 // $conn = new mysqli("216.218.206.42", "smilesan_admin", "G[aZ=F,G*~OT", "smilesan_official");
 
