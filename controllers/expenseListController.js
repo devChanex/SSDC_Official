@@ -92,9 +92,10 @@ function submitCart() {
         success: function (result) {
             if (result == "success") {
                 if (expenseid == "") {
-                    toastSuccess("Expense Updated Successfully");
-                } else {
                     toastSuccess("Expense Added Successfully");
+                } else {
+                    toastSuccess("Expense Updated Successfully");
+
                 }
                 $('#editExpenseModal').modal('hide');
                 getclientdata();
