@@ -47,7 +47,7 @@ class ServiceClass
         // Using prepared statements for query to avoid SQL injection
         $query = "SELECT * FROM expenses WHERE $dynamics ";
 
-
+        //test
 
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':search', $search, PDO::PARAM_STR);
