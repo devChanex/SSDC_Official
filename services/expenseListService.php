@@ -28,78 +28,56 @@ class ServiceClass
     //DO NOT INCLUDE THIS CODE
     public function process($search, $page, $itemPerPage)
     {
-        $superuser = "ssdc_admin2020";
-
-        $offset = ($page - 1) * $itemPerPage;  // Calculate the offset for pagination
-
+        $offset = ($page - 1) * $itemPerPage;
         $searchFields = ['particular', 'description', 'amount', 'date'];
-        $dynamics = '';
+        $where = '';
 
         if (!empty($search)) {
             $orConditions = [];
             foreach ($searchFields as $field) {
                 $orConditions[] = "$field LIKE :search";
             }
-            $dynamics = '(' . implode(' OR ', $orConditions) . ')';
+            $where = 'WHERE (' . implode(' OR ', $orConditions) . ')';
         }
 
-        $dynamics .= 'ORDER BY date ASC LIMIT :limit OFFSET :offset';
-        // Using prepared statements for query to avoid SQL injection
-        $query = "SELECT * FROM expenses WHERE $dynamics ";
-
-        //test
+        $query = "SELECT * FROM expenses $where ORDER BY date ASC LIMIT :limit OFFSET :offset";
 
         $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':search', $search, PDO::PARAM_STR);
-        $stmt->bindParam(':limit', $itemPerPage, PDO::PARAM_INT);  // Ensure itemPerPage is treated as an integer
-        $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);  // Ensure offset is treated as an integer
+
+        if (!empty($search)) {
+            $stmt->bindValue(':search', $search, PDO::PARAM_STR);
+        }
+
+        $stmt->bindValue(':limit', $itemPerPage, PDO::PARAM_INT);
+        $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+
         $stmt->execute();
-        if ($stmt->rowCount() > 0) {
 
-            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-
-                echo '
-                <tr style="color: black;">
-                <td>' . $row["date"] . '</td>
-           
-                <td>' . ucwords(strtolower($row["particular"])) . '</td>
-              
-                <td>' . ucwords(strtolower($row["description"])) . '</td>
-        
-                <td style="text-align:right">' . number_format($row["amount"], decimals: 2) . '</td>
-               
-     
-               
-               <td align="center">
-        <button 
-            class="btn btn-primary btn-circle edit-btn" 
-            data-toggle="modal" 
-            data-target="#editExpenseModal"
-            data-id="' . htmlspecialchars($row["expenseid"]) . '"
-            data-date="' . htmlspecialchars($row["date"]) . '"
-            data-particular="' . htmlspecialchars($row["particular"]) . '"
-            data-description="' . htmlspecialchars($row["description"]) . '"
-            data-amount="' . htmlspecialchars($row["amount"]) . '"
-        >
-            <i class="fas fa-edit"></i>
-        </button>
-
-
-         <button 
-            class="btn btn-danger btn-circle edit-btn" 
-            data-toggle="modal" 
-            data-target="#deleteExpenseModal"
-            data-id="' . htmlspecialchars($row["expenseid"]) . '"
-           
-        >
-            <i class="fas fa-trash"></i>
-        </button>
-    </td>
-            </tr>';
-            }
-
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            echo '
+        <tr style="color: black;">
+            <td>' . $row["date"] . '</td>
+            <td>' . ucwords(strtolower($row["particular"])) . '</td>
+            <td>' . ucwords(strtolower($row["description"])) . '</td>
+            <td style="text-align:right">' . number_format($row["amount"], 2) . '</td>
+            <td align="center">
+                <button class="btn btn-primary btn-circle edit-btn" data-toggle="modal" data-target="#editExpenseModal"
+                    data-id="' . htmlspecialchars($row["expenseid"]) . '"
+                    data-date="' . htmlspecialchars($row["date"]) . '"
+                    data-particular="' . htmlspecialchars($row["particular"]) . '"
+                    data-description="' . htmlspecialchars($row["description"]) . '"
+                    data-amount="' . htmlspecialchars($row["amount"]) . '">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button class="btn btn-danger btn-circle edit-btn" data-toggle="modal" data-target="#deleteExpenseModal"
+                    data-id="' . htmlspecialchars($row["expenseid"]) . '">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </td>
+        </tr>';
         }
     }
+
 
 }
 
