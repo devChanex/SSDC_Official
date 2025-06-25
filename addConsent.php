@@ -50,11 +50,19 @@
                         </div>
                         <div class="card-body" id="bodyResult">
                             <input type="hidden" value="<?php echo $_GET['clientid']; ?>" id="clientId">
-                            <div class="row m-3">
-                                <div class="col-lg-12 d-flex justify-content-center">
-                                    <img src="img/logo.png" alt="Logo">
+                            <div style="display: flex; align-items: center; margin-left: 0px; margin-top:0px;">
+                                <img src="img/logoFinal.png" alt="Logo" style="max-height: 50px; margin-right: 10px;">
+                                <div>
+                                    <h4 style="margin-bottom: 5px; font-weight: bold;">Smile Save Dental Care</h4>
+                                    <p style="margin: 0;">
+                                        L22-24 B2 2/F Mondo Bambini Commercial Strip Bldg. Brgy. Zapote,
+                                        Binan City,
+                                        Laguna<br>
+                                        Contact: 0919 009 3099 / (049) 539 0277
+                                    </p>
                                 </div>
                             </div>
+
                             <hr>
                             <div class="row">
                                 <div class="col-lg-6 d-flex align-items-center">
