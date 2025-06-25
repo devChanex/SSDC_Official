@@ -43,6 +43,25 @@ function getPatientCards() {
     });
     document.getElementById("content-table").style.zoom = "60%";
 }
+function getclientdentalChart() {
+    var id = document.getElementById("clientid").value;
+    var fd = new FormData();
+    fd.append('id', id);
+    $.ajax({
+        url: "services/patientDentalChartService.php",
+        data: fd,
+        processData: false,
+        contentType: false,
+        type: 'POST',
+        success: function (result) {
+            document.getElementById("dental-chart-region").innerHTML = result;
+
+        }
+
+    });
+    document.getElementById("content-table").style.zoom = "60%";
+}
+
 
 $(document).on('click', '.edit-btn', function () {
     $('#edit-soaid').val($(this).data('soaid'));
