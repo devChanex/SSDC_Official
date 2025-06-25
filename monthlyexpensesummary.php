@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Smiles & More</title>
+    <title>Smile Save Dental Care</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -100,8 +100,9 @@
                                 <div style=" text-align:left;">
                                     <h2 style="margin:0; font-weight:bold; font-size: 1.5rem;">Smile Save Dental Clinic
                                     </h2>
-                                    <div style="font-size:14px;">L22-24 B2 2/F Mondo Bambini Commercial Strip Bldg. Brgy. Zapote, Binan City, Laguna</div>
-                                     <div style="font-size:14px;">Contact: 0919 009 3099 / (049) 539 0277</div>
+                                    <div style="font-size:14px;">L22-24 B2 2/F Mondo Bambini Commercial Strip Bldg.
+                                        Brgy. Zapote, Binan City, Laguna</div>
+                                    <div style="font-size:14px;">Contact: 0919 009 3099 / (049) 539 0277</div>
                                 </div>
                                 <hr>
                                 <div style="text-align:center;">
