@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Smiles & More</title>
+    <title>Smile Save Dental Care</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -116,12 +116,12 @@
 
 
                                     <div style="text-align:center;margin:0px;">
-                                        <img src="img/logo.png"
-                                            style="max-width:250px; align-items:center" />
+                                        <img src="img/logo.png" style="max-width:250px; align-items:center" />
                                     </div>
 
                                     <p style="text-align: center; color: black; margin: 0;font-size:13px;">
-                                        L22-24 B2 2/F Mondo Bambini Commercial Strip Bldg. Brgy. Zapote, Binan City, Laguna
+                                        L22-24 B2 2/F Mondo Bambini Commercial Strip Bldg. Brgy. Zapote, Binan City,
+                                        Laguna
 
                                     </p>
 
