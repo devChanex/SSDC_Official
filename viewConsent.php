@@ -46,94 +46,104 @@
                     <!-- Page Heading -->
                     <div class="card shadow mb-12">
                         <div class="card-header py-3 <?php echo $cards; ?>">
-                            <h6 class="m-0 font-weight-bold">View Consent</h6>
+                            View Patient Consent
+                            <button id="divPrinter" class="btn btn-success btn-sm btn-circle float-right"
+                                onclick="printDiv('bodyResult')" title="Print E-SOA"><i
+                                    class="fas fa-print"></i></button>
                         </div>
                         <div class="card-body" id="bodyResult">
                             <input type="hidden" value="<?php echo $_GET['consentid']; ?>" id="consentId">
                             <input type="hidden" value="<?php echo $_GET['clientid']; ?>" id="clientId">
-
-                            <div class="row m-3">
-                                <div class="col-lg-12 d-flex justify-content-center">
-                                    <img src="img/logo.png" alt="Logo">
+                            <div style="display: flex; align-items: center; margin-left: 0px; margin-top:0px;">
+                                <img src="img/logoFinal.png" alt="Logo" style="max-height: 50px; margin-right: 10px;">
+                                <div>
+                                    <h4 style="margin-bottom: 5px; font-weight: bold;">Smile Save Dental Care</h4>
+                                    <p style="margin: 0;">
+                                        L22-24 B2 2/F Mondo Bambini Commercial Strip Bldg. Brgy. Zapote,
+                                        Binan City,
+                                        Laguna<br>
+                                        Contact: 0919 009 3099 / (049) 539 0277
+                                    </p>
                                 </div>
                             </div>
+
                             <hr>
-                            <div class="row">
-                                <div class="col-lg-6 d-flex align-items-center">
-                                    <strong class="mr-3">Name: </strong>
+                            <div style="display: flex; flex-wrap: wrap; margin-bottom: 0px; margin-left: 20px;  ">
+                                <div style="width: 50%; display: flex; align-items: center;">
+                                    <strong style="margin-right: 8px;">Name:</strong>
                                     <?php echo trim($_GET["lname"]) . ', ' . trim($_GET['fname']) . ' ' . trim($_GET['mname']); ?>
                                 </div>
-                                <div class="col-lg-6 d-flex align-items-center">
-                                    <strong class="mr-3">Address: </strong>
+                                <div style="width: 50%; display: flex; align-items: center;">
+                                    <strong style="margin-right: 8px;">Address:</strong>
                                     <?php echo trim($_GET["homeAddress"]); ?>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-lg-6 d-flex align-items-center">
-                                    <strong class="mr-3">Birthdate: </strong>
+
+                            <div style="display: flex; flex-wrap: wrap; margin-bottom: 0px; margin-left: 20px;  ">
+                                <div style="width: 50%; display: flex; align-items: center;">
+                                    <strong style="margin-right: 8px;">Birthdate:</strong>
                                     <?php echo trim($_GET["birthDate"]); ?>
                                 </div>
-                                <div class="col-lg-6 d-flex align-items-center">
-                                    <strong class="mr-3">Age: </strong>
+                                <div style="width: 50%; display: flex; align-items: center;">
+                                    <strong style="margin-right: 8px;">Age:</strong>
                                     <?php
-
-                                    $dob = new DateTime($_GET["birthDate"]); // assuming dob is something like '1990-04-15'
+                                    $dob = new DateTime($_GET["birthDate"]);
                                     $today = new DateTime();
-                                    $age = $today->diff($dob)->y;
-                                    echo $age;
-
-
+                                    echo $today->diff($dob)->y;
                                     ?>
                                 </div>
                             </div>
 
-                            <div class="row">
-                                <div class="col-lg-6 d-flex align-items-center">
-                                    <strong class="mr-3">Gender: </strong>
+                            <div style="display: flex; flex-wrap: wrap; margin-bottom: 0px; margin-left: 20px;  ">
+                                <div style="width: 50%; display: flex; align-items: center;">
+                                    <strong style="margin-right: 8px;">Gender:</strong>
                                     <?php echo trim($_GET["sex"]); ?>
                                 </div>
-                                <div class="col-lg-6 d-flex align-items-center">
-                                    <strong class="mr-3">Occupation: </strong>
+                                <div style="width: 50%; display: flex; align-items: center;">
+                                    <strong style="margin-right: 8px;">Occupation:</strong>
                                     <?php echo trim($_GET["occupation"]); ?>
                                 </div>
                             </div>
 
-                            <div class="row">
-                                <div class="col-lg-6 d-flex align-items-center">
-                                    <strong class="mr-3">Civil Status: </strong>
+                            <div style="display: flex; flex-wrap: wrap; margin-bottom: 0px; margin-left: 20px;  ">
+                                <div style="width: 50%; display: flex; align-items: center;">
+                                    <strong style="margin-right: 8px;">Civil Status:</strong>
                                     <?php echo trim($_GET["civilStatus"]); ?>
                                 </div>
-                                <div class="col-lg-6 d-flex align-items-center">
-                                    <strong class="mr-3">Religion: </strong>
+                                <div style="width: 50%; display: flex; align-items: center;">
+                                    <strong style="margin-right: 8px;">Religion:</strong>
                                     <?php echo trim($_GET["religion"]); ?>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-lg-6 d-flex align-items-center">
-                                    <strong class="mr-3">Contact Number: </strong>
+
+                            <div style="display: flex; flex-wrap: wrap; margin-bottom: 0px; margin-left: 20px;  ">
+                                <div style="width: 50%; display: flex; align-items: center;">
+                                    <strong style="margin-right: 8px;">Contact Number:</strong>
                                     <?php echo trim($_GET["mobileNumber"]); ?>
                                 </div>
-                                <div class="col-lg-6 d-flex align-items-center">
-                                    <strong class="mr-3">Referred By: </strong>
+                                <div style="width: 50%; display: flex; align-items: center;">
+                                    <strong style="margin-right: 8px;">Referred By:</strong>
                                     <?php echo trim($_GET["refferedBy"]); ?>
                                 </div>
                             </div>
+
                             <hr>
                             <div class="row">
-                                <div class="col-lg-12">
-                                    Please CHECK if you have had or any of the following:
-                                </div>
+
                                 <div class="col-lg-12 ml-4" id="medHistory">
 
 
                                 </div>
                             </div>
 
-                            <br>
+                            <br> <br> <br> <br> <br> <br> <br> <br>
                             <hr>
+                            <br> <br> <br> <br> <br> <br> <br> <br> <br><br> <br> <br> <br>
                             <!-- Page Heading -->
-                            <h1 class="h3 mb-4  text-center">Informed Consent</h1>
+                            <div style="text-align:center;">
+                                <h1 class="h3">Informed Consent</h1>
 
+                            </div>
                             <!-- Consent Card -->
 
 
@@ -291,6 +301,7 @@
             <script src="controllers/logOutConroller.js"></script>
             <script src="controllers/sessionController.js"></script>
             <script src="controllers/consentViewController.js"></script>
+            <script src="controllers/divPrinterController-v1.js"></script>
 
             <script src="js/custom-v1.js"></script>
 </body>

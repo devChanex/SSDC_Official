@@ -47,12 +47,18 @@ class ServiceClass
                                             <div class="col-lg-6 mb-3">
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="goodHealth"
-                                                        id="goodHealthYes" value="yes">
+                                                        id="goodHealthYes" value="yes" ';
+                    if ($row['goodhealth'] === 'yes')
+                        echo 'checked';
+                    echo '>
                                                     <label class="form-check-label" for="goodHealthYes">Yes</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="goodHealth"
-                                                        id="goodHealthNo" value="no">
+                                                        id="goodHealthNo" value="no"';
+                    if ($row['goodhealth'] === 'no')
+                        echo 'checked';
+                    echo '>
                                                     <label class="form-check-label" for="goodHealthNo">No</label>
                                                 </div>
                                             </div>
@@ -73,13 +79,20 @@ class ServiceClass
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="underTreatment"
                                                         id="underTreatmentYes" value="yes"
-                                                        onclick="toggleCondition(true,\'treatmentCondition\')">
+                                                        onclick="toggleCondition(true,\'treatmentCondition\')" ';
+                    if ($row['treatment'] === 'yes')
+                        echo 'checked';
+                    echo '>
                                                     <label class="form-check-label" for="underTreatmentYes">Yes</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="underTreatment"
                                                         id="underTreatmentNo" value="no"
-                                                        onclick="toggleCondition(false,\'treatmentCondition\')">
+                                                        onclick="toggleCondition(false,\'treatmentCondition\')"';
+                    if ($row['treatment'] === 'no') {
+                        echo 'checked';
+                    }
+                    echo '>
                                                     <label class="form-check-label" for="underTreatmentNo">No</label>
                                                 </div>
                                             </div>
@@ -90,7 +103,17 @@ class ServiceClass
                                                     the
                                                     condition being treated?</label>
                                                 <input type="text" id="treatmentCondition" name="treatmentCondition"
-                                                    class="form-control" placeholder="Describe the condition" disabled>
+                                                    class="form-control" placeholder="Describe the condition" value="';
+                    if ($row['treatmentCondition'] === 'null' || empty($row['treatmentCondition'])) {
+                        echo '"';
+                    } else {
+                        echo htmlspecialchars($row['treatmentCondition']) . '"';
+                    }
+                    if ($row['treatment'] === 'no') {
+                        echo ' disabled';
+                    }
+
+                    echo '>
                                             </div>
                                         </div>
                                         <!-- 3 -->
@@ -108,13 +131,21 @@ class ServiceClass
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="medication"
                                                         id="medicationYes" value="yes"
-                                                        onclick="toggleCondition(true, \'medicationCondition\')">
+                                                        onclick="toggleCondition(true, \'medicationCondition\')" ';
+                    if ($row['medication'] === 'yes') {
+                        echo 'checked';
+                    }
+                    echo '>
                                                     <label class="form-check-label" for="medicationYes">Yes</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="medication"
                                                         id="medicationNo" value="no"
-                                                        onclick="toggleCondition(false, \'medicationCondition\')">
+                                                        onclick="toggleCondition(false, \'medicationCondition\')" ';
+                    if ($row['medication'] === 'no') {
+                        echo 'checked';
+                    }
+                    echo '>
                                                     <label class="form-check-label" for="medicationNo">No</label>
                                                 </div>
                                             </div>
@@ -125,7 +156,16 @@ class ServiceClass
                                                     specify:</label>
                                                 <input type="text" id="medicationCondition" name="medicationCondition"
                                                     class="form-control" placeholder="List medications being taken"
-                                                    disabled>
+                                                    value="';
+                    if ($row['medicationCondition'] === 'null' || empty($row['medicationCondition'])) {
+                        echo '"';
+                    } else {
+                        echo htmlspecialchars($row['medicationCondition']) . '"';
+                    }
+                    if ($row['medication'] === 'no') {
+                        echo ' disabled';
+                    }
+                    echo '>
                                             </div>
                                         </div>
                                         <!-- 4 -->
@@ -136,24 +176,42 @@ class ServiceClass
                                                     following:</label>
                                             </div>
 
-                                            <!-- Yes/No Radio Buttons -->
+                                              <!-- Yes/No Radio Buttons -->
                                             <div class="col-lg-6 mb-3">
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="allergicTo"
                                                         id="allergicToYes" value="yes"
-                                                        onclick="toggleConditionCheck(true, \'allergyOptions\')">
+                                                        onclick="toggleConditionCheck(true, \'allergyOptions\')" ';
+                    if ($row['allergies'] === 'yes') {
+                        echo 'checked';
+                    }
+                    echo '>
                                                     <label class="form-check-label" for="allergicToYes">Yes</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="allergicTo"
                                                         id="allergicToNo" value="no"
-                                                        onclick="toggleConditionCheck(false, \'allergyOptions\')">
+                                                        onclick="toggleConditionCheck(false, \'allergyOptions\')"
+                                                        ';
+                    if ($row['allergies'] === 'no') {
+                        echo 'checked';
+                    }
+                    echo '>
                                                     <label class="form-check-label" for="allergicToNo">No</label>
                                                 </div>
                                             </div>
 
                                             <!-- Allergy Options -->
-                                            <div class="col-lg-12 mb-3" id="allergyOptions" style="display: block;">
+                                            <div class="col-lg-12 mb-3" id="allergyOptions" ';
+
+                    if ($row['allergies'] === 'no') {
+                        echo ' style="display: none;"';
+                    } else {
+                        echo ' style="display: block;"';
+                    }
+                    $allergyValues = isset($row["allergiesCondition"]) ? explode(",", $row["allergiesCondition"]) : [];
+
+                    echo '>
 
                                                 <div class="row">
 
@@ -161,14 +219,14 @@ class ServiceClass
                                                         <div class="form-check">
                                                             <input class="form-check-input" type="checkbox"
                                                                 id="allergyLocalAnesthetic" name="allergies"
-                                                                value="Local Anesthetic">
+                                                                value="Local Anesthetic" ' . (in_array('Local Anesthetic', $allergyValues) ? 'checked' : '') . '>
                                                             <label class="form-check-label"
                                                                 for="allergyLocalAnesthetic">Local Anesthetic (ex.
                                                                 Lidocaine)</label>
                                                         </div>
                                                         <div class="form-check">
                                                             <input class="form-check-input" type="checkbox"
-                                                                id="allergyAspirin" name="allergies" value="Aspirin">
+                                                                id="allergyAspirin" name="allergies" value="Aspirin" ' . (in_array('Aspirin', $allergyValues) ? 'checked' : '') . '>
                                                             <label class="form-check-label"
                                                                 for="allergyAspirin">Aspirin</label>
                                                         </div>
@@ -178,14 +236,14 @@ class ServiceClass
                                                         <div class="form-check">
                                                             <input class="form-check-input" type="checkbox"
                                                                 id="allergyPenicillin" name="allergies"
-                                                                value="Penicillin">
+                                                                value="Penicillin" ' . (in_array('Penicillin', $allergyValues) ? 'checked' : '') . '>
                                                             <label class="form-check-label"
                                                                 for="allergyPenicillin">Penicillin /
                                                                 Antibiotics</label>
                                                         </div>
                                                         <div class="form-check">
                                                             <input class="form-check-input" type="checkbox"
-                                                                id="allergyLatex" name="allergies" value="Latex">
+                                                                id="allergyLatex" name="allergies" value="Latex" ' . (in_array('Latex', $allergyValues) ? 'checked' : '') . '>
                                                             <label class="form-check-label"
                                                                 for="allergyLatex">Latex</label>
                                                         </div>
@@ -194,7 +252,7 @@ class ServiceClass
                                                     <div class="col-md-4">
                                                         <div class="form-check">
                                                             <input class="form-check-input" type="checkbox"
-                                                                id="allergySulfa" name="allergies" value="Sulfa">
+                                                                id="allergySulfa" name="allergies" value="Sulfa" ' . (in_array('Sulfa', $allergyValues) ? 'checked' : '') . '>
                                                             <label class="form-check-label" for="allergySulfa">Sulfa
                                                                 Drugs</label>
                                                         </div>
@@ -202,17 +260,33 @@ class ServiceClass
                                                         <div class="form-check">
                                                             <input class="form-check-input" type="checkbox"
                                                                 id="allergyOthers" name="allergies" value="Others"
-                                                                onchange="toggleSpecifyInput(this, \'otherAllergySpecify\')">
+                                                                onchange="toggleSpecifyInput(this, \'otherAllergySpecify\')" ' . (in_array('Others', $allergyValues) ? 'checked' : '') . '>
                                                             <label class="form-check-label"
                                                                 for="allergyOthers">Others</label>
                                                         </div>
 
                                                         <!-- Input to specify other allergies -->
                                                         <div class="mt-2" id="otherAllergySpecify"
-                                                            style="display: none;">
+                                                            ';
+                    if (!in_array('Others', $allergyValues)) {
+                        echo 'style="display: none;"';
+                    } else {
+                        echo 'style="display: block;"';
+                    }
+                    echo '
+                                                            >
                                                             <input type="text" class="form-control"
                                                                 id="otherAllergyField" name="otherAllergyDetail"
-                                                                placeholder="Please specify other allergy">
+                                                                placeholder="Please specify other allergy" value="';
+                    if ($row['allergiesOther'] === 'null' || empty($row['allergiesOther'])) {
+                        echo '';
+                    } else {
+                        echo htmlspecialchars($row['allergiesOther']);
+                    }
+                    echo '"
+
+
+                                                                >
                                                         </div>
                                                     </div>
                                                 </div>
@@ -225,7 +299,7 @@ class ServiceClass
                                                     <label for="bleedingTime" class="form-label mb-0 me-2"
                                                         style="white-space: nowrap;">5. Bleeding Time:</label>
                                                     <input class="form-control flex-grow-1" type="text"
-                                                        id="bleedingTime" placeholder="Specify bleeding time">
+                                                        id="bleedingTime" placeholder="Specify bleeding time" value="' . $row["bleeding"] . '">
                                                 </div>
                                             </div>
                                         </div>
@@ -239,15 +313,23 @@ class ServiceClass
                                             <div class="col-lg-6 mb-3">
                                                 <label class="form-label mb-0">Are you pregnant?</label>
                                             </div>
-                                            <div class="col-lg-6 mb-3">
+                                                     <div class="col-lg-6 mb-3">
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="pregnant"
-                                                        id="pregnantYes" value="yes">
+                                                        id="pregnantYes" value="yes"';
+                    if ($row['pregnant'] === 'yes') {
+                        echo 'checked';
+                    }
+                    echo '>
                                                     <label class="form-check-label" for="pregnantYes">Yes</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="pregnant"
-                                                        id="pregnantNo" value="no">
+                                                        id="pregnantNo" value="no"';
+                    if ($row['pregnant'] === 'no') {
+                        echo 'checked';
+                    }
+                    echo '>
                                                     <label class="form-check-label" for="pregnantNo">No</label>
                                                 </div>
                                             </div>
@@ -256,15 +338,23 @@ class ServiceClass
                                             <div class="col-lg-6 mb-3">
                                                 <label class="form-label mb-0">Are you nursing?</label>
                                             </div>
-                                            <div class="col-lg-6 mb-3">
+                                              <div class="col-lg-6 mb-3">
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="nursing"
-                                                        id="nursingYes" value="yes">
+                                                        id="nursingYes" value="yes"';
+                    if ($row['nursing'] === 'yes') {
+                        echo 'checked';
+                    }
+                    echo '>
                                                     <label class="form-check-label" for="nursingYes">Yes</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="nursing"
-                                                        id="nursingNo" value="no">
+                                                        id="nursingNo" value="no" ';
+                    if ($row['nursing'] === 'no') {
+                        echo 'checked';
+                    }
+                    echo '>
                                                     <label class="form-check-label" for="nursingNo">No</label>
                                                 </div>
                                             </div>
@@ -274,15 +364,23 @@ class ServiceClass
                                                 <label class="form-label mb-0">Are you taking birth control
                                                     pills?</label>
                                             </div>
-                                            <div class="col-lg-6 mb-3">
+                                                <div class="col-lg-6 mb-3">
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="birthControl"
-                                                        id="birthControlYes" value="yes">
+                                                        id="birthControlYes" value="yes" ';
+                    if ($row['pills'] === 'yes') {
+                        echo 'checked';
+                    }
+                    echo '>
                                                     <label class="form-check-label" for="birthControlYes">Yes</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="birthControl"
-                                                        id="birthControlNo" value="no">
+                                                        id="birthControlNo" value="no"';
+                    if ($row['pills'] === 'no') {
+                        echo 'checked';
+                    }
+                    echo '>
                                                     <label class="form-check-label" for="birthControlNo">No</label>
                                                 </div>
                                             </div>
