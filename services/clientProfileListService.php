@@ -99,6 +99,11 @@ class ServiceClass
                         ';
                     }
 
+                } else {
+                    echo ' 
+                     <a href="addConsent.php?civilStatus=' . $row["civilstatus"] . '&company=' . $row["company"] . '&cardNumber=' . $row["cardnumber"] . '&hmo=' . $row["hmo"] . '&religion=' . $row["religion"] . '&clientid=' . $row["clientid"] . '&lname=' . $row["lname"] . '&fname=' . $row["fname"] . '&mname=' . $row["mdname"] . '&nick=' . $row["nickname"] . '&age=' . $age . '&sex=' . $row["sex"] . '&occupation=' . $row["occupation"] . '&birthDate=' . $row["birthDate"] . '&mobileNumber=' . $row["mobileNumber"] . '&homeAddress=' . $row["homeAddress"] . '&guardianName=' . $row["guardianName"] . '&gOccupation=' . $row["gOccupation"] . '&refferedBy=' . $row["refferedBy"] . '" class="btn btn-success btn-circle" title="Add Client Consent"><i class="fas fa-file"></i></a>
+                 ';
+
                 }
 
                 $query2 = "select clientId from orthowaiver where clientid=:a limit 1";

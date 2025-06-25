@@ -43,7 +43,7 @@ class ServiceClass
                     echo '
 <div style="display: flex; margin: 10px 30px;">
     <div style="width: 50%;">1. Are you in good health?</div>
-    <div style="width: 50%;"><strong>' . ($row["goodhealth"] === "yes" ? "Yes" : ($row["goodHealth"] === "no" ? "No" : "<em>Not specified</em>")) . '</strong></div>
+    <div style="width: 50%;"><strong>' . ($row["goodhealth"] === "yes" ? "Yes" : ($row["goodhealth"] === "no" ? "No" : "<em>Not specified</em>")) . '</strong></div>
 </div>
 
 <div style="display: flex; margin: 10px 30px;">
