@@ -293,20 +293,14 @@ class ServiceClass
                                             </div>
                                         </div>
                                         <!-- 5 -->
-                                        <div class="row">
-                                            <div class="col-lg-12 mb-3">
-                                                <div class="d-flex align-items-center gap-2">
-                                                    <label for="bleedingTime" class="form-label mb-0 me-2"
-                                                        style="white-space: nowrap;">5. Bleeding Time:</label>
-                                                    <input class="form-control flex-grow-1" type="text"
+                                    
+                                                    <input class="form-control flex-grow-1" type="hidden"
                                                         id="bleedingTime" placeholder="Specify bleeding time" value="' . $row["bleeding"] . '">
-                                                </div>
-                                            </div>
-                                        </div>
+                                             
 
                                         <div class="row">
                                             <div class="col-lg-12 mb-2">
-                                                <label class="form-label fw-bold">6. For women only:</label>
+                                                <label class="form-label fw-bold">5. For women only:</label>
                                             </div>
 
                                             <!-- Are you pregnant? -->

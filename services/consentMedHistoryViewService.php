@@ -113,14 +113,11 @@ class ServiceClass
 
 
 
-<div style="display: flex; margin: 10px 30px;">
-    <div style="width: 50%;">5. Bleeding Time :</div>
-    <div style="width: 50%;"><strong>' . $row["bleeding"] . '</strong></div>
-</div>
+
 
 <div style="margin: 10px 30px;">
     <div style="font-weight: bold; margin-bottom: 8px;">
-        6. For women only:
+        5. For women only:
     </div>
 
     <!-- Are you pregnant? -->

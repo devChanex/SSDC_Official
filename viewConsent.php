@@ -147,80 +147,115 @@
                             <!-- Consent Card -->
 
 
-                            <div class="text-justify">
+                            <div style="margin-left:30px;margin-right:30px;text-align:justify;">
 
-                                <p><strong>Treatment To Be Done:</strong> I understand and consent to have
-                                    any treatment done by the dentist after the procedure, the risks &
-                                    benefits & cost have been fully explained. These treatments include, but
-                                    are not limited to, x-rays, cleanings, periodontal treatments, fillings,
-                                    crowns, bridges, all types of extraction, root canals, and/or dentures,
-                                    local anesthetics & surgical cases.</p>
+                                <p><strong>TREATMENT TO BE DONE:</strong> I understand and consent to have any treatment
+                                    done by the dentist after the procedure, the risks & benefits & cost have been fully
+                                    explained. These treatments include, but are not limited to, x-rays, cleanings,
+                                    periodontal treatments, fillings, crowns, bridges, all types of extraction, root
+                                    canals, and or dentures, local anesthetics & surgical cases.</p>
 
-                                <p><strong>Drugs & Medications:</strong> I understand that antibiotics,
-                                    analgesics, and other medications can cause allergic reactions like
-                                    redness and swelling of tissues, pain, itching, vomiting, and/or
-                                    anaphylactic shock.</p>
+                                <p><strong>DRUGS & MEDICATIONS:</strong> I understand that antibiotics, analgesics, and
+                                    other medications can cause allergic reactions like redness and swelling of tissues,
+                                    pain, itching, vomiting, and or anaphylactic shock. </p>
 
-                                <p><strong>Changes in Treatment Plan:</strong> I understand that during
-                                    treatment it may be necessary to change and add procedures because of
-                                    conditions found while working on the teeth that were not discovered
-                                    during examination. I give my permission to the dentist to make any/all
-                                    changes and additions as necessary with my responsibility to pay all the
-                                    costs agreed.</p>
+                                <p><strong>CHANGES IN TREATMENT PLAN:</strong> I understand that during treatment it may
+                                    be necessary to change and add procedures because of conditions found while working
+                                    on the teeth that were not discovered during examination. For example, root canal
+                                    therapy may be needed following routine restorative procedures. I give my permission
+                                    to the dentist to make any/all changes and additions as necessary with my
+                                    responsibility to pay all the costs agreed.
+                                </p>
 
-                                <p><strong>Radiograph:</strong> I understand that an x-ray or radiograph may
-                                    be necessary as a diagnostic aid, but this does not provide 100%
-                                    assurance for treatment accuracy as complications may arise.</p>
+                                <p><strong>RADIOGRAPH:</strong> I understand that an x-ray shot or a radiograph may be
+                                    necessary as part of diagnostic aid to come up with tentative diagnosis of my dental
+                                    problem and to make a good treatment plan but this will not give me a 100% assurance
+                                    for the accuracy of the treatment since all dental treatments are subject to
+                                    unpredictable complications that later on may lead to sudden change of treatment
+                                    plan and subject to new charges.</p>
 
-                                <p><strong>Removal of Teeth:</strong> I understand the alternatives to tooth
-                                    removal and the associated risks. I understand that removing teeth may
-                                    not eliminate all infections and that further treatment may be needed. I
-                                    accept the risks involved including pain, swelling, dry socket, nerve
-                                    damage, and possible need for specialist referral.</p>
+                                <p><strong>REMOVAL OF TEETH:</strong> I understand the alternatives to tooth removal
+                                    (root canal therapy, crowns & periodontal surgery, etc.) and I completely understand
+                                    these alternatives, including their risk and benefits prior to authorizing the
+                                    dentist to remove teeth and any other structures necessary for reasons above. I
+                                    understand that removing teeth does not always remove all the infections, if present
+                                    and it may be necessary to have further treatment. I understand the risk involved in
+                                    having teeth removed, such as pain, swelling, spread of infection, dry socket, and
+                                    fractured jaw, loss of feeling on the teeth, lips, tongue and surrounding tissue
+                                    that can last for an indefinite period of time. I understand that I may need further
+                                    treatment under a specialist if complications arise during or following treatment.
+                                </p>
 
-                                <p><strong>Crowns and Bridges:</strong> I understand that preparing a tooth
-                                    may irritate the nerve and may lead to sensitivity or root canal
-                                    therapy. I am aware of limitations with color matching and the risks of
-                                    delay in returning for permanent cementation. I accept responsibility
-                                    for remakes and final approval before cementation.</p>
+                                <p><strong>CROWNS AND BRIDGES:</strong> Preparing a tooth may irritate the nerve tissue
+                                    in the center of the tooth, leaving the tooth extra sensitive to heat, cold &
+                                    pressure. Treating such irritation may involve using special toothpastes, mouth
+                                    rinses or root canal therapy. I understand that sometimes it is not possible to
+                                    match the color of natural teeth exactly with artificial teeth and further
+                                    understand that I may be wearing temporary crowns which may come off easily and that
+                                    I must be careful to ensure that they are kept on until the permanent crowns are
+                                    delivered. It is my responsibility to return for permanent cementation within 20
+                                    days from tooth preparation, as excessive delay may allow for tooth movement, which
+                                    may necessitate a remake of the crown, bridge and cap. I understand there will be
+                                    additional charges for remakes due to my delaying of permanent cementation. I
+                                    realize that final opportunity to make changes in my new crown, bridges or cap
+                                    (including shape, fit, size & color) will be before permanent cementation.
+                                </p>
 
-                                <p><strong>Endodontics (Root Canal):</strong> I understand root canal
-                                    treatment is not guaranteed to save a tooth. Complications may occur. I
-                                    accept the risks including file breakage and the need for referral to a
-                                    specialist, which may result in additional costs.</p>
+                                <p><strong>ENDODONTICS (ROOT CANAL):</strong> I understand there is no guarantee that a
+                                    root canal treatment will save a tooth & that complications can occur from the
+                                    treatment and that occasionally root canal filling materials may extend through the
+                                    tooth which does not necessarily affect the success of the treatment. I understand
+                                    that endodontic files & drills are very fine instruments & stresses vented in their
+                                    manufacture and calcifications present in teeth can cause them to break during use.
+                                    I understand that referral to the endodontist for additional treatments may be
+                                    necessary following any root canal treatment & I agree that I am responsible for any
+                                    additional cost for treatment performed by the endodontist. I understand that a
+                                    tooth may require removal in spite of all efforts to save it. </p>
 
-                                <p><strong>Periodontal Disease:</strong> I understand the seriousness of
-                                    periodontal disease and treatment options. I understand that any dental
-                                    procedure can affect periodontal health.</p>
+                                <p><strong>PERIODONTAL DISEASE:</strong> I understand that periodontal disease is a
+                                    serious condition causing gum & bone inflammation or loss and that can lead
+                                    eventually to the loss of my teeth. I understand the alternative treatment plans to
+                                    correct periodontal disease, including gum surgery, tooth extractions with or
+                                    without replacement. I understand that undertaking any dental procedures may have
+                                    future adverse effect on my periodontal conditions. </p>
 
-                                <p><strong>Fillings:</strong> I understand the care required post-filling
-                                    and the possibility of sensitivity or the need for further treatment
-                                    such as crowns or root canals.</p>
+                                <p><strong>FILLINGS:</strong> I understand that care must be exercised in chewing on
+                                    fillings, especially during the first 24 hours to avoid breakage. I understand that
+                                    a more extensive filling or a crown may be required, as additional decay or fracture
+                                    may become evident after initial excavation. I understand that significant
+                                    sensitivity is a common but usually temporary, after-effect of a newly placed
+                                    filling. I further understand that filling a tooth may irritate the nerve tissue
+                                    creating sensitivity & treating such sensitivity could require root canal therapy or
+                                    extractions.</p>
 
-                                <p><strong>Dentures:</strong> I understand the challenges with dentures,
-                                    especially immediate ones, and the need for adjustments and permanent
-                                    relines. I understand the responsibility of returning on time and the
-                                    associated fees for delays or modifications.</p>
+                                <p><strong>DENTURES:</strong> I understand that wearing of dentures can be difficult.
+                                    Sore spots, altered speech and difficulty in eating are common problems. Immediate
+                                    dentures (placement of denture immediately after extractions) may be painful and may
+                                    require considerable adjusting in several relines. I understand that it is my
+                                    responsibility to return for delivery of dentures. I understand that failure to keep
+                                    my delivery appointment may result in poorly fitted dentures. If a remake is
+                                    required due to my delays of more than 30 days, there will be additional charges. A
+                                    permanent reline will be needed later, which is not included in the initial fee. I
+                                    understand that all adjustment or alterations of any kind after this initial period
+                                    is subject to charges.</p>
 
-                                <p><strong>I understand that Dentistry is not an exact science and that no
-                                        dentist can properly guarantee accurate results all the
-                                        time.</strong></p>
+                                <p><strong>I understand that Dentistry is not an exact science and that no dentist can
+                                        properly guarantee accurate results all the time.</strong></p>
 
-                                <p>I hereby authorize any of the doctors/dental auxiliaries to proceed with
-                                    and perform the dental restorations and treatments as explained to me. I
-                                    understand that these are subject to modification depending on
-                                    undiagnosable circumstances that may arise during the course of
-                                    treatment.</p>
+                                <p>I hereby authorize any of the doctors/dental auxiliaries to proceed with and perform
+                                    the dental restorations and treatments as explained to me. I understand that these
+                                    are subject to modification depending on undiagnosable circumstances that may arise
+                                    during the course of treatment.</p>
 
-                                <p>I understand that regardless of any dental insurance coverage I may have,
-                                    I am responsible for payment of dental fees. I agree to pay any
-                                    attorney's fees, collection fees, or court costs that may be incurred to
-                                    satisfy any obligation to this office.</p>
+                                <p>I understand that regardless of any dental insurance coverage I may have, I am
+                                    responsible for payment of dental fees. I agree to pay any attorney's fees,
+                                    collection fee, or court costs that may be incurred to satisfy any obligation to
+                                    this office.</p>
 
-                                <p>All treatment was properly explained to me, and in case of any untoward
-                                    circumstances, I will not hold the attending dentist liable as I am
-                                    undergoing this treatment of my own free will and with full trust and
-                                    confidence in their care.</p>
+                                <p>All treatment was properly explained to me and in case of any untoward circumstances
+                                    that may arise during the procedure, the attending dentist will not be held liable
+                                    since it is my free will, with full trust and confidence in him/her to undergo
+                                    dental treatment under his/her care.</p>
 
                             </div>
 
