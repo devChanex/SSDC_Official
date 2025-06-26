@@ -76,7 +76,10 @@
                                             </th>
                                             <th onclick="sortTable(this)">Description <span class="sort-icon"></span>
                                             </th>
-                                            <th onclick="sortTable(this)">amount <span class="sort-icon"></span>
+                                            <th onclick="sortTable(this)">Amount <span class="sort-icon"></span>
+                                            </th>
+                                            </th>
+                                            <th onclick="sortTable(this)">Mode of payment <span class="sort-icon"></span>
                                             </th>
 
                                             <th>Action</th>
@@ -164,6 +167,16 @@
                                             <label>Amount</label>
                                             <input type="number" step="0.01" class="form-control" name="amount"
                                                 id="modal-amount">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Mode of payment</label>
+                                            <select class="form-control" name="mop" id="modal-mop">
+                                            <option value="">-- Select Mode of Payment --</option>
+                                            <option value="Cash">Cash</option>
+                                            <option value="Credit Card">Credit Card</option>
+                                            <option value="Gcash">Gcash</option>
+                                            <option value="Bank Transfer">Bank Transfer</option>
+                                            </select>
                                         </div>
                                     </form>
 

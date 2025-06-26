@@ -34,7 +34,7 @@ class ServiceClass
     {
 
 
-        $searchFields = ['particular', 'description', 'amount', 'date'];
+        $searchFields = ['particular', 'description', 'amount', 'date', 'mop'];
         $dynamics = '';
 
         if (!empty($search)) {

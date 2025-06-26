@@ -30,20 +30,22 @@ class ServiceClass
         $description = $data['modal-description'];
         $amount = $data['modal-amount'];
         $date = $data['modal-date'];
+        $mop = $data['modal-mop'];
         $query = "";
 
         if ($expenseid != '') {
-            $query = "update expenses set particular=:particular,description=:description,amount=:amount,date=:date where expenseid=:expenseid";
+            $query = "update expenses set particular=:particular,description=:description,amount=:amount,date=:date,mop=:mop where expenseid=:expenseid";
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':expenseid', $expenseid, PDO::PARAM_INT);
         } else {
-            $query = "INSERT INTO expenses (particular,description,amount,date) VALUES (:particular,:description,:amount,:date)";
+            $query = "INSERT INTO expenses (particular,description,amount,date,mop) VALUES (:particular,:description,:amount,:date,:mop)";
             $stmt = $this->conn->prepare($query);
         }
         $stmt->bindParam(':particular', $particular);
         $stmt->bindParam(':description', $description);
         $stmt->bindParam(':amount', $amount);
         $stmt->bindParam(':date', $date);
+        $stmt->bindParam(':mop', $mop);
         $stmt->execute();
         echo 'success';
 

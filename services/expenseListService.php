@@ -29,7 +29,7 @@ class ServiceClass
     public function process($search, $page, $itemPerPage)
     {
         $offset = ($page - 1) * $itemPerPage;
-        $searchFields = ['particular', 'description', 'amount', 'date'];
+        $searchFields = ['particular', 'description', 'amount', 'date', 'mop'];
         $where = '';
 
         if (!empty($search)) {
@@ -60,14 +60,16 @@ class ServiceClass
             <td>' . ucwords(strtolower($row["particular"])) . '</td>
             <td>' . ucwords(strtolower($row["description"])) . '</td>
             <td style="text-align:right">' . number_format($row["amount"], 2) . '</td>
+            <td>' . ucwords(strtolower($row["mop"])) . '</td>
             <td align="center">
-                <button class="btn btn-primary btn-circle edit-btn" data-toggle="modal" data-target="#editExpenseModal"
-                    data-id="' . htmlspecialchars($row["expenseid"]) . '"
-                    data-date="' . htmlspecialchars($row["date"]) . '"
-                    data-particular="' . htmlspecialchars($row["particular"]) . '"
-                    data-description="' . htmlspecialchars($row["description"]) . '"
-                    data-amount="' . htmlspecialchars($row["amount"]) . '">
-                    <i class="fas fa-edit"></i>
+               <button class="btn btn-primary btn-circle edit-btn" data-toggle="modal" data-target="#editExpenseModal"
+                data-id="' . htmlspecialchars($row["expenseid"]) . '"
+                data-date="' . htmlspecialchars($row["date"]) . '"
+                data-particular="' . htmlspecialchars($row["particular"]) . '"
+                data-description="' . htmlspecialchars($row["description"]) . '"
+                data-amount="' . htmlspecialchars($row["amount"]) . '"
+                data-mop="' . htmlspecialchars($row["mop"]) . '">
+                <i class="fas fa-edit"></i>
                 </button>
                 <button class="btn btn-danger btn-circle edit-btn" data-toggle="modal" data-target="#deleteExpenseModal"
                     data-id="' . htmlspecialchars($row["expenseid"]) . '">
