@@ -22,7 +22,7 @@
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link href="css/sortable.css" rel="stylesheet">
-    <link href="css/custom.css" rel="stylesheet">
+    <link href="css/custom-v1.css" rel="stylesheet">
 
 </head>
 
@@ -79,7 +79,8 @@
                                             <th onclick="sortTable(this)">Amount <span class="sort-icon"></span>
                                             </th>
                                             </th>
-                                            <th onclick="sortTable(this)">Mode of payment <span class="sort-icon"></span>
+                                            <th onclick="sortTable(this)">Mode of payment <span
+                                                    class="sort-icon"></span>
                                             </th>
 
                                             <th>Action</th>
@@ -171,17 +172,18 @@
                                         <div class="form-group">
                                             <label>Mode of payment</label>
                                             <select class="form-control" name="mop" id="modal-mop">
-                                            <option value="">-- Select Mode of Payment --</option>
-                                            <option value="Cash">Cash</option>
-                                            <option value="Credit Card">Credit Card</option>
-                                            <option value="Gcash">Gcash</option>
-                                            <option value="MAYA">MAYA</option>
-                                            <option value="Cheque (PNB)">Cheque (PNB)</option>
-                                            <option value="Cheque (UB)">Cheque (UB)</option>
-                                            <option value="Bank Transfer(PNB)">Bank Transfer(PNB)</option>
-                                            <option value="Bank Transfer (BDO)">Bank Transfer (BDO)</option>
-                                            <option value="Bank Transfer (UB)">Bank Transfer (UB)</option>
-                                            <option value="Bank Transfer (Metrobank)">Bank Transfer (Metrobank)</option>
+                                                <option value="">-- Select Mode of Payment --</option>
+                                                <option value="Cash">Cash</option>
+                                                <option value="Credit Card">Credit Card</option>
+                                                <option value="Gcash">Gcash</option>
+                                                <option value="MAYA">MAYA</option>
+                                                <option value="Cheque (PNB)">Cheque (PNB)</option>
+                                                <option value="Cheque (UB)">Cheque (UB)</option>
+                                                <option value="Bank Transfer(PNB)">Bank Transfer(PNB)</option>
+                                                <option value="Bank Transfer (BDO)">Bank Transfer (BDO)</option>
+                                                <option value="Bank Transfer (UB)">Bank Transfer (UB)</option>
+                                                <option value="Bank Transfer (Metrobank)">Bank Transfer (Metrobank)
+                                                </option>
                                             </select>
                                         </div>
                                     </form>
