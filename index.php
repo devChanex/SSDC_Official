@@ -58,7 +58,7 @@
                         <!-- Right Side: Back Button -->
                         <a href="waiver.php" class="btn btn-warning btn-icon-split">
                             <span class="icon text-white-50"><i class="fas fa-fw fa-sign"></i></span>
-                            <span class="text">Ortho Waiver</span>
+                            <span class="text">Ortho Consent</span>
                         </a>
                     </div>
 
