@@ -427,6 +427,53 @@ class ServiceClass
         <span><strong>Outstanding Balance:</strong></span>
         <span>₱' . number_format($grandTotalBalance + $grandtotalOtherPayments, 2) . '</span>
     </div>
+
+      <h5 style="margin-bottom: 15px; text-align: center;"> <strong> Expense Summary</strong></h5>
+    
+';
+
+        $query0 = "select * from expenses where date = :a";
+
+        $stmt0 = $this->conn->prepare($query0);
+        $stmt0->bindParam(':a', $fromdate);
+
+
+        $stmt0->execute();
+        $totalExpenses = 0;
+        echo '
+                 <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+        <span><strong>Particular</strong></span>
+          <span><strong>Description</strong></span>
+           <span><strong>Mode of Payment</strong></span>
+        <span>Amount</span>
+    </div>
+                ';
+
+        if ($stmt0->rowCount() > 0) {
+            while ($row0 = $stmt0->fetch(PDO::FETCH_ASSOC)) {
+
+
+                echo '
+                 <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+        <span>' . $row0["particular"] . '</span>
+          <span>' . $row0["description"] . '</span>
+           <span>' . $row0["mop"] . '</span>
+        <span>₱' . number_format($row0["amount"], 2) . '</span>
+    </div>
+                ';
+                $totalExpenses += $row0["amount"];
+
+            }
+
+        }
+
+        echo '
+        <hr>
+          <div style="display: flex; justify-content: space-between;">
+        <span><strong>Total Expense:</strong></span>
+        <span><strong>₱' . number_format($totalExpenses, 2) . '</strong></span>
+    </div>
+   
 </div>
 ';
     }
