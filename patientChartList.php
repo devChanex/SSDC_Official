@@ -174,7 +174,352 @@
 
                         </div>
                         <div class="card-body" id="dental-chart-region">
+                            <!-- USE THIS SPACE FOR YOUR ADDITIONAL CODE SNIPPET -->
 
+
+                            <div class="text-center"><strong>UPPER</strong></div>
+                            <div class="tooth-arch">
+                                <!-- Column 1: Tooth 18 to 11 -->
+                                <div class="tooth-column">
+                                    <div class="tooth" data-tooth="18">
+                                        <div class="remark-display"></div>
+                                        <img src="dentalcharts/tooth_1.png" alt="Tooth 18">
+                                        <label>18</label>
+                                    </div>
+                                    <div class="tooth" data-tooth="17">
+                                        <div class="remark-display"></div>
+                                        <img src="dentalcharts/tooth_1.png" alt="Tooth 17">
+                                        <label>17</label>
+                                    </div>
+                                    <div class="tooth" data-tooth="16">
+                                        <div class="remark-display"></div>
+                                        <img src="dentalcharts/tooth_1.png" alt="Tooth 16">
+                                        <label>16</label>
+                                    </div>
+                                    <div class="tooth" data-tooth="15">
+                                        <div class="remark-display"></div>
+                                        <img src="dentalcharts/tooth_1.png" alt="Tooth 15">
+                                        <label>15</label>
+                                    </div>
+                                    <div class="tooth" data-tooth="14">
+                                        <div class="remark-display"></div>
+                                        <img src="dentalcharts/tooth_1.png" alt="Tooth 14">
+                                        <label>14</label>
+                                    </div>
+                                    <div class="tooth" data-tooth="13">
+                                        <div class="remark-display"></div>
+                                        <img src="dentalcharts/tooth_1.png" alt="Tooth 13">
+                                        <label>13</label>
+                                    </div>
+                                    <div class="tooth" data-tooth="12">
+                                        <div class="remark-display"></div>
+                                        <img src="dentalcharts/tooth_1.png" alt="Tooth 12">
+                                        <label>12</label>
+                                    </div>
+                                    <div class="tooth" data-tooth="11">
+                                        <div class="remark-display"></div>
+                                        <img src="dentalcharts/tooth_1.png" alt="Tooth 11">
+                                        <label>11</label>
+                                    </div>
+                                </div>
+
+                                <!-- Column 2: Tooth 21 to 28 -->
+                                <div class="tooth-column">
+                                    <div class="tooth" data-tooth="21">
+                                        <div class="remark-display"></div>
+                                        <img src="dentalcharts/tooth_1.png" alt="Tooth 21">
+                                        <label>21</label>
+                                    </div>
+                                    <div class="tooth" data-tooth="22">
+                                        <div class="remark-display"></div>
+                                        <img src="dentalcharts/tooth_1.png" alt="Tooth 22">
+                                        <label>22</label>
+                                    </div>
+                                    <div class="tooth" data-tooth="23">
+                                        <div class="remark-display"></div>
+                                        <img src="dentalcharts/tooth_1.png" alt="Tooth 23">
+                                        <label>23</label>
+                                    </div>
+                                    <div class="tooth" data-tooth="24">
+                                        <div class="remark-display"></div>
+                                        <img src="dentalcharts/tooth_1.png" alt="Tooth 24">
+                                        <label>24</label>
+                                    </div>
+                                    <div class="tooth" data-tooth="25">
+                                        <div class="remark-display"></div>
+                                        <img src="dentalcharts/tooth_1.png" alt="Tooth 25">
+                                        <label>25</label>
+                                    </div>
+                                    <div class="tooth" data-tooth="26">
+                                        <div class="remark-display"></div>
+                                        <img src="dentalcharts/tooth_1.png" alt="Tooth 26">
+                                        <label>26</label>
+                                    </div>
+                                    <div class="tooth" data-tooth="27">
+                                        <div class="remark-display"></div>
+                                        <img src="dentalcharts/tooth_1.png" alt="Tooth 27">
+                                        <label>27</label>
+                                    </div>
+                                    <div class="tooth" data-tooth="28">
+                                        <div class="remark-display"></div>
+                                        <img src="dentalcharts/tooth_1.png" alt="Tooth 28">
+                                        <label>28</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--end column 1-->
+                            <div class="tooth-arch" style="margin-top: 40px;">
+                                <!-- Column 1: 55 to 51 -->
+                                <div class="tooth-column">
+                                    <div class="tooth" data-tooth="55">
+                                        <div class="remark-display"></div>
+                                        <img src="dentalcharts/tooth_1.png" alt="Tooth 55">
+                                        <label>55</label>
+                                    </div>
+                                    <div class="tooth" data-tooth="54">
+                                        <div class="remark-display"></div>
+                                        <img src="dentalcharts/tooth_1.png" alt="Tooth 54">
+                                        <label>54</label>
+                                    </div>
+                                    <div class="tooth" data-tooth="53">
+                                        <div class="remark-display"></div>
+                                        <img src="dentalcharts/tooth_1.png" alt="Tooth 53">
+                                        <label>53</label>
+                                    </div>
+                                    <div class="tooth" data-tooth="52">
+                                        <div class="remark-display"></div>
+                                        <img src="dentalcharts/tooth_1.png" alt="Tooth 52">
+                                        <label>52</label>
+                                    </div>
+                                    <div class="tooth" data-tooth="51">
+                                        <div class="remark-display"></div>
+                                        <img src="dentalcharts/tooth_1.png" alt="Tooth 51">
+                                        <label>51</label>
+                                    </div>
+                                </div>
+
+                                <!-- Column 2: 61 to 65 -->
+                                <div class="tooth-column">
+                                    <div class="tooth" data-tooth="61">
+                                        <div class="remark-display"></div>
+                                        <img src="dentalcharts/tooth_1.png" alt="Tooth 61">
+                                        <label>61</label>
+                                    </div>
+                                    <div class="tooth" data-tooth="62">
+                                        <div class="remark-display"></div>
+                                        <img src="dentalcharts/tooth_1.png" alt="Tooth 62">
+                                        <label>62</label>
+                                    </div>
+                                    <div class="tooth" data-tooth="63">
+                                        <div class="remark-display"></div>
+                                        <img src="dentalcharts/tooth_1.png" alt="Tooth 63">
+                                        <label>63</label>
+                                    </div>
+                                    <div class="tooth" data-tooth="64">
+                                        <div class="remark-display"></div>
+                                        <img src="dentalcharts/tooth_1.png" alt="Tooth 64">
+                                        <label>64</label>
+                                    </div>
+                                    <div class="tooth" data-tooth="65">
+                                        <div class="remark-display"></div>
+                                        <img src="dentalcharts/tooth_1.png" alt="Tooth 65">
+                                        <label>65</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 text-left">
+                                    <strong>RIGHT</strong>
+                                </div>
+                                <div class="col-lg-6 text-right">
+                                    <strong>LEFT</strong>
+                                </div>
+                            </div>
+
+                            <!-- end column 2 -->
+                            <div class="tooth-arch" style="margin-top: 40px;">
+                                <!-- Column 1: 55 to 51 -->
+                                <div class="tooth-column">
+                                    <div class="tooth" data-tooth="85">
+                                        <div class="remark-display"></div>
+                                        <img src="dentalcharts/tooth_1.png" alt="Tooth 85">
+                                        <label>85</label>
+                                    </div>
+                                    <div class="tooth" data-tooth="84">
+                                        <div class="remark-display"></div>
+                                        <img src="dentalcharts/tooth_1.png" alt="Tooth 84">
+                                        <label>84</label>
+                                    </div>
+                                    <div class="tooth" data-tooth="83">
+                                        <div class="remark-display"></div>
+                                        <img src="dentalcharts/tooth_1.png" alt="Tooth 83">
+                                        <label>53</label>
+                                    </div>
+                                    <div class="tooth" data-tooth="82">
+                                        <div class="remark-display"></div>
+                                        <img src="dentalcharts/tooth_1.png" alt="Tooth 82">
+                                        <label>82</label>
+                                    </div>
+                                    <div class="tooth" data-tooth="81">
+                                        <div class="remark-display"></div>
+                                        <img src="dentalcharts/tooth_1.png" alt="Tooth 81">
+                                        <label>81</label>
+                                    </div>
+                                </div>
+
+                                <!-- Column 2: 61 to 65 -->
+                                <div class="tooth-column">
+                                    <div class="tooth" data-tooth="71">
+                                        <div class="remark-display"></div>
+                                        <img src="dentalcharts/tooth_1.png" alt="Tooth 71">
+                                        <label>71</label>
+                                    </div>
+                                    <div class="tooth" data-tooth="72">
+                                        <div class="remark-display"></div>
+                                        <img src="dentalcharts/tooth_1.png" alt="Tooth 72">
+                                        <label>72</label>
+                                    </div>
+                                    <div class="tooth" data-tooth="73">
+                                        <div class="remark-display"></div>
+                                        <img src="dentalcharts/tooth_1.png" alt="Tooth 73">
+                                        <label>73</label>
+                                    </div>
+                                    <div class="tooth" data-tooth="74">
+                                        <div class="remark-display"></div>
+                                        <img src="dentalcharts/tooth_1.png" alt="Tooth 74">
+                                        <label>74</label>
+                                    </div>
+                                    <div class="tooth" data-tooth="75">
+                                        <div class="remark-display"></div>
+                                        <img src="dentalcharts/tooth_1.png" alt="Tooth 75">
+                                        <label>75</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- end column 3 -->
+
+                            <div class="tooth-arch">
+                                <!-- Column 1: Tooth 18 to 11 -->
+                                <div class="tooth-column">
+                                    <div class="tooth" data-tooth="48">
+                                        <div class="remark-display"></div>
+                                        <img src="dentalcharts/tooth_1.png" alt="Tooth 48">
+                                        <label>48</label>
+                                    </div>
+                                    <div class="tooth" data-tooth="47">
+                                        <div class="remark-display"></div>
+                                        <img src="dentalcharts/tooth_1.png" alt="Tooth 47">
+                                        <label>47</label>
+                                    </div>
+                                    <div class="tooth" data-tooth="46">
+                                        <div class="remark-display"></div>
+                                        <img src="dentalcharts/tooth_1.png" alt="Tooth 46">
+                                        <label>46</label>
+                                    </div>
+                                    <div class="tooth" data-tooth="45">
+                                        <div class="remark-display"></div>
+                                        <img src="dentalcharts/tooth_1.png" alt="Tooth 45">
+                                        <label>45</label>
+                                    </div>
+                                    <div class="tooth" data-tooth="44">
+                                        <div class="remark-display"></div>
+                                        <img src="dentalcharts/tooth_1.png" alt="Tooth 44">
+                                        <label>44</label>
+                                    </div>
+                                    <div class="tooth" data-tooth="43">
+                                        <div class="remark-display"></div>
+                                        <img src="dentalcharts/tooth_1.png" alt="Tooth 43">
+                                        <label>43</label>
+                                    </div>
+                                    <div class="tooth" data-tooth="42">
+                                        <div class="remark-display"></div>
+                                        <img src="dentalcharts/tooth_1.png" alt="Tooth 42">
+                                        <label>42</label>
+                                    </div>
+                                    <div class="tooth" data-tooth="41">
+                                        <div class="remark-display"></div>
+                                        <img src="dentalcharts/tooth_1.png" alt="Tooth 41">
+                                        <label>41</label>
+                                    </div>
+                                </div>
+
+                                <!-- Column 2: Tooth 21 to 28 -->
+                                <div class="tooth-column">
+                                    <div class="tooth" data-tooth="31">
+                                        <div class="remark-display"></div>
+                                        <img src="dentalcharts/tooth_1.png" alt="Tooth 31">
+                                        <label>21</label>
+                                    </div>
+                                    <div class="tooth" data-tooth="32">
+                                        <div class="remark-display"></div>
+                                        <img src="dentalcharts/tooth_1.png" alt="Tooth 32">
+                                        <label>32</label>
+                                    </div>
+                                    <div class="tooth" data-tooth="33">
+                                        <div class="remark-display"></div>
+                                        <img src="dentalcharts/tooth_1.png" alt="Tooth 33">
+                                        <label>33</label>
+                                    </div>
+                                    <div class="tooth" data-tooth="34">
+                                        <div class="remark-display"></div>
+                                        <img src="dentalcharts/tooth_1.png" alt="Tooth 34">
+                                        <label>34</label>
+                                    </div>
+                                    <div class="tooth" data-tooth="35">
+                                        <div class="remark-display"></div>
+                                        <img src="dentalcharts/tooth_1.png" alt="Tooth 35">
+                                        <label>35</label>
+                                    </div>
+                                    <div class="tooth" data-tooth="36">
+                                        <div class="remark-display"></div>
+                                        <img src="dentalcharts/tooth_1.png" alt="Tooth 36">
+                                        <label>36</label>
+                                    </div>
+                                    <div class="tooth" data-tooth="37">
+                                        <div class="remark-display"></div>
+                                        <img src="dentalcharts/tooth_1.png" alt="Tooth 37">
+                                        <label>37</label>
+                                    </div>
+                                    <div class="tooth" data-tooth="38">
+                                        <div class="remark-display"></div>
+                                        <img src="dentalcharts/tooth_1.png" alt="Tooth 38">
+                                        <label>38</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- end column 4 -->
+                            <div class="text-center"><strong>LOWER</strong></div>
+
+
+
+
+
+
+
+                            <!-- Add more teeth as needed -->
+
+
+                            <!-- Modal -->
+                            <!-- <div id="remark-modal" style="display:none;">
+                                    <h3>Tooth: <span id="selected-tooth"></span></h3>
+                                    <textarea id="tooth-remark" rows="4" cols="40"
+                                        placeholder="Enter remark here..."></textarea>
+                                    <button onclick="saveRemark()">Save</button>
+                                    <button onclick="closeModal()">Cancel</button>
+                                </div> -->
+
+                            <!-- Drawing Modal -->
+                            <!-- Drawing Modal -->
+
+                            <!-- Edit Modal -->
+
+
+
+
+                            <!-- END OF YOUR ADDITIONAL CODE SNIPPET -->
                         </div>
 
                         <div class="modal fade" id="drawingModal" tabindex="-1">
