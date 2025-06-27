@@ -577,6 +577,8 @@
                                                 <option value="PFS">PFS - Pit & Fissure Sealant</option>
                                                 <option value="Rm">Rm - Removable Denture</option>
                                                 <option value="RCT">RCT - Root Canal Treated</option>
+                                                <option value="FxB">FxB - Fixed Bridge</option>
+                                                <option value="Cm">Cm - Congenitally missing</option>
 
                                             </select>
                                         </div>
