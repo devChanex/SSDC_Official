@@ -138,3 +138,8 @@
     max-width: 95% !important;
     /* or any %/px you prefer */
 }
+
+.bg-custom {
+    background-image: linear-gradient(135deg, #3b5998, #192f6a);
+    color: white !important;
+}

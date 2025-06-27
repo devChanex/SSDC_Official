@@ -1,7 +1,7 @@
 <?php
-$cards = "bg-info text-white text-lg";
+$cards = "bg-custom text-white text-lg";
 $systemname = "Smile Save Dental Care";
-$sidebarColor = "bg-gradient-info";
+$sidebarColor = "bg-custom";
 $superuser = "ssdc_admin2020";
 $dentist = [
     "Dr. Maria Regina I. Valencia",
