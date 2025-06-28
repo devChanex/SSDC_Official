@@ -26,17 +26,20 @@ class ServiceClass
 
 
 
-        $query = "SELECT count(id) as 'consent' FROM consent inner join clientprofile on consent.clientId=clientprofile.clientid where consent.status='Active'";
+        $query = "SELECT sum(amount) as amount 
+          FROM expenses 
+          WHERE MONTH(date) = MONTH(CURDATE()) 
+            AND YEAR(date) = YEAR(CURDATE())";
         $stmt = $this->conn->prepare($query);
 
         $stmt->execute();
-        $count = 0;
+        $amount = 0;
         if ($stmt->rowCount() > 0) {
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $count = $row["consent"];
+                $amount = $row["amount"];
             }
         }
-        return $count;
+        return date('F') . ' - ' . number_format($amount, 2);
     }
 
 }
