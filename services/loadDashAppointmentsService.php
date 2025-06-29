@@ -35,7 +35,22 @@ class ServiceClass
 
         $stmt->execute();
         $amount = 0;
-        $creditcard = 0;
+        if ($stmt->rowCount() > 0) {
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                $amount += $row["amount"];
+
+            }
+        }
+
+        $query = "SELECT sum(amount) as amount
+          FROM hmopayment 
+          WHERE MONTH(paymentdate) = MONTH(CURDATE()) 
+            AND YEAR(paymentdate) = YEAR(CURDATE())";
+
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->execute();
+
         if ($stmt->rowCount() > 0) {
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 $amount += $row["amount"];

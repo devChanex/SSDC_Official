@@ -28,15 +28,26 @@ class ServiceClass
 
         $query = "SELECT sum(total) as 'totalearning' from treatmentsoa";
         $stmt = $this->conn->prepare($query);
-    
+
         $stmt->execute();
-        $count=0;
+        $amount = 0;
         if ($stmt->rowCount() > 0) {
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $count = $row["totalearning"];
+                $amount = $row["totalearning"];
             }
         }
-     return $count;
+
+        $query = "SELECT sum(amount) as 'totalearning' from hmopayment";
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->execute();
+
+        if ($stmt->rowCount() > 0) {
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                $amount += $row["totalearning"];
+            }
+        }
+        return $amount;
     }
 
 }

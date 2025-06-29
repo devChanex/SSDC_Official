@@ -84,7 +84,13 @@ echo '
         <i class="fas fa-shopping-cart"></i>
         <span>Expenses</span>
     </a>
-   
+   </li>
+      <li class="nav-item">
+    <a class="nav-link" href="hmopaymentlist.php" >
+        <i class="fas fa-money-bill-wave"></i>
+        <span>HMO Income</span>
+    </a>
+   </li>
     
             ';
 

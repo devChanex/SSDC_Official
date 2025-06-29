@@ -229,7 +229,112 @@ class ServiceClass
 
         }
 
+
+
         //ENDMAIN
+
+
+
+        //START HMO PAYMENT
+        echo '<div class="row-"><h4>HMO Payments</h4></div>';
+
+        if (!empty($fromdate) && !empty($todate)) {
+            // If both dates are provided
+            $query = "SELECT * from hmopayment
+                      WHERE (paymentdate BETWEEN :a AND :b)";
+
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':a', $fromdate);
+            $stmt->bindParam(':b', $todate);
+
+
+        } elseif (empty($fromdate) && !empty($todate)) {
+            // If only todate is provided
+            $query = "SELECT * from hmopayment
+                      WHERE (paymentdate <= :b)";
+
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':b', $todate);
+
+        } elseif (!empty($fromdate) && empty($todate)) {
+            // If only todate is provided
+            $query = "SELECT * from hmopayment
+                      WHERE (paymentdate >= :b)";
+
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':b', $fromdate);
+
+
+
+
+        } else {
+            // No filtering if both dates are empty
+            $query = "SELECT * from hmopayment";
+            $stmt = $this->conn->prepare($query);
+
+        }
+
+
+        $stmt->execute();
+        $total = 0;
+        $hmopayment = 0;
+        echo '
+        
+           <div class="table-responsive">
+                                    <table class="table text-dark" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                            <th>Payment Date</th>
+                                                <th>HMO</th>
+                                                <th>SOA Date</th>
+                                                <th>Date Submitted</th>
+                                                <th>Amount</th>
+                                              
+                                            </tr>
+                                        </thead>
+                                        <tbody id="resultResponsez">
+                                      ';
+        if ($stmt->rowCount() > 0) {
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                $hmopayment += $row["amount"];
+                echo '
+              <td>' . date("Y/m/d", strtotime($row["paymentdate"])) . '</td>
+                <td>' . $row["hmo"] . '</td>
+                <td>' . $row["soadate"] . '</td>
+                         <td>' . $row["datesubmitted"] . '</td>
+                <td style="text-align:right;">' . number_format($row["amount"], 2) . '</td>
+             
+            </tr>';
+            }
+        }
+        echo '
+<tr>
+              
+                <td colspan="4">Total HMO Payment</td>
+                
+                <td style="text-align:right;"><strong>' . number_format($hmopayment, 2) . '</strong></td>
+             
+            </tr>
+';
+        $grandAccumulatedPayments += $hmopayment;
+        echo '
+<tr style=" background-color: #f9f9f9;">
+              
+                <td colspan="4">Grand Total Income </td>
+                
+                <td style="text-align:right;"><strong>' . number_format($grandAccumulatedPayments, 2) . '</strong></td>
+               
+            </tr>
+';
+
+        echo '  </tbody>
+                                    </table>
+                                </div> <hr>';
+
+        //END HMO PAYMENT
+
+
+
 
 
 
