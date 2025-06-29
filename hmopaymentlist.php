@@ -188,7 +188,7 @@
 
                                 <div class="modal-body">
                                     <form id="deleteExpenseForm">
-                                        <input type="text" name="expenseid" id="modal-delete-hmopaymentid">
+                                        <input type="hidden" name="expenseid" id="modal-delete-hmopaymentid">
                                         Are you sure you want to delete this HMO payment?
                                     </form>
 
