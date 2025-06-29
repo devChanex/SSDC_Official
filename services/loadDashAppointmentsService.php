@@ -29,7 +29,8 @@ class ServiceClass
         $query = "SELECT *
           FROM treatmentsubpayment 
           WHERE MONTH(paymentdate) = MONTH(CURDATE()) 
-            AND YEAR(paymentdate) = YEAR(CURDATE())";
+            AND YEAR(paymentdate) = YEAR(CURDATE()) and tsubid in (select tsubid from treatmentsub)";
+
         $stmt = $this->conn->prepare($query);
 
         $stmt->execute();

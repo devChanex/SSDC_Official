@@ -38,7 +38,7 @@ class ServiceClass
             }
             $dynamics = 'WHERE (' . implode(' OR ', $orConditions) . ')';
         }
-        $dynamics .= '  LIMIT :limit OFFSET :offset';
+        $dynamics .= 'order by soaid desc  LIMIT :limit OFFSET :offset';
 
         $query = "select a.date,a.time,a.soaid,a.dentist,a.total, concat(b.lname,', ',b.fname, ' ', b.mdname) as fullname from treatmentsoa a inner join clientprofile b on a.clientid=b.clientid  $dynamics";
 
