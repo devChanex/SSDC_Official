@@ -41,6 +41,7 @@ $('#editExpenseModal').on('show.bs.modal', function (event) {
     $('#modal-particular').val(button.data('particular'));
     $('#modal-description').val(button.data('description'));
     $('#modal-amount').val(button.data('amount'));
+    $('#modal-mop').val(button.data('mop'));
 });
 
 function getclientdataPagination() {

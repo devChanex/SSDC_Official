@@ -256,7 +256,7 @@
             <script src="js/custom-v2.js"></script>
             <script src="controllers/logOutConroller.js"></script>
             <script src="controllers/sessionController.js"></script>
-            <script src="controllers/expenseListController.js"></script>
+            <script src="controllers/expenseListController-v1.js"></script>
             <script src="controllers/deleteClientProfileController.js"></script>
             <script src="js/sortable.js"></script>
 
