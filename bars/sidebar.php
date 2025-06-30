@@ -254,7 +254,7 @@ echo '
 }
 
 //Access for Dentist
-else
+elseif($_SESSION["account_type"] == 2)
 {
 echo '
                  <ul class="navbar-nav ' . $sidebarColor . ' sidebar sidebar-dark  toggled" id="accordionSidebar">
