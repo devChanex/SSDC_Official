@@ -18,7 +18,7 @@ function loadEarningsBar() {
             var data = JSON.parse(result);
 
 
-            chartBar("earningsbar", data.label, data.datas, 2000000, "Earnings: ");
+            chartBar("earningsbar", data.label, data.datas, 10000000, "Earnings: ");
             //you can uncomment this for checking
             //  document.getElementById("jsResult").innerHTML=result;
         }
