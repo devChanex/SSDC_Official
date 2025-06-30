@@ -11,7 +11,8 @@ if ($result) {
 	header('Content-Type: application/json');
 	echo json_encode([
 		'result' => 'success',
-		'email' => $_SESSION['email']
+		'email' => $_SESSION['email'],
+		'account_type' => $_SESSION['account_type']
 	]);
 } else {
 	header('Content-Type: application/json');
@@ -56,6 +57,7 @@ class ServiceClass
 				$_SESSION['password'] = $row["password"];
 				$_SESSION['email'] = $row["email"];
 				$_SESSION['lastUpdate'] = $row["lastUpdate"];
+				$_SESSION['account_type'] = $row["account_type"];
 
 
 			}
