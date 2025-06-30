@@ -4,7 +4,7 @@ session_start();
 error_reporting(0);
 if ($_SESSION["account_type"] != 0) {
     header("Location: clientProfileList.php");
-    
+
     exit();
 
 }
@@ -243,7 +243,7 @@ if ($_SESSION["account_type"] != 0) {
             <script src="vendor/chart.js/Chart.min.js"></script>
             <script src="controllers/barchart.js"></script>
 
-            <script src="controllers/dashboardController.js"></script>
+            <script src="controllers/dashboardController-v1.js"></script>
             <!-- Core plugin JavaScript-->
             <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
