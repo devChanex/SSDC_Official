@@ -18,7 +18,7 @@ function loadEarningsBar() {
             var data = JSON.parse(result);
 
 
-            chartBar("earningsbar", data.label, data.datas, 1000000, "Earnings: ");
+            chartBar("earningsbar", data.label, data.datas, 2000000, "Earnings: ");
             //you can uncomment this for checking
             //  document.getElementById("jsResult").innerHTML=result;
         }
@@ -38,7 +38,7 @@ function loadMonthlyEarningsBar() {
             var data = JSON.parse(result);
 
 
-            chartBar("monthlyearningsbar", data.label, data.datas, 500000, "Earnings: ");
+            chartBar("monthlyearningsbar", data.label, data.datas, 1000000, "Earnings: ");
             //you can uncomment this for checking
             //  document.getElementById("jsResult").innerHTML=result;
         }
