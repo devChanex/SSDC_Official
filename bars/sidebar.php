@@ -85,6 +85,7 @@ echo '
         <span>Expenses</span>
     </a>
    </li>
+
       <li class="nav-item">
     <a class="nav-link" href="hmopaymentlist.php" >
         <i class="fas fa-money-bill-wave"></i>
@@ -198,6 +199,12 @@ echo '
     </a>
    
     </li>
+              <li class="nav-item">
+    <a class="nav-link" href="expensesList.php" >
+        <i class="fas fa-shopping-cart"></i>
+        <span>Expenses</span>
+    </a>
+   </li>
  
     
             ';
@@ -317,10 +324,8 @@ echo '
         <div class="bg-white py-2 collapse-inner rounded">
   
 
-<a class="collapse-item" href="statementofaccounts.php">Statement of Account</a>
 <a class="collapse-item" href="clientTreatmentReport.php">Patient Treatments</a>
-<a class="collapse-item" href="incomedaterange.php">Income Statement</a>
-<a class="collapse-item" href="dailytransactionsummary.php">Daily Transaction Summary</a>
+
 
           
  
