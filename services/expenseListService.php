@@ -40,7 +40,7 @@ class ServiceClass
             $where = 'WHERE (' . implode(' OR ', $orConditions) . ')';
         }
 
-        $query = "SELECT * FROM expenses $where ORDER BY date ASC LIMIT :limit OFFSET :offset";
+        $query = "SELECT * FROM expenses $where ORDER BY date desc LIMIT :limit OFFSET :offset";
 
         $stmt = $this->conn->prepare($query);
 

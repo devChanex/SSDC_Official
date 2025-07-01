@@ -44,7 +44,7 @@ class ServiceClass
             }
             $dynamics = '(' . implode(' OR ', $orConditions) . ')';
         }
-        $dynamics .= 'ORDER BY paymentdate asc';
+        $dynamics .= 'ORDER BY paymentdate desc';
         // Using prepared statements for query to avoid SQL injection
         $query = "SELECT  count(hmopaymentid) as itemCount FROM hmopayment WHERE $dynamics";
 

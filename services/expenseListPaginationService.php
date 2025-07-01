@@ -44,7 +44,7 @@ class ServiceClass
             }
             $dynamics = '(' . implode(' OR ', $orConditions) . ')';
         }
-        $dynamics .= 'ORDER BY date asc';
+        $dynamics .= 'ORDER BY date desc';
         // Using prepared statements for query to avoid SQL injection
         $query = "SELECT  count(expenseid) as itemCount FROM expenses WHERE $dynamics";
 

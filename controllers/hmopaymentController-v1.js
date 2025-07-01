@@ -42,6 +42,7 @@ $('#editExpenseModal').on('show.bs.modal', function (event) {
     $('#modal-amount').val(button.data('amount'));
     $('#modal-paymentdate').val(button.data('paymentdate'));
     $('#modal-hmo').val(button.data('hmo'));
+    $('#modal-bank').val(button.data('bank'));
 });
 
 function getclientdataPagination() {

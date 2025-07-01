@@ -31,14 +31,15 @@ class ServiceClass
         $amount = $data['modal-amount'];
         $paymentdate = $data['modal-paymentdate'];
         $hmo = $data['modal-hmo'];
+        $bank = $data['modal-bank'];
         $query = "";
 
         if ($hmopaymentid != '') {
-            $query = "update hmopayment set soadate=:soadate,datesubmitted=:datesubmitted,amount=:amount,paymentdate=:paymentdate,hmo=:hmo where hmopaymentid=:hmopaymentid";
+            $query = "update hmopayment set bank=:bank,soadate=:soadate,datesubmitted=:datesubmitted,amount=:amount,paymentdate=:paymentdate,hmo=:hmo where hmopaymentid=:hmopaymentid";
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':hmopaymentid', $hmopaymentid, PDO::PARAM_INT);
         } else {
-            $query = "INSERT INTO hmopayment (soadate,datesubmitted,amount,paymentdate,hmo) VALUES (:soadate,:datesubmitted,:amount,:paymentdate,:hmo)";
+            $query = "INSERT INTO hmopayment (soadate,datesubmitted,amount,paymentdate,hmo,bank) VALUES (:soadate,:datesubmitted,:amount,:paymentdate,:hmo,:bank)";
             $stmt = $this->conn->prepare($query);
         }
         $stmt->bindParam(':soadate', $soadate);
@@ -46,6 +47,7 @@ class ServiceClass
         $stmt->bindParam(':amount', $amount);
         $stmt->bindParam(':paymentdate', $paymentdate);
         $stmt->bindParam(':hmo', $hmo);
+        $stmt->bindParam(':bank', $bank);
         $stmt->execute();
         echo 'success';
 

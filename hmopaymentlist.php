@@ -81,6 +81,8 @@
                                             </th>
                                             <th onclick="sortTable(this)">Date Paid<span class="sort-icon"></span>
                                             </th>
+                                            <th onclick="sortTable(this)">Bank Deposited<span class="sort-icon"></span>
+                                            </th>
 
                                             <th>Action</th>
                                             <!-- No onclick, since actions typically aren' t sortable -->
@@ -158,7 +160,20 @@
                                             <input type="date" class="form-control" name="description"
                                                 id="modal-paymentdate">
                                         </div>
+                                        <div class="form-group">
+                                            <label>Bank</label>
+                                            <select class="form-control" name="mop" id="modal-bank">
+                                                <option value="">-- Select Bank --</option>
+                                                <?php
+                                                $banks = ["PNB", "Metrobank", "Unionbank", "BDO"];
+                                                foreach ($banks as $bank) {
 
+                                                    echo "<option value=\"$bank\">$bank</option>";
+                                                }
+                                                ?>
+                                                </option>
+                                            </select>
+                                        </div>
 
 
                                     </form>
@@ -231,7 +246,7 @@
             <script src="js/custom-v2.js"></script>
             <script src="controllers/logOutConroller.js"></script>
             <script src="controllers/sessionController.js"></script>
-            <script src="controllers/hmopaymentController.js"></script>
+            <script src="controllers/hmopaymentController-v1.js"></script>
 
             <script src="js/sortable.js"></script>
 

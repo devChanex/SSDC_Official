@@ -40,7 +40,7 @@ class ServiceClass
             $where = 'WHERE (' . implode(' OR ', $orConditions) . ')';
         }
 
-        $query = "SELECT * FROM hmopayment $where ORDER BY paymentdate ASC LIMIT :limit OFFSET :offset";
+        $query = "SELECT * FROM hmopayment $where ORDER BY paymentdate desc LIMIT :limit OFFSET :offset";
 
         $stmt = $this->conn->prepare($query);
 
@@ -62,6 +62,7 @@ class ServiceClass
             <td>' . ucwords(strtolower($row["datesubmitted"])) . '</td>
             <td style="text-align:right">' . number_format($row["amount"], 2) . '</td>
             <td>' . ucwords(strtolower($row["paymentdate"])) . '</td>
+             <td>' . ucwords(strtolower($row["bank"])) . '</td>
         
           
             <td align="center">
@@ -71,6 +72,7 @@ class ServiceClass
                 data-datesubmitted="' . htmlspecialchars($row["datesubmitted"]) . '"
                 data-amount="' . htmlspecialchars($row["amount"]) . '"
                 data-paymentdate="' . htmlspecialchars($row["paymentdate"]) . '"
+                 data-bank="' . htmlspecialchars($row["bank"]) . '"
                 data-hmo="' . htmlspecialchars($row["hmo"]) . '">
                 <i class="fas fa-edit"></i>
                 </button>
