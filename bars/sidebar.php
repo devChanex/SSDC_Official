@@ -9,7 +9,7 @@ echo '
           
 ';
 
-if ($_SESSION["account_type"] == 0) {
+if ($_SESSION["account_type"] == 0 || $_SESSION["account_type"] == 100) {
     echo '
      <ul class="navbar-nav ' . $sidebarColor . ' sidebar sidebar-dark  toggled" id="accordionSidebar">
 <li class="nav-item">
