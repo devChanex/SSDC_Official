@@ -9,7 +9,7 @@ echo '
           
 ';
 
-if ($_SESSION["account_type"] == 0 || $_SESSION["account_type"] == 100) {
+if ($_SESSION["account_type"] == 0) {
     echo '
      <ul class="navbar-nav ' . $sidebarColor . ' sidebar sidebar-dark  toggled" id="accordionSidebar">
 <li class="nav-item">
@@ -51,16 +51,146 @@ echo '
                     <span>Patient\'s Profile</span>
                     </a>
                
-            </li>
+                </li>
 
-   
+    
+            <li class="nav-item">
+        <a class="nav-link" href="hmoList.php" >
+            <i class="fas fa-heart"></i>
+            <span>HMO</span>
+        </a>
+    
+        </li>
+
+
         <li class="nav-item">
-    <a class="nav-link" href="hmoList.php" >
-        <i class="fas fa-heart"></i>
-        <span>HMO</span>
+                <a class="nav-link" href="soaList.php" >
+                    <i class="fas fa-credit-card"></i>
+                    <span>E-SOA/Xray</span>
+                </a>
+        </li>
+        </li>
+     <li class="nav-item">
+    <a class="nav-link" href="prescriptionList.php" >
+        <i class="fas fa-notes-medical"></i>
+        <span>Prescription</span>
     </a>
    
     </li>
+       
+
+               <li class="nav-item">
+    <a class="nav-link" href="expensesList.php" >
+        <i class="fas fa-shopping-cart"></i>
+        <span>Expenses</span>
+    </a>
+   </li>
+
+      <li class="nav-item">
+    <a class="nav-link" href="hmopaymentlist.php" >
+        <i class="fas fa-money-bill-wave"></i>
+        <span>HMO Income</span>
+    </a>
+   </li>
+    
+            ';
+
+// if ($_SESSION["username"] == $superuser) {
+echo '
+<li class="nav-item">
+    <a class="nav-link" href="#" data-toggle="collapse" data-target="#report" aria-expanded="false"
+        aria-controls="config">
+        <i class="fas fa-file"></i>
+        <span>Reports</span>
+    </a>
+    <div id="report" class="collapse" aria-labelledby="report" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+  
+
+<a class="collapse-item" href="statementofaccounts.php">Statement of Account</a>
+<a class="collapse-item" href="clientTreatmentReport.php">Patient Treatments</a>
+<a class="collapse-item" href="incomedaterange.php">Income Statement</a>
+<a class="collapse-item" href="dailytransactionsummary.php">Daily Transaction Summary</a>
+<a class="collapse-item" href="monthlyexpensesummary.php">Monthly Expense Summary</a>
+          
+ 
+
+        </div>
+    </div>
+</li>
+         <li class="nav-item">
+                <a class="nav-link" href="#" data-toggle="collapse" data-target="#config" aria-expanded="false"
+                    aria-controls="config">
+                    <i class="fas fa-cog"></i>
+                    <span>Configurations</span>
+                    </a>
+                <div id="config" class="collapse" aria-labelledby="config"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="treatmentList.php">Treatment List</a>
+                         <a class="collapse-item" href="medicineList.php">Medicine List</a>
+                     
+                    </div>
+                </div>
+            </li>
+        <!-- End of Sidebar -->
+
+';
+
+}
+//Access for Rockethub
+if ($_SESSION["account_type"] == 100) {
+    echo '
+     <ul class="navbar-nav ' . $sidebarColor . ' sidebar sidebar-dark  toggled" id="accordionSidebar">
+<li class="nav-item">
+                <a class="nav-link" href="basecode.php">
+                
+                 <strong>SSDC</strong></a>
+            </li>
+   <!-- Nav Item - Dashboard -->
+            <li class="nav-item">
+                <a class="nav-link" href="basecode.php">
+                    <i class="fas fa-fw fa-home"></i>
+                    <span>Dashboard</span></a>
+            </li>
+';
+echo '
+            
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+          
+         ';
+//  <li class="nav-item">
+//         <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+//             aria-controls="collapseTwo">
+//             <i class="fas fa-address-card"></i>
+//             <span>Client Profile</span>
+//             </a>
+//         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+//             data-parent="#accordionSidebar">
+//             <div class="bg-white py-2 collapse-inner rounded">
+//                 <a class="collapse-item" href="clientProfileList.php">View List</a>
+// 		<a class="collapse-item" href="registerClient.php">Register Client</a>
+//             </div>
+//         </div>
+//     </li>
+echo '
+                <li class="nav-item">
+                <a class="nav-link" href="clientProfileList.php" >
+                    <i class="fas fa-address-card"></i>
+                    <span>Patient\'s Profile</span>
+                    </a>
+               
+                </li>
+
+    
+            <li class="nav-item">
+        <a class="nav-link" href="hmoList.php" >
+            <i class="fas fa-heart"></i>
+            <span>HMO</span>
+        </a>
+    
+        </li>
 
 
         <li class="nav-item">
@@ -289,6 +419,16 @@ echo '
                     </a>
                
             </li>
+                   </li>
+
+   
+        <li class="nav-item">
+    <a class="nav-link" href="hmoList.php" >
+        <i class="fas fa-heart"></i>
+        <span>HMO</span>
+    </a>
+   
+    </li>
 
 
         <li class="nav-item">
