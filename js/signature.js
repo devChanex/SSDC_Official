@@ -94,11 +94,25 @@ function closeSignatureModal() {
 
 function confirmSignature() {
     const dataURL = canvasSignature.toDataURL('image/png');
+
+    // Create a blank signature data URL to compare with
+    const blankCanvas = document.createElement('canvas');
+    blankCanvas.width = canvasSignature.width;
+    blankCanvas.height = canvasSignature.height;
+    const blankDataURL = blankCanvas.toDataURL('image/png');
+
+    if (dataURL === blankDataURL) {
+        alert("Please provide a signature before proceeding.");
+        return; // Stop the function here
+    }
+
     if (typeof signatureCallback === "function") {
         signatureCallback(dataURL);
     }
+
     closeSignatureModal();
 }
+
 function setSignature(role, sigData) {
     const box = document.getElementById(`${role}-signature-box`);
     const input = document.getElementById(`${role}-signature-input`);
