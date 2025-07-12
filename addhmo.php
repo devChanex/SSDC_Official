@@ -122,8 +122,11 @@
                                 <option value="Verified">Verified</option>
 
                             </select>
-                            <label for="validity">Agent:</label>
+                            <label for="Agent">Agent:</label>
                             <input type="text" name="treatment" id="agent" placeholder="Agent Name" class="form-control"
+                                value="">
+                            <label for="Called by">Called by:</label>
+                            <input type="text" name="calledby" id="calledby" placeholder="Called by" class="form-control"
                                 value="">
                             <div id="formResult"></div>
                             <br>

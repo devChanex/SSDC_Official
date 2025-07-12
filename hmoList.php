@@ -83,6 +83,7 @@
                                                 </th>
                                                 <th onclick="sortTable(this)">Agent<span class="sort-icon"></span></th>
                                                 <th onclick="sortTable(this)">Status<span class="sort-icon"></span></th>
+                                                <th onclick="sortTable(this)">Called by<span class="sort-icon"></span></th>
                                                 <th onclick="sortTable(this)">Action<span class="sort-icon"></span></th>
                                             </tr>
                                         </thead>

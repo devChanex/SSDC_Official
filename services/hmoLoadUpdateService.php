@@ -110,7 +110,10 @@ class ServiceClass
                             </select>
                             <label for="validity">Agent:</label>
                             <input type="text" name="treatment" id="agent" placeholder="Agent Name" class="form-control"
-                                value="' . $row['agent'] . '">    
+                                value="' . $row['agent'] . '">
+                            <label for="calledby">Called by:</label>
+                            <input type="text" name="calledby" id="calledby" placeholder="Called by" class="form-control"
+                                value="' . $row['calledby'] . '">    
                             <div id="formResult"></div>
                             <br>
                             <button class="btn btn-success" onclick="update()">Submit</button>

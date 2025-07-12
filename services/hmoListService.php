@@ -29,7 +29,7 @@ class ServiceClass
 
         $offset = ($page - 1) * $itemPerPage;  // Calculate the offset for pagination
 
-        $searchFields = ['name', 'accountnumber', "hmotype", "company", "contact", "agent", "verificationStatus"];
+        $searchFields = ['name', 'accountnumber', "hmotype", "company", "contact", "agent", "verificationStatus", "calledby"];
         $dynamics = '';
 
         if (!empty($search)) {
@@ -64,6 +64,7 @@ class ServiceClass
                 <td>' . $row["contact"] . '</td>
                 <td>' . ucwords(strtolower($row["agent"])) . '</td>
                 <td>' . $row["verificationStatus"] . '</td>
+                <td>' . $row["calledby"] . '</td>
 
                 <td align="center">
                 <a href="updatehmo.php?id=' . $row["id"] . '" class="btn btn-warning btn-circle" title="Update record"><i class="fas fa-edit"></i></a>

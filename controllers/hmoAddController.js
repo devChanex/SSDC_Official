@@ -11,9 +11,9 @@ function add() {
     var benefit = document.getElementById("benefit").value;
     var approvalCode = document.getElementById("approvalCode").value;
     var remarks = document.getElementById("remarks").value;
+    var calledby = document.getElementById("calledby").value;
     var verification = document.getElementById("verification");
     var verificationStatus = verification.value;
-
     var agent = document.getElementById("agent").value;
     var remarks = document.getElementById("remarks").value;
 
@@ -26,7 +26,7 @@ function add() {
 
 
     if (msg == '') {
-        submitform(name, accountnumber, birthdate, company, contact, hmo, validity, benefit, remarks, verificationStatus, agent, hmotype, approvalCode);
+        submitform(name, accountnumber, birthdate, company, contact, hmo, validity, benefit, remarks, verificationStatus, agent, hmotype, approvalCode, calledby);
     } else {
         showToast("errorToast", msg);
     }
@@ -35,7 +35,7 @@ function add() {
 
 }
 
-function submitform(name, accountnumber, birthdate, company, contact, hmo, validity, benefit, remarks, verificationStatus, agent, hmotype, approvalCode) {
+function submitform(name, accountnumber, birthdate, company, contact, hmo, validity, benefit, remarks, verificationStatus, agent, hmotype, approvalCode, calledby) {
     var fd = new FormData();
     fd.append('name', name);
     fd.append('accountnumber', accountnumber);
@@ -49,7 +49,7 @@ function submitform(name, accountnumber, birthdate, company, contact, hmo, valid
     fd.append('verification', verificationStatus);
     fd.append('approvalCode', approvalCode);
     fd.append('agent', agent);
-
+    fd.append('calledby', calledby);
     fd.append('hmotype', hmotype);
 
     $.ajax({

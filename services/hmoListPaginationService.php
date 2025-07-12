@@ -34,7 +34,7 @@ class ServiceClass
     {
 
 
-        $searchFields = ['name', 'accountnumber', "hmotype", "company", "contact", "agent", "verificationStatus"];
+        $searchFields = ['name', 'accountnumber', "hmotype", "company", "contact", "agent", "verificationStatus", "calledby"];
         $dynamics = '';
 
         if (!empty($search)) {
