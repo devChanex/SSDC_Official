@@ -65,6 +65,7 @@
                                             <tr>
                                                 <th>Date</th>
                                                 <th>Dentist</th>
+                                                <th>Dental Assistant</th>
                                                 <th>Treatment</th>
                                                 <th>Diagnosis</th>
                                                 <th>Remarks</th>

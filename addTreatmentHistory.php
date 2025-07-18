@@ -185,6 +185,9 @@
                             <hr>
                             <div class"row>
                                 <div class="col-sm=12">
+                                    <label for="treatment">Dental Assistant:</label>
+                                    <input type="Text" name="dentalassistant" id="dentalassistant" placeholder="Dental Assistant"
+                                        class="form-control" value="">
                                     <label for="agreement">Agreement</label>
                                     <textarea id="agreement" class="form-control" name="Agreement"
                                         placeholder="Input Agreement Here"></textarea>

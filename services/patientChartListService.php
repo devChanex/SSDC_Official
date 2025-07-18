@@ -28,7 +28,7 @@ class ServiceClass
         $superuser = "ssdc_admin2020";
 
 
-        $query = "select a.soaid,tsubid,hmo,price,date,dentist,treatment,remarks,details,diagnosis from treatmentsoa a inner join treatmentsub b on a.soaid=b.soaid where a.clientid=:a order by Date";
+        $query = "select a.soaid,tsubid,hmo,price,date,dentist,treatment,remarks,details,diagnosis,dentalassistant from treatmentsoa a inner join treatmentsub b on a.soaid=b.soaid where a.clientid=:a order by Date";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':a', $clientid);
         $stmt->execute();
@@ -39,6 +39,7 @@ class ServiceClass
                 <tr style="color: black;">
                 <td>' . date("Y/m/d", strtotime($row["date"])) . '</td>
                 <td>' . $row["dentist"] . '</td>
+                 <td>' . $row["dentalassistant"] . '</td>
                 <td>' . $row["treatment"] . '</td>
                  <td>' . $row["diagnosis"] . '</td>
                 <td>' . $row["remarks"] . '</td>

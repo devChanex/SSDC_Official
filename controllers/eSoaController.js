@@ -188,20 +188,22 @@ function submit() {
     var time = document.getElementById("time").value;
     var clientid = document.getElementById("clientid").value;
     var hmo = document.getElementById("hmo").value;
+    var dentalassistant = document.getElementById("dentalassistant").value;
     if (rowCount == 0) {
         toastError("You do not have any treatment added.");
     } else if (dentist == "" || dates == "" || time == "") {
         toastError("All Field is required.");
-
+} else if (dentalassistant=="") {
+        toastError("Please input your Dental Assistant's Name");
     } else {
-        submitform(dentist, dates, time, clientid, total, hmo);
+        submitform(dentist, dates, time, clientid, total, hmo, dentalassistant);
     }
 
 
 
 }
 
-function submitform(dentist, dates, time, clientid, total, hmo) {
+function submitform(dentist, dates, time, clientid, total, hmo, dentalassistant) {
 
     var agreement = document.getElementById("agreement").value;
 
@@ -214,6 +216,7 @@ function submitform(dentist, dates, time, clientid, total, hmo) {
         fd.append('clientid', clientid);
         fd.append('total', total);
         fd.append('hmo', hmo);
+        fd.append('dentalassistant', dentalassistant);
         fd.append('agreement', agreement);
 
         $.ajax({

@@ -71,6 +71,7 @@
                                                 <th onclick="sortTable(this)">Time</th>
                                                 <th onclick="sortTable(this)">Patient</th>
                                                 <th onclick="sortTable(this)">Dentist</th>
+                                                <th onclick="sortTable(this)">Dental Assistant</th>
                                                 <th onclick="sortTable(this)">Total</th>
                                                 <th onclick="sortTable(this)">Balance</th>
                                                 <th onclick="sortTable(this)">Action</th>
