@@ -37,7 +37,7 @@ class ServiceClass
 
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
-                $desc .= $row['genericname'] . ' <br> ' . $row['dispense'] . ' <br> ' . $row['signetur'] . '<br> <br>';
+                $desc .= $row['genericname'] . ' <br> ' . $row['dispense'] . ' <br> ' . nl2br(htmlspecialchars($row["signetur"])) . '<br> <br>';
 
             }
             echo $desc;
