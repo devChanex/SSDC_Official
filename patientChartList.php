@@ -11,7 +11,7 @@
     <meta name="author" content="">
 
 
-    <title>Smile Save Dental Care</title>
+    <title>SSDC - Patient Chart - <?php echo $_GET["clientname"]; ?></title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
