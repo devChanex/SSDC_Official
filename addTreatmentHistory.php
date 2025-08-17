@@ -186,8 +186,8 @@
                             <div class"row>
                                 <div class="col-sm=12">
                                     <label for="treatment">Dental Assistant:</label>
-                                    <input type="Text" name="dentalassistant" id="dentalassistant" placeholder="Dental Assistant"
-                                        class="form-control" value="">
+                                    <input type="Text" name="dentalassistant" id="dentalassistant"
+                                        placeholder="Dental Assistant" class="form-control" value="">
                                     <label for="agreement">Agreement</label>
                                     <textarea id="agreement" class="form-control" name="Agreement"
                                         placeholder="Input Agreement Here"></textarea>
@@ -231,7 +231,7 @@
             <script src="js/sb-admin-2.min.js"></script>
             <script src="controllers/logOutConroller.js"></script>
             <script src="controllers/sessionController.js"></script>
-            <script src="controllers/eSoaController-v3.js"></script>
+            <script src="controllers/eSoaController-v5.js"></script>
             <script src="controllers/divPrinterController-v1.js"></script>
             <script src="js/custom-v1.js"></script>
 </body>

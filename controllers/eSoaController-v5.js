@@ -193,7 +193,7 @@ function submit() {
         toastError("You do not have any treatment added.");
     } else if (dentist == "" || dates == "" || time == "") {
         toastError("All Field is required.");
-} else if (dentalassistant=="") {
+    } else if (dentalassistant == "") {
         toastError("Please input your Dental Assistant's Name");
     } else {
         submitform(dentist, dates, time, clientid, total, hmo, dentalassistant);
@@ -262,7 +262,7 @@ function submitSubSoa(soaid) {
 
 
     }
-
+    toastRedirect("successToast", "E-SOA successfully submitted", "soaViewing.php?soaid=" + soaid);
 
 }
 
@@ -285,7 +285,7 @@ function submitSubSoatoService(treatment, diagnosis, details, remarks, price, cl
         contentType: false,
         type: 'POST',
         success: function (result) {
-            toastRedirect("successToast", "E-SOA successfully submitted", "soaViewing.php?soaid=" + soaid);
+            console.log(result);
         }
     });
 
