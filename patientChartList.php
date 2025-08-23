@@ -172,6 +172,8 @@
                     <div class="card shadow mb-12">
                         <div class="card-header py-3 <?php echo $cards; ?>">
                             <h6 class="m-0 font-weight-bold">Dental Chart : <?php echo $_GET["clientname"]; ?></h6>
+                            <button id="divPrinter" class="btn btn-warning  btn-circle float-right" data-toggle="modal"
+                                data-target="#printDentalModal"><i class=" fas fa-print"></i></button>
 
                         </div>
                         <div class="card-body" id="dental-chart-region">
@@ -492,7 +494,7 @@
                             </div>
 
                             <!-- end column 4 -->
-                            <div class="text-center"><strong>LOWER</strong></div>
+                            <div class="text-center"><strong>LOWERS</strong></div>
 
 
 
@@ -595,6 +597,36 @@
                         </div>
                     </div>
 
+                    <div class="modal fade" id="printDentalModal" tabindex="-1" role="dialog"
+                        aria-labelledby="printModal" aria-hidden="true">
+
+                        <div class="modal-dialog modal-xl " role="document">
+                            <div class="modal-content ">
+                                <form id="editForm">
+                                    <div class="modal-header <?php echo $cards; ?>">
+                                        <h5 class="modal-title" id="editModalLabel">Dental Chart Note:</h5>
+                                        <button type="button" class="close" data-dismiss="modal">
+                                            <span>&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+
+                                        <div class="form-group">
+                                            <label for="dentalNote">Note:</label>
+                                            <textarea id="dentalNote" style="width: 100%;" class="form-control" rows="4"
+                                                placeholder="Enter your dental chart note..."></textarea>
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary"
+                                            onclick="printDental('<?php echo $_GET["clientname"]; ?>')">Print</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
                 <!-- /.container-fluid -->
 
@@ -627,6 +659,7 @@
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
             <script src="controllers/dentalchartController-v8.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+            <script src="controllers/divDentalChartPrinterController.js"></script>
 
 
 
