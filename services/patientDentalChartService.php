@@ -249,7 +249,7 @@ class ServiceClass
         echo '</div>'; // Close .tooth-arch
         echo '<div class="text-center"><strong>LOWER</strong></div>';
         echo '<hr>';
-        echo '<div class="text-center"><strong>Note:</strong></div>';
+        echo '<div class="text-center"><strong>Recommendations:</strong></div>';
         echo '<div id="dentalChartNoteField"></div>';
         echo '<hr>';
 

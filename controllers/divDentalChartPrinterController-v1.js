@@ -42,6 +42,23 @@ function printDental(name) {
                         padding: 4px !important;
                         border: 0px solid #000 !important;
                     }
+
+                       .signatory {
+                margin-top: 50px;
+                text-align: center;
+            }
+
+            .signatory img {
+                max-height: 80px;
+                margin-bottom: 5px;
+            }
+
+            .signatory-line {
+                border-top: 1px solid #000;
+                width: 250px;
+                margin: 0 auto;
+                margin-top: 5px;
+            }
                 }
             </style>
         </head>
@@ -63,6 +80,20 @@ function printDental(name) {
                             </div>
                             <br>
                 ${divToPrint.innerHTML}
+
+               
+
+            <!-- Signatory Section -->
+<div class="signatory" style="text-align:right; margin-top:50px;">
+    <div style="display:inline-block; text-align:center;">
+        <img src="img/e-sign.png" alt="Dentist Signature" style="max-height:80px; margin-bottom:5px;">
+        <div style="border-top:1px solid #000; width:250px; margin-top:5px;"></div>
+        <div style="margin-top:5px; font-weight:bold;">Dr. Maria Regina I. Valencia</div>
+        <div style="font-size:10pt;">Attending Dentist</div>
+    </div>
+</div>
+
+        </div>
             </div>
         </body>
         </html>
