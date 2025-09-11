@@ -94,9 +94,9 @@ function submitCart() {
         success: function (result) {
             if (result == "success") {
                 if (hmopaymentid == "") {
-                    toastSuccess("Expense Added Successfully");
+                    toastSuccess("HMO Income added successfully");
                 } else {
-                    toastSuccess("Expense Updated Successfully");
+                    toastSuccess("HMO Income Updated successfully");
 
                 }
                 $('#editExpenseModal').modal('hide');
