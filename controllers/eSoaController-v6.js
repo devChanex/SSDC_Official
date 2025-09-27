@@ -237,7 +237,7 @@ function submitform(dentist, dates, time, clientid, total, hmo, dentalassistant)
         });
     }
 }
-function submitSubSoa(soaid) {
+async function submitSubSoa(soaid) {
     var table = document.getElementById("treatmentList");
     var rowCount = table.rows.length;
     var clientid = document.getElementById("clientid").value;
@@ -253,7 +253,7 @@ function submitSubSoa(soaid) {
             var hmo = row.cells[5].innerHTML;
 
             if (treatment) {
-                submitSubSoatoService(treatment, diagnosis, details, remarks, price, clientid, soaid, hmo);
+                await submitSubSoatoService(treatment, diagnosis, details, remarks, price, clientid, soaid, hmo);
             }
 
 
@@ -262,33 +262,40 @@ function submitSubSoa(soaid) {
 
 
     }
+
+
+
     toastRedirect("successToast", "E-SOA successfully submitted", "soaViewing.php?soaid=" + soaid);
 
 }
 
 function submitSubSoatoService(treatment, diagnosis, details, remarks, price, clientid, soaid, hmo) {
+    return new Promise((resolve, reject) => {
+        var fd = new FormData();
+        fd.append('treatment', treatment);
+        fd.append('diagnosis', diagnosis);
+        fd.append('details', details);
+        fd.append('remarks', remarks);
+        fd.append('price', price);
+        fd.append('clientid', clientid);
+        fd.append('soaid', soaid);
+        fd.append('hmo', hmo);
 
+        $.ajax({
+            url: "services/esoaSubmitSubService.php",
+            data: fd,
+            processData: false,
+            contentType: false,
+            type: 'POST',
+            success: function (result) {
 
-    var fd = new FormData();
-    fd.append('treatment', treatment);
-    fd.append('diagnosis', diagnosis);
-    fd.append('details', details);
-    fd.append('remarks', remarks);
-    fd.append('price', price);
-    fd.append('clientid', clientid);
-    fd.append('soaid', soaid);
-    fd.append('hmo', hmo);
-    $.ajax({
-        url: "services/esoaSubmitSubService.php",
-        data: fd,
-        processData: false,
-        contentType: false,
-        type: 'POST',
-        success: function (result) {
-            console.log(result);
-        }
+                resolve(result);
+            },
+            error: function (xhr, status, error) {
+                reject(error);
+            }
+        });
     });
-
 
 
 }
