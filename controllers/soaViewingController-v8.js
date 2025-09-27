@@ -118,40 +118,42 @@ function submitPaymentForm() {
 
     if (amount <= remainingBalance) {
         $('#paymentModal').modal('hide');
+        setTimeout(function () {
+            var soaid = document.getElementById("soaid").value;
 
-        var soaid = document.getElementById("soaid").value;
+            var date = document.getElementById("paymentDate").value;
+            var tsubid = document.getElementById("paymenttsubid").value;
+            var paymentTypeOption = document.getElementById("paymentType");
 
-        var date = document.getElementById("paymentDate").value;
-        var tsubid = document.getElementById("paymenttsubid").value;
-        var paymentTypeOption = document.getElementById("paymentType");
-
-        var paymentType = paymentTypeOption.value;
+            var paymentType = paymentTypeOption.value;
 
 
-        var fd = new FormData();
-        fd.append("tsubid", tsubid);
-        fd.append("date", date);
-        fd.append("amount", amount);
-        fd.append("paymentType", paymentType);
-        $.ajax({
-            url: "services/addPaymentService.php",
-            data: fd,
-            processData: false,
-            contentType: false,
-            type: 'POST',
-            success: function (result) {
-                if (result == "success") {
+            var fd = new FormData();
+            fd.append("tsubid", tsubid);
+            fd.append("date", date);
+            fd.append("amount", amount);
+            fd.append("paymentType", paymentType);
+            $.ajax({
+                url: "services/addPaymentService.php",
+                data: fd,
+                processData: false,
+                contentType: false,
+                type: 'POST',
+                success: function (result) {
+                    if (result == "success") {
 
-                    document.getElementById("paymentForm").reset();
-                    loadSoa();
-                    toastSuccess("Payment Added.");
-                    // toastReload("successToast", "Payment Added.");
+                        document.getElementById("paymentForm").reset();
+                        loadSoa();
+                        toastSuccess("Payment Added.");
+                        // toastReload("successToast", "Payment Added.");
 
-                } else {
-                    toastError("An Error occured: " + result);
+                    } else {
+                        toastError("An Error occured: " + result);
+                    }
                 }
-            }
-        });
+            });
+
+        }, 1000); // 1000 ms = 1 second
 
     } else {
         toastError("Payment amount cannot be greater than the remaining balance.");
