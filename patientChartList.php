@@ -566,6 +566,8 @@
                                                 <option value="C">C - Caries</option>
                                                 <option value="X">X - Missing</option>
                                                 <option value="Ex">Ex - For Extraction</option>
+                                                <option value="Fr">Fr - Fracture</option>
+                                                <option value="Abr">Abr - Abrasion</option>
                                                 <option value="IM">IM - Impacted Tooth</option>
                                                 <option value="SP">Sp - Supernumerary Tooth</option>
                                                 <option value="Rf">Rf - Root Fragment</option>
