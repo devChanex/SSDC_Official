@@ -77,6 +77,13 @@ echo '
     </a>
    
     </li>
+     <li class="nav-item">
+    <a class="nav-link" href="dentalcertList.php" >
+        <i class="fas fa-certificate"></i>
+        <span>Dental Certificate</span>
+    </a>
+   
+    </li>
        
 
                <li class="nav-item">
@@ -204,6 +211,13 @@ echo '
     <a class="nav-link" href="prescriptionList.php" >
         <i class="fas fa-notes-medical"></i>
         <span>Prescription</span>
+    </a>
+   
+    </li>
+     <li class="nav-item">
+    <a class="nav-link" href="dentalcertList.php" >
+        <i class="fas fa-certificate"></i>
+        <span>Dental Certificate</span>
     </a>
    
     </li>
