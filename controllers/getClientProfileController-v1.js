@@ -1,11 +1,14 @@
 getclientdata();
 function getclientdata() {
-
     var search = document.getElementById("tableSearch").value;
     var page = document.getElementById("currentPage").value;
+    var searchBy = document.getElementById("searchBy").value; // 👈 get dropdown value
+   
     var fd = new FormData();
     fd.append("search", search);
     fd.append("page", page);
+    fd.append("searchBy", searchBy);
+
     $.ajax({
         url: "services/clientProfileListService.php",
         data: fd,
