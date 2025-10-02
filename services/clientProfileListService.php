@@ -3,24 +3,21 @@ session_start();
 require_once('databaseService.php');
 $service = new ServiceClass();
 
-// Collect POST data
-$search     = urldecode($_POST['search'] ?? '');
-$searchBy   = $_POST['searchBy'] ?? 'name';   // default to "name" if not provided
+$search = urldecode($_POST['search']);
 $searchParam = '%' . $search . '%';
-$page       = isset($_POST['page']) ? (int) $_POST['page'] : 1;
+$page = isset($_POST['page']) ? (int) $_POST['page'] : 1;
 $itemPerPage = isset($_POST['item']) ? (int) $_POST['item'] : 10;
-
-// Process request
-$result = $service->process($searchParam, $searchBy, $page, $itemPerPage);
+$result = $service->process($searchParam, $page, $itemPerPage);
 
 class ServiceClass
 {
-    private $conn;
 
+    private $conn;
     public function __construct()
     {
         $database = new Database();
-        $this->conn = $database->dbConnection();
+        $db = $database->dbConnection();
+        $this->conn = $db;
     }
 
     public function runQuery($sql)
@@ -28,24 +25,17 @@ class ServiceClass
         $stmt = $this->conn->prepare($sql);
         return $stmt;
     }
-
-    public function process($search, $searchBy, $page, $itemPerPage)
+    //DO NOT INCLUDE THIS CODE
+    public function process($search, $page, $itemPerPage)
     {
-        $offset = ($page - 1) * $itemPerPage;
+        $superuser = "ssdc_admin2020";
 
-        // Define fields for searching
-        $searchFields = [
-            'hmo',
-            'nickname',
-            'sex',
-            'mobilenumber',
-            "CONCAT(lname, ', ', fname, ' ', mdname)"
-        ];
+        $offset = ($page - 1) * $itemPerPage;  // Calculate the offset for pagination
 
+        $searchFields = ['hmo', 'nickname', 'sex', 'mobilenumber', "CONCAT(lname, ', ', fname, ' ', mdname)"];
         $dynamics = '';
 
-        // Build WHERE condition if search is not empty
-        if (!empty(trim($search, '%'))) {
+        if (!empty($search)) {
             $orConditions = [];
             foreach ($searchFields as $field) {
                 $orConditions[] = "$field LIKE :search";
@@ -53,56 +43,48 @@ class ServiceClass
             $dynamics = 'AND (' . implode(' OR ', $orConditions) . ')';
         }
 
-        // Sorting logic based on searchBy
-        if ($searchBy === "dateRegistered") {
-            $orderBy = "ORDER BY clientid DESC";
-        } else {
-            $orderBy = "ORDER BY CONCAT(lname, ', ', fname, ' ', mdname) ASC";
-        }
-
-        // Final query
-        $query = "
-            SELECT * FROM clientprofile a 
-            WHERE (status != 'Deleted' OR status IS NULL) $dynamics 
-            $orderBy 
-            LIMIT :limit OFFSET :offset
-        ";
+        $dynamics .= 'ORDER BY CONCAT(lname, \', \', fname, \' \', mdname) ASC LIMIT :limit OFFSET :offset';
+        // Using prepared statements for query to avoid SQL injection
+        $query = "SELECT * FROM clientprofile a WHERE (status != 'Deleted' OR status IS NULL) $dynamics ";
 
         $stmt = $this->conn->prepare($query);
-
-        // Bind search if used
-        if (!empty(trim($search, '%'))) {
-            $stmt->bindParam(':search', $search, PDO::PARAM_STR);
-        }
-
-        $stmt->bindParam(':limit', $itemPerPage, PDO::PARAM_INT);
-        $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
-
+        $stmt->bindParam(':search', $search, PDO::PARAM_STR);
+        $stmt->bindParam(':limit', $itemPerPage, PDO::PARAM_INT);  // Ensure itemPerPage is treated as an integer
+        $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);  // Ensure offset is treated as an integer
         $stmt->execute();
-
         if ($stmt->rowCount() > 0) {
+
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $dob = new DateTime($row["birthDate"]);
+                $dob = new DateTime($row["birthDate"]); // assuming dob is something like '1990-04-15'
                 $today = new DateTime();
                 $age = $today->diff($dob)->y;
                 $fullname = $row["lname"] . ', ' . $row["fname"] . ' ' . $row["mdname"];
-
                 echo '
                 <tr style="color: black;">
-                    <td>' . ucwords(strtolower($fullname)) . '</td>
-                    <td>' . ucwords(strtolower($row["nickname"])) . '</td>
-                    <td>' . $age . '</td>
-                    <td>' . ucwords(strtolower($row["sex"])) . '</td>
-                    <td>' . $row["mobileNumber"] . '</td>
-                    <td>' . ucwords($row["hmo"]) . '</td>
-                    <td align="center">
-                        <a href="updateClient.php?clientid=' . $row["clientid"] . '&lname=' . $row["lname"] . '&fname=' . $row["fname"] . '" 
-                           class="btn btn-warning btn-circle" title="Update Client Profile">
-                           <i class="fas fa-edit"></i>
-                        </a>';
+                <td>' . ucwords(strtolower($fullname)) . '</td>
+                <td>' . ucwords(strtolower($row["nickname"])) . '</td>
+                <td>' . $age . '</td>
+                <td>' . ucwords(strtolower($row["sex"])) . '</td>
+        
+                <td>' . $row["mobileNumber"] . '</td>
+               
+               
+                <td>' . ucwords($row["hmo"]) . '</td>
+     
+               
+                <td align="center">
+                 <a href="updateClient.php?civilStatus=' . $row["civilstatus"] . '&company=' . $row["company"] . '&cardNumber=' . $row["cardnumber"] . '&hmo=' . $row["hmo"] . '&religion=' . $row["religion"] . '&clientid=' . $row["clientid"] . '&lname=' . $row["lname"] . '&fname=' . $row["fname"] . '&mname=' . $row["mdname"] . '&nick=' . $row["nickname"] . '&age=' . $age . '&sex=' . $row["sex"] . '&occupation=' . $row["occupation"] . '&birthDate=' . $row["birthDate"] . '&mobileNumber=' . $row["mobileNumber"] . '&homeAddress=' . $row["homeAddress"] . '&guardianName=' . $row["guardianName"] . '&gOccupation=' . $row["gOccupation"] . '&refferedBy=' . $row["refferedBy"] . '&emailAddress=' . $row["emailAddress"] . '
+                " class="btn btn-warning btn-circle" title="Update Client Profile"><i class="fas fa-edit"></i></a>';
 
-                // Add more action buttons here (same as your original code)...
-                  echo '
+                //medhistory checker
+
+                // $query2 = "select * from medhistory where clientid=:a";
+                // $stmt2 = $this->conn->prepare($query2);
+                // $stmt2->bindParam(':a', $row["clientid"]);
+                // $stmt2->execute();
+                // if ($stmt2->rowCount() > 0) {
+
+                echo '
                        <a href="medHistoryView.php?clientid=' . $row["clientid"] . '&clientname=' . $fullname . '" title="View Medical History"  class="btn btn-secondary  btn-circle"><i class="fas fa-history"></i></a>
                 ';
 
@@ -113,9 +95,14 @@ class ServiceClass
                 if ($stmt2->rowCount() > 0) {
 
                     while ($row2 = $stmt2->fetch(PDO::FETCH_ASSOC)) {
-                        echo '<a href="viewConsent.php?dentist=' . $row2["dentist"] . '&date=' . $row2["date"] . '&consentid=' . $row2["id"] . '&civilStatus=' . $row2["civilstatus"] . '&company=' . $row2["company"] . '&cardNumber=' . $row2["cardnumber"] . '&hmo=' . $row2["hmo"] . '&religion=' . $row2["religion"] . '&clientid=' . $row["clientid"] . '&lname=' . $row["lname"] . '&fname=' . $row2["fname"] . '&mname=' . $row2["mdname"] . '&nick=' . $row2["nickname"] . '&age=' . $row2["age"] . '&sex=' . $row["sex"] . '&occupation=' . $row["occupation"] . '&birthDate=' . $row2["birthDate"] . '&mobileNumber=' . $row2["mobileNumber"] . '&homeAddress=' . $row2["homeAddress"] . '&guardianName=' . $row2["guardianName"] . '&gOccupation=' . $row2["gOccupation"] . '&refferedBy=' . $row2["refferedBy"] . '&height=' . $row["height"] . '&weight=' . $row["weight"] . '" class="btn btn-primary btn-circle" title="View Client Consent"><i class="fas fa-file"></i></a>
+                        echo '<a href="viewConsent.php?dentist=' . $row2["dentist"] . '&date=' . $row2["date"] . '&consentid=' . $row2["id"] . '&civilStatus=' . $row2["civilstatus"] . '&company=' . $row2["company"] . '&cardNumber=' . $row2["cardnumber"] . '&hmo=' . $row2["hmo"] . '&religion=' . $row2["religion"] . '&clientid=' . $row["clientid"] . '&lname=' . $row["lname"] . '&fname=' . $row2["fname"] . '&mname=' . $row2["mdname"] . '&nick=' . $row2["nickname"] . '&age=' . $row2["age"] . '&sex=' . $row["sex"] . '&occupation=' . $row["occupation"] . '&birthDate=' . $row2["birthDate"] . '&mobileNumber=' . $row2["mobileNumber"] . '&homeAddress=' . $row2["homeAddress"] . '&guardianName=' . $row2["guardianName"] . '&gOccupation=' . $row2["gOccupation"] . '&refferedBy=' . $row2["refferedBy"] . '" class="btn btn-primary btn-circle" title="View Client Consent"><i class="fas fa-file"></i></a>
                         ';
                     }
+
+                } else {
+                    echo ' 
+                     <a href="addConsent.php?civilStatus=' . $row["civilstatus"] . '&company=' . $row["company"] . '&cardNumber=' . $row["cardnumber"] . '&hmo=' . $row["hmo"] . '&religion=' . $row["religion"] . '&clientid=' . $row["clientid"] . '&lname=' . $row["lname"] . '&fname=' . $row["fname"] . '&mname=' . $row["mdname"] . '&nick=' . $row["nickname"] . '&age=' . $age . '&sex=' . $row["sex"] . '&occupation=' . $row["occupation"] . '&birthDate=' . $row["birthDate"] . '&mobileNumber=' . $row["mobileNumber"] . '&homeAddress=' . $row["homeAddress"] . '&guardianName=' . $row["guardianName"] . '&gOccupation=' . $row["gOccupation"] . '&refferedBy=' . $row["refferedBy"] . '" class="btn btn-success btn-circle" title="Add Client Consent"><i class="fas fa-file"></i></a>
+                 ';
 
                 }
 
@@ -143,18 +130,40 @@ class ServiceClass
                       
                        ';
 
-                if ($_SESSION["account_type"] == 0 || $_SESSION["account_type"] == 100) {
+                // } else {
+                //     echo ' <a href="medHistory.php?clientid=' . $row["clientid"] . '&clientname=' . $fullname . '" title="Add Medical History" class="btn btn-success btn-circle"><i class="fas fa-history"></i></a>
+                //     ';
+
+                // }
+
+                if ($_SESSION["username"] == $superuser) {
                     echo '
-                        <a href="#" class="btn btn-danger btn-circle" 
-                           onclick="deleteClient(\'' . $row["clientid"] . '\')" 
-                           title="Delete Client Profile">
-                           <i class="fas fa-trash"></i>
-                        </a>';
+               
+                    <a href="#" class="btn btn-danger btn-circle" onclick="deleteClient(\'' . $row["clientid"] . '\')" title="Delete Client Profile"><i class="fas fa-trash"></i></a>
+                    
+    
+                    ';
                 }
 
-                echo '</td></tr>';
+
+
+
+                echo '
+                
+                
+                </td>
+            </tr>';
             }
+
         }
     }
+
 }
+
+
+
+
+
+
+
 ?>
