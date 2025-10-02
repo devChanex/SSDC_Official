@@ -3,11 +3,12 @@ session_start();
 require_once('databaseService.php');
 $service = new ServiceClass();
 
-$search = urldecode($_POST['search']);
+$search = urldecode($_POST['search'] ?? '');
+$searchBy = $_POST['searchBy'] ?? 'name';   // default to "name" if not provided
 $searchParam = '%' . $search . '%';
 $page = isset($_POST['page']) ? (int) $_POST['page'] : 1;
 $itemPerPage = isset($_POST['item']) ? (int) $_POST['item'] : 10;
-$result = $service->process($searchParam, $page, $itemPerPage);
+$result = $service->process($searchParam, $page, $itemPerPage, $searchBy);
 
 class ServiceClass
 {
@@ -26,7 +27,7 @@ class ServiceClass
         return $stmt;
     }
     //DO NOT INCLUDE THIS CODE
-    public function process($search, $page, $itemPerPage)
+    public function process($search, $page, $itemPerPage, $searchBy)
     {
         $superuser = "ssdc_admin2020";
 
@@ -35,7 +36,8 @@ class ServiceClass
         $searchFields = ['hmo', 'nickname', 'sex', 'mobilenumber', "CONCAT(lname, ', ', fname, ' ', mdname)"];
         $dynamics = '';
 
-        if (!empty($search)) {
+        // Build WHERE condition if search is not empty
+        if (!empty(trim($search, '%'))) {
             $orConditions = [];
             foreach ($searchFields as $field) {
                 $orConditions[] = "$field LIKE :search";
@@ -43,12 +45,27 @@ class ServiceClass
             $dynamics = 'AND (' . implode(' OR ', $orConditions) . ')';
         }
 
-        $dynamics .= 'ORDER BY CONCAT(lname, \', \', fname, \' \', mdname) ASC LIMIT :limit OFFSET :offset';
-        // Using prepared statements for query to avoid SQL injection
-        $query = "SELECT * FROM clientprofile a WHERE (status != 'Deleted' OR status IS NULL) $dynamics ";
+        // Sorting logic based on searchBy
+        if ($searchBy === "dateRegistered") {
+            $orderBy = "ORDER BY clientid DESC";
+        } else {
+            $orderBy = "ORDER BY CONCAT(lname, ', ', fname, ' ', mdname) ASC";
+        }
+
+        // Final query
+        $query = "
+            SELECT * FROM clientprofile a 
+            WHERE (status != 'Deleted' OR status IS NULL) $dynamics 
+            $orderBy 
+            LIMIT :limit OFFSET :offset
+        ";
 
         $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':search', $search, PDO::PARAM_STR);
+        // $stmt->bindParam(':search', $search, PDO::PARAM_STR);
+        // Bind search if used
+        if (!empty(trim($search, '%'))) {
+            $stmt->bindParam(':search', $search, PDO::PARAM_STR);
+        }
         $stmt->bindParam(':limit', $itemPerPage, PDO::PARAM_INT);  // Ensure itemPerPage is treated as an integer
         $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);  // Ensure offset is treated as an integer
         $stmt->execute();
