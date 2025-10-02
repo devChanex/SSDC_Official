@@ -265,12 +265,12 @@ error_reporting(0);
                                         <div class="row">
 
                                             <div class="form-group col-md-12">
-                                                <label for="modal-address">Treatment:</label>
+                                                <label for="modal-treatment">Treatment:</label>
                                                 <textarea class="form-control" name="treatment" id="modal-treatment"
                                                     rows="3"></textarea>
                                             </div>
                                             <div class="form-group col-md-12">
-                                                <label for="modal-address">Diagnosis:</label>
+                                                <label for="modal-remarks">Remarks/Recommendations:</label>
                                                 <textarea class="form-control" name="treatment" id="modal-diagnosis"
                                                     rows="3"></textarea>
                                             </div>

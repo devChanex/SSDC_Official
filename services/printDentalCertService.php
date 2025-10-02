@@ -80,13 +80,13 @@ class ServiceClass
             <!-- Certificate Content -->
             <p style="margin: 1em 0;">
                 To Whom it may concern:<br>
-                &nbsp;&nbsp;&nbsp; This is to certify that <strong>' . $row["name"] . '</strong>, ' . $row["age"] . ' year-old, residing at ' . $row["address"] . ', 
-                Has been a patient by this office. His/Her last visit was on ____________________ <br>
+                &nbsp;&nbsp;&nbsp; This is to certify that <strong>' . $row["name"] . '</strong> &nbsp; ' . $row["age"] . ' year-old, residing at &nbsp; ' . $row["address"] . '<br> 
+                Has been a patient by this office. His/Her last visit was on ____________________ <br><br>
                 The following procedure/s was-were performed:<br>
         
                   <span style="margin-left: 30px;"> ☐ Dental Consultation </span><br>
-                  <span style="margin-left: 30px;"> ☐  Radio Taking  </span><br>
-                  <span style="margin-left: 30px;">☐  Oral Phropylaxis  </span><br>
+                  <span style="margin-left: 30px;"> ☐  Radiograph Taking  </span><br>
+                  <span style="margin-left: 30px;">☐  Oral Prophylaxis  </span><br>
                   <span style="margin-left: 30px;">☐  Filling of tooth number/s ________________________________________________________________________ </span><br>
                   <span style="margin-left: 30px;">☐  Root Canal Treatment of tooth number/s ____________________________________________________________  </span><br>
                   <span style="margin-left: 30px;">☐  Periodontal Treatment of quadrant/s _______________________________________________________________  </span><br>
@@ -94,18 +94,20 @@ class ServiceClass
                   <span style="margin-left: 30px;">☐  Others _______________________________________________________________________________________ </span><br>
                     
             </p>
-
+            <p style="margin: 1em 0;">
+                Treatment: <u> ' . $row["treatment"] . '.</u>
+            </p>
             <p style="margin: 1em 0;">
                 Remarks/Recommendations: <u> ' . $row["diagnosis"] . '.</u>
             </p>
-
+            <br><br>
             <p style="margin: 1em 0 3em 0;">
                 <i>This certificate is being issued upon the request of the patient for whatever purpose it may serve except medico-legal purposes.</i>
             </p>
 
             <!-- Footer Just Below Last Paragraph -->
             <div style="text-align: right; margin-top: 2em;">
-                <img src="img/' . $dentistSignature . '" alt="Dentist Signature" style="height: 40px; display: inline-block; vertical-align: middle; margin-bottom: 0.3em;">
+                <img src="img/' . $dentistSignature . '" alt="Dentist Signature" style="height: 80px; display: inline-block; vertical-align: middle; margin-bottom: 0.3em;">
                 <p style="margin: 0;">' . $row["dentist"] . '</p>
                 
                 <p style="margin: 0;">License No. ' . $row["license"] . '</p>
