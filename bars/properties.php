@@ -11,7 +11,10 @@ $dentist = [
     "Dr. Ayeska Geneella Soriano",
     "Dr. Nikki F. Sarmiento",
     "Dr. Lani Danganan",
-    "Dr. Dyan Vidal"
+    "Dr. Dyan Vidal",
+    "Dr. Joyce Ann Gabayan",
+    "Dr. Rolisa Lumba-Adove",
+    "Dr. Marjorie Esguerra"
 ];
 
 
