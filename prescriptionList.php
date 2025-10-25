@@ -128,7 +128,7 @@
                                     <p style="text-align: center; color: black; margin: 0;font-size:13px;">
 
                                         <strong>Contact Number:</strong> 0919 009 3099 / (049) 539 0277 <br>
-                                        <strong>Facebook Page:</strong> www.facebook.com/smilesavedental
+                                        <strong>Facebook Page:</strong> Smile Save Dental Care - Biñan Laguna
                                     </p>
 
 

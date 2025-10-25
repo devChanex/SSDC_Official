@@ -564,6 +564,8 @@
                                                 <option value="-">-- Select Remark --</option>
                                                 <option value="✔">✔- Present</option>
                                                 <option value="C">C - Caries</option>
+                                                <option value="GI">GI - Glass Ionomer</option>
+                                                <option value="PC">PC - Plastic Crown</option>
                                                 <option value="IC">IC - Incipient Caries</option>
                                                 <option value="X">X - Missing</option>
                                                 <option value="Ex">Ex - For Extraction</option>
