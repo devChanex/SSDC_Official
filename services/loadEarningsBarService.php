@@ -26,28 +26,28 @@ class ServiceClass
 
 
         $arrayLabel = array();
-        $query = "select distinct(year(date)) as 'yd' from treatmentsoa order by year(date) asc";
+        $query = "select distinct(year(paymentdate)) as 'yd' from treatmentsubpayment  order by year(paymentdate) asc";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         if ($stmt->rowCount() > 0) {
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                array_push($arrayLabel,$row["yd"]);
+                array_push($arrayLabel, $row["yd"]);
             }
         }
 
         $arrayData = array();
         foreach ($arrayLabel as $year) {
-            $query = "SELECT sum(total) as 'earning' FROM treatmentsoa where year(date)=:a";
+            $query = "SELECT sum(amount) as 'earning' FROM treatmentsubpayment where year(paymentdate)=:a";
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':a', $year);
             $stmt->execute();
             if ($stmt->rowCount() > 0) {
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    array_push($arrayData,$row["earning"]);
+                    array_push($arrayData, $row["earning"]);
                 }
             }
         }
-        $data['datas'] =$arrayData;
+        $data['datas'] = $arrayData;
         $data['label'] = $arrayLabel;
         echo json_encode($data);
     }

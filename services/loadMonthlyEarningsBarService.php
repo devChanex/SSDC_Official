@@ -25,35 +25,35 @@ class ServiceClass
     {
 
 
-        $arrayLabel = array("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec");
-        $current_year=date('Y');
+        $arrayLabel = array("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
+        $current_year = date('Y');
         //$query = "select distinct(year(date)) as 'yd' from treatmentsoa order by year(date) asc";
         //$stmt = $this->conn->prepare($query);
         //$stmt->execute();
         //if ($stmt->rowCount() > 0) {
-         //   while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-          //      array_push($arrayLabel,$row["yd"]);
-           // }
-       // }
-    
+        //   while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        //      array_push($arrayLabel,$row["yd"]);
+        // }
+        // }
+
 
         $arrayData = array();
-        for($x=1;$x<=12;$x++){
-            $query = "SELECT sum(total) as 'earning' FROM treatmentsoa where year(date)=:a and month(date)=:b";
+        for ($x = 1; $x <= 12; $x++) {
+            $query = "SELECT sum(amount) as 'earning' FROM treatmentsubpayment  where year(paymentdate)=:a and month(paymentdate)=:b";
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':a', $current_year);
             $stmt->bindParam(':b', $x);
             $stmt->execute();
             if ($stmt->rowCount() > 0) {
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    array_push($arrayData,$row["earning"]);
+                    array_push($arrayData, $row["earning"]);
                 }
-            }else{
-                array_push($arrayData,0);
-                }
-            
+            } else {
+                array_push($arrayData, 0);
+            }
+
         }
-        $data['datas'] =$arrayData;
+        $data['datas'] = $arrayData;
         $data['label'] = $arrayLabel;
         echo json_encode($data);
     }
