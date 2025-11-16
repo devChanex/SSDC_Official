@@ -5,6 +5,7 @@ $sidebarColor = "bg-custom";
 $superuser = "ssdc_admin2020";
 $dentist = [
     "Dr. Maria Regina I. Valencia",
+    "Dr. Jessabel Valenciano",
     "Dr. Adrianne Bersabal",
     "Dr. Leslie Adove",
     "Dr. Ayeska Geneella Soriano",
