@@ -136,6 +136,7 @@ echo '
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="treatmentList.php">Treatment List</a>
                          <a class="collapse-item" href="medicineList.php">Medicine List</a>
+                         <a class="collapse-item" href="medCertTreatmentList.php">Dental-Cert Treatment List</a>
                      
                     </div>
                 </div>
@@ -273,6 +274,7 @@ echo '
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="treatmentList.php">Treatment List</a>
                          <a class="collapse-item" href="medicineList.php">Medicine List</a>
+                         <a class="collapse-item" href="medCertTreatmentList.php">Dental-Cert Treatment List</a>
                      
                     </div>
                 </div>
@@ -387,6 +389,7 @@ echo '
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="treatmentList.php">Treatment List</a>
                          <a class="collapse-item" href="medicineList.php">Medicine List</a>
+                         <a class="collapse-item" href="medCertTreatmentList.php">Dental-Cert Treatment List</a>
                      
                     </div>
                 </div>
@@ -498,6 +501,7 @@ echo '
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="treatmentList.php">Treatment List</a>
                          <a class="collapse-item" href="medicineList.php">Medicine List</a>
+                         <a class="collapse-item" href="medCertTreatmentList.php">Dental-Cert Treatment List</a>
                      
                     </div>
                 </div>
