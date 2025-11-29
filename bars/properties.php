@@ -14,7 +14,8 @@ $dentist = [
     "Dr. Dyan Vidal",
     "Dr. Joyce Ann Gabayan",
     "Dr. Rolisa Lumba-Adove",
-    "Dr. Marjorie Esguerra"
+    "Dr. Marjorie Esguerra",
+    "Dr. Chicklet Buaya"
 
 ];
 $dentistSignature = "e-sign.png";
