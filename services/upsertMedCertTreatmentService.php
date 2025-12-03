@@ -18,28 +18,28 @@ class ServiceClass
         // Match JS FormData keys
         $medid = $data['medid'] ?? '';
         $genericname = $data['genericname'] ?? '';
-        $dispense = $data['dispense'] ?? '';
+        // $dispense = $data['dispense'] ?? '';
       
 
         if ($medid != '') {
             // Update existing record
             $query = "UPDATE dctreatmentlist 
-                      SET treatment = :a, toothnum = :b
+                      SET treatment = :a
                       WHERE id = :x";
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':x', $medid);
         } else {
             // Insert new record with date
             $query = "INSERT INTO dctreatmentlist 
-                      (treatment, toothnum, date_added) 
-                      VALUES (:a, :b, :d)";
+                      (treatment, date_added) 
+                      VALUES (:a, :d)";
             $stmt = $this->conn->prepare($query);
             $dateAdded = date('Y-m-d H:i:s');
             $stmt->bindParam(':d', $dateAdded);
         }
 
         $stmt->bindParam(':a', $genericname);
-        $stmt->bindParam(':b', $dispense);
+        // $stmt->bindParam(':b', $dispense);
         // $stmt->bindParam(':c', $signetur);
 
         try {

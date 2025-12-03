@@ -35,7 +35,7 @@ $query = "SELECT * FROM dctreatmentlist ORDER BY id DESC";
                 <tr style="color: black;">
               
                 <td>' . $row["treatment"] . '</td>
-                <td>' . $row["toothnum"] . '</td>
+            
                  <td>' . $row["date_added"] . '</td>
                
                 <td align="center">
@@ -45,7 +45,6 @@ $query = "SELECT * FROM dctreatmentlist ORDER BY id DESC";
    data-target="#editTreatmentModal"
    data-treatmentid="' . $row["id"] . '"
    data-genericname="' . htmlspecialchars($row["treatment"]) . '"
-   data-dispense="' . htmlspecialchars($row["toothnum"]) . '"
    title="Update treatment">
     <i class="fas fa-edit"></i>
 </a>

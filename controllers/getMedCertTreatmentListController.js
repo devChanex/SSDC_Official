@@ -23,7 +23,7 @@ $('#editTreatmentModal').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget);
     $('#editTreatmentId').val(button.data('treatmentid'));
     $('#editGenericName').val(button.data('genericname'));
-    $('#editDispense').val(button.data('dispense'));
+    // $('#editDispense').val(button.data('dispense'));
     // $('#editSignetur').val(button.data('signetur'));
 });
 
@@ -59,13 +59,13 @@ function deleteMedicine(id) {
 function SaveMedicine() {
     var medid = document.getElementById("editTreatmentId").value;
     var genericname = document.getElementById("editGenericName").value;
-    var dispense = document.getElementById("editDispense").value;
+    // var dispense = document.getElementById("editDispense").value;
     // var signetur = document.getElementById("editSignetur").value;
     var fd = new FormData();
     $('#editTreatmentModal').modal('hide');
     fd.append('medid', medid);
     fd.append('genericname', genericname);
-    fd.append('dispense', dispense);
+    // fd.append('dispense', dispense);
     // fd.append('signetur', signetur);
     $.ajax({
         url: "services/upsertMedCertTreatmentService.php",

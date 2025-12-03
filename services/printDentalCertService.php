@@ -99,14 +99,15 @@ class ServiceClass
             <p style="margin: 1em 0;">
                 Remarks/Recommendations:  ' .nl2br( $row["diagnosis"] ). '.
             </p>
-            <br><br>
+            <br>
             <p style="margin: 1em 0 3em 0;">
                 <i>This certificate is being issued upon the request of the patient for whatever purpose it may serve except medico-legal purposes.</i>
             </p>
 
             <!-- Footer Just Below Last Paragraph -->
             <div style="text-align: right; margin-top: 2em;">
-                <img src="img/' . $dentistSignature . '" alt="Dentist Signature" style="height: 80px; display: inline-block; vertical-align: middle; margin-bottom: 0.3em;">
+              <!-- Signature Section -->   
+         <br>
                 <p style="margin: 0;">' . $row["dentist"] . '</p>
                 
                 <p style="margin: 0;">License No. ' . $row["license"] . '</p>

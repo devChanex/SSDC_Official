@@ -37,15 +37,10 @@ class ServiceClass
                 
          
                 $treatment = htmlspecialchars($row["treatment"]);
-                $toothnum  = htmlspecialchars($row["toothnum"]);
+                
 
                 // Combine them in both value and label if needed
-                echo '<option value="' . $treatment . '- Tooth # '.$toothnum.'">' . $treatment;
-
-                // Only show tooth number if it’s not empty
-                if (!empty($toothnum)) {
-                    echo ' - Tooth ' . $toothnum;
-                }
+                echo '<option value="' . $treatment . '">' . $treatment;
 
                 echo '</option>';
 

@@ -159,12 +159,17 @@ function submitCart() {
     // 🔹 Collect all treatments from the table
     const treatmentRows = document.querySelectorAll("#medicine-table tbody tr");
     const treatments = [];
+    
 
     treatmentRows.forEach(row => {
         const treatment = row.cells[0].innerText.trim();
-        if (treatment) treatments.push(treatment);
+        const tooth = row.cells[1].innerText.trim();       // tooth number
+ if (treatment) {
+            treatments.push(`${treatment} -Tooth#: ${tooth}`);
+        }
     });
-
+    // Convert array → single string separated by newline
+const treatmentString = treatments.join("\n");
     if (treatments.length === 0) {
         toastError("Please add at least one treatment.");
         return;
@@ -180,8 +185,7 @@ function submitCart() {
     fd.append('dentist', dentist);
     fd.append('license', license);
     fd.append('diagnosis', diagnosis);
-    // 🔹 Send all treatments as JSON or comma-separated list
-    fd.append('treatment', treatments.join(', ')); // plain comma-separated string
+fd.append('treatment', treatmentString);
 
 
     $.ajax({
@@ -250,6 +254,7 @@ function AddMed() {
     const rxid = document.getElementById("modal-rxid").value;
     const medicineSelect = document.getElementById("modal-treatment");
     const medicineId = medicineSelect.value;
+    const toothNumberInput = document.getElementById("modal-toothnumber");
 
     if (!medicineId) {
         toastError("Please select Treatment to add");
@@ -271,12 +276,13 @@ function AddMed() {
     // cellRxid.style.display = "none";
     cellRxid.innerText = medicineId;
 
-    // // Medicine name + description
-    // const cellMed = row.insertCell(1);
-    // cellMed.innerText = combinedText;
+    //Tooth number cell
+    const cellTooth = row.insertCell(1);
+    cellTooth.innerText = toothNumberInput.value || "-";
+
 
     // Action cell with Delete button
-    const cellAction = row.insertCell(1);
+    const cellAction = row.insertCell(2);
     const deleteBtn = document.createElement("button");
     deleteBtn.className = "btn btn-danger btn-sm";
     deleteBtn.innerText = "Delete";

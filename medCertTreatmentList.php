@@ -61,7 +61,7 @@
                                             <tr>
 
                                                 <th>Treatment</th>
-                                                <th>Tooth Number</th>
+                                                <!-- <th>Tooth Number</th> -->
                                                 <th>Date Added</th>
                                                 <th>Action</th>
                                             </tr>
@@ -91,8 +91,8 @@
                                                 <input type="hidden" id="editTreatmentId">
                                                 Treatment:
                                                 <input type="text" class="form-control mb-2" id="editGenericName">
-                                                Tooth Number:
-                                                <input type="text" class="form-control mb-2" id="editDispense">
+                                                <!-- Tooth Number:
+                                                <input type="text" class="form-control mb-2" id="editDispense"> -->
                                                 <!-- Remarks:
                                                 <textarea class="form-control mb-2" id="editSignetur"
                                                     rows="3"></textarea> -->

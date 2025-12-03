@@ -276,6 +276,8 @@ error_reporting(0);
                                                     <option value="1">Treatment1</option>
                                                     <option value="2">Treatment2</option>
                                                 </select>
+                                                <input type="text" class="form-control mr-2" name="toothnumber" id="modal-toothnumber" 
+               placeholder="Tooth number" style="max-width: 100px;">
                                                 <button type="button" class="btn btn-primary"
                                                     onclick="AddMed();">Add</button>
                                             </div>
@@ -288,6 +290,7 @@ error_reporting(0);
                                                     <tr class="text-center">
                                                         
                                                         <th>Treatment</th>
+                                                        <th>Tooth number</th>
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>

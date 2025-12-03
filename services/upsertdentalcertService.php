@@ -35,6 +35,7 @@ class ServiceClass
             $address = $data['address'];
             $treatment = $data['treatment'];
             $diagnosis = $data['diagnosis'];
+            
 
             // Begin transaction
             $this->conn->beginTransaction();
