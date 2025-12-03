@@ -28,7 +28,7 @@ class ServiceClass
         $rxid = $data['id'];
 
         $query = "delete from dentalcertificate where certid=:id";
-        $stmt = $this->conn->prepare(query: $query);
+        $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':id', $rxid, PDO::PARAM_INT);
 
         $stmt->execute();
