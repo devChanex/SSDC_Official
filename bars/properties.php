@@ -15,13 +15,15 @@ $dentist = [
     "Dr. Joyce Ann Gabayan",
     "Dr. Rolisa Lumba-Adove",
     "Dr. Marjorie Esguerra",
-    "Dr. Chicklet Buaya"
+    "Dr. Chicklet Buaya",
+    "Dr. Angelu AJ Del Rosario"
 ];
 
 
 
 $dentistSignature = [
     "e-sign.png",
+    "",
     "",
     "",
     "",
