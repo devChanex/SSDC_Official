@@ -6,8 +6,9 @@ $superuser = "ssdc_admin2020";
 $dentist = [
     "Dr. Maria Regina I. Valencia",
     "Dr. Jessabel Valenciano",
-    "Dr. Adrianne Bersabal",
+    "Dr. Angelu AJ Del Rosario",
     "Dr. Leslie Adove",
+    "Dr. Adrianne Bersabal",
     "Dr. Ayeska Geneella Soriano",
     "Dr. Nikki F. Sarmiento",
     "Dr. Lani Danganan",
@@ -15,8 +16,8 @@ $dentist = [
     "Dr. Joyce Ann Gabayan",
     "Dr. Rolisa Lumba-Adove",
     "Dr. Marjorie Esguerra",
-    "Dr. Chicklet Buaya",
-    "Dr. Angelu AJ Del Rosario"
+    "Dr. Chicklet Buaya"
+
 
 ];
 $dentistSignature = "e-sign.png";
