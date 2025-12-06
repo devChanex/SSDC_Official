@@ -5,9 +5,11 @@ $sidebarColor = "bg-gradient-success";
 $superuser = "sysadmin";
 
 $dentist = [
-    "Dr. Maria Regina I. Valencia",
-    "Dr. Adrianne Bersabal",
+       "Dr. Maria Regina I. Valencia",
+    "Dr. Jessabel Valenciano",
+    "Dr. Angelu AJ Del Rosario",
     "Dr. Leslie Adove",
+    "Dr. Adrianne Bersabal",
     "Dr. Ayeska Geneella Soriano",
     "Dr. Nikki F. Sarmiento",
     "Dr. Lani Danganan",
@@ -15,14 +17,14 @@ $dentist = [
     "Dr. Joyce Ann Gabayan",
     "Dr. Rolisa Lumba-Adove",
     "Dr. Marjorie Esguerra",
-    "Dr. Chicklet Buaya",
-    "Dr. Angelu AJ Del Rosario"
+    "Dr. Chicklet Buaya"
 ];
 
 
 
 $dentistSignature = [
     "e-sign.png",
+    "",
     "",
     "",
     "",
