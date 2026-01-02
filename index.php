@@ -152,7 +152,8 @@
                                                     class="form-control mb-2">
                                                 <label for="email">Email Address</label>
                                                 <input type="email" name="emailAddress" id="emailAddress"
-                                                    placeholder="Email Address" class="form-control mb-2">
+                                                    placeholder="Email Address" class="form-control mb-2"
+                                                    oninput="this.value = this.value.replace(/#/g, '');">
                                             </div>
                                         </div>
 
@@ -176,11 +177,13 @@
                                             <div class="col-lg-4 mb-4">
                                                 <label for="homeAddress">Home Address</label>
                                                 <input type="text" name="homeAddress" id="homeAddress"
-                                                    placeholder="Home Address" class="form-control mb-2">
+                                                    placeholder="Home Address" class="form-control mb-2"
+                                                    oninput="this.value = this.value.replace(/#/g, '');">
 
                                                 <label for="contactNumber">Contact Number</label>
                                                 <input type="text" name="contactNumber" id="contactNumber"
-                                                    placeholder="Contact Number" class="form-control mb-2">
+                                                    placeholder="Contact Number" class="form-control mb-2"
+                                                    oninput="this.value = this.value.replace(/#/g, '');">
 
                                                 <label for="referredBy">Referred By</label>
                                                 <input type="text" name="referredBy" id="referredBy"
@@ -226,12 +229,16 @@
 
                                             </div>
                                             <!-- Demographics -->
-                                            <div class="col-lg-4 mb-4">
-                                                <label for="cardNumber">Account No.</label>
-                                                <input type="text" name="cardNumber" id="cardNumber"
-                                                    placeholder="Health Card Number" class="form-control mb-2">
-
-                                            </div>
+                                          
+                                        <div class="col-lg-4 mb-4">
+                                            <label for="cardNumber">Account No.</label>
+                                            <input type="text"
+                                                name="cardNumber"
+                                                id="cardNumber"
+                                                placeholder="Health Card Number"
+                                                class="form-control mb-2"
+                                                oninput="this.value = this.value.replace(/#/g, '');">
+                                        </div>
                                             <div class="col-lg-4 mb-4">
                                                 <label for="cardNumber">Company</label>
                                                 <input type="text" name="company" id="company"
