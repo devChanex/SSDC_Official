@@ -1,6 +1,7 @@
-getclientdata();
+getdentalcertlistdata();
 populateProfileList();
-function getclientdata() {
+populateMedicineList();
+function getdentalcertlistdata() {
 
     var search = document.getElementById("tableSearch").value;
     var page = document.getElementById("currentPage").value;
@@ -36,13 +37,13 @@ function deleteRow(button) {
 
 function setPage(page) {
     document.getElementById("currentPage").value = page;
-    getclientdata();
+   getdentalcertlistdata();
 
 }
 
 function search() {
     document.getElementById("currentPage").value = 1;
-    getclientdata();
+   getdentalcertlistdata();
 }
 
 $('#editExpenseModal').on('show.bs.modal', function (event) {
@@ -58,7 +59,7 @@ $('#editExpenseModal').on('show.bs.modal', function (event) {
     $('#modal-license').val(button.data('license'));
     $('#modal-treatment').val(button.data('treatment'));
     $('#modal-diagnosis').val(button.data('diagnosis'));
-
+    loadTreatment();
 
 
 
@@ -145,8 +146,6 @@ function getProfileDetails(fullname) {
 
 
 function submitCart() {
-
-    // Get form values
     const rxid = document.getElementById("modal-rxid").value;
     const date = document.getElementById("modal-date").value;
     const name = document.getElementById("modal-name").value;
@@ -155,12 +154,28 @@ function submitCart() {
     const address = document.getElementById("modal-address").value;
     const dentist = document.getElementById("modal-dentist").value;
     const license = document.getElementById("modal-license").value;
-    const treatment = document.getElementById("modal-treatment").value;
     const diagnosis = document.getElementById("modal-diagnosis").value;
 
+    // 🔹 Collect all treatments from the table
+    const treatmentRows = document.querySelectorAll("#medicine-table tbody tr");
+    const treatments = [];
+    
 
+    treatmentRows.forEach(row => {
+        const treatment = row.cells[0].innerText.trim();
+        const tooth = row.cells[1].innerText.trim();       // tooth number
+ if (treatment) {
+            treatments.push(`${treatment} -Tooth#: ${tooth}`);
+        }
+    });
+    // Convert array → single string separated by newline
+const treatmentString = treatments.join("\n");
+    if (treatments.length === 0) {
+        toastError("Please add at least one treatment.");
+        return;
+    }
 
-    var fd = new FormData();
+    const fd = new FormData();
     fd.append('rxid', rxid);
     fd.append('date', date);
     fd.append('name', name);
@@ -169,9 +184,8 @@ function submitCart() {
     fd.append('address', address);
     fd.append('dentist', dentist);
     fd.append('license', license);
-    fd.append('treatment', treatment);
     fd.append('diagnosis', diagnosis);
-
+fd.append('treatment', treatmentString);
 
 
     $.ajax({
@@ -181,24 +195,19 @@ function submitCart() {
         contentType: false,
         type: 'POST',
         success: function (result) {
-            // logThis("Dental Certificate - Save", fd, result);
-            if (result == "success") {
-                if (rxid != "") {
+            if (result.trim() === "success") {
+                if (rxid !== "") {
                     toastSuccess("Dental Certificate Updated Successfully");
                 } else {
                     toastSuccess("Dental Certificate Added Successfully");
                 }
                 $('#editExpenseModal').modal('hide');
-                getclientdata();
+                getdentalcertlistdata();
             } else {
-
                 console.log(result);
                 toastError(result);
             }
-
-
         }
-
     });
     document.getElementById("content-table").style.zoom = "60%";
 }
@@ -218,21 +227,16 @@ function deleteCart() {
         processData: false,
         contentType: false,
         type: 'POST',
-        success: function (result) {
-            logThis("Dental Certificate - Delete", fd, result);
-            if (result == "success") {
+       success: function (result) {
+    // logThis("Dental Certificate - Delete", fd, result); // remove this line
+    if (result == "success") {
+        toastSuccess("Dental Certificate Deleted Successfully");
+    } else {
+        toastError(result);
+    }
+    $('#deleteExpenseModal').modal('hide');
+    getdentalcertlistdata();
 
-                toastSuccess("Dental Certificate Deleted Successfully");
-
-
-            } else {
-
-                toastError(result);
-
-            }
-
-            $('#deleteExpenseModal').modal('hide');
-            getclientdata();
         }
 
     });
@@ -246,6 +250,89 @@ $('#deleteExpenseModal').on('show.bs.modal', function (event) {
 
 });
 
+function AddMed() {
+    const rxid = document.getElementById("modal-rxid").value;
+    const medicineSelect = document.getElementById("modal-treatment");
+    const medicineId = medicineSelect.value;
+    const toothNumberInput = document.getElementById("modal-toothnumber");
+
+    if (!medicineId) {
+        toastError("Please select Treatment to add");
+        return;
+    }
+
+    const selectedOption = medicineSelect.options[medicineSelect.selectedIndex];
+    const medicineid = selectedOption.value;
+    const description = selectedOption.getAttribute("data-desc");
+
+
+    const combinedText = description;
+
+    const tableBody = document.getElementById("medicine-table").getElementsByTagName("tbody")[0];
+    const row = tableBody.insertRow();
+
+    // Hidden rxid
+    const cellRxid = row.insertCell(0);
+    // cellRxid.style.display = "none";
+    cellRxid.innerText = medicineId;
+
+    //Tooth number cell
+    const cellTooth = row.insertCell(1);
+    cellTooth.innerText = toothNumberInput.value || "-";
+
+
+    // Action cell with Delete button
+    const cellAction = row.insertCell(2);
+    const deleteBtn = document.createElement("button");
+    deleteBtn.className = "btn btn-danger btn-sm";
+    deleteBtn.innerText = "Delete";
+    deleteBtn.onclick = function () {
+        row.remove();
+    };
+    cellAction.appendChild(deleteBtn);
+
+    medicineSelect.selectedIndex = 0; // reset select
+}
+
+function populateMedicineList() {
+
+
+    var fd = new FormData();
+    $.ajax({
+        url: "services/treatmentListOptionService.php",
+        data: fd,
+        processData: false,
+        contentType: false,
+        type: 'POST',
+        success: function (result) {
+
+            document.getElementById("modal-treatment").innerHTML = result;
+        }
+
+    });
+    document.getElementById("content-table").style.zoom = "60%";
+}
 
 
 
+function loadTreatment() {
+    var rxid = document.getElementById("modal-rxid").value;
+
+    var fd = new FormData();
+    fd.append("rxid", rxid);
+
+    $.ajax({
+        url: "services/dentalcertTreatmentSelectListService.php",
+        data: fd,
+        processData: false,
+        contentType: false,
+        type: 'POST',
+        success: function (result) {
+
+            document.getElementById("prescriptionsubList").innerHTML = result;
+
+        }
+
+    });
+    document.getElementById("content-table").style.zoom = "60%";
+}

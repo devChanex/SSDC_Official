@@ -587,6 +587,8 @@
                                                 <option value="RCT">RCT - Root Canal Treated</option>
                                                 <option value="FxB">FxB - Fixed Bridge</option>
                                                 <option value="Cm">Cm - Congenitally missing</option>
+                                                <option value="TF">TF - (IRM)</option>
+                                                <option value="V">V - Veneers</option>
 
                                             </select>
                                         </div>

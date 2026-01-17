@@ -35,6 +35,7 @@ class ServiceClass
             $address = $data['address'];
             $treatment = $data['treatment'];
             $diagnosis = $data['diagnosis'];
+            
 
             // Begin transaction
             $this->conn->beginTransaction();
@@ -47,7 +48,7 @@ class ServiceClass
                 $stmt->bindParam(':rxid', $rxid);
             } else {
                 // Insert new if rxid is empty (assuming rxid is AUTO_INCREMENT)
-                $query = "INSERT INTO dentalcertificate (date, name, age, gender, address,dentist,license, treatment,diagnosis) VALUES (:date, :name, :age, :gender, :address,:dentist,:license, :treatment,:diagnosis)";
+                $query = "INSERT INTO dentalcertificate (date, name, age, gender, address,dentist,license,treatment,diagnosis) VALUES (:date, :name, :age, :gender, :address,:dentist,:license, :treatment,:diagnosis)";
                 $stmt = $this->conn->prepare($query);
             }
 

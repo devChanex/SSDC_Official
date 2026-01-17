@@ -5,15 +5,19 @@ $sidebarColor = "bg-custom";
 $superuser = "ssdc_admin2020";
 $dentist = [
     "Dr. Maria Regina I. Valencia",
-    "Dr. Adrianne Bersabal",
+    "Dr. Jessabel Valenciano",
+    "Dr. Angelu AJ Del Rosario",
     "Dr. Leslie Adove",
+    "Dr. Adrianne Bersabal",
     "Dr. Ayeska Geneella Soriano",
     "Dr. Nikki F. Sarmiento",
     "Dr. Lani Danganan",
     "Dr. Dyan Vidal",
     "Dr. Joyce Ann Gabayan",
     "Dr. Rolisa Lumba-Adove",
-    "Dr. Marjorie Esguerra"
+    "Dr. Marjorie Esguerra",
+    "Dr. Chicklet Buaya"
+
 
 ];
 $dentistSignature = "e-sign.png";

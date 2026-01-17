@@ -1,8 +1,6 @@
 <?php
-session_start();
 require_once('databaseService.php');
 $service = new ServiceClass();
-
 $result = $service->process($_POST);
 
 class ServiceClass
@@ -25,14 +23,17 @@ class ServiceClass
     public function process($data)
     {
 
-        $rxid = $data['id'];
 
-        $query = "delete from dentalcertificate where certid=:id";
+        $medid = $data['medid'];
+
+
+
+        $query = "delete from dctreatmentlist where id=:x";
         $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':id', $rxid, PDO::PARAM_INT);
+        $stmt->bindParam(':x', $medid);
+
 
         $stmt->execute();
-
 
         echo 'success';
 
@@ -41,9 +42,6 @@ class ServiceClass
     }
 
 }
-
-
-
 
 
 

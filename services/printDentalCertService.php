@@ -35,6 +35,12 @@ class ServiceClass
 
         if ($stmt->rowCount() > 0) {
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                 // ✅ Split treatment list by comma and build formatted output
+                    $treatmentsOutput = '';
+                    $treatments = explode(',', $row["treatment"]);
+                    foreach ($treatments as $treatment) {
+                        $treatmentsOutput .= '<span style="margin-left:30px;">[✔] ' . trim($treatment) . '</span><br>';
+                    }
 
                 echo '
         <style>
@@ -74,40 +80,34 @@ class ServiceClass
 
             <!-- Certificate Date (Top Right) -->
             <div style="text-align: right;">
-                <strong>Date:</strong> ' . date("F j, Y", strtotime($row["date"])) . '
+             <strong>Date:</strong> ' . date("F j, Y") . '
             </div>
 
             <!-- Certificate Content -->
             <p style="margin: 1em 0;">
                 To Whom it may concern:<br>
                 &nbsp;&nbsp;&nbsp; This is to certify that <strong>' . $row["name"] . '</strong> &nbsp; ' . $row["age"] . ' year-old, residing at &nbsp; ' . $row["address"] . '<br> 
-                Has been a patient by this office. His/Her last visit was on ____________________ <br><br>
+                Has been a patient by this office. His/Her last visit was on <u>' . date("F j, Y", strtotime($row["date"])) . '</u> <br><br>
                 The following procedure/s was-were performed:<br>
         
-                  <span style="margin-left: 30px;"> ☐ Dental Consultation </span><br>
-                  <span style="margin-left: 30px;"> ☐  Radiograph Taking  </span><br>
-                  <span style="margin-left: 30px;">☐  Oral Prophylaxis  </span><br>
-                  <span style="margin-left: 30px;">☐  Filling of tooth number/s ________________________________________________________________________ </span><br>
-                  <span style="margin-left: 30px;">☐  Root Canal Treatment of tooth number/s ____________________________________________________________  </span><br>
-                  <span style="margin-left: 30px;">☐  Periodontal Treatment of quadrant/s _______________________________________________________________  </span><br>
-                  <span style="margin-left: 30px;">☐  Dental Extraction of tooth number/s _______________________________________________________________  </span><br>
-                  <span style="margin-left: 30px;">☐  Others _______________________________________________________________________________________ </span><br>
+                  ' . $treatmentsOutput . '
+
+            
                     
             </p>
+           
             <p style="margin: 1em 0;">
-                Treatment: <u> ' . $row["treatment"] . '.</u>
+                Remarks/Recommendations:  ' .nl2br( $row["diagnosis"] ). '.
             </p>
-            <p style="margin: 1em 0;">
-                Remarks/Recommendations: <u> ' . $row["diagnosis"] . '.</u>
-            </p>
-            <br><br>
+            <br>
             <p style="margin: 1em 0 3em 0;">
                 <i>This certificate is being issued upon the request of the patient for whatever purpose it may serve except medico-legal purposes.</i>
             </p>
 
             <!-- Footer Just Below Last Paragraph -->
             <div style="text-align: right; margin-top: 2em;">
-                <img src="img/' . $dentistSignature . '" alt="Dentist Signature" style="height: 80px; display: inline-block; vertical-align: middle; margin-bottom: 0.3em;">
+              <!-- Signature Section -->   
+         <br>
                 <p style="margin: 0;">' . $row["dentist"] . '</p>
                 
                 <p style="margin: 0;">License No. ' . $row["license"] . '</p>
