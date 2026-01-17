@@ -57,9 +57,9 @@
                                     <h6 class="m-0 font-weight-bold"></h6>
                                     <div class="d-flex align-items-center gap-2 ms-auto">
                                         <strong>Search: </strong><input type="search" id="tableSearch"
-                                            class="form-control form-control-sm" placeholder="" style="width: 300px;"
-                                            oninput="search();">
-
+                                            class="form-control form-control-sm" placeholder="" style="width: 300px;">
+                                        <button type="button" class="btn btn-primary btn-sm"
+                                            onclick="search();">Search</button>
                                     </div>
                                 </div>
                                 <div class="table-responsive">
