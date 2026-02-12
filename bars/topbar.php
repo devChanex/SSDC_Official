@@ -159,15 +159,12 @@ session_start();
 <script>
 function updateWifiStatus() {
     fetch("network_status.php")
-        .then(response => response.json())
+        .then(res => res.json())
         .then(data => {
             const container = document.getElementById("wifiStatus");
             const bars = container.querySelectorAll(".wifi-bar");
 
-            // Reset
-            bars.forEach(bar => {
-                bar.style.backgroundColor = "#ddd";
-            });
+            bars.forEach(bar => bar.style.backgroundColor = "#ddd");
             container.classList.remove("wifi-offline");
 
             if (data.status === "offline") {
@@ -176,7 +173,7 @@ function updateWifiStatus() {
             }
 
             let color = "green";
-            if (data.status === "fair") color = "amber";
+            if (data.status === "fair") color = "#ffc107";
             if (data.status === "slow") color = "red";
 
             for (let i = 0; i < data.bars; i++) {
@@ -184,7 +181,11 @@ function updateWifiStatus() {
             }
         })
         .catch(() => {
-            document.getElementById("wifiStatus").classList.add("wifi-offline");
+            const container = document.getElementById("wifiStatus");
+            const bars = container.querySelectorAll(".wifi-bar");
+
+            bars.forEach(bar => bar.style.backgroundColor = "#ddd");
+            container.classList.add("wifi-offline");
         });
 }
 
