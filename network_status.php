@@ -3,7 +3,7 @@
 
 function checkInternetSpeed() {
     $start = microtime(true);
-    $connected = @fsockopen("www.google.com", 80, $errno, $errstr, 3);
+    $connected = @fsockopen("8.8.8.8", 80, $errno, $errstr, 3);
 
     if (!$connected) {
         return ["status" => "offline", "bars" => 0];
