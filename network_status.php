@@ -5,13 +5,16 @@ function checkServerStatus() {
 
     $ctx = stream_context_create([
         'http' => [
-            'timeout' => 3,
-            'method'  => 'HEAD'
+            'timeout' => 3
+        ],
+        'ssl' => [
+            'verify_peer'      => false,
+            'verify_peer_name' => false
         ]
     ]);
 
-    // 🔁 Change this to your own domain
-    $url = "https://smilesavedental.ph";
+    // ✅ small, fast file
+    $url = "https://smilesavedental.ph/favicon.ico";
 
     $start = microtime(true);
     $result = @file_get_contents($url, false, $ctx);
