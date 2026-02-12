@@ -158,8 +158,11 @@ session_start();
 
 <script>
 function updateWifiStatus() {
-    fetch("network_status.php")
-        .then(res => res.json())
+    fetch("/network_status.php?t=" + Date.now())
+        .then(res => {
+            if (!res.ok) throw new Error("Server error");
+            return res.json();
+        })
         .then(data => {
             const container = document.getElementById("wifiStatus");
             const bars = container.querySelectorAll(".wifi-bar");
@@ -169,6 +172,7 @@ function updateWifiStatus() {
 
             if (data.status === "offline") {
                 container.classList.add("wifi-offline");
+                container.title = "Server offline";
                 return;
             }
 
@@ -179,6 +183,8 @@ function updateWifiStatus() {
             for (let i = 0; i < data.bars; i++) {
                 bars[i].style.backgroundColor = color;
             }
+
+            container.title = "Server status: " + data.status;
         })
         .catch(() => {
             const container = document.getElementById("wifiStatus");
@@ -186,14 +192,13 @@ function updateWifiStatus() {
 
             bars.forEach(bar => bar.style.backgroundColor = "#ddd");
             container.classList.add("wifi-offline");
+            container.title = "Server unreachable";
         });
 }
 
-// Initial load
 updateWifiStatus();
-
-// Refresh every 5 seconds (no page reload)
 setInterval(updateWifiStatus, 5000);
+
 </script>
 
 <?php
