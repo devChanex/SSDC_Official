@@ -127,6 +127,12 @@ function submitPaymentForm() {
 
             var paymentType = paymentTypeOption.value;
 
+            // Validate date BEFORE sending to database
+            if (date <= "01/01/2019") {
+                toastError("Invalid date format. Please Check your input date.");
+                $('#paymentModal').modal('show');
+                return; // Stop execution if date is invalid
+            }
 
             var fd = new FormData();
             fd.append("tsubid", tsubid);
@@ -141,12 +147,10 @@ function submitPaymentForm() {
                 type: 'POST',
                 success: function (result) {
                     if (result == "success") {
-
                         document.getElementById("paymentForm").reset();
                         loadSoa();
                         toastSuccess("Payment Added.");
                         // toastReload("successToast", "Payment Added.");
-
                     } else {
                         toastError("An Error occured: " + result);
                     }
