@@ -396,7 +396,7 @@ error_reporting(0);
             <script src="controllers/logOutConroller.js"></script>
             <script src="controllers/sessionController.js"></script>
             <!-- <script src="controllers/activityLogsController.js"></script> -->
-            <script src="controllers/dentalCertListController.js"></script>
+            <script src="controllers/dentalCertListController-v2.js"></script>
             <!-- <script src="controllers/deleteClientProfileController.js"></script> -->
             <script src="js/sortable.js"></script>
 
