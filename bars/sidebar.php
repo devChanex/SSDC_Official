@@ -345,6 +345,14 @@ echo '
     </a>
    
     </li>
+
+     <li class="nav-item">
+    <a class="nav-link" href="dentalcertList.php" >
+        <i class="fas fa-certificate"></i>
+        <span>Dental Certificate</span>
+    </a>
+   
+    </li>
               <li class="nav-item">
     <a class="nav-link" href="expensesList.php" >
         <i class="fas fa-shopping-cart"></i>
