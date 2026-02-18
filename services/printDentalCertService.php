@@ -63,9 +63,9 @@ class ServiceClass
                     <p>
                         <strong>Address:</strong> L22-24 B2, 2/F Mondo Bambini
                         <span style="margin-left: 330px;"><strong>Clinic Hours:</strong> Tuesday - Sunday</span><br>
-                        <span style="margin-left: 60px;">Commercial Strip Bldg.</span><span style="margin-left: 470px;"> Monday (CLOSED)</span><br>
-                        <span style="margin-left: 60px;">Brgy. Zapote, Biñan, Laguna</span><span style="margin-left: 440px;">  9:00am - 6:00pm</span><br>
-                        <span style="margin-right: 220px;"><strong>Contact #:</strong> ' . $systemcontact . '</span>
+                        <span style="margin-left: 60px;">Commercial Strip Bldg.</span><span style="margin-left: 470px;"> 9:00am - 6:00pm</span><br>
+                        <span style="margin-left: 60px;">Brgy. Zapote, Biñan, Laguna</span><span style="margin-left: 440px;">Monday (CLOSED)</span><br>
+                        <span style="margin-right: 290px;"><strong>Contact #:</strong> ' . $systemcontact . '</span>
                        
                         <span><strong>Email:</strong> ' . $systememail . '</span>
                         
