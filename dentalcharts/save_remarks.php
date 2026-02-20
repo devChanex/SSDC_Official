@@ -13,7 +13,7 @@ $image = base64_decode($image);
 //test
 // $conn = new mysqli("localhost", "root", "", "ssdc_sysdb");
 
-$conn = new mysqli("216.218.206.42", "smilesav_user", "H[)dnAZC-6AE", "smilesav_system");
+$conn = new mysqli("localhost", "smilesav_user", "H[)dnAZC-6AE", "smilesav_system");
 
 if ($conn->connect_error) {
     echo json_encode(["status" => "error", "message" => $conn->connect_error]);

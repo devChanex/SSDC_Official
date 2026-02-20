@@ -3,7 +3,7 @@ $tooth = $_GET['tooth'];
 $clientId = (int) $_GET['clientid'];
 
 // $conn = new mysqli("localhost", "root", "", "sam_db");
-$conn = new mysqli("216.218.206.42", "smilesav_user", "H[)dnAZC-6AE", "smilesav_system");
+$conn = new mysqli("localhost", "smilesav_user", "H[)dnAZC-6AE", "smilesav_system");
 
 // $conn = new mysqli("localhost", "root", "", "ssdc_sysdb");
 

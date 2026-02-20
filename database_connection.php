@@ -9,7 +9,7 @@
 
 
 //prod
-$hostname = "216.218.206.42";
+$hostname = "localhost";
 $username = "smilesav_user";
 $password = 'H[)dnAZC-6AE';
 $database = 'smilesav_system';
