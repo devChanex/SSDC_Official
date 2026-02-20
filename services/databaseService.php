@@ -14,7 +14,7 @@ class Database
 
     //prod
 
-    private $host = "216.218.206.42";
+    private $host = "localhost";
     private $db_name = "smilesav_system";
     private $username = "smilesav_user";
     private $password = 'H[)dnAZC-6AE';
