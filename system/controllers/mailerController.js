@@ -5,7 +5,7 @@ function sendMail(to, subject, greetings, msg) {
     fd.append('greetings', greetings);
     fd.append('msg', msg);
     $.ajax({
-        url: "../services/mailerService.php",
+        url: "../../../services/mailerService.php",
         data: fd,
         processData: false,
         contentType: false,

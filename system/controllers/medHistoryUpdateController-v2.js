@@ -129,7 +129,7 @@ function submitform(clientId, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10,
     fd.append("bleeding", bleeding);
 
     $.ajax({
-        url: "../services/medHistoryUpdateService.php",
+        url: "../../../services/medHistoryUpdateService.php",
         data: fd,
         processData: false,
         contentType: false,

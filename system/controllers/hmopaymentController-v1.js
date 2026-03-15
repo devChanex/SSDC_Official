@@ -7,7 +7,7 @@ function getclientdata() {
     fd.append("search", search);
     fd.append("page", page);
     $.ajax({
-        url: "../services/hmopaymentListService.php",
+        url: "../../../services/hmopaymentListService.php",
         data: fd,
         processData: false,
         contentType: false,
@@ -54,7 +54,7 @@ function getclientdataPagination() {
     fd.append("search", search);
     fd.append("page", page);
     $.ajax({
-        url: "../services/hmopaymentPaginationListService.php",
+        url: "../../../services/hmopaymentPaginationListService.php",
         data: fd,
         processData: false,
         contentType: false,
@@ -86,7 +86,7 @@ function submitCart() {
     });
 
     $.ajax({
-        url: "../services/upserthmopaymentService.php",
+        url: "../../../services/upserthmopaymentService.php",
         data: fd,
         processData: false,
         contentType: false,
@@ -128,7 +128,7 @@ function deleteCart() {
     });
 
     $.ajax({
-        url: "../services/deletehmopaymentService.php",
+        url: "../../../services/deletehmopaymentService.php",
         data: fd,
         processData: false,
         contentType: false,

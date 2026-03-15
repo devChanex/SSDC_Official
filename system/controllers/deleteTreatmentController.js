@@ -6,7 +6,7 @@ function deleteTreatment(treatmentid) {
         var fd = new FormData();
         fd.append('treatmentId', treatmentid);
         $.ajax({
-            url: "../services/treatmentDeletionService.php",
+            url: "../../../services/treatmentDeletionService.php",
             data: fd,
             processData: false,
             contentType: false,

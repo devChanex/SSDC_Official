@@ -14,7 +14,7 @@ function getclientdata() {
     fd.append("to", to);
     fd.append("group", group);
     $.ajax({
-        url: "../services/incomedaterangeservice.php",
+        url: "../../../services/incomedaterangeservice.php",
         data: fd,
         processData: false,
         contentType: false,

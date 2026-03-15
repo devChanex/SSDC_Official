@@ -136,7 +136,7 @@ function submitform(clientId, lastName, firstName, middleName, nickName, gender,
     fd.append('cardNumber', cardNumber);
     fd.append('emailAddress', emailAddress);
     $.ajax({
-        url: "..//../services/clientProfileUpdateService.php",
+        url: "../../../services/clientProfileUpdateService.php",
         data: fd,
         processData: false,
         contentType: false,
@@ -160,7 +160,7 @@ function loadPhoto() {
     var fd = new FormData();
     fd.append('clientId', clientid);
     $.ajax({
-        url: "..//../services/updateClientPhoto.php",
+        url: "../../../services/updateClientPhoto.php",
         data: fd,
         processData: false,
         contentType: false,

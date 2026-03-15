@@ -5,7 +5,7 @@ function loadDetails() {
     fd.append('clientId', clientId);
 
     $.ajax({
-        url: "../services/orthowaiverViewerService.php",
+        url: "../../../services/orthowaiverViewerService.php",
         data: fd,
         processData: false,
         contentType: false,

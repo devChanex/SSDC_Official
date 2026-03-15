@@ -1084,7 +1084,7 @@ aws:
   changes:
     - 5.0.0
     - 5.1.0
-  label: Amazon Web /../services (AWS)
+  label: Amazon Web ../../services (AWS)
   search:
     terms: []
   styles:
@@ -16199,10 +16199,10 @@ server:
     - solid
   unicode: f233
   voted: false
-/../servicestack:
+../../servicestack:
   changes:
     - 5.0.0
-  label: /../servicestack
+  label: ../../servicestack
   search:
     terms: []
   styles:

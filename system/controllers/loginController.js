@@ -8,7 +8,7 @@ function loginChecker() {
 
     var fd = new FormData();
     $.ajax({
-        url: "../services/checkIfLogged.php",
+        url: "../../../services/checkIfLogged.php",
         data: fd,
         processData: false,
         contentType: false,
@@ -46,7 +46,7 @@ function validateUsername(username) {
     var fd = new FormData();
     fd.append('username', username);
     $.ajax({
-        url: "../services/validateFPUsername.php",
+        url: "../../../services/validateFPUsername.php",
         data: fd,
         processData: false,
         contentType: false,

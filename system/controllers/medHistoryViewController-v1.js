@@ -7,7 +7,7 @@ function loadMedHistory(clientId) {
 
 
     $.ajax({
-        url: "../services/medHistoryViewService.php",
+        url: "../../../services/medHistoryViewService.php",
         data: fd,
         processData: false,
         contentType: false,

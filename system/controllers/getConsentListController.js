@@ -7,7 +7,7 @@ function getclientdata() {
     fd.append("search", search);
     fd.append("page", page);
     $.ajax({
-        url: "../services/consentListService.php",
+        url: "../../../services/consentListService.php",
         data: fd,
         processData: false,
         contentType: false,
@@ -40,7 +40,7 @@ function getPagination() {
     fd.append("search", search);
     fd.append("page", page);
     $.ajax({
-        url: "../services/consentListPaginationService.php",
+        url: "../../../services/consentListPaginationService.php",
         data: fd,
         processData: false,
         contentType: false,

@@ -3,7 +3,7 @@ function getclientdata() {
     //  document.getElementById("content-table").style.zoom = "70%";
     var fd = new FormData();
     $.ajax({
-        url: "../services/pendingAppointmentListService.php",
+        url: "../../../services/pendingAppointmentListService.php",
         data: fd,
         processData: false,
         contentType: false,
@@ -32,7 +32,7 @@ function approve(clientid) {
         fd.append('date', approveDate);
         $.ajax({
 
-            url: "../services/pendingApproveDateUpdateService.php",
+            url: "../../../services/pendingApproveDateUpdateService.php",
             data: fd,
             processData: false,
             contentType: false,
@@ -61,7 +61,7 @@ function decline(clientid) {
 
         $.ajax({
 
-            url: "../services/pendingDeclineDateUpdateService.php",
+            url: "../../../services/pendingDeclineDateUpdateService.php",
             data: fd,
             processData: false,
             contentType: false,

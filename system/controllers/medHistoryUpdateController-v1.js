@@ -175,7 +175,7 @@ function submitMedicalHistoryAjax() {
     fd.append('clientId', document.getElementById("clientId").value);
     // AJAX call
     $.ajax({
-        url: "../services/updateMedHistoryV2Service.php",
+        url: "../../../services/updateMedHistoryV2Service.php",
         data: fd,
         processData: false,
         contentType: false,
@@ -276,7 +276,7 @@ function submitform(clientId, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10,
     fd.append('q27', q27);
 
     $.ajax({
-        url: "../services/medHistoryUpdateService.php",
+        url: "../../../services/medHistoryUpdateService.php",
         data: fd,
         processData: false,
         contentType: false,

@@ -8,7 +8,7 @@ function getclientdata() {
     var fd = new FormData();
     fd.append('id', id);
     $.ajax({
-        url: "../services/patientChartListService.php",
+        url: "../../../services/patientChartListService.php",
         data: fd,
         processData: false,
         contentType: false,
@@ -29,7 +29,7 @@ function getclientdentalChart() {
     var fd = new FormData();
     fd.append('id', id);
     $.ajax({
-        url: "../services/patientDentalChartService.php",
+        url: "../../../services/patientDentalChartService.php",
         data: fd,
         processData: false,
         contentType: false,
@@ -51,7 +51,7 @@ function getPatientCards() {
     var fd = new FormData();
     fd.append('id', id);
     $.ajax({
-        url: "../services/patientChartCardService.php",
+        url: "../../../services/patientChartCardService.php",
         data: fd,
         processData: false,
         contentType: false,
@@ -86,7 +86,7 @@ function deleteTreatment(soaid, tsubid) {
         fd.append('tsubid', tsubid);
 
         $.ajax({
-            url: "../services/deleteTreatmentPatientChartService.php",
+            url: "../../../services/deleteTreatmentPatientChartService.php",
             data: fd,
             processData: false,
             contentType: false,
@@ -128,7 +128,7 @@ function updateTreatment() {
     fd.append('price', price);
     fd.append('hmo', hmo);
     $.ajax({
-        url: "../services/updateTreatmentPatientChartService.php",
+        url: "../../../services/updateTreatmentPatientChartService.php",
         data: fd,
         processData: false,
         contentType: false,

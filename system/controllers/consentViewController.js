@@ -5,7 +5,7 @@ function loadPatientSignature(signature) {
     fd.append('consentId', consentId);
     fd.append('role', signature);
     $.ajax({
-        url: "..//../services/consentViewSignatureService.php",
+        url: "../../../services/consentViewSignatureService.php",
         data: fd,
         processData: false,
         contentType: false,
@@ -34,7 +34,7 @@ function loadMedHistory() {
 
 
     $.ajax({
-        url: "..//../services/consentMedHistoryViewService.php",
+        url: "../../../services/consentMedHistoryViewService.php",
         data: fd,
         processData: false,
         contentType: false,

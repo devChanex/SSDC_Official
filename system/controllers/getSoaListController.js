@@ -7,7 +7,7 @@ function getclientdata() {
     fd.append("search", search);
     fd.append("page", page);
     $.ajax({
-        url: "../services/clientSoaListService.php",
+        url: "../../../services/clientSoaListService.php",
         data: fd,
         processData: false,
         contentType: false,
@@ -41,7 +41,7 @@ function updateSoa() {
     fd.append("time", time);
     fd.append("dentist", dentist);
     $.ajax({
-        url: "../services/updatesoadetails.php",
+        url: "../../../services/updatesoadetails.php",
         data: fd,
         processData: false,
         contentType: false,
@@ -78,7 +78,7 @@ function getPagination() {
     fd.append("search", search);
     fd.append("page", page);
     $.ajax({
-        url: "../services/clientSoaListPaginationService.php",
+        url: "../../../services/clientSoaListPaginationService.php",
         data: fd,
         processData: false,
         contentType: false,

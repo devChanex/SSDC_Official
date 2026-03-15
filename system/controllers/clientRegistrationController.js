@@ -145,7 +145,7 @@ function submitform(lastName, firstName, middleName, nickName, gender, age, birt
 
     fd.append('cardNumber', cardNumber);
     $.ajax({
-        url: "../services/clientRegistrationService.php",
+        url: "../../../services/clientRegistrationService.php",
         data: fd,
         processData: false,
         contentType: false,

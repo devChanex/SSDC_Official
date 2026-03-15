@@ -6,7 +6,7 @@ function deleteClient(clientid) {
         var fd = new FormData();
         fd.append('clientId', clientid);
         $.ajax({
-            url: "../services/clientDeletionService.php",
+            url: "../../../services/clientDeletionService.php",
             data: fd,
             processData: false,
             contentType: false,

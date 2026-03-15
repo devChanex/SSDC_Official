@@ -9,7 +9,7 @@ loadDashPendings();
 function loadEarningsBar() {
     var fd = new FormData();
     $.ajax({
-        url: "../services/loadEarningsBarService.php",
+        url: "../../../services/loadEarningsBarService.php",
         data: fd,
         processData: false,
         contentType: false,
@@ -32,7 +32,7 @@ function loadEarningsBar() {
 function loadMonthlyEarningsBar() {
     var fd = new FormData();
     $.ajax({
-        url: "../services/loadMonthlyEarningsBarService.php",
+        url: "../../../services/loadMonthlyEarningsBarService.php",
         data: fd,
         processData: false,
         contentType: false,
@@ -55,7 +55,7 @@ function loadMonthlyEarningsBar() {
 function loadPatientsBar() {
     var fd = new FormData();
     $.ajax({
-        url: "../services/loadPatientsBarService.php",
+        url: "../../../services/loadPatientsBarService.php",
         data: fd,
         processData: false,
         contentType: false,
@@ -78,7 +78,7 @@ function loadPatientsBar() {
 function loadMonthlyPatientsBar() {
     var fd = new FormData();
     $.ajax({
-        url: "../services/loadMonthlyPatientsBarService.php",
+        url: "../../../services/loadMonthlyPatientsBarService.php",
         data: fd,
         processData: false,
         contentType: false,
@@ -102,7 +102,7 @@ function loadMonthlyPatientsBar() {
 function loadDashPatient() {
     var fd = new FormData();
     $.ajax({
-        url: "../services/loadDashPatientService.php",
+        url: "../../../services/loadDashPatientService.php",
         data: fd,
         processData: false,
         contentType: false,
@@ -116,7 +116,7 @@ function loadDashPatient() {
 function loadDashEarnings() {
     var fd = new FormData();
     $.ajax({
-        url: "../services/loadDashEarningsService.php",
+        url: "../../../services/loadDashEarningsService.php",
         data: fd,
         processData: false,
         contentType: false,
@@ -131,7 +131,7 @@ function loadDashEarnings() {
 function loadDashAppointments() {
     var fd = new FormData();
     $.ajax({
-        url: "../services/loadDashAppointmentsService.php",
+        url: "../../../services/loadDashAppointmentsService.php",
         data: fd,
         processData: false,
         contentType: false,
@@ -145,7 +145,7 @@ function loadDashAppointments() {
 function loadDashPendings() {
     var fd = new FormData();
     $.ajax({
-        url: "../services/loadDashPendingsService.php",
+        url: "../../../services/loadDashPendingsService.php",
         data: fd,
         processData: false,
         contentType: false,

@@ -3,7 +3,7 @@ function getclientdata() {
     //  document.getElementById("content-table").style.zoom = "70%";
     var fd = new FormData();
     $.ajax({
-        url: "../services/clientTreatmentListService.php",
+        url: "../../../services/clientTreatmentListService.php",
         data: fd,
         processData: false,
         contentType: false,

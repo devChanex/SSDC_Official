@@ -16,7 +16,7 @@ function getclientdata() {
     fd.append("group", group);
     fd.append("dentist", dentist);
     $.ajax({
-        url: "..//../services/clienttreatmentreportservice.php",
+        url: "../../../services/clienttreatmentreportservice.php",
         data: fd,
         processData: false,
         contentType: false,

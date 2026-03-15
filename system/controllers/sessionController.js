@@ -8,7 +8,7 @@ var interval = window.setInterval(function () {
 function sessionValidate() {
   var fd = new FormData();
   $.ajax({
-    url: "../services/sessionCheck.php",
+    url: "../../../services/sessionCheck.php",
     data: fd,
     processData: false,
     contentType: false,

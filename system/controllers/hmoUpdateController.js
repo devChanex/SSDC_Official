@@ -5,7 +5,7 @@ function loadDetails() {
     var fd = new FormData();
     fd.append('id', id);
     $.ajax({
-        url: "../services/hmoLoadUpdateService.php",
+        url: "../../../services/hmoLoadUpdateService.php",
         data: fd,
         processData: false,
         contentType: false,
@@ -80,7 +80,7 @@ function submitform(name, accountnumber, birthdate, company, contact, hmo, valid
     fd.append('approvalCode', approvalCode);
 
     $.ajax({
-        url: "../services/updateHMOService.php",
+        url: "../../../services/updateHMOService.php",
         data: fd,
         processData: false,
         contentType: false,

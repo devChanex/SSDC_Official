@@ -8,7 +8,7 @@ function getclientdata() {
     fd.append("search", search);
     fd.append("page", page);
     $.ajax({
-        url: "../services/prescriptionListService.php",
+        url: "../../../services/prescriptionListService.php",
         data: fd,
         processData: false,
         contentType: false,
@@ -30,7 +30,7 @@ function loadPrescriptionSub() {
     fd.append("rxid", rxid);
 
     $.ajax({
-        url: "../services/prescriptionsublistService.php",
+        url: "../../../services/prescriptionsublistService.php",
         data: fd,
         processData: false,
         contentType: false,
@@ -98,7 +98,7 @@ function populateMedicineList() {
 
     var fd = new FormData();
     $.ajax({
-        url: "../services/medicineListOptionService.php",
+        url: "../../../services/medicineListOptionService.php",
         data: fd,
         processData: false,
         contentType: false,
@@ -158,7 +158,7 @@ $('#printPrescriptionModal').on('show.bs.modal', function (event) {
     fd.append("rxid", rxid);
 
     $.ajax({
-        url: "../services/getPrintablePrescriptionList.php",
+        url: "../../../services/getPrintablePrescriptionList.php",
         data: fd,
         processData: false,
         contentType: false,
@@ -182,7 +182,7 @@ function getclientdataPagination() {
     fd.append("search", search);
     fd.append("page", page);
     $.ajax({
-        url: "../services/prescriptionListPaginationService.php",
+        url: "../../../services/prescriptionListPaginationService.php",
         data: fd,
         processData: false,
         contentType: false,
@@ -240,7 +240,7 @@ function submitCart() {
 
 
     $.ajax({
-        url: "../services/upsertprescriptionService.php",
+        url: "../../../services/upsertprescriptionService.php",
         data: fd,
         processData: false,
         contentType: false,
@@ -276,7 +276,7 @@ function deleteCart() {
 
 
     $.ajax({
-        url: "../services/delprescriptionservice.php",
+        url: "../../../services/delprescriptionservice.php",
         data: fd,
         processData: false,
         contentType: false,

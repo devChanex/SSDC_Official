@@ -8,7 +8,7 @@ function loadattachment() {
     var fd = new FormData();
     fd.append("soaid", soaid)
     $.ajax({
-        url: "..//../services/loadAttachmentService.php",
+        url: "../../../services/loadAttachmentService.php",
         data: fd,
         processData: false,
         contentType: false,
@@ -25,7 +25,7 @@ function deletePhoto() {
     var fd = new FormData();
     fd.append("id", id)
     $.ajax({
-        url: "..//../services/deleteAttachmentService.php",
+        url: "../../../services/deleteAttachmentService.php",
         data: fd,
         processData: false,
         contentType: false,
@@ -77,7 +77,7 @@ function capturePhoto() {
     fd.append("soaid", soaid);
     fd.append("attachment", imageData);
     $.ajax({
-        url: "..//../services/addAttachmentService.php",
+        url: "../../../services/addAttachmentService.php",
         data: fd,
         processData: false,
         contentType: false,

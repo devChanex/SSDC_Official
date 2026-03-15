@@ -3,7 +3,7 @@ function getclientdata() {
     //  document.getElementById("content-table").style.zoom = "70%";
     var fd = new FormData();
     $.ajax({
-        url: "../services/medicineListService.php",
+        url: "../../../services/medicineListService.php",
         data: fd,
         processData: false,
         contentType: false,
@@ -33,7 +33,7 @@ function deleteMedicine(id) {
     fd.append('medid', id);
 
     $.ajax({
-        url: "../services/deleteMedicineService.php",
+        url: "../../../services/deleteMedicineService.php",
         data: fd,
         processData: false,
         contentType: false,
@@ -68,7 +68,7 @@ function SaveMedicine() {
     fd.append('dispense', dispense);
     fd.append('signetur', signetur);
     $.ajax({
-        url: "../services/upsertMedicineService.php",
+        url: "../../../services/upsertMedicineService.php",
         data: fd,
         processData: false,
         contentType: false,

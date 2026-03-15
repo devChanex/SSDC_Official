@@ -29,7 +29,7 @@ function submitform(Name, Mobile, Email) {
     fd.append('Email', Email);
 
     $.ajax({
-        url: "..//../services/addBookAppointment/../services.php",
+        url: "../../../services/addBookAppointment../../services.php",
         data: fd,
         processData: false,
         contentType: false,

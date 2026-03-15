@@ -11,7 +11,7 @@ function getclientdata() {
     fd.append("month", month);
     fd.append("year", year);
     $.ajax({
-        url: "../services/monthlyexpensesummaryService.php",
+        url: "../../../services/monthlyexpensesummaryService.php",
         data: fd,
         processData: false,
         contentType: false,

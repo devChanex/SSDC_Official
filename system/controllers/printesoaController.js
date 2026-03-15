@@ -4,7 +4,7 @@ function loadSoa() {
     var fd = new FormData();
     fd.append("soaid", soaid)
     $.ajax({
-        url: "../services/printSoaService.php",
+        url: "../../../services/printSoaService.php",
         data: fd,
         processData: false,
         contentType: false,
@@ -30,7 +30,7 @@ function createTicket(ref, currentvalue, column, table, refname) {
         fd.append("value", value);
         fd.append("refname", refname);
         $.ajax({
-            url: "../services/ticketservice.php",
+            url: "../../../services/ticketservice.php",
             data: fd,
             processData: false,
             contentType: false,

@@ -7,7 +7,7 @@ function getclientdata() {
     fd.append("search", search);
     fd.append("page", page);
     $.ajax({
-        url: "../services/hmoListService.php",
+        url: "../../../services/hmoListService.php",
         data: fd,
         processData: false,
         contentType: false,
@@ -44,7 +44,7 @@ function getPagination() {
     fd.append("search", search);
     fd.append("page", page);
     $.ajax({
-        url: "../services/hmoListPaginationService.php",
+        url: "../../../services/hmoListPaginationService.php",
         data: fd,
         processData: false,
         contentType: false,
@@ -69,7 +69,7 @@ function deletehmo(id) {
         var fd = new FormData();
         fd.append('id', id);
         $.ajax({
-            url: "../services/hmoDeletionService.php",
+            url: "../../../services/hmoDeletionService.php",
             data: fd,
             processData: false,
             contentType: false,

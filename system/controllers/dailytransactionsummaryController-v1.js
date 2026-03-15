@@ -11,7 +11,7 @@ function getclientdata() {
     fd.append("from", from);
     fd.append("group", group);
     $.ajax({
-        url: "../services/dailytransactionsummaryservice.php",
+        url: "../../../services/dailytransactionsummaryservice.php",
         data: fd,
         processData: false,
         contentType: false,

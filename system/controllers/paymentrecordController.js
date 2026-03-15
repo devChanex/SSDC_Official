@@ -13,7 +13,7 @@ function getclientdata() {
     fd.append("to", to);
     fd.append("paymentType", paymentType);
     $.ajax({
-        url: "../services/paymentrecordservice.php",
+        url: "../../../services/paymentrecordservice.php",
         data: fd,
         processData: false,
         contentType: false,

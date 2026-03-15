@@ -77,7 +77,7 @@ function submitform(clientId,
 
 
     $.ajax({
-        url: "../services/medHistoryRegService.php",
+        url: "../../../services/medHistoryRegService.php",
         data: fd,
         processData: false,
         contentType: false,

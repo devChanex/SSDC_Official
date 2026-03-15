@@ -4,7 +4,7 @@ function loadSoa() {
     var fd = new FormData();
     fd.append("soaid", soaid)
     $.ajax({
-        url: "..//../services/printSoaService.php",
+        url: "../../../services/printSoaService.php",
         data: fd,
         processData: false,
         contentType: false,

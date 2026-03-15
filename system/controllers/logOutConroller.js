@@ -2,7 +2,7 @@ function logOut() {
 
     var fd = new FormData();
     $.ajax({
-        url: "../services/logOutService.php",
+        url: "../../../services/logOutService.php",
         data: fd,
         processData: false,
         contentType: false,

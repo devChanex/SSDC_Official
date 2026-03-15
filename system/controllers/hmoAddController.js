@@ -53,7 +53,7 @@ function submitform(name, accountnumber, birthdate, company, contact, hmo, valid
     fd.append('hmotype', hmotype);
 
     $.ajax({
-        url: "../services/hmoAddService.php",
+        url: "../../../services/hmoAddService.php",
         data: fd,
         processData: false,
         contentType: false,
