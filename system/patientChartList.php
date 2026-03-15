@@ -659,14 +659,14 @@
             <!-- Custom scripts for all pages-->
             <script src="js/sb-admin-2.min.js"></script>
             <script src="js/custom-v2.js"></script>
-            <script src="/../controllers/logOutConroller.js"></script>
-            <script src="/../controllers/sessionController.js"></script>
-            <script src="/../controllers/patientChartListController-v3.js"></script>
-            <!-- <script src="/../controllers/dentalchartController.js"></script> -->
+            <script src="controllers/logOutConroller.js"></script>
+            <script src="controllers/sessionController.js"></script>
+            <script src="controllers/patientChartListController-v3.js"></script>
+            <!-- <script src="controllers/dentalchartController.js"></script> -->
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-            <script src="/../controllers/dentalchartController-v8.js"></script>
+            <script src="controllers/dentalchartController-v8.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-            <script src="/../controllers/divDentalChartPrinterController-v1.js"></script>
+            <script src="controllers/divDentalChartPrinterController-v1.js"></script>
 
 
 

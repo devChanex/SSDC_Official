@@ -58,7 +58,7 @@ echo '
 </div>
 
            
-  <script src="/../controllers/backupController.js"></script>
+  <script src="controllers/backupController.js"></script>
 ';
 
 ?>
