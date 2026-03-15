@@ -3,7 +3,7 @@ function backup() {
     toastSuccess("Backup started successfully. Please wait for the process to complete.");
     var fd = new FormData();
     $.ajax({
-        url: "../services/backupService.php",
+        url: "..//../services/backupService.php",
         data: fd,
         processData: false,
         contentType: false,

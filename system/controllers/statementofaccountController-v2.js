@@ -13,7 +13,7 @@ function getclientdata() {
     fd.append("to", to);
     fd.append("group", group);
     $.ajax({
-        url: "../services/statementofaccountsService.php",
+        url: "..//../services/statementofaccountsService.php",
         data: fd,
         processData: false,
         contentType: false,

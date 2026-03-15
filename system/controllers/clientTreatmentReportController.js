@@ -9,7 +9,7 @@ function getclientdata() {
     fd.append("from", from);
     fd.append("to", to);
     $.ajax({
-        url: "../services/clienttreatmentrecordperdateservice.php",
+        url: "..//../services/clienttreatmentrecordperdateservice.php",
         data: fd,
         processData: false,
         contentType: false,

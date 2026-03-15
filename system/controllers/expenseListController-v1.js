@@ -7,7 +7,7 @@ function getclientdata() {
     fd.append("search", search);
     fd.append("page", page);
     $.ajax({
-        url: "../services/expenseListService.php",
+        url: "..//../services/expenseListService.php",
         data: fd,
         processData: false,
         contentType: false,
@@ -53,7 +53,7 @@ function getclientdataPagination() {
     fd.append("search", search);
     fd.append("page", page);
     $.ajax({
-        url: "../services/expenseListPaginationService.php",
+        url: "..//../services/expenseListPaginationService.php",
         data: fd,
         processData: false,
         contentType: false,
@@ -85,7 +85,7 @@ function submitCart() {
     });
 
     $.ajax({
-        url: "../services/upsertExpenseService.php",
+        url: "..//../services/upsertExpenseService.php",
         data: fd,
         processData: false,
         contentType: false,
@@ -127,7 +127,7 @@ function deleteCart() {
     });
 
     $.ajax({
-        url: "../services/deleteExpenseService.php",
+        url: "..//../services/deleteExpenseService.php",
         data: fd,
         processData: false,
         contentType: false,

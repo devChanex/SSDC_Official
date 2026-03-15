@@ -25,7 +25,7 @@ function validateLogin(username, password) {
     fd.append('username', username);
     fd.append('password', password);
     $.ajax({
-        url: "../services/validateUserAccount.php",
+        url: "..//../services/validateUserAccount.php",
         data: fd,
         processData: false,
         contentType: false,

@@ -8,7 +8,7 @@ function loadMedHistory() {
 
 
     $.ajax({
-        url: "../services/consentMedHistoryViewService.php",
+        url: "..//../services/consentMedHistoryViewService.php",
         data: fd,
         processData: false,
         contentType: false,
@@ -59,7 +59,7 @@ function submitform(dateSigned, dentistSignature, patientSignature, dentistName,
     fd.append('dentistName', dentistName);
     fd.append('clientId', clientId);
     $.ajax({
-        url: "../services/consentAddService.php",
+        url: "..//../services/consentAddService.php",
         data: fd,
         processData: false,
         contentType: false,

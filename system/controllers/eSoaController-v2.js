@@ -2,7 +2,7 @@ loadTreatment();
 function loadTreatment() {
     var fd = new FormData();
     $.ajax({
-        url: "../services/OptionloadTreatmentService.php",
+        url: "..//../services/OptionloadTreatmentService.php",
         data: fd,
         processData: false,
         contentType: false,
@@ -219,7 +219,7 @@ function submit() {
             var fd = new FormData();
             fd.append('clientId', clientid);
             $.ajax({
-                url: "../services/orthowaiverChecker.php",
+                url: "..//../services/orthowaiverChecker.php",
                 data: fd,
                 processData: false,
                 contentType: false,
@@ -265,7 +265,7 @@ function submitform(dentist, dates, time, clientid, total, hmo) {
         fd.append('agreement', agreement);
 
         $.ajax({
-            url: "../services/esoaSubmitService.php",
+            url: "..//../services/esoaSubmitService.php",
             data: fd,
             processData: false,
             contentType: false,
@@ -324,7 +324,7 @@ function submitSubSoatoService(treatment, diagnosis, details, remarks, price, cl
     fd.append('soaid', soaid);
     fd.append('hmo', hmo);
     $.ajax({
-        url: "../services/esoaSubmitSubService.php",
+        url: "..//../services/esoaSubmitSubService.php",
         data: fd,
         processData: false,
         contentType: false,

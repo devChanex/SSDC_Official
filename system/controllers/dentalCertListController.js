@@ -9,7 +9,7 @@ function getdentalcertlistdata() {
     fd.append("search", search);
     fd.append("page", page);
     $.ajax({
-        url: "../services/dentalcertlistService.php",
+        url: "..//../services/dentalcertlistService.php",
         data: fd,
         processData: false,
         contentType: false,
@@ -77,7 +77,7 @@ function getclientdataPagination() {
     fd.append("search", search);
     fd.append("page", page);
     $.ajax({
-        url: "../services/dentalcertListpaginationService.php",
+        url: "..//../services/dentalcertListpaginationService.php",
         data: fd,
         processData: false,
         contentType: false,
@@ -100,7 +100,7 @@ function populateProfileList() {
 
     var fd = new FormData();
     $.ajax({
-        url: "../services/ProfileListOptionService.php",
+        url: "..//../services/ProfileListOptionService.php",
         data: fd,
         processData: false,
         contentType: false,
@@ -126,7 +126,7 @@ function getProfileDetails(fullname) {
     fd.append("fullname", fullname);
 
     $.ajax({
-        url: "../services/GetProfileDetailsService.php",
+        url: "..//../services/GetProfileDetailsService.php",
         data: fd,
         processData: false,
         contentType: false,
@@ -189,7 +189,7 @@ function submitCart() {
 
 
     $.ajax({
-        url: "../services/upsertdentalcertService.php",
+        url: "..//../services/upsertdentalcertService.php",
         data: fd,
         processData: false,
         contentType: false,
@@ -222,7 +222,7 @@ function deleteCart() {
 
 
     $.ajax({
-        url: "../services/deletedentalcertService.php",
+        url: "..//../services/deletedentalcertService.php",
         data: fd,
         processData: false,
         contentType: false,
@@ -299,7 +299,7 @@ function populateMedicineList() {
 
     var fd = new FormData();
     $.ajax({
-        url: "../services/treatmentListOptionService.php",
+        url: "..//../services/treatmentListOptionService.php",
         data: fd,
         processData: false,
         contentType: false,
@@ -322,7 +322,7 @@ function loadTreatment() {
     fd.append("rxid", rxid);
 
     $.ajax({
-        url: "../services/dentalcertTreatmentSelectListService.php",
+        url: "..//../services/dentalcertTreatmentSelectListService.php",
         data: fd,
         processData: false,
         contentType: false,
