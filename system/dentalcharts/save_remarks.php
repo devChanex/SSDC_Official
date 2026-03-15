@@ -10,10 +10,10 @@ if (strpos($image, 'data:image/png;base64,') === 0) {
     $image = substr($image, strlen('data:image/png;base64,'));
 }
 $image = base64_decode($image);
-//test
-$conn = new mysqli("localhost", "root", "", "ssdc_sysdb");
+// //test
+// $conn = new mysqli("localhost", "root", "", "ssdc_sysdb");
 
-// $conn = new mysqli("localhost", "smilesav_user", "H[)dnAZC-6AE", "smilesav_system");
+$conn = new mysqli("localhost", "smilesav_user", "H[)dnAZC-6AE", "smilesav_system");
 
 if ($conn->connect_error) {
     echo json_encode(["status" => "error", "message" => $conn->connect_error]);

@@ -5,7 +5,7 @@ $(document).ready(function () {
 function display_events() {
   var events = new Array();
   $.ajax({
-    url: 'display_event.php',
+    url: '../services/display_event.php',
     dataType: 'json',
     success: function (response) {
 
@@ -79,7 +79,7 @@ function save_event() {
     return false;
   }
   $.ajax({
-    url: "save_event.php",
+    url: "../services/save_event.php",
     type: "POST",
     dataType: 'json',
     data: { event_name: event_name, event_start_date: event_start_date, event_end_date: event_end_date },
