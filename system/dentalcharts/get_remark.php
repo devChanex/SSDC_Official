@@ -2,10 +2,10 @@
 $tooth = $_GET['tooth'];
 $clientId = (int) $_GET['clientid'];
 
-// $conn = new mysqli("localhost", "root", "", "sam_db");
-$conn = new mysqli("localhost", "smilesav_user", "H[)dnAZC-6AE", "smilesav_system");
+// // $conn = new mysqli("localhost", "root", "", "sam_db");
+// $conn = new mysqli("localhost", "smilesav_user", "H[)dnAZC-6AE", "smilesav_system");
 
-// $conn = new mysqli("localhost", "root", "", "ssdc_sysdb");
+$conn = new mysqli("localhost", "root", "", "ssdc_sysdb");
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);

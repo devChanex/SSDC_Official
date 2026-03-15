@@ -164,9 +164,9 @@
 
             <!-- Custom scripts for all pages-->
             <script src="js/sb-admin-2.min.js"></script>
-            <script src="controllers/logOutConroller.js"></script>
-            <script src="controllers/sessionController.js"></script>
-            <script src="controllers/getSoaListController.js"></script>
+            <script src="../controllers/logOutConroller.js"></script>
+            <script src="../controllers/sessionController.js"></script>
+            <script src="../controllers/getSoaListController.js"></script>
             <script src="js/custom-v1.js"></script>
             <script src="js/sortable.js"></script>
 
