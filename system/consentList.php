@@ -122,10 +122,10 @@
 
             <!-- Custom scripts for all pages-->
             <script src="js/sb-admin-2.min.js"></script>
-            <script src="../controllers/logOutConroller.js"></script>
-            <script src="../controllers/sessionController.js"></script>
-            <script src="../controllers/getConsentListController.js"></script>
-            <script src="../controllers/deleteTreatmentController.js"></script>
+            <script src="/../controllers/logOutConroller.js"></script>
+            <script src="/../controllers/sessionController.js"></script>
+            <script src="/../controllers/getConsentListController.js"></script>
+            <script src="/../controllers/deleteTreatmentController.js"></script>
             <script src="js/sortable.js"></script>
 
 

@@ -118,10 +118,10 @@
 
             <!-- Custom scripts for all pages-->
             <script src="js/sb-admin-2.min.js"></script>
-            <script src="../controllers/logOutConroller.js"></script>
-            <script src="../controllers/sessionController.js"></script>
-            <script src="../controllers/getsoadaterange.js"></script>
-            <script src="../controllers/divPrinterController-v1.js"></script>
+            <script src="/../controllers/logOutConroller.js"></script>
+            <script src="/../controllers/sessionController.js"></script>
+            <script src="/../controllers/getsoadaterange.js"></script>
+            <script src="/../controllers/divPrinterController-v1.js"></script>
 
 
 

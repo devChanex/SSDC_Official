@@ -126,8 +126,8 @@
                             <input type="text" name="treatment" id="agent" placeholder="Agent Name" class="form-control"
                                 value="">
                             <label for="Called by">Called by:</label>
-                            <input type="text" name="calledby" id="calledby" placeholder="Called by" class="form-control"
-                                value="">
+                            <input type="text" name="calledby" id="calledby" placeholder="Called by"
+                                class="form-control" value="">
                             <div id="formResult"></div>
                             <br>
                             <button class="btn btn-success" onclick="add()">Submit</button>
@@ -155,9 +155,9 @@
 
             <!-- Custom scripts for all pages-->
             <script src="js/sb-admin-2.min.js"></script>
-            <script src="../controllers/logOutConroller.js"></script>
-            <script src="../controllers/sessionController.js"></script>
-            <script src="../controllers/hmoAddController.js"></script>
+            <script src="/../controllers/logOutConroller.js"></script>
+            <script src="/../controllers/sessionController.js"></script>
+            <script src="/../controllers/hmoAddController.js"></script>
             <script src="js/custom-v1.js"></script>
 </body>
 

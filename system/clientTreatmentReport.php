@@ -84,8 +84,9 @@
                                 <div style=" text-align:left;">
                                     <h2 style="margin:0; font-weight:bold; font-size: 1.5rem;">Smile Save Dental Care
                                     </h2>
-                                          <div style="font-size:14px;">L22-24 B2 2/F Mondo Bambini Commercial Strip Bldg. Brgy. Zapote, Binan City, Laguna</div>
-                                     <div style="font-size:14px;">Contact: 0919 009 3099 / (049) 539 0277</div>
+                                    <div style="font-size:14px;">L22-24 B2 2/F Mondo Bambini Commercial Strip Bldg.
+                                        Brgy. Zapote, Binan City, Laguna</div>
+                                    <div style="font-size:14px;">Contact: 0919 009 3099 / (049) 539 0277</div>
                                 </div>
                                 <hr>
                                 <div style="text-align:center;">
@@ -153,10 +154,10 @@
             <!-- Custom scripts for all pages-->
             <script src="js/sb-admin-2.min.js"></script>
             <script src="js/custom-v1.js"></script>
-            <script src="../controllers/logOutConroller.js"></script>
-            <script src="../controllers/sessionController.js"></script>
-            <script src="../controllers/clienttreatmentrecordperdatecontroller-v3.js"></script>
-            <script src="../controllers/divPrinterController-v1.js"></script>
+            <script src="/../controllers/logOutConroller.js"></script>
+            <script src="/../controllers/sessionController.js"></script>
+            <script src="/../controllers/clienttreatmentrecordperdatecontroller-v3.js"></script>
+            <script src="/../controllers/divPrinterController-v1.js"></script>
 
 
 

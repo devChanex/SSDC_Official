@@ -12,9 +12,9 @@ error_reporting(0);
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    
 
-        <title>Smile Save Dental Care</title>
+
+    <title>Smile Save Dental Care</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -54,21 +54,22 @@ error_reporting(0);
 
                     <!-- Page Heading -->
                     <div class="card shadow mb-12">
-                       <div class="card-header py-3 d-flex justify-content-between <?php echo $cards; ?>">
-    <h6 class="m-0 font-weight-bold">Dental Certificate List</h6>
+                        <div class="card-header py-3 d-flex justify-content-between <?php echo $cards; ?>">
+                            <h6 class="m-0 font-weight-bold">Dental Certificate List</h6>
 
-    <div>
-        <!-- Plus Button -->
-        <button class="btn btn-success btn-circle edit-btn" data-toggle="modal" data-target="#editExpenseModal">
-            <i class="fas fa-plus" title="Add Dental Cert"></i>
-        </button>
+                            <div>
+                                <!-- Plus Button -->
+                                <button class="btn btn-success btn-circle edit-btn" data-toggle="modal"
+                                    data-target="#editExpenseModal">
+                                    <i class="fas fa-plus" title="Add Dental Cert"></i>
+                                </button>
 
-        <!-- List Button -->
-        <a href="medCertTreatmentList.php" class="btn btn-warning btn-circle edit-btn">
-            <i class="fas fa-list" title="View Treatment List for Dental-Cert"></i>
-        </a>
-    </div>
-</div>
+                                <!-- List Button -->
+                                <a href="medCertTreatmentList.php" class="btn btn-warning btn-circle edit-btn">
+                                    <i class="fas fa-list" title="View Treatment List for Dental-Cert"></i>
+                                </a>
+                            </div>
+                        </div>
                         <div class="card-body">
                             <div class="card-header py-3 d-flex justify-content-between">
                                 <h6 class="m-0 font-weight-bold"></h6>
@@ -196,7 +197,7 @@ error_reporting(0);
                                     </div>
 
 
-        
+
 
                                 </div>
                                 <div class="modal-footer d-print-none">
@@ -239,7 +240,8 @@ error_reporting(0);
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label>Patient Name</label>
-                                                 <select class="form-control" name="name" id="modal-name" onchange="getProfileDetails(this.value)">
+                                                <select class="form-control" name="name" id="modal-name"
+                                                    onchange="getProfileDetails(this.value)">
                                                     <option value="1">profile1</option>
                                                     <option value="2">profile2</option>
                                                 </select>
@@ -267,7 +269,7 @@ error_reporting(0);
                                             </div>
                                         </div>
 
-        <!-- Standalone TreatmentList Field -->
+                                        <!-- Standalone TreatmentList Field -->
                                         <div class="form-group">
                                             <label>Treatment List:</label>
                                             <div class="d-flex">
@@ -276,8 +278,9 @@ error_reporting(0);
                                                     <option value="1">Treatment1</option>
                                                     <option value="2">Treatment2</option>
                                                 </select>
-                                                <input type="text" class="form-control mr-2" name="toothnumber" id="modal-toothnumber" 
-               placeholder="Tooth number" style="max-width: 100px;">
+                                                <input type="text" class="form-control mr-2" name="toothnumber"
+                                                    id="modal-toothnumber" placeholder="Tooth number"
+                                                    style="max-width: 100px;">
                                                 <button type="button" class="btn btn-primary"
                                                     onclick="AddMed();">Add</button>
                                             </div>
@@ -288,7 +291,7 @@ error_reporting(0);
                                             <table class="table table-bordered" id="medicine-table">
                                                 <thead>
                                                     <tr class="text-center">
-                                                        
+
                                                         <th>Treatment</th>
                                                         <th>Tooth number</th>
                                                         <th>Action</th>
@@ -301,8 +304,8 @@ error_reporting(0);
                                         </div>
                                         <div class="row">
 
-                                  
-                                  
+
+
                                             <div class="form-group col-md-12">
                                                 <label for="modal-remarks">Remarks/Recommendations:</label>
                                                 <textarea class="form-control" name="treatment" id="modal-diagnosis"
@@ -393,11 +396,11 @@ error_reporting(0);
             <!-- Custom scripts for all pages-->
             <script src="js/sb-admin-2.min.js"></script>
             <script src="js/custom-v2.js"></script>
-            <script src="../controllers/logOutConroller.js"></script>
-            <script src="../controllers/sessionController.js"></script>
-            <!-- <script src="../controllers/activityLogsController.js"></script> -->
-            <script src="../controllers/dentalCertListController-v2.js"></script>
-            <!-- <script src="../controllers/deleteClientProfileController.js"></script> -->
+            <script src="/../controllers/logOutConroller.js"></script>
+            <script src="/../controllers/sessionController.js"></script>
+            <!-- <script src="/../controllers/activityLogsController.js"></script> -->
+            <script src="/../controllers/dentalCertListController-v2.js"></script>
+            <!-- <script src="/../controllers/deleteClientProfileController.js"></script> -->
             <script src="js/sortable.js"></script>
 
 

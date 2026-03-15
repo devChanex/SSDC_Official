@@ -245,17 +245,17 @@ if ($_SESSION["account_type"] != 0 && $_SESSION["account_type"] != 100) {
             <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
             <!-- Page level plugins -->
             <script src="vendor/chart.js/Chart.min.js"></script>
-            <script src="../controllers/barchart.js"></script>
+            <script src="/../controllers/barchart.js"></script>
 
-            <script src="../controllers/dashboardController-v1.js"></script>
+            <script src="/../controllers/dashboardController-v1.js"></script>
             <!-- Core plugin JavaScript-->
             <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
             <!-- Custom scripts for all pages-->
             <script src="js/sb-admin-2.min.js"></script>
-            <script src="../controllers/logOutConroller.js"></script>
+            <script src="/../controllers/logOutConroller.js"></script>
 
-            <script src="../controllers/sessionController.js"></script>
+            <script src="/../controllers/sessionController.js"></script>
 
 
 </body>

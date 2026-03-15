@@ -57,9 +57,9 @@
                                 <div class="d-flex align-items-center gap-2 ms-auto">
                                     <strong>Arrange by: </strong>
                                     <select id="searchBy" onchange="search();">
-                                    <option value="">-- Select an option --</option>
-                                    <option value="name">Alphabetical</option>
-                                    <option value="dateRegistered">Last Registered</option>
+                                        <option value="">-- Select an option --</option>
+                                        <option value="name">Alphabetical</option>
+                                        <option value="dateRegistered">Last Registered</option>
                                     </select>
                                     <strong>Search: </strong><input type="search" id="tableSearch"
                                         class="form-control form-control-sm" placeholder="" style="width: 300px;"
@@ -156,10 +156,10 @@
 
             <!-- Custom scripts for all pages-->
             <script src="js/sb-admin-2.min.js"></script>
-            <script src="../controllers/logOutConroller.js"></script>
-            <script src="../controllers/sessionController.js"></script>
-            <script src="../controllers/getClientProfileController-v1.js"></script>
-            <script src="../controllers/deleteClientProfileController.js"></script>
+            <script src="/../controllers/logOutConroller.js"></script>
+            <script src="/../controllers/sessionController.js"></script>
+            <script src="/../controllers/getClientProfileController-v1.js"></script>
+            <script src="/../controllers/deleteClientProfileController.js"></script>
             <script src="js/sortable.js"></script>
 
 
