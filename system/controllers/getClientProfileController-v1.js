@@ -10,7 +10,7 @@ function getclientdata() {
     fd.append("searchBy", searchBy);
 
     $.ajax({
-        url: "..//../services/clientProfileListService.php",
+        url: "../../../services/clientProfileListService.php",
         data: fd,
         processData: false,
         contentType: false,
@@ -48,7 +48,7 @@ function getclientdataPagination() {
     fd.append("search", search);
     fd.append("page", page);
     $.ajax({
-        url: "..//../services/clientProfileListPaginationService.php",
+        url: "../../../services/clientProfileListPaginationService.php",
         data: fd,
         processData: false,
         contentType: false,

@@ -9,7 +9,7 @@ function loadSoa() {
     var fd = new FormData();
     fd.append("soaid", soaid)
     $.ajax({
-        url: "..//../services/printSoaService.php",
+        url: "../../../services/printSoaService.php",
         data: fd,
         processData: false,
         contentType: false,
@@ -43,7 +43,7 @@ function signature() {
     var fd = new FormData();
     fd.append("soaid", soaid)
     $.ajax({
-        url: "..//../services/signatureCheckerService.php",
+        url: "../../../services/signatureCheckerService.php",
         data: fd,
         processData: false,
         contentType: false,
@@ -70,7 +70,7 @@ function changeSignature() {
     fd.append("soaid", soaid);
     fd.append("patientSignature", patientSignature);
     $.ajax({
-        url: "..//../services/changeSignatureService.php",
+        url: "../../../services/changeSignatureService.php",
         data: fd,
         processData: false,
         contentType: false,
@@ -98,7 +98,7 @@ function createTicket(ref, currentvalue, column, table, refname) {
         fd.append("value", value);
         fd.append("refname", refname);
         $.ajax({
-            url: "..//../services/ticketservice.php",
+            url: "../../../services/ticketservice.php",
             data: fd,
             processData: false,
             contentType: false,
@@ -140,7 +140,7 @@ function submitPaymentForm() {
             fd.append("amount", amount);
             fd.append("paymentType", paymentType);
             $.ajax({
-                url: "..//../services/addPaymentService.php",
+                url: "../../../services/addPaymentService.php",
                 data: fd,
                 processData: false,
                 contentType: false,
@@ -172,7 +172,7 @@ function deletePayment(ref, amount) {
         var fd = new FormData();
         fd.append("ref", ref);
         $.ajax({
-            url: "..//../services/paymentDeletionService.php",
+            url: "../../../services/paymentDeletionService.php",
             data: fd,
             processData: false,
             contentType: false,

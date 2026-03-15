@@ -22,7 +22,7 @@ function submitform(treatment, description) {
     fd.append('treatment', treatment);
     fd.append('description', description);
     $.ajax({
-        url: "..//../services/treatmentAddService.php",
+        url: "../../../services/treatmentAddService.php",
         data: fd,
         processData: false,
         contentType: false,

@@ -5,7 +5,7 @@ function loadCert() {
     var fd = new FormData();
     fd.append("soaid", certid)
     $.ajax({
-        url: "..//../services/printDentalCertService.php",
+        url: "../../../services/printDentalCertService.php",
         data: fd,
         processData: false,
         contentType: false,

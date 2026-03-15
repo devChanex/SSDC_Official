@@ -3,7 +3,7 @@ function getclientdata() {
     //  document.getElementById("content-table").style.zoom = "70%";
     var fd = new FormData();
     $.ajax({
-        url: "..//../services/allSoaListService.php",
+        url: "../../../services/allSoaListService.php",
         data: fd,
         processData: false,
         contentType: false,

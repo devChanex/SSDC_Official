@@ -5,7 +5,7 @@ function loadUpdateTreatmentForm() {
     var fd = new FormData();
     fd.append('treatmentId', treatmentId);
     $.ajax({
-        url: "..//../services/treatmentLoadUpdateService.php",
+        url: "../../../services/treatmentLoadUpdateService.php",
         data: fd,
         processData: false,
         contentType: false,
@@ -48,7 +48,7 @@ function submitform(treatment, description) {
     fd.append('description', description);
 
     $.ajax({
-        url: "..//../services/treatmentUpdateService.php",
+        url: "../../../services/treatmentUpdateService.php",
         data: fd,
         processData: false,
         contentType: false,
