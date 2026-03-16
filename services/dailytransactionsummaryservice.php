@@ -211,7 +211,8 @@ class ServiceClass
                 }
 
                 //PAYMENT SOA NOT TODAY
-                $query12 = "SELECT tsoa.soaid, cp.clientid,tsoa.hmoaccredited,tsub.hmo, cp.lname, cp.fname, cp.mdname, tsoa.dentist,tsub.tsubid, tsub.treatment, tsub.price, tsoa.date ,tsoa.dentist
+                //Insert Distinct SOA ID that are not today but have payment today
+                $query12 = "SELECT DISTINCT tsoa.soaid, cp.clientid,tsoa.hmoaccredited,tsub.hmo, cp.lname, cp.fname, cp.mdname, tsoa.dentist,tsub.tsubid, tsub.treatment, tsub.price, tsoa.date ,tsoa.dentist
                       FROM clientprofile cp INNER JOIN treatmentsub tsub ON tsub.clientid = cp.clientid INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid INNER JOIN treatmentsubpayment tsp ON tsp.tsubid = tsub.tsubid WHERE (tsoa.date < :a) AND tsp.paymentDate = :a and $key = :c ";
 
                 $stmt12 = $this->conn->prepare($query12);
