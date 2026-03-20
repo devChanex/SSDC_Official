@@ -1,0 +1,72 @@
+# Turn on rewrite engine
+
+RewriteEngine On
+
+# ✅ Force allow access (Apache 2.4+)
+
+<IfModule mod_authz_core.c>
+    Require all granted
+</IfModule>
+
+# ✅ Fallback for Apache 2.2
+
+<IfModule !mod_authz_core.c>
+Order Allow,Deny
+Allow from all
+</IfModule>
+
+# ✅ Remove any inherited deny rules
+
+<IfModule mod_access_compat.c>
+    Allow from all
+</IfModule>
+
+# ✅ Allow all files explicitly
+
+<Files "\*">
+<IfModule mod_authz_core.c>
+Require all granted
+</IfModule>
+</Files>
+
+# ✅ Specifically allow PHP files
+
+<FilesMatch "\.php$">
+<IfModule mod_authz_core.c>
+Require all granted
+</IfModule>
+</FilesMatch>
+
+# ❌ Block sensitive files
+
+<FilesMatch "\.(htaccess|htpasswd|ini|log|sh|conf)$">
+<IfModule mod_authz_core.c>
+Require all denied
+</IfModule>
+</FilesMatch>
+
+# ✅ Disable directory listing
+
+Options -Indexes
+
+# ✅ Optional: CORS (only if needed for AJAX across domains)
+
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+    Header set Access-Control-Allow-Methods "GET, POST, OPTIONS"
+    Header set Access-Control-Allow-Headers "Content-Type"
+</IfModule>
+
+# ✅ Handle OPTIONS requests (CORS preflight)
+
+RewriteCond %{REQUEST_METHOD} OPTIONS
+RewriteRule ^(.\*)$ $1 [R=200,L]
+
+# ✅ Prevent rewrite loops
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# (Optional) route to index if you ever need it
+
+# RewriteRule ^(.\*)$ index.html [QSA,L]
