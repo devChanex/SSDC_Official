@@ -395,7 +395,7 @@ echo '
                 <div id="config" class="collapse" aria-labelledby="config"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="treatmentList.php">Treatment List</a>
+
                          <a class="collapse-item" href="medicineList.php">Medicine List</a>
                          <a class="collapse-item" href="medCertTreatmentList.php">Dental-Cert Treatment List</a>
                      
@@ -507,7 +507,7 @@ echo '
                 <div id="config" class="collapse" aria-labelledby="config"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="treatmentList.php">Treatment List</a>
+
                          <a class="collapse-item" href="medicineList.php">Medicine List</a>
                          <a class="collapse-item" href="medCertTreatmentList.php">Dental-Cert Treatment List</a>
                      
@@ -519,8 +519,11 @@ echo '
 ';
 
 }
+// From Dentist's Access
+                        // <a class="collapse-item" href="treatmentList.php">Treatment List</a>
 
-
+//From Staff's Access
+                        // <a class="collapse-item" href="treatmentList.php">Treatment List</a>
 
 //  <a class="collapse-item" href="soadaterange.php">SOA Summary per Date</a>
 //     <a class="collapse-item" href="soaperclient.php">SOA Summary per Client</a>
