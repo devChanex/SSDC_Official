@@ -43,6 +43,7 @@ class ServiceClass
         if (trim($treatment) != '') {
         $treatmentsOutput .= '<span style="margin-left:30px;">[✔] ' . trim($treatment) . '</span><br>';
     }
+        }
 
                 echo '
         <style>
