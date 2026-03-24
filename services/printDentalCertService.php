@@ -37,10 +37,12 @@ class ServiceClass
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                  // ✅ Split treatment list by comma and build formatted output
                     $treatmentsOutput = '';
-                    $treatments = explode(',', $row["treatment"]);
-                    foreach ($treatments as $treatment) {
-                        $treatmentsOutput .= '<span style="margin-left:30px;">[✔] ' . trim($treatment) . '</span><br>';
-                    }
+                    $treatments = preg_split("/\r\n|\n|\r/", $row["treatment"]);
+
+        foreach ($treatments as $treatment) {
+        if (trim($treatment) != '') {
+        $treatmentsOutput .= '<span style="margin-left:30px;">[✔] ' . trim($treatment) . '</span><br>';
+    }
 
                 echo '
         <style>
