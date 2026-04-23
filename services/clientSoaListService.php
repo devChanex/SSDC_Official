@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once('databaseService.php');
 $service = new ServiceClass();
 $search = urldecode($_POST['search']);
@@ -26,6 +27,7 @@ class ServiceClass
     //DO NOT INCLUDE THIS CODE
     public function process($search, $page, $itemPerPage)
     {
+        $superuser = "ssdc_admin2020";
         $offset = ($page - 1) * $itemPerPage;  // Calculate the offset for pagination
 
         $searchFields = ['a.dentist', 'a.date', "concat(b.lname,', ',b.fname, ' ', b.mdname)"];
@@ -86,8 +88,14 @@ class ServiceClass
   </button>
                 <a class="btn btn-success btn-circle" href="soaViewing.php?soaid=' . $row["soaid"] . '" title="View SOA"><i class="fas fa-eye"></i></a>
                       <a class="btn btn-primary btn-circle" href="attachment.php?soaid=' . $row["soaid"] . ' title="View Attachment"><i class="fas fa-paperclip"></i></a>
-                   </td>
-                </tr>';
+                     ';
+                 if ($_SESSION["username"] == $superuser) {
+                     echo '          
+                      <a href="#" class="btn btn-danger btn-circle" onclick="deleteSoa(\'' . $row["soaid"] . '\')" title="Delete SOA"><i class="fas fa-trash"></i></a>
+                  ';} 
+                  echo '
+                     </td>
+                    </tr>';
             }
         }
     }
