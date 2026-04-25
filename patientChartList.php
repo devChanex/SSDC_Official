@@ -52,9 +52,14 @@
 
                     <!-- Page Heading -->
                     <div class="card shadow mb-12">
-                        <div class="card-header py-3 <?php echo $cards; ?>">
-                            <h6 class="m-0 font-weight-bold">Patient Chart : <?php echo $_GET["clientname"]; ?></h6>
-                            <input type="hidden" id="clientid" value="<?php echo $_GET["id"]; ?>">
+                        <div class="card-header py-3 <?php echo $cards; ?>">    
+                            <h6 class="m-0 font-weight-bold">Patient Chart : <?php echo htmlspecialchars($_GET["clientname"] ?? ''); ?></h6>
+                            <input type="hidden" id="clientid" value="<?php echo htmlspecialchars($_GET["id"] ?? ''); ?>">
+                            <input type="hidden" id="address" value="<?php echo htmlspecialchars($_GET["address"] ?? ''); ?>">
+                            <input type="hidden" id="age" value="<?php echo htmlspecialchars($_GET["age"] ?? ''); ?>">
+                            <input type="hidden" id="birthDate" value="<?php echo htmlspecialchars($_GET["birthDate"] ?? ''); ?>">
+                            <a href="addTreatmentHistory.php?clientid=<?php echo urlencode($_GET['id'] ?? ''); ?>&clientname=<?php echo urlencode($_GET['clientname'] ?? ''); ?>&birthDate=<?php echo urlencode($_GET['birthDate'] ?? ''); ?>&age=<?php echo urlencode($_GET['age'] ?? ''); ?>&address=<?php echo urlencode($_GET['address'] ?? ''); ?>"
+                               class="btn btn-success btn-sm float-right">Add Treatment</a>
                         </div>
                         <div class="card-body">
                             <!-- USE THIS SPACE FOR YOUR ADDITIONAL CODE SNIPPET -->
@@ -662,11 +667,13 @@
             <script src="controllers/logOutConroller.js"></script>
             <script src="controllers/sessionController.js"></script>
             <script src="controllers/patientChartListController-v3.js"></script>
+
             <!-- <script src="controllers/dentalchartController.js"></script> -->
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
             <script src="controllers/dentalchartController-v8.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
             <script src="controllers/divDentalChartPrinterController-v1.js"></script>
+            
 
 
 

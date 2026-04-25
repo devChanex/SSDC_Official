@@ -50,7 +50,7 @@
                                 onclick="printDiv('bodyResult')" title="Print E-SOA" style="display:none;"><i
                                     class="fas fa-print"></i></button>
                         </div>
-                        <input type="hidden" name="lastName" id="clientid" value="<?php echo $_GET['clientid']; ?>">
+                        <input type="hidden" name="lastName" id="clientid" value="<?php echo $_REQUEST['clientid']; ?>">
 
                         <div class="card-body" id="bodyResult">
 
@@ -94,13 +94,13 @@
                                 <div class="col-lg-6">
                                     <label for="Client Name">Client Name</label>
                                     <input type="Text" name="lastName" id="lastName" placeholder="LAST NAME"
-                                        class="form-control" value="<?php echo $_GET['clientname']; ?>" readonly>
+                                        class="form-control" value="<?php echo $_REQUEST['clientname']; ?>" readonly>
                                     <label for="Birthday">Birthday</label>
                                     <input type="Text" name="lastName" id="lastName" placeholder="BIRTHDAY"
-                                        class="form-control" value="<?php echo $_GET['birthDate']; ?>" readonly>
+                                        class="form-control" value="<?php echo $_REQUEST['birthDate']; ?>" readonly>
                                     <label for="Age">Age</label>
                                     <input type="Text" name="age" id="age" placeholder="Age" class="form-control"
-                                        value="<?php echo $_GET['age']; ?>" readonly>
+                                        value="<?php echo $_REQUEST['age']; ?>" readonly>
 
                                 </div>
                                 <div class="col-lg-6">
@@ -109,7 +109,7 @@
                                         class="form-control" value="">
                                     <label for="Address">Address</label>
                                     <input type="Text" name="address" id="address" placeholder="Address"
-                                        class="form-control" value="<?php echo $_GET['address']; ?>" readonly>
+                                        class="form-control" value="<?php echo $_REQUEST['address']; ?>" readonly>
                                     <label for="Address">HMO Accredited:</label>
 
                                     <select id="hmo" name="hmo" class="form-control mb-2">
@@ -117,7 +117,7 @@
                                         <?php
                                         $hmos = ['Flexicare', 'Intellicare', 'Avega', 'Eastwest', 'ValuCare', 'Medicard', 'Health Partners Dental Access, Inc.', 'Dental Network Company', 'Cocolife'];
                                         foreach ($hmos as $hmo) {
-                                            $selected = ($_GET['hmo'] ?? '') == $hmo ? 'selected' : '';
+                                            $selected = ($_REQUEST['hmo'] ?? '') == $hmo ? 'selected' : '';
                                             echo "<option value=\"$hmo\" $selected>$hmo</option>";
                                         }
                                         ?>
