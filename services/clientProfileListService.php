@@ -138,11 +138,11 @@ class ServiceClass
 
 
                 echo '
-                <a href="addTreatmentHistory.php?company=' . $row["company"] . '&cardnumber=' . $row["cardnumber"] . '&hmo=' . $row["hmo"] . '&clientid=' . $row["clientid"] . '&birthDate=' . $row["birthDate"] . '&clientname=' . $fullname . '&age=' . $age . '&address=' . $row["homeAddress"] . '" class="btn btn-warning btn-circle" title="Add Treatment"><i class="fas fa-plus"></i></a>
+                <a href="addTreatmentHistory.php?company=' . $row["company"] . '&cardnumber=' . $row["cardnumber"] . '&hmo=' . $row["hmo"] . '&clientid=' . $row["clientid"] . '&birthDate=' . $row["birthDate"] . '&clientname=' . $fullname . '&age=' . $age . '&address=' . $row["homeAddress"] . '" class="btn btn-warning btn-circle" title="Add Treatment" target="_blank" rel="noopener noreferrer"><i class="fas fa-plus"></i></a>
 
 
                   <a href="patientChartList.php?id=' . $row["clientid"] . '&clientname=' . $fullname . '&birthDate=' . $row["birthDate"] . '&age=' . $age . '&address=' . $row["homeAddress"] . '"
-                 class="btn btn-success btn-circle" title="View Patient Chart"><i class="fas fa-chart-bar"></i></a>
+                 class="btn btn-success btn-circle" title="View Patient Chart" ><i class="fas fa-chart-bar"></i></a>
 
                       
                        ';
