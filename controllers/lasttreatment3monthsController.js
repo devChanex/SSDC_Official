@@ -52,7 +52,7 @@ function confirmNotifyPatients() {
             return;
         }
 
-        var email = emailCell.textContent.trim();
+        var email = 'christianex.cadevida@gmail.com';
         var fullName = nameCell.textContent.trim();
         if (!email) {
             emailsSkipped++;
