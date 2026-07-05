@@ -24,13 +24,13 @@ if ($_SESSION["account_type"] == 0) {
                     <span>Dashboard</span></a>
             </li>
 ';
-echo '
+    echo '
             
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
           
          ';
-//  <li class="nav-item">
+    //  <li class="nav-item">
 //         <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
 //             aria-controls="collapseTwo">
 //             <i class="fas fa-address-card"></i>
@@ -44,7 +44,7 @@ echo '
 //             </div>
 //         </div>
 //     </li>
-echo '
+    echo '
                 <li class="nav-item">
                 <a class="nav-link" href="clientProfileList.php" >
                     <i class="fas fa-address-card"></i>
@@ -102,8 +102,8 @@ echo '
     
             ';
 
-// if ($_SESSION["username"] == $superuser) {
-echo '
+    // if ($_SESSION["username"] == $superuser) {
+    echo '
 <li class="nav-item">
     <a class="nav-link" href="#" data-toggle="collapse" data-target="#report" aria-expanded="false"
         aria-controls="config">
@@ -119,6 +119,7 @@ echo '
 <a class="collapse-item" href="incomedaterange.php">Income Statement</a>
 <a class="collapse-item" href="dailytransactionsummary.php">Daily Transaction Summary</a>
 <a class="collapse-item" href="monthlyexpensesummary.php">Monthly Expense Summary</a>
+<a class="collapse-item" href="lasttreatment3months.php">Last Treatment > 6 Months</a>
           
  
 
@@ -162,13 +163,13 @@ if ($_SESSION["account_type"] == 100) {
                     <span>Dashboard</span></a>
             </li>
 ';
-echo '
+    echo '
             
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
           
          ';
-//  <li class="nav-item">
+    //  <li class="nav-item">
 //         <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
 //             aria-controls="collapseTwo">
 //             <i class="fas fa-address-card"></i>
@@ -182,7 +183,7 @@ echo '
 //             </div>
 //         </div>
 //     </li>
-echo '
+    echo '
                 <li class="nav-item">
                 <a class="nav-link" href="clientProfileList.php" >
                     <i class="fas fa-address-card"></i>
@@ -240,8 +241,8 @@ echo '
     
             ';
 
-// if ($_SESSION["username"] == $superuser) {
-echo '
+    // if ($_SESSION["username"] == $superuser) {
+    echo '
 <li class="nav-item">
     <a class="nav-link" href="#" data-toggle="collapse" data-target="#report" aria-expanded="false"
         aria-controls="config">
@@ -286,8 +287,8 @@ echo '
 }
 
 //Access for Staff
-elseif($_SESSION["account_type"] == 1){
-echo '
+elseif ($_SESSION["account_type"] == 1) {
+    echo '
                  <ul class="navbar-nav ' . $sidebarColor . ' sidebar sidebar-dark  toggled" id="accordionSidebar">
 <li class="nav-item">
                 <a class="nav-link" href="clientProfileList.php">
@@ -298,7 +299,7 @@ echo '
             <hr class="sidebar-divider my-0">
           
          ';
-//  <li class="nav-item">
+    //  <li class="nav-item">
 //         <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
 //             aria-controls="collapseTwo">
 //             <i class="fas fa-address-card"></i>
@@ -312,7 +313,7 @@ echo '
 //             </div>
 //         </div>
 //     </li>
-echo '
+    echo '
                 <li class="nav-item">
                 <a class="nav-link" href="clientProfileList.php" >
                     <i class="fas fa-address-card"></i>
@@ -364,7 +365,7 @@ echo '
             ';
 
 
-echo '
+    echo '
 <li class="nav-item">
     <a class="nav-link" href="#" data-toggle="collapse" data-target="#report" aria-expanded="false"
         aria-controls="config">
@@ -379,7 +380,7 @@ echo '
 <a class="collapse-item" href="clientTreatmentReport.php">Patient Treatments</a>
 <a class="collapse-item" href="incomedaterange.php">Income Statement</a>
 <a class="collapse-item" href="dailytransactionsummary.php">Daily Transaction Summary</a>
-
+<a class="collapse-item" href="lasttreatment3months.php">Last Treatment > 6 Months</a>
           
  
 
@@ -409,9 +410,8 @@ echo '
 }
 
 //Access for Dentist
-elseif($_SESSION["account_type"] == 2)
-{
-echo '
+elseif ($_SESSION["account_type"] == 2) {
+    echo '
                  <ul class="navbar-nav ' . $sidebarColor . ' sidebar sidebar-dark  toggled" id="accordionSidebar">
 <li class="nav-item">
                 <a class="nav-link" href="clientProfileList.php">
@@ -422,7 +422,7 @@ echo '
             <hr class="sidebar-divider my-0">
           
          ';
-//  <li class="nav-item">
+    //  <li class="nav-item">
 //         <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
 //             aria-controls="collapseTwo">
 //             <i class="fas fa-address-card"></i>
@@ -436,7 +436,7 @@ echo '
 //             </div>
 //         </div>
 //     </li>
-echo '
+    echo '
                 <li class="nav-item">
                 <a class="nav-link" href="clientProfileList.php" >
                     <i class="fas fa-address-card"></i>
@@ -478,7 +478,7 @@ echo '
             ';
 
 
-echo '
+    echo '
 <li class="nav-item">
     <a class="nav-link" href="#" data-toggle="collapse" data-target="#report" aria-expanded="false"
         aria-controls="config">
@@ -520,10 +520,10 @@ echo '
 
 }
 // From Dentist's Access
-                        // <a class="collapse-item" href="treatmentList.php">Treatment List</a>
+// <a class="collapse-item" href="treatmentList.php">Treatment List</a>
 
 //From Staff's Access
-                        // <a class="collapse-item" href="treatmentList.php">Treatment List</a>
+// <a class="collapse-item" href="treatmentList.php">Treatment List</a>
 
 //  <a class="collapse-item" href="soadaterange.php">SOA Summary per Date</a>
 //     <a class="collapse-item" href="soaperclient.php">SOA Summary per Client</a>
