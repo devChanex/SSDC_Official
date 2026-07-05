@@ -112,7 +112,7 @@ class ServiceClass
                 if ($stmt->rowCount() > 0) {
                     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                         $totalPatients++;
-                        $fullName = $row['lname'] . ', ' . $row['fname'] . ' ' . $row['mdname'];
+                        $fullName = $row['fname'] . ' ' . $row['mdname'] . ' ' . $row['lname'];
                         $lastDate = $row['last_treatment_date'];
 
                         if ($oldestDate === null || $lastDate < $oldestDate) {
