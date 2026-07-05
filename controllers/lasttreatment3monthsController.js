@@ -69,6 +69,7 @@ function confirmNotifyPatients() {
             'Note: This is a system-generated email. Please do not reply directly to this email.\n\n' +
             'Thank you, and we look forward to seeing you!\n\n' +
             'Smile Save Dental Care';
+        console.log('Sending email to:', email, 'Subject:', subject, 'Greetings:', greetings, 'Message:', msg);
         pending++;
         sendNotificationEmail(email, subject, greetings, msg, function (success) {
             completed++;
