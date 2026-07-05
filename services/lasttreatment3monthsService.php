@@ -127,7 +127,7 @@ class ServiceClass
 
                         echo '<tr style="color: black;">
                             <td>' . htmlspecialchars($row['clientid']) . '</td>
-                            <td>' . htmlspecialchars($fullName) . '</td>
+                            <td>' . htmlspecialchars(ucwords(strtolower($fullName))) . '</td>
                             <td>' . htmlspecialchars($row['emailAddress']) . '</td>
                             <td>' . $mobileDisplay . '</td>
                             <td>' . htmlspecialchars($row['dentist']) . '</td>
