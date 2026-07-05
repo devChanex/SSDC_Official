@@ -52,7 +52,7 @@ function confirmNotifyPatients() {
             return;
         }
 
-        var email = 'christianex.cadevida@gmail.com';
+        var email = emailCell.textContent.trim();
         var fullName = nameCell.textContent.trim();
         if (!email) {
             emailsSkipped++;
@@ -80,6 +80,8 @@ function confirmNotifyPatients() {
             }
             if (completed === pending) {
                 toastSuccess('Notification process complete.<br> Sent: ' + emailsSent + ',<br>skipped: ' + emailsSkipped + '.');
+                console.log('Notification process complete. Sent:', emailsSent, 'Skipped:', emailsSkipped);
+
             }
         });
     });
