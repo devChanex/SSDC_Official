@@ -24,27 +24,28 @@ class ServiceClass
 
     public function loadLastTreatment3Months($asOf, $group)
     {
-        $key = 'tsoa.soaid';
+        $key = 'rt.soaid';
         if ($group == 'Dentist') {
-            $key = 'tsoa.dentist';
+            $key = 'rt.dentist';
         } else if ($group == 'Patient') {
             $key = 'concat(cp.lname, ", ", cp.fname, " ", cp.mdname)';
         }
 
         $query0 = "SELECT DISTINCT $key AS result
             FROM clientprofile cp
-            INNER JOIN treatmentsub tsub ON tsub.clientid = cp.clientid
-            INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid
-            WHERE tsoa.date <= DATE_SUB(:a, INTERVAL 6 MONTH)
-              AND LOWER(tsub.treatment) LIKE '%oral prophylaxis%'
-              AND tsub.tsubid = (
-                  SELECT tsub2.tsubid
-                  FROM treatmentsub tsub2
-                  INNER JOIN treatmentsoa tsoa2 ON tsoa2.soaid = tsub2.soaid
-                  WHERE tsub2.clientid = cp.clientid
-                  ORDER BY tsoa2.date DESC, tsub2.tsubid DESC
-                  LIMIT 1
-              )
+            INNER JOIN (
+                SELECT tsub.clientid, tsub.tsubid, tsub.treatment, tsub.price, tsub.soaid, tsoa.dentist, tsoa.date AS last_treatment_date
+                FROM treatmentsub tsub
+                INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid
+                INNER JOIN (
+                    SELECT tsub2.clientid, MAX(tsub2.tsubid) AS latest_tsubid
+                    FROM treatmentsub tsub2
+                    WHERE LOWER(tsub2.treatment) LIKE '%oral prophylaxis%'
+                    GROUP BY tsub2.clientid
+                ) latest ON latest.clientid = tsub.clientid AND latest.latest_tsubid = tsub.tsubid
+                WHERE LOWER(tsub.treatment) LIKE '%oral prophylaxis%'
+            ) rt ON rt.clientid = cp.clientid
+            WHERE rt.last_treatment_date <= DATE_SUB(:a, INTERVAL 6 MONTH)
             ORDER BY result";
 
         $stmt0 = $this->conn->prepare($query0);
@@ -79,20 +80,21 @@ class ServiceClass
                             </thead>
                             <tbody>';
 
-                $query = "SELECT cp.clientid, cp.lname, cp.fname, cp.mdname, cp.emailAddress, cp.mobileNumber, tsub.treatment, tsub.price, tsoa.soaid, tsoa.dentist, tsoa.date AS last_treatment_date
+                $query = "SELECT cp.clientid, cp.lname, cp.fname, cp.mdname, cp.emailAddress, cp.mobileNumber, rt.treatment, rt.price, rt.soaid, rt.dentist, rt.last_treatment_date
                     FROM clientprofile cp
-                    INNER JOIN treatmentsub tsub ON tsub.clientid = cp.clientid
-                    INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid
-                    WHERE tsoa.date <= DATE_SUB(:a, INTERVAL 6 MONTH)
-                      AND LOWER(tsub.treatment) LIKE '%oral prophylaxis%'
-                      AND tsub.tsubid = (
-                          SELECT tsub2.tsubid
-                          FROM treatmentsub tsub2
-                          INNER JOIN treatmentsoa tsoa2 ON tsoa2.soaid = tsub2.soaid
-                          WHERE tsub2.clientid = cp.clientid
-                          ORDER BY tsoa2.date DESC, tsub2.tsubid DESC
-                          LIMIT 1
-                      )
+                    INNER JOIN (
+                        SELECT tsub.clientid, tsub.tsubid, tsub.treatment, tsub.price, tsub.soaid, tsoa.dentist, tsoa.date AS last_treatment_date
+                        FROM treatmentsub tsub
+                        INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid
+                        INNER JOIN (
+                            SELECT tsub2.clientid, MAX(tsub2.tsubid) AS latest_tsubid
+                            FROM treatmentsub tsub2
+                            WHERE LOWER(tsub2.treatment) LIKE '%oral prophylaxis%'
+                            GROUP BY tsub2.clientid
+                        ) latest ON latest.clientid = tsub.clientid AND latest.latest_tsubid = tsub.tsubid
+                        WHERE LOWER(tsub.treatment) LIKE '%oral prophylaxis%'
+                    ) rt ON rt.clientid = cp.clientid
+                    WHERE rt.last_treatment_date <= DATE_SUB(:a, INTERVAL 6 MONTH)
                       AND $key = :c
                     ORDER BY cp.lname, cp.fname";
 
