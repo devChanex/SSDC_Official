@@ -46,7 +46,7 @@ class ServiceClass
                     GROUP BY tsub2.clientid
                 ) latest ON latest.clientid = tsub.clientid AND latest.latest_tsubid = tsub.tsubid
                 WHERE LOWER(tsub.treatment) LIKE '%oral prophylaxis%'
-                  AND tsoa.date >= '2025-01-01'
+                  AND tsoa.date >= '2026-01-01'
             ) rt ON rt.clientid = cp.clientid
             WHERE rt.last_treatment_date <= DATE_SUB(:a, INTERVAL 6 MONTH)
             ORDER BY result";
@@ -94,7 +94,7 @@ class ServiceClass
                             FROM treatmentsub tsub2
                             INNER JOIN treatmentsoa tsoa2 ON tsoa2.soaid = tsub2.soaid
                             WHERE LOWER(tsub2.treatment) LIKE '%oral prophylaxis%'
-                              AND tsoa2.date >= '2025-01-01'
+                              AND tsoa2.date >= '2026-01-01'
                             GROUP BY tsub2.clientid
                         ) latest ON latest.clientid = tsub.clientid AND latest.latest_tsubid = tsub.tsubid
                         WHERE LOWER(tsub.treatment) LIKE '%oral prophylaxis%'
