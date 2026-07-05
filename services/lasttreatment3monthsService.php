@@ -40,10 +40,13 @@ class ServiceClass
                 INNER JOIN (
                     SELECT tsub2.clientid, MAX(tsub2.tsubid) AS latest_tsubid
                     FROM treatmentsub tsub2
+                    INNER JOIN treatmentsoa tsoa2 ON tsoa2.soaid = tsub2.soaid
                     WHERE LOWER(tsub2.treatment) LIKE '%oral prophylaxis%'
+                      AND tsoa2.date >= '2025-01-01'
                     GROUP BY tsub2.clientid
                 ) latest ON latest.clientid = tsub.clientid AND latest.latest_tsubid = tsub.tsubid
                 WHERE LOWER(tsub.treatment) LIKE '%oral prophylaxis%'
+                  AND tsoa.date >= '2025-01-01'
             ) rt ON rt.clientid = cp.clientid
             WHERE rt.last_treatment_date <= DATE_SUB(:a, INTERVAL 6 MONTH)
             ORDER BY result";
@@ -89,10 +92,13 @@ class ServiceClass
                         INNER JOIN (
                             SELECT tsub2.clientid, MAX(tsub2.tsubid) AS latest_tsubid
                             FROM treatmentsub tsub2
+                            INNER JOIN treatmentsoa tsoa2 ON tsoa2.soaid = tsub2.soaid
                             WHERE LOWER(tsub2.treatment) LIKE '%oral prophylaxis%'
+                              AND tsoa2.date >= '2025-01-01'
                             GROUP BY tsub2.clientid
                         ) latest ON latest.clientid = tsub.clientid AND latest.latest_tsubid = tsub.tsubid
                         WHERE LOWER(tsub.treatment) LIKE '%oral prophylaxis%'
+                          AND tsoa.date >= '2025-01-01'
                     ) rt ON rt.clientid = cp.clientid
                     WHERE rt.last_treatment_date <= DATE_SUB(:a, INTERVAL 6 MONTH)
                       AND $key = :c
