@@ -69,6 +69,12 @@ if ($_SESSION["account_type"] == 0) {
                     <span>E-SOA/Xray</span>
                 </a>
         </li>
+         <li class="nav-item">
+                <a class="nav-link" href="orthodonticList.php" >
+                    <i class="fas fa-notes-medical"></i>
+                    <span>Orthodontic Patients</span>
+                </a>
+        </li>
         </li>
      <li class="nav-item">
     <a class="nav-link" href="prescriptionList.php" >
