@@ -198,7 +198,12 @@ if ($_SESSION["account_type"] == 100) {
                
                 </li>
 
-    
+      <li class="nav-item">
+                <a class="nav-link" href="orthodonticList.php" >
+                    <i class="fas fa-notes-medical"></i>
+                    <span>Orthodontic Patients</span>
+                </a>
+        </li>
             <li class="nav-item">
         <a class="nav-link" href="hmoList.php" >
             <i class="fas fa-heart"></i>
@@ -328,7 +333,12 @@ elseif ($_SESSION["account_type"] == 1) {
                     </a>
                
             </li>
-
+  <li class="nav-item">
+                <a class="nav-link" href="orthodonticList.php" >
+                    <i class="fas fa-notes-medical"></i>
+                    <span>Orthodontic Patients</span>
+                </a>
+        </li>
    
         <li class="nav-item">
     <a class="nav-link" href="hmoList.php" >
@@ -452,7 +462,12 @@ elseif ($_SESSION["account_type"] == 2) {
                
             </li>
                    </li>
-
+  <li class="nav-item">
+                <a class="nav-link" href="orthodonticList.php" >
+                    <i class="fas fa-notes-medical"></i>
+                    <span>Orthodontic Patients</span>
+                </a>
+        </li>
    
         <li class="nav-item">
     <a class="nav-link" href="hmoList.php" >
