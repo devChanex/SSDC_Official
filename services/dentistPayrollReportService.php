@@ -49,7 +49,7 @@ class ServiceClass
             $whereClause = 'WHERE ' . implode(' AND ', $conditions);
         }
 
-        $query = "SELECT tsoa.soaid,ts.treatment,ts.price,ts.commision_rate,ts.commision,ts.hmo,tsoa.date,(select concat(lname,', ',fname,' ',mdname) from clientprofile where clientid=tsoa.clientid) as fullname  FROM treatmentsub ts inner join treatmentsoa tsoa ON  ts.soaid = tsoa.soaid $whereClause";
+        $query = "SELECT tsoa.soaid,ts.treatment,ts.price,ts.hmo,tsoa.date,(select concat(lname,', ',fname,' ',mdname) from clientprofile where clientid=tsoa.clientid) as fullname  FROM treatmentsub ts inner join treatmentsoa tsoa ON  ts.soaid = tsoa.soaid $whereClause";
 
         $stmt = $this->conn->prepare($query);
         foreach ($parameters as $key => $value) {
@@ -92,14 +92,13 @@ class ServiceClass
             echo '<select name="commision_rate" class="form-select"  style="width:100%; box-sizing:border-box;border:0px;font-size:inherit; padding:0px; background-color:transparent;" onchange="updateComissionAmount(this);">';
 
             for ($rate = 0; $rate <= 50; $rate += 5) {
-                $selected = ($row['commision_rate'] == $rate) ? 'selected' : '';
 
-                echo '<option value="' . $rate . '" ' . $selected . '>' . $rate . '%</option>';
+                echo '<option value="' . $rate . '">' . $rate . '%</option>';
             }
             echo '<option value="Other">Other</option>';
             echo '</select>';
             echo '</td>';
-            echo '<td class="text-right commission">' . number_format($row['commision'], 2) . '</td>';
+            echo '<td class="text-right commission">0.00</td>';
             echo '</tr>';
         }
 
