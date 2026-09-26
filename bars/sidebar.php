@@ -132,6 +132,25 @@ if ($_SESSION["account_type"] == 0) {
         </div>
     </div>
 </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="#" data-toggle="collapse" data-target="#payroll" aria-expanded="false"
+        aria-controls="config">
+        <i class="fas fa-file"></i>
+        <span>Payroll</span>
+    </a>
+    <div id="payroll" class="collapse" aria-labelledby="payroll" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+  
+
+<a class="collapse-item" href="dentistPayrollAdjustments.php">Dentist Payroll Adjustment</a>
+<a class="collapse-item" href="dentistpayrollreport.php">Dentist Payroll Report</a>
+          
+ 
+
+        </div>
+    </div>
+</li>
          <li class="nav-item">
                 <a class="nav-link" href="#" data-toggle="collapse" data-target="#config" aria-expanded="false"
                     aria-controls="config">
@@ -250,7 +269,27 @@ if ($_SESSION["account_type"] == 100) {
     </a>
    </li>
     
+   <li class="nav-item">
+    <a class="nav-link" href="#" data-toggle="collapse" data-target="#payroll" aria-expanded="false"
+        aria-controls="config">
+        <i class="fas fa-file"></i>
+        <span>Payroll</span>
+    </a>
+    <div id="payroll" class="collapse" aria-labelledby="payroll" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+  
+
+<a class="collapse-item" href="dentistPayrollAdjustments.php">Dentist Payroll Adjustment</a>
+<a class="collapse-item" href="dentistpayrollreport.php">Dentist Payroll Report</a>
+          
+ 
+
+        </div>
+    </div>
+</li>
             ';
+
+
 
     // if ($_SESSION["username"] == $superuser) {
     echo '
