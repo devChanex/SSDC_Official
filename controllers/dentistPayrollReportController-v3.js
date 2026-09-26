@@ -98,6 +98,10 @@ function openBasicSalaryModal() {
     $('#basicSalaryModal').modal('show');
 }
 
+function openPayslipModal() {
+    $('#payslipModal').modal('show');
+}
+
 function updateBasicSalary() {
 
     const daysRendered = parseFloat(
@@ -207,38 +211,38 @@ function recalculateTotal() {
             maximumFractionDigits: 2
         });
     document.getElementById('totalGross').textContent =
-        (total * 0.9).toLocaleString('en-US', {
+        (total * .10).toLocaleString('en-US', {
             minimumFractionDigits: 2,
             maximumFractionDigits: 2
         });
+
+
 
     recalculateNetPay(); // Recalculate net pay after updating total commission 
 }
 
 
 function recalculateNetPay() {
+    document.getElementById('totalGrossPay').textContent =
+        ((parseFloat(document.getElementById('totalCommission').textContent.replace(/,/g, '') || 0) * .90) + parseFloat(document.getElementById('totalBasicSalary').textContent.replace(/,/g, '') || 0) + parseFloat(document.getElementById('totalAdditional').textContent.replace(/,/g, '') || 0)).toLocaleString('en-US', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
 
-    const totalGross = parseFloat(
-        document.getElementById('totalGross').textContent.replace(/,/g, '')
+
+    const totalGrossPay = parseFloat(
+        document.getElementById('totalGrossPay').textContent.replace(/,/g, '')
     ) || 0;
 
 
-    const basicSalary = parseFloat(
-        document.getElementById('totalBasicSalary').textContent.replace(/,/g, '')
-    ) || 0;
-
-    const totalAdditional = parseFloat(
-        document.getElementById('totalAdditional').textContent.replace(/,/g, '')
-    ) || 0;
 
     const totalDeductions = parseFloat(
         document.getElementById('totalDeductions').textContent.replace(/,/g, '')
     ) || 0;
 
     const netPay =
-        totalGross +
-        basicSalary +
-        totalAdditional -
+        totalGrossPay -
+
         totalDeductions;
 
     document.getElementById('netpay').textContent =
@@ -246,4 +250,110 @@ function recalculateNetPay() {
             minimumFractionDigits: 2,
             maximumFractionDigits: 2
         });
+
+    populatePayslip();
+}
+
+
+function populatePayslip() {
+
+    // =========================
+    // Employee / Filter Details
+    // =========================
+
+    const dentist = document.getElementById('dentist').value;
+    const from = document.getElementById('from').value;
+    const to = document.getElementById('to').value;
+
+    document.getElementById('payslipDentist').textContent =
+        dentist || '-';
+
+    // Format dates
+    if (from && to) {
+        const fromDate = new Date(from + 'T00:00:00');
+        const toDate = new Date(to + 'T00:00:00');
+
+        const dateOptions = {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        };
+
+        document.getElementById('payslipPeriods').textContent =
+            fromDate.toLocaleDateString('en-US', dateOptions) +
+            ' - ' +
+            toDate.toLocaleDateString('en-US', dateOptions);
+    } else {
+        document.getElementById('payslipPeriods').textContent = '-';
+    }
+
+    // Pay date = "To" date
+
+
+
+    // =========================
+    // Payroll Values
+    // =========================
+    const commission =
+        parseFloat(document.getElementById('totalCommission').textContent.replace(/,/g, '')) || 0;
+    const commission_less =
+        parseFloat(document.getElementById('totalGross').textContent.replace(/,/g, '')) || 0;
+
+    const basicSalary = parseFloat(
+        document.getElementById('totalBasicSalary').textContent.replace(/,/g, '')
+    ) || 0;
+
+    const additional =
+        parseFloat(document.getElementById('totalAdditional').textContent.replace(/,/g, '')) || 0;
+
+    const gross = basicSalary + additional + commission - commission_less;
+
+    const deductions =
+        document.getElementById('totalDeductions').textContent;
+
+    const netPay =
+        document.getElementById('netpay').textContent;
+
+
+
+
+    // =========================
+    // Populate Payslip
+    // =========================
+    document.getElementById('payslipCommission').textContent = (commission - commission_less).toLocaleString('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });;
+
+    document.getElementById('payslipBasicSalary').textContent =
+        basicSalary.toLocaleString('en-US', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });;
+
+    document.getElementById('payslipAdditional').textContent =
+        additional.toLocaleString('en-US', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });;
+
+    document.getElementById('payslipGrossPay').textContent =
+        gross.toLocaleString('en-US', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });;
+
+    document.getElementById('payslipDeductions').textContent =
+        deductions.toLocaleString('en-US', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });;
+
+    document.getElementById('payslipNetPay').textContent =
+        netPay.toLocaleString('en-US', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
+
+    document.getElementById('payslipDentists').textContent = document.getElementById('dentist').value || '-';
 }

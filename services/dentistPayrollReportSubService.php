@@ -109,11 +109,18 @@ class ServiceClass
         echo '<th id="totalAdditional" class="text-right">' . number_format($additional, 2) . '</th>';
         echo '</tr>';
 
+        echo '<tr>';
+        echo '<th colspan="2" class="text-right">GrossPay:</th>';
+        echo '<th id="totalGrossPay" class="text-right">0.00</th>';
+        echo '</tr>';
+
 
         echo '<tr>';
         echo '<th colspan="2" class="text-right">Total Deductions:</th>';
         echo '<th id="totalDeductions" class="text-right">' . number_format($deductions, 2) . '</th>';
         echo '</tr>';
+
+
 
         echo '<tr>';
         echo '<th colspan="2" class="text-right">NetPay:</th>';

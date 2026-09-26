@@ -127,6 +127,8 @@ $today = date('Y-m-d');
                                         onclick="recalculateTotal();">Calculate</button>
                                     <button class="btn btn-secondary btn-sm mb-2"
                                         onclick="printDiv('daterange');">Print</button>
+                                    <button class="btn btn-danger btn-sm mb-2"
+                                        onclick="openPayslipModal();">Payslip</button>
                                 </div>
                             </div>
                         </div>
@@ -229,6 +231,214 @@ $today = date('Y-m-d');
 
                             </div>
                         </div>
+
+                        <div class="modal fade" id="payslipModal" tabindex="-1" role="dialog"
+                            aria-labelledby="payslipModalLabel" aria-hidden="true">
+
+                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+
+                                <div class="modal-content">
+
+                                    <div class="modal-header <?php echo $cards; ?>">
+                                        <h5 class="modal-title" id="basicSalaryModalLabel">
+                                            Basic Salary
+                                        </h5>
+
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        <div id="payslipDiv"
+                                            style="width:700px; max-width:100%; margin:20px auto; padding:30px; background:#fff; border:1px solid #ccc; font-family:Arial, Helvetica, sans-serif; color:#222; box-sizing:border-box;">
+
+                                            <!-- Header -->
+                                            <div
+                                                style="text-align:center; padding-bottom:15px; border-bottom:2px solid #222;">
+                                                <div id="payslipCompany"
+                                                    style="font-size:22px; font-weight:bold; letter-spacing:1px;">
+                                                    Smile Save Dental Care
+                                                </div>
+
+                                                <div id="payslipAddress"
+                                                    style="font-size:12px; color:#666; margin-top:4px;">
+                                                    L22-24 B2 2/F Mondo Bambini Commercial Strip Bldg. Brgy. Zapote,
+                                                    Binan City,
+                                                    Laguna
+                                                </div>
+
+                                                <div
+                                                    style="font-size:20px; font-weight:bold; margin-top:15px; letter-spacing:2px;">
+                                                    PAYSLIP
+                                                </div>
+                                            </div>
+
+                                            <!-- Employee Information -->
+                                            <table
+                                                style="width:100%; border-collapse:collapse; margin-top:20px; font-size:13px;">
+                                                <tr>
+                                                    <td style="width:50%; padding:5px 0;">
+                                                        <strong>Dentist:</strong>
+                                                        <span id="payslipDentists">-</span>
+                                                    </td>
+
+
+                                                </tr>
+
+                                                <tr>
+                                                    <td style="width:50%; padding:5px 0;">
+                                                        <strong>Pay Period:</strong>
+                                                        <span id="payslipPeriods">-</span>
+                                                    </td>
+
+
+                                                </tr>
+                                            </table>
+
+                                            <!-- Earnings -->
+                                            <table
+                                                style="width:100%; border-collapse:collapse; margin-top:20px; font-size:13px;">
+                                                <tr>
+                                                    <th colspan="2"
+                                                        style="padding:9px 10px; text-align:left; background:#f1f1f1; border:1px solid #ccc;">
+                                                        EARNINGS
+                                                    </th>
+                                                </tr>
+
+                                                <tr>
+                                                    <td style="padding:9px 10px; border:1px solid #ddd;">
+                                                        Commission
+                                                    </td>
+
+                                                    <td id="payslipCommission"
+                                                        style="padding:9px 10px; border:1px solid #ddd; text-align:right;">
+                                                        0.00
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td style="padding:9px 10px; border:1px solid #ddd;">
+                                                        Basic Salary
+
+                                                        <div style="font-size:10px; color:#777; margin-top:3px;">
+                                                            <span id="payslipDaysRendered">Days Rendered: 0</span>
+                                                            &nbsp; × &nbsp;
+                                                            <span id="payslipRatePerDay">Rate Per Day: 0.00</span>
+                                                        </div>
+                                                    </td>
+
+                                                    <td id="payslipBasicSalary"
+                                                        style="padding:9px 10px; border:1px solid #ddd; text-align:right;">
+                                                        0.00
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td style="padding:9px 10px; border:1px solid #ddd;">
+                                                        Total Additional
+                                                    </td>
+
+                                                    <td id="payslipAdditional"
+                                                        style="padding:9px 10px; border:1px solid #ddd; text-align:right;">
+                                                        0.00
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td style="padding:10px; border:1px solid #ddd; font-weight:bold;">
+                                                        Gross Pay
+                                                    </td>
+
+                                                    <td id="payslipGrossPay"
+                                                        style="padding:10px; border:1px solid #ddd; text-align:right; font-weight:bold;">
+                                                        0.00
+                                                    </td>
+                                                </tr>
+                                            </table>
+
+                                            <!-- Deductions -->
+                                            <table
+                                                style="width:100%; border-collapse:collapse; margin-top:15px; font-size:13px;">
+                                                <tr>
+                                                    <th colspan="2"
+                                                        style="padding:9px 10px; text-align:left; background:#f1f1f1; border:1px solid #ccc;">
+                                                        DEDUCTIONS
+                                                    </th>
+                                                </tr>
+
+                                                <tr>
+                                                    <td style="padding:9px 10px; border:1px solid #ddd;">
+                                                        Tax and Material Costs (10%)
+                                                    </td>
+
+                                                    <td id="payslipTaxMaterial"
+                                                        style="padding:9px 10px; border:1px solid #ddd; text-align:right;">
+                                                        0.00
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td style="padding:9px 10px; border:1px solid #ddd;">
+                                                        Other Deductions
+                                                    </td>
+
+                                                    <td id="payslipOtherDeductions"
+                                                        style="padding:9px 10px; border:1px solid #ddd; text-align:right;">
+                                                        0.00
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td style="padding:10px; border:1px solid #ddd; font-weight:bold;">
+                                                        Total Deductions
+                                                    </td>
+
+                                                    <td id="payslipDeductions"
+                                                        style="padding:10px; border:1px solid #ddd; text-align:right; font-weight:bold;">
+                                                        0.00
+                                                    </td>
+                                                </tr>
+                                            </table>
+
+                                            <!-- Net Pay -->
+                                            <table
+                                                style="width:100%; border-collapse:collapse; margin-top:15px; font-size:13px;">
+                                                <tr>
+                                                    <td
+                                                        style="padding:14px 10px; border-top:2px solid #222; border-bottom:2px solid #222; font-size:16px; font-weight:bold;">
+                                                        NET PAY
+                                                    </td>
+
+                                                    <td id="payslipNetPay"
+                                                        style="padding:14px 10px; border-top:2px solid #222; border-bottom:2px solid #222; text-align:right; font-size:18px; font-weight:bold;">
+                                                        0.00
+                                                    </td>
+                                                </tr>
+                                            </table>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="modal-footer">
+
+                                        <button type="button" class="btn btn-success" onclick="printDiv('payslipDiv');">
+                                            Print
+                                        </button>
+
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">
+                                            Cancel
+                                        </button>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -242,7 +452,7 @@ $today = date('Y-m-d');
             <script src="js/sb-admin-2.min.js"></script>
             <script src="controllers/logOutConroller.js"></script>
             <script src="controllers/sessionController.js"></script>
-            <script src="controllers/dentistPayrollReportController-v2.js"></script>
+            <script src="controllers/dentistPayrollReportController-v3.js"></script>
             <!-- <script src="controllers/divPrinterController-v1.js"></script> -->
             <script src="controllers/divPrinterController-v3.js"></script>
         </div>
