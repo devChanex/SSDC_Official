@@ -144,7 +144,7 @@ if ($_SESSION["account_type"] == 0) {
   
 
 <a class="collapse-item" href="dentistPayrollAdjustments.php">Dentist Payroll Adjustment</a>
-<a class="collapse-item" href="dentistpayrollreport.php">Dentist Payroll Report</a>
+<a class="collapse-item" href="dentistPayrollReport.php">Dentist Payroll Report</a>
           
  
 
@@ -280,7 +280,7 @@ if ($_SESSION["account_type"] == 100) {
   
 
 <a class="collapse-item" href="dentistPayrollAdjustments.php">Dentist Payroll Adjustment</a>
-<a class="collapse-item" href="dentistpayrollreport.php">Dentist Payroll Report</a>
+<a class="collapse-item" href="dentistPayrollReport.php">Dentist Payroll Report</a>
           
  
 
