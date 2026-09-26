@@ -107,7 +107,7 @@ class ServiceClass
         
         ';
 
-        echo '<tfoot>';
+
         echo '<tr>';
         echo '<th colspan="7" class="text-right">Total Commision:</th>';
         echo '<th id="totalCommission" class="text-right">0.00</th>';
@@ -117,7 +117,7 @@ class ServiceClass
         echo '<th colspan="7" class="text-right">less 10% (Tax and Material Costs):</th>';
         echo '<th id="totalGross" class="text-right">0.00</th>';
         echo '</tr>';
-        echo '</tfoot>';
+
         echo '
         </table></div>';
 

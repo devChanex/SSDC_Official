@@ -98,7 +98,7 @@ class ServiceClass
         
         ';
 
-        echo '<tfoot>';
+
         echo '<tr>';
         echo '<th colspan="2" class="text-right">Basic Salary:</th>';
         echo '<th id="totalBasicSalary" class="text-right">0.00</th>';
@@ -120,7 +120,7 @@ class ServiceClass
         echo '<th id="netpay" class="text-right">0.00</th>';
         echo '</tr>';
 
-        echo '</tfoot>';
+
         echo '
         </table></div>';
 
