@@ -13,7 +13,7 @@ if (mysqli_query($con, $insert_query)) {
 } else {
     $data = array(
         'status' => false,
-        'msg' => 'Sorry, Event not added.'
+        'msg' => 'Event not added. Database error: ' . mysqli_error($con)
     );
 }
 echo json_encode($data);

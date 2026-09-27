@@ -257,16 +257,19 @@ function save_event() {
       event_status: eventStatus
     },
     success: function (response) {
-      $("#event_entry_modal").modal("hide");
-
       if (response.status == true) {
+        $("#event_entry_modal").modal("hide");
         location.reload();
       } else {
-        // alert(response.msg);
+        alert(response.msg || "Event was not added, but the server did not provide an error message.");
       }
     },
     error: function (xhr, status) {
-      console.log("ajax error = " + xhr.statusText);
+      console.error("Save event request failed:", status, xhr.status, xhr.responseText);
+      var message = xhr.responseJSON && xhr.responseJSON.msg
+        ? xhr.responseJSON.msg
+        : "The server request failed (" + xhr.status + "): " + (xhr.statusText || status);
+      alert(message);
     }
   });
 
