@@ -106,6 +106,14 @@ if ($_SESSION["account_type"] == 0) {
     </a>
    </li>
     
+
+    <li class="nav-item">
+                <a class="nav-link" href="calendar.php" >
+                    <i class="fas fa-address-card"></i>
+                    <span>Calendar</span>
+                    </a>
+               
+                </li>
             ';
 
     // if ($_SESSION["username"] == $superuser) {
@@ -268,6 +276,17 @@ if ($_SESSION["account_type"] == 100) {
         <span>HMO Income</span>
     </a>
    </li>
+
+   
+    <li class="nav-item">
+                <a class="nav-link" href="calendar.php" >
+                    <i class="fas fa-address-card"></i>
+                    <span>Calendar</span>
+                    </a>
+               
+                </li>
+          
+
     
    <li class="nav-item">
     <a class="nav-link" href="#" data-toggle="collapse" data-target="#payroll" aria-expanded="false"
@@ -287,6 +306,9 @@ if ($_SESSION["account_type"] == 100) {
         </div>
     </div>
 </li>
+
+ 
+
             ';
 
 
@@ -416,7 +438,13 @@ elseif ($_SESSION["account_type"] == 1) {
         <span>Expenses</span>
     </a>
    </li>
- 
+     <li class="nav-item">
+                <a class="nav-link" href="calendar.php" >
+                    <i class="fas fa-address-card"></i>
+                    <span>Calendar</span>
+                    </a>
+               
+                </li>
     
             ';
 
@@ -532,7 +560,13 @@ elseif ($_SESSION["account_type"] == 2) {
    
     </li>
        
-
+    <li class="nav-item">
+                <a class="nav-link" href="calendar.php" >
+                    <i class="fas fa-address-card"></i>
+                    <span>Calendar</span>
+                    </a>
+               
+                </li>
 
      
     

@@ -1,8 +1,7 @@
 <?php
+session_start();
 error_reporting(0);
-
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,6 +30,118 @@ error_reporting(0);
 
     <!-- CSS for full calender -->
     <link href="css/calendar.css" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="img/vadc_icon.ico" />
+    <style>
+        .fc-event {
+            border: 1px solid #e2e8f0 !important;
+            border-left: 4px solid var(--event-accent, #3a87ad) !important;
+            border-radius: 8px;
+            background: #fff !important;
+            color: #243447 !important;
+            box-shadow: 0 2px 7px rgba(35, 45, 55, 0.12);
+            transition: box-shadow 0.15s ease, transform 0.15s ease;
+        }
+
+        .fc-event:hover {
+            color: #243447 !important;
+            box-shadow: 0 5px 12px rgba(35, 45, 55, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .fc-day-grid-event {
+            min-height: 0;
+            margin: 4px 3px 0;
+            padding: 0;
+        }
+
+        .fc-day-grid-event .fc-content {
+            display: block;
+            overflow: visible !important;
+            padding: 0;
+            white-space: normal !important;
+        }
+
+        .calendar-event-card__header {
+            align-items: center;
+            background: #f1f5f9;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            min-height: 32px;
+            padding: 6px 34px 6px 9px;
+        }
+
+        .calendar-event-card__notice {
+            align-items: center;
+            background: #fff1f2;
+            border-radius: 7px;
+            color: #9f1239;
+            display: flex;
+            font-size: 0.75rem;
+            font-weight: 800;
+            gap: 8px;
+            justify-content: center;
+            letter-spacing: 0.04em;
+            min-height: 42px;
+            padding: 8px 34px 8px 10px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .calendar-event-card__notice i {
+            font-size: 0.95rem;
+        }
+
+        .calendar-event-card__details {
+            color: #243447;
+            font-size: 0.78rem;
+            font-weight: 400;
+            line-height: 1.35;
+            overflow-wrap: anywhere;
+            padding: 8px 9px;
+            white-space: pre-wrap;
+        }
+
+        .calendar-event-card__detail-line strong {
+            font-weight: 700;
+        }
+
+        .calendar-event-card__time {
+            align-items: center;
+            color: #64748b;
+            display: inline-flex;
+            font-size: 0.72rem;
+            font-weight: 700;
+            gap: 5px;
+            line-height: 1.2;
+        }
+
+        .calendar-event-status {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            z-index: 3;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: #fff;
+            text-align: center;
+            line-height: 22px;
+            font-size: 15px;
+            pointer-events: none;
+        }
+
+        .calendar-event-status--pending {
+            color: #d39e00;
+        }
+
+        .calendar-event-status--completed {
+            color: #218838;
+        }
+
+        .calendar-event-status--cancelled {
+            color: #c82333;
+        }
+    </style>
 
 </head>
 
@@ -79,23 +190,56 @@ error_reporting(0);
                     <div class="modal-dialog modal-md" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="modalLabel">Add New Event</h5>
+                                <h5 class="modal-title" id="modalLabel">Appointment</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">×</span>
                                 </button>
                             </div>
                             <div class="modal-body">
+                                <input type="hidden" id="event_id" value="">
                                 <div class="img-container">
                                     <div class="row">
                                         <div class="col-sm-12">
+
                                             <div class="form-group">
-                                                <label for="event_name">Event name</label>
+                                                <label>Event Name Type</label><br>
+
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="eventType"
+                                                        id="defaultEvent" value="default">
+                                                    <label class="form-check-label" for="defaultEvent">Default</label>
+                                                </div>
+
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="eventType"
+                                                        id="customEvent" value="custom" checked>
+                                                    <label class="form-check-label" for="customEvent">Custom</label>
+                                                </div>
+                                            </div>
+
+                                            <!-- Default Select -->
+                                            <div class="form-group" id="defaultEventContainer" style="display:none;">
+                                                <label for="event_name">Event Name</label>
                                                 <select id="event_name" class="form-control">
                                                     <option value="Closed">Closed</option>
                                                     <option value="Fully Booked">Fully Booked</option>
                                                     <option value="Holiday-Closed">Holiday-Closed</option>
                                                 </select>
                                             </div>
+
+                                            <!-- Custom Textarea -->
+                                            <div class="form-group" id="customEventContainer">
+
+                                                <label for="appointmentTime">Appointment Time</label>
+                                                <input type="time" class="form-control" id="appointmentTime"
+                                                    name="appointmentTime" step="1800" value="08:00">
+                                                <label for="custom_event_name">Details</label>
+                                                <textarea id="custom_event_name" class="form-control" rows="6">Patient:
+Contact:
+Procedure:
+Dentist:</textarea>
+                                            </div>
+
                                         </div>
                                     </div>
                                     <div class="row">
@@ -113,11 +257,34 @@ error_reporting(0);
                                                     class="form-control" placeholder="Event end date">
                                             </div>
                                         </div>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Status</label><br>
+
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="eventStatus" id="Pending"
+                                                value="Pending" checked>
+                                            <label class="form-check-label" for="Pending">Pending</label>
+                                        </div>
+
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="eventStatus"
+                                                id="Completed" value="Completed">
+                                            <label class="form-check-label" for="Completed">Completed</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="eventStatus"
+                                                id="Cancelled" value="Cancelled">
+                                            <label class="form-check-label" for="Cancelled">Cancelled</label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-primary" onclick="save_event()">Save Event</button>
+                                <button type="button" id="delete_event_button" class="btn btn-danger"
+                                    onclick="eventDeletion($('#event_id').val())" disabled>Delete Event</button>
                             </div>
                         </div>
                     </div>
@@ -147,7 +314,7 @@ error_reporting(0);
             <script src="js/sb-admin-2.min.js"></script>
             <script src="controllers/logOutConroller.js"></script>
             <script src="controllers/sessionController.js"></script>
-            <script src="controllers/calendarController.js"></script>
+            <script src="controllers/calendarController-v4.js"></script>
 
 
 

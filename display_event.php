@@ -1,36 +1,91 @@
-<?php                
-require 'database_connection.php'; 
-$display_query = "select event_id,event_name,event_start_date,event_end_date from calendar_event_master";             
-$results = mysqli_query($con,$display_query);   
-$count = mysqli_num_rows($results);  
-if($count>0) 
-{
-	$data_arr=array();
-    $i=1;
-	while($data_row = mysqli_fetch_array($results, MYSQLI_ASSOC))
-	{	
-	$data_arr[$i]['event_id'] = $data_row['event_id'];
-	$data_arr[$i]['title'] = $data_row['event_name'];
-	$data_arr[$i]['start'] = date("Y-m-d", strtotime($data_row['event_start_date']));
-	$data_arr[$i]['end'] = date("Y-m-d", strtotime($data_row['event_end_date']));
-	// $data_arr[$i]['color'] = '#'.substr(uniqid(),-6); // 'green'; pass colour name
-	$data_arr[$i]['color'] = '#FF0000'; // 'green'; pass colour name
-	$data_arr[$i]['url'] = '#';
-	$i++;
+<?php
+require 'database_connection.php';
+
+$display_query = "
+SELECT
+    event_id,
+    event_name,
+    event_start_date,
+    event_end_date,
+    event_time,
+	event_status
+FROM calendar_event_master
+ORDER BY event_start_date ASC, event_time ASC
+";
+
+$results = mysqli_query($con, $display_query);
+
+$data_arr = array();
+
+if (mysqli_num_rows($results) > 0) {
+
+	while ($row = mysqli_fetch_assoc($results)) {
+
+		// Build the start datetime
+		$start = new DateTime(
+			date('Y-m-d', strtotime($row['event_start_date'])) .
+			' ' .
+			$row['event_time']
+		);
+
+		// Appointment duration = 30 minutes
+		$end = clone $start;
+		$end->modify('+30 minutes');
+
+		$eventName = trim($row['event_name']);
+		$eventStatus = trim($row['event_status']);
+
+		$event = array();
+		$event['event_id'] = $row['event_id'];
+		$event['event_name'] = $eventName;
+		$event['event_start_date'] = date('Y-m-d', strtotime($row['event_start_date']));
+		$event['event_end_date'] = date('Y-m-d', strtotime($row['event_end_date']));
+		$event['event_time'] = $row['event_time'];
+		$event['event_status'] = $eventStatus;
+		$formattedTime = date("g:i A", strtotime($row['event_time']));
+
+		$event['title'] = $eventName . "\nTime: " . $formattedTime;
+
+		$event['start'] = $start->format('Y-m-d\TH:i:s');
+		$event['end'] = $end->format('Y-m-d\TH:i:s');
+		$event['url'] = '#';
+
+		if (in_array($eventName, ['Closed', 'Fully Booked', 'Holiday-Closed'])) {
+
+			$event['color'] = '#dc3545';
+
+		} else {
+
+			$dentist = '';
+
+			if (preg_match('/Dentist:\s*(.+)/i', $eventName, $matches)) {
+				$dentist = strtoupper(trim($matches[1]));
+			}
+
+			if (strpos($dentist, 'REG') !== false) {
+				$event['color'] = 'blue';
+
+			} else {
+				$event['color'] = 'gray';
+			}
+
+		}
+
+		$data_arr[] = $event;
 	}
-	
-	$data = array(
-                'status' => true,
-                'msg' => 'successfully!',
-				'data' => $data_arr
-            );
+
+	echo json_encode(array(
+		"status" => true,
+		"msg" => "success",
+		"data" => $data_arr
+	));
+
+} else {
+
+	echo json_encode(array(
+		"status" => false,
+		"msg" => "No events found.",
+		"data" => array()
+	));
+
 }
-else
-{
-	$data = array(
-                'status' => false,
-                'msg' => 'Error!'				
-            );
-}
-echo json_encode($data);
-?>
