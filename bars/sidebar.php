@@ -109,7 +109,7 @@ if ($_SESSION["account_type"] == 0) {
 
     <li class="nav-item">
                 <a class="nav-link" href="calendar.php" >
-                    <i class="fas fa-address-card"></i>
+                    <i class="fas fa-calendar"></i>
                     <span>Calendar</span>
                     </a>
                
@@ -280,7 +280,7 @@ if ($_SESSION["account_type"] == 100) {
    
     <li class="nav-item">
                 <a class="nav-link" href="calendar.php" >
-                    <i class="fas fa-address-card"></i>
+                    <i class="fas fa-calendar"></i>
                     <span>Calendar</span>
                     </a>
                
@@ -440,7 +440,7 @@ elseif ($_SESSION["account_type"] == 1) {
    </li>
      <li class="nav-item">
                 <a class="nav-link" href="calendar.php" >
-                    <i class="fas fa-address-card"></i>
+                    <i class="fas fa-calendar"></i>
                     <span>Calendar</span>
                     </a>
                
@@ -562,7 +562,7 @@ elseif ($_SESSION["account_type"] == 2) {
        
     <li class="nav-item">
                 <a class="nav-link" href="calendar.php" >
-                    <i class="fas fa-address-card"></i>
+                    <i class="fas fa-calendar"></i>
                     <span>Calendar</span>
                     </a>
                
