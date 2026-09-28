@@ -44,9 +44,11 @@ function loadPayrollReport() {
         success: function (result) {
             document.getElementById('responseBody').innerHTML = result;
             loadPayrollAdjustmentReport(); // Load the payroll adjustment report after the main report is loaded
+
         },
         complete: function () {
             document.getElementById('loading').style.display = 'none';
+            recalculateTotal();
 
         }
     });
@@ -160,40 +162,49 @@ function updateComissionAmount(thisObject) {
     let commission;
 
     if (select.value === 'Other') {
+        if (thisObject.matches('select[name="commision_rate"]')) {
+            const amount = prompt('Enter commission amount:');
 
-        // Ask user for the commission amount
-        let amount = prompt('Enter commission amount:');
+            if (amount === null) {
+                select.value = '0';
+                commission = 0;
+            } else {
+                commission = parseFloat(amount.replace(/,/g, ''));
+            }
 
-        if (amount === null) {
-            // User clicked Cancel
-            select.value = '0';
-            commissionCell.textContent = '0.00';
-            return;
+            if (isNaN(commission) || commission < 0) {
+                alert('Please enter a valid commission amount.');
+                select.value = '0';
+                commission = 0;
+            }
+        } else {
+            commission = parseFloat(commissionCell.textContent.replace(/,/g, '')) || 0;
         }
-
-        commission = parseFloat(amount.replace(/,/g, ''));
-
-        // Validate input
-        if (isNaN(commission) || commission < 0) {
-            alert('Please enter a valid commission amount.');
-            select.value = '0';
-            commissionCell.textContent = '0.00';
-            return;
-        }
-
     } else {
-
-        // Calculate percentage
         const rate = parseFloat(select.value);
-
         commission = (price - rawMaterial) * (rate / 100);
     }
 
-    // Update commission display
     commissionCell.textContent = commission.toLocaleString('en-US', {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2
     });
+
+    $.ajax({
+        url: 'services/updateDentistPayrollCommissionService.php',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+            tsubid: row.dataset.tsubid,
+            raw_material: rawMaterial,
+            commision_rate: select.value,
+            commision: commission
+        },
+        error: function (xhr) {
+            console.error('Unable to save treatment commission:', xhr.responseText);
+        }
+    });
+
     recalculateTotal();
 }
 

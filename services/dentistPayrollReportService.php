@@ -49,7 +49,7 @@ class ServiceClass
             $whereClause = 'WHERE ' . implode(' AND ', $conditions);
         }
 
-        $query = "SELECT tsoa.soaid,ts.treatment,ts.price,ts.hmo,tsoa.date,(select concat(lname,', ',fname,' ',mdname) from clientprofile where clientid=tsoa.clientid) as fullname  FROM treatmentsub ts inner join treatmentsoa tsoa ON  ts.soaid = tsoa.soaid $whereClause";
+        $query = "SELECT ts.tsubid,ts.raw_material,ts.commision_rate,ts.commision,tsoa.soaid,ts.treatment,ts.price,ts.hmo,tsoa.date,(select concat(lname,', ',fname,' ',mdname) from clientprofile where clientid=tsoa.clientid) as fullname  FROM treatmentsub ts inner join treatmentsoa tsoa ON  ts.soaid = tsoa.soaid $whereClause";
 
         $stmt = $this->conn->prepare($query);
         foreach ($parameters as $key => $value) {
@@ -79,7 +79,10 @@ class ServiceClass
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $count++;
             $amount = number_format($row['price'], 2, '.', '');
-            echo '<tr data-amount="' . $amount . '">';
+            $rawMaterial = number_format((float) ($row['raw_material'] ?? 0), 2, '.', '');
+            $commissionRate = (string) ($row['commision_rate'] ?? '0');
+            $commission = number_format((float) ($row['commision'] ?? 0), 2, '.', '');
+            echo '<tr data-amount="' . $amount . '" data-tsubid="' . (int) $row['tsubid'] . '">';
             echo '<td>' . htmlspecialchars($row['soaid']) . '</td>';
             echo '<td>' . htmlspecialchars(date('Y/m/d', strtotime($row['date']))) . '</td>';
 
@@ -87,20 +90,21 @@ class ServiceClass
             echo '<td>' . htmlspecialchars($row['hmo']) . '</td>';
             echo '<td>' . htmlspecialchars($row['treatment']) . '</td>';
             echo '<td class="text-right price">' . number_format($row['price'], 2) . '</td>';
-            echo '<td class="text-right raw_material"><input type="number" step="0.01" class="form-control raw-material-input" style="width:100%; box-sizing:border-box;border:0px;font-size:inherit; padding:0px; background-color:transparent;"  value="0.00" onkeyup="updateComissionAmount(this);"></td>';
+            echo '<td class="text-right raw_material"><input type="number" step="0.01" class="form-control raw-material-input" style="width:100%; box-sizing:border-box;border:0px;font-size:inherit; padding:0px; background-color:transparent;" value="' . htmlspecialchars($rawMaterial, ENT_QUOTES, 'UTF-8') . '" onkeyup="updateComissionAmount(this);"></td>';
             // commission amount starts at 0.00; only checked rows will get a commission value
 
             echo '<td>';
             echo '<select name="commision_rate" class="form-select"  style="width:100%; box-sizing:border-box;border:0px;font-size:inherit; padding:0px; background-color:transparent;" onchange="updateComissionAmount(this);">';
 
             for ($rate = 0; $rate <= 50; $rate += 5) {
-
-                echo '<option value="' . $rate . '">' . $rate . '%</option>';
+                $selected = $commissionRate === (string) $rate ? ' selected' : '';
+                echo '<option value="' . $rate . '"' . $selected . '>' . $rate . '%</option>';
             }
-            echo '<option value="Other">Other</option>';
+            $otherSelected = $commissionRate === 'Other' ? ' selected' : '';
+            echo '<option value="Other"' . $otherSelected . '>Other</option>';
             echo '</select>';
             echo '</td>';
-            echo '<td class="text-right commission">0.00</td>';
+            echo '<td class="text-right commission">' . $commission . '</td>';
             echo '</tr>';
         }
 
