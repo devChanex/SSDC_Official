@@ -71,6 +71,7 @@ class ServiceClass
         echo '<th>HMO</th>';
         echo '<th>Treatment</th>';
         echo '<th>Treatment Fee</th>';
+        echo '<th>Raw Material</th>';
         echo '<th>Commision %</th>';
         echo '<th>Commission Amount</th>';
         echo '</tr></thead><tbody>';
@@ -86,6 +87,7 @@ class ServiceClass
             echo '<td>' . htmlspecialchars($row['hmo']) . '</td>';
             echo '<td>' . htmlspecialchars($row['treatment']) . '</td>';
             echo '<td class="text-right price">' . number_format($row['price'], 2) . '</td>';
+            echo '<td class="text-right raw_material"><input type="number" step="0.01" class="form-control raw-material-input" style="width:100%; box-sizing:border-box;border:0px;font-size:inherit; padding:0px; background-color:transparent;"  value="0.00" onkeyup="updateComissionAmount(this);"></td>';
             // commission amount starts at 0.00; only checked rows will get a commission value
 
             echo '<td>';
@@ -109,12 +111,12 @@ class ServiceClass
 
 
         echo '<tr>';
-        echo '<th colspan="7" class="text-right">Total Commision:</th>';
+        echo '<th colspan="8" class="text-right">Total Commision:</th>';
         echo '<th id="totalCommission" class="text-right">0.00</th>';
         echo '</tr>';
 
         echo '<tr>';
-        echo '<th colspan="7" class="text-right">less 10% (Tax and Material Costs):</th>';
+        echo '<th colspan="8" class="text-right">less 10% (Tax and Material Costs):</th>';
         echo '<th id="totalGross" class="text-right">0.00</th>';
         echo '</tr>';
 

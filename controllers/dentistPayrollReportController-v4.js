@@ -2,8 +2,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // Automatically load report if the dentist list already has a selected value.
     if (document.getElementById('dentist').value !== '') {
         loadPayrollReport();
-        loadPayrollAdjustmentReport();
-        recalculateNetPay();
     }
 });
 
@@ -144,17 +142,21 @@ function updateBasicSalary() {
 
 
 
-function updateComissionAmount(select) {
+function updateComissionAmount(thisObject) {
     // Get the current table row
-    const row = select.closest('tr');
+    const row = thisObject.closest('tr');
 
     // Get price and commission cells
     const priceCell = row.querySelector('.price');
+    const rawMaterialCell = row.querySelector('.raw_material');
     const commissionCell = row.querySelector('.commission');
-
+    const select = row.querySelector('select[name="commision_rate"]');
+    if (!select) {
+        return;
+    }
     // Get price as a number
     const price = parseFloat(priceCell.textContent.replace(/,/g, ''));
-
+    const rawMaterial = parseFloat(rawMaterialCell.querySelector('input').value) || 0;
     let commission;
 
     if (select.value === 'Other') {
@@ -184,7 +186,7 @@ function updateComissionAmount(select) {
         // Calculate percentage
         const rate = parseFloat(select.value);
 
-        commission = price * (rate / 100);
+        commission = (price - rawMaterial) * (rate / 100);
     }
 
     // Update commission display
@@ -311,6 +313,9 @@ function populatePayslip() {
     const deductions =
         document.getElementById('totalDeductions').textContent;
 
+    const lessDeductions =
+        document.getElementById('totalGross').textContent;
+
     const netPay =
         document.getElementById('netpay').textContent;
 
@@ -349,11 +354,27 @@ function populatePayslip() {
             maximumFractionDigits: 2
         });;
 
+
+    document.getElementById('payslipTaxMaterial').textContent =
+        lessDeductions.toLocaleString('en-US', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });;
+
+    document.getElementById('payslipOtherDeductions').textContent =
+        deductions.toLocaleString('en-US', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });;
+
     document.getElementById('payslipNetPay').textContent =
         netPay.toLocaleString('en-US', {
             minimumFractionDigits: 2,
             maximumFractionDigits: 2
         });
+
+    document.getElementById('payslipDaysRendered').textContent = "Days Rendered: " + (document.getElementById('daysRendered').value || ' Days Rendered: 0.00');
+    document.getElementById('payslipRatePerDay').textContent = "Rate Per Day:" + (document.getElementById('ratePerDay').value || 'Rate Per Day: 0.00');
 
     document.getElementById('payslipDentists').textContent = document.getElementById('dentist').value || '-';
 }
