@@ -187,7 +187,7 @@ error_reporting(0);
                 <!-- Start popup dialog box -->
                 <div class="modal fade" id="event_entry_modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
                     aria-hidden="true">
-                    <div class="modal-dialog modal-md" role="document">
+                    <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="modalLabel">Appointment</h5>
@@ -219,7 +219,7 @@ error_reporting(0);
 
                                             <!-- Default Select -->
                                             <div class="form-group" id="defaultEventContainer" style="display:none;">
-                                                <label for="event_name">Event Name</label>
+                                                <label for="event_name">Remarks</label>
                                                 <select id="event_name" class="form-control">
                                                     <option value="Closed">Closed</option>
                                                     <option value="Fully Booked">Fully Booked</option>
@@ -230,27 +230,64 @@ error_reporting(0);
                                             <!-- Custom Textarea -->
                                             <div class="form-group" id="customEventContainer">
 
-                                                <label for="appointmentTime">Appointment Time</label>
+                                                <label for="appointmentTime">Appointment Time From</label>
                                                 <input type="time" class="form-control" id="appointmentTime"
                                                     name="appointmentTime" step="1800" value="08:00">
-                                                <label for="custom_event_name">Details</label>
-                                                <textarea id="custom_event_name" class="form-control" rows="6">Patient:
-Contact:
-Procedure:
-Dentist:</textarea>
+                                                <label for="appointmentTime">Appointment Time To:</label>
+                                                <input type="time" class="form-control" id="appointmentTimeto"
+                                                    name="appointmentTimeto" step="1800" value="09:00">
+
+
+
+                                                <label for="lastName">Dentist</label>
+
+
+                                                <select name="dentist" id="dentist" class="form-control">
+                                                    <?php
+                                                    foreach ($dentist as $d) {
+                                                        echo '<option value="' . htmlspecialchars($d) . '">' . htmlspecialchars($d) . '</option>';
+                                                    }
+                                                    ?>
+                                                </select>
+
+
+                                                <label for="appointmentTime">Patient Name:</label>
+                                                <input type="text" class="form-control" id="patientName"
+                                                    name="patientName" placeholder="Enter patient name">
+
+                                                <label for="appointmentTime">Contact Number:</label>
+                                                <input type="text" class="form-control" id="contactNumber"
+                                                    name="contactNumber" placeholder="Enter contact number">
+
+                                                <label for="Address">HMO Accredited:</label>
+
+                                                <select id="hmo" name="hmo" class="form-control mb-2">
+                                                    <option value="">-- Select HMO --</option>
+                                                    <?php
+                                                    $hmos = ['Flexicare', 'Intellicare', 'Avega', 'Eastwest', 'ValuCare', 'Medicard', 'Health Partners Dental Access, Inc.', 'Dental Network Company', 'Cocolife'];
+                                                    foreach ($hmos as $hmo) {
+                                                        $selected = ($_REQUEST['hmo'] ?? '') == $hmo ? 'selected' : '';
+                                                        echo "<option value=\"$hmo\" $selected>$hmo</option>";
+                                                    }
+                                                    ?>
+                                                </select>
+                                                <label for="treatment">Treatment</label>
+                                                <select id="treatment" name="treatment" class="form-control">
+
+                                                </select>
                                             </div>
 
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-12">
                                             <div class="form-group">
-                                                <label for="event_start_date">Event start</label>
+                                                <label for="event_start_date">Date</label>
                                                 <input type="date" name="event_start_date" id="event_start_date"
                                                     class="form-control onlydatepicker" placeholder="Event start date">
                                             </div>
                                         </div>
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-6" style="display: none;">
                                             <div class="form-group">
                                                 <label for="event_end_date">Event end</label>
                                                 <input type="date" name="event_end_date" id="event_end_date"
@@ -264,8 +301,8 @@ Dentist:</textarea>
 
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="eventStatus" id="Pending"
-                                                value="Pending" checked>
-                                            <label class="form-check-label" for="Pending">Pending</label>
+                                                value="Confirmed" checked>
+                                            <label class="form-check-label" for="Pending">Confirmed</label>
                                         </div>
 
                                         <div class="form-check form-check-inline">

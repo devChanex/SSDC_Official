@@ -3,6 +3,22 @@ $(document).ready(function () {
 }); //end document.ready block
 
 
+loadTreatment();
+function loadTreatment() {
+  var fd = new FormData();
+  $.ajax({
+    url: "services/OptionloadTreatmentService.php",
+    data: fd,
+    processData: false,
+    contentType: false,
+    type: 'POST',
+    success: function (result) {
+      document.getElementById("treatment").innerHTML = result;
+    }
+  });
+
+}
+
 const defaultRadio = document.getElementById("defaultEvent");
 const customRadio = document.getElementById("customEvent");
 
@@ -43,6 +59,12 @@ function display_events() {
           event_start_date: item.event_start_date,
           event_end_date: item.event_end_date,
           event_time: item.event_time,
+          patient: item.patient,
+          dentist: item.dentist,
+          contact: item.contact,
+          hmo: item.hmo,
+          event_timeto: item.event_timeto,
+          treatment: item.treatment,
           title: item.title,
           start: item.start,
           end: item.end,
@@ -75,7 +97,7 @@ function display_events() {
           $('#delete_event_button').prop('disabled', true);
           $('#modalLabel').text('Appointment');
           $('#customEvent').prop('checked', true);
-          $("input[name='eventStatus'][value='Pending']").prop('checked', true);
+          $("input[name='eventStatus'][value='Confirmed']").prop('checked', true);
           toggleEventInput();
           $('#event_start_date').val(moment(start).format('YYYY-MM-DD'));
           $('#event_end_date').val(moment(end).format('YYYY-MM-DD'));
@@ -140,7 +162,7 @@ function display_events() {
 
           var status = (event.event_status || '').toLowerCase();
           var statusIcons = {
-            pending: { icon: 'fa-clock', label: 'Pending' },
+            confirmed: { icon: 'fa-clock', label: 'Confirmed' },
             completed: { icon: 'fa-check-circle', label: 'Completed' },
             cancelled: { icon: 'fa-ban', label: 'Cancelled' }
           };
@@ -163,6 +185,19 @@ function display_events() {
             $('#event_end_date').val(event.event_end_date);
             $('#appointmentTime').val(event.event_time.substring(0, 5));
             $("input[name='eventStatus'][value='" + event.event_status + "']").prop('checked', true);
+
+            $('#patientName').val(event.patient || '');
+            $('#dentist').val(event.dentist || '');
+            $('#contactNumber').val(event.contact || '');
+            var hmoValue = (event.hmo || '').trim();
+            var hmoSelect = $('#hmo');
+            if (hmoValue && !hmoSelect.find('option').filter(function () {
+              return this.value === hmoValue;
+            }).length) {
+              hmoSelect.append($('<option>', { value: hmoValue, text: hmoValue }));
+            }
+            hmoSelect.val(hmoValue);
+            $('#appointmentTimeto').val(event.event_timeto.substring(0, 5));
 
             if (['Closed', 'Fully Booked', 'Holiday-Closed'].indexOf(event.event_name) !== -1) {
               $('#defaultEvent').prop('checked', true);
@@ -223,11 +258,19 @@ function save_event() {
 
   let event_name = "";
 
+  var patientName = $("#patientName").val().trim();
+  var dentistName = $("#dentist").val().trim();
+  var contactNumber = $("#contactNumber").val().trim();
+  var event_time_to = $("#appointmentTimeto").val();
+  var hmo = $("#hmo").val().trim();
+  var treatment = $("#treatment").val().trim();
+
   // Get value based on selected radio button
   if ($("#defaultEvent").is(":checked")) {
     event_name = $("#event_name").val();
   } else {
-    event_name = $("#custom_event_name").val().trim();
+    // event_name = $("#custom_event_name").val().trim();
+    event_name = "Patient: " + patientName + "\nDentist: " + dentistName + "\nContact: " + contactNumber + "\nTime: " + $("#appointmentTime").val() + "\nTreatment: " + treatment + "\nHMO: " + hmo;
   }
 
   var event_start_date = $("#event_start_date").val();
@@ -239,6 +282,7 @@ function save_event() {
   }
   var event_time = $("#appointmentTime").val(); // e.g. "14:30"
   var eventId = $("#event_id").val();
+
 
   var eventStatus = $("input[name='eventStatus']:checked").val();
 
@@ -254,7 +298,13 @@ function save_event() {
       event_start_date: event_start_date,
       event_end_date: event_end_date,
       event_time: event_time,
-      event_status: eventStatus
+      event_time_to: event_time_to,
+      event_status: eventStatus,
+      patientName: patientName,
+      dentistName: dentistName,
+      contactNumber: contactNumber,
+      hmo: hmo,
+      treatment: treatment
     },
     success: function (response) {
       if (response.status == true) {
@@ -265,7 +315,7 @@ function save_event() {
       }
     },
     error: function (xhr, status) {
-      console.error("Save event request failed:", status, xhr.status, xhr.responseText);
+      console.error("Save event request failed:", status, xhr.status, xhr.responseText, xhr.responseJSON);
       var message = xhr.responseJSON && xhr.responseJSON.msg
         ? xhr.responseJSON.msg
         : "The server request failed (" + xhr.status + "): " + (xhr.statusText || status);

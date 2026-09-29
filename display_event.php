@@ -8,7 +8,13 @@ SELECT
     event_start_date,
     event_end_date,
     event_time,
-	event_status
+	event_status,
+	patient,
+	dentist,
+	contact,
+	hmo,
+	event_timeto,
+	treatment
 FROM calendar_event_master
 ORDER BY event_start_date ASC, event_time ASC
 ";
@@ -42,13 +48,22 @@ if (mysqli_num_rows($results) > 0) {
 		$event['event_end_date'] = date('Y-m-d', strtotime($row['event_end_date']));
 		$event['event_time'] = $row['event_time'];
 		$event['event_status'] = $eventStatus;
+		$event['patient'] = $row['patient'];
+		$event['dentist'] = $row['dentist'];
+		$event['contact'] = $row['contact'];
+		$event['hmo'] = $row['hmo'];
+		$event['event_timeto'] = $row['event_timeto'];
+		$event['treatment'] = $row['treatment'];
 		$formattedTime = date("g:i A", strtotime($row['event_time']));
+
+
 
 		$event['title'] = $eventName . "\nTime: " . $formattedTime;
 
 		$event['start'] = $start->format('Y-m-d\TH:i:s');
 		$event['end'] = $end->format('Y-m-d\TH:i:s');
 		$event['url'] = '#';
+
 
 		if (in_array($eventName, ['Closed', 'Fully Booked', 'Holiday-Closed'])) {
 
