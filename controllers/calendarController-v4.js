@@ -197,6 +197,16 @@ function display_events() {
               hmoSelect.append($('<option>', { value: hmoValue, text: hmoValue }));
             }
             hmoSelect.val(hmoValue);
+
+
+            var treatmentValue = (event.treatment || '').trim();
+            var treatmentSelect = $('#treatment');
+            if (treatmentValue && !treatmentSelect.find('option').filter(function () {
+              return this.value === treatmentValue;
+            }).length) {
+              treatmentSelect.append($('<option>', { value: treatmentValue, text: treatmentValue }));
+            }
+            treatmentSelect.val(treatmentValue);
             $('#appointmentTimeto').val(event.event_timeto.substring(0, 5));
 
             if (['Closed', 'Fully Booked', 'Holiday-Closed'].indexOf(event.event_name) !== -1) {
