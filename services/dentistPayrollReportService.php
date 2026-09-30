@@ -89,7 +89,7 @@ class ServiceClass
 
             echo '<td>' . htmlspecialchars($row['fullname']) . '</td>';
             echo '<td>' . htmlspecialchars($row['hmo']) . '</td>';
-            echo '<td>' . htmlspecialchars($row['treatment']) . '</td>';
+            echo '<td>' . $row['treatment'] . '</td>';
             echo '<td>' . htmlspecialchars($row['details']) . '</td>';
             echo '<td class="text-right price">' . number_format($row['price'], 2) . '</td>';
             echo '<td class="text-right raw_material"><input type="number" step="0.01" class="form-control raw-material-input" style="width:100%; box-sizing:border-box;border:0px;font-size:inherit; padding:0px; background-color:transparent;" value="' . htmlspecialchars($rawMaterial, ENT_QUOTES, 'UTF-8') . '" onkeyup="updateComissionAmount(this);"></td>';
