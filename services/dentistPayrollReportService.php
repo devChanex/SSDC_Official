@@ -22,6 +22,21 @@ class ServiceClass
         return $stmt;
     }
 
+    private function formatWithLineBreaks($value)
+    {
+        $text = (string) ($value ?? '');
+        for ($decodePass = 0; $decodePass < 5; $decodePass++) {
+            $decodedText = html_entity_decode($text, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+            if ($decodedText === $text) {
+                break;
+            }
+            $text = $decodedText;
+        }
+        $text = preg_replace('/<br\s*\/?>/i', "\n", $text);
+
+        return nl2br(htmlspecialchars($text, ENT_QUOTES, 'UTF-8'));
+    }
+
     public function loadDentistPayroll($fromdate, $todate, $dentist)
     {
         $parameters = [];
@@ -89,8 +104,8 @@ class ServiceClass
 
             echo '<td>' . htmlspecialchars($row['fullname']) . '</td>';
             echo '<td>' . htmlspecialchars($row['hmo']) . '</td>';
-            echo '<td>' . $row['treatment'] . '</td>';
-            echo '<td>' . htmlspecialchars($row['details']) . '</td>';
+            echo '<td>' . $this->formatWithLineBreaks($row['treatment']) . '</td>';
+            echo '<td>' . $this->formatWithLineBreaks($row['details']) . '</td>';
             echo '<td class="text-right price">' . number_format($row['price'], 2) . '</td>';
             echo '<td class="text-right raw_material"><input type="number" step="0.01" class="form-control raw-material-input" style="width:100%; box-sizing:border-box;border:0px;font-size:inherit; padding:0px; background-color:transparent;" value="' . htmlspecialchars($rawMaterial, ENT_QUOTES, 'UTF-8') . '" onkeyup="updateComissionAmount(this);"></td>';
             // commission amount starts at 0.00; only checked rows will get a commission value
