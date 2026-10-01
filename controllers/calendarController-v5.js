@@ -280,7 +280,7 @@ function save_event() {
     event_name = $("#event_name").val();
   } else {
     // event_name = $("#custom_event_name").val().trim();
-    event_name = "Patient: " + patientName + "\nDentist: " + dentistName + "\nContact: " + contactNumber + "\nTime: " + $("#appointmentTime").val() + "\nTreatment: " + treatment + "\nHMO: " + hmo;
+    event_name = "Patient: " + patientName + "\nDentist: " + dentistName + "\nContact: " + contactNumber + "\nTime: " + $("#appointmentTime").val() + "-" + event_time_to + "\nTreatment: " + treatment + "\nHMO: " + hmo;
   }
 
   var event_start_date = $("#event_start_date").val();
