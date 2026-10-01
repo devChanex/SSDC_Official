@@ -114,8 +114,6 @@ function submitCart() {
 
 
 function deleteCart() {
-    alert("document.getElementById('modal-deleteid').value" + document.getElementById('modal-deleteid').value);
-
     var fd = new FormData();
     const form = document.getElementById("deleteExpenseForm");
     const elements = form.querySelectorAll("input, select, textarea");
