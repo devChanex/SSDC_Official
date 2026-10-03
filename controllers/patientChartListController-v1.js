@@ -47,6 +47,11 @@ function getclientdentalChart() {
     var id = document.getElementById("clientid").value;
     var fd = new FormData();
     fd.append('id', id);
+    document.getElementById("dental-chart-region").innerHTML =
+        '<div class="d-flex flex-column align-items-center justify-content-center py-5" role="status" aria-live="polite">' +
+        '<div class="spinner-border text-primary mb-3" aria-hidden="true"></div>' +
+        '<div class="font-weight-bold text-primary">Loading dental chart...</div>' +
+        '</div>';
     $.ajax({
         url: "services/patientDentalChartService.php",
         data: fd,
@@ -56,6 +61,10 @@ function getclientdentalChart() {
         success: function (result) {
             document.getElementById("dental-chart-region").innerHTML = result;
 
+        },
+        error: function () {
+            document.getElementById("dental-chart-region").innerHTML =
+                '<div class="alert alert-danger mb-0" role="alert">Unable to load the dental chart. Please try again.</div>';
         }
 
     });

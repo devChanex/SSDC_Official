@@ -3,14 +3,19 @@
 //Service for login
 
 require_once('databaseService.php');
-$id = urldecode($_POST['id']);
-$service = new ServiceClass();
-$result = $service->deleteEvent($id);
-if($result){
-	echo 'success';
+
+$id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
+if (!$id || $id < 1) {
+	http_response_code(400);
+	echo 'failed';
+	exit;
 }
-else{
-	echo'failed';
+
+$service = new ServiceClass();
+if ($service->deleteEvent($id)) {
+	echo 'success';
+} else {
+	echo 'failed';
 }
 
 //USE THIS AS YOUR BASIS
@@ -32,13 +37,10 @@ class ServiceClass
 	}
 	public function deleteEvent($id)
 	{
-		$query = "delete from calendar_event_master where event_id=:a";
+		$query = "DELETE FROM calendar_event_master WHERE event_id = :event_id";
 		$stmt = $this->conn->prepare($query);
-		//setting of parameter
-		$stmt->bindParam(':a', $id);
-		//trigger
-		$stmt->execute();
-		return true;
+		$stmt->bindValue(':event_id', (int) $id, PDO::PARAM_INT);
+		return $stmt->execute() && $stmt->rowCount() > 0;
 	}
 	//UNTIL THIS CODE
 

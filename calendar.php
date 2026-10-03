@@ -32,114 +32,406 @@ error_reporting(0);
     <link href="css/calendar.css" rel="stylesheet" />
     <link rel="icon" type="image/png" href="img/vadc_icon.ico" />
     <style>
-        .fc-event {
-            border: 1px solid #e2e8f0 !important;
-            border-left: 4px solid var(--event-accent, #3a87ad) !important;
-            border-radius: 8px;
-            background: #fff !important;
-            color: #243447 !important;
-            box-shadow: 0 2px 7px rgba(35, 45, 55, 0.12);
-            transition: box-shadow 0.15s ease, transform 0.15s ease;
+        body {
+            background: #f4f7fb;
         }
 
-        .fc-event:hover {
-            color: #243447 !important;
-            box-shadow: 0 5px 12px rgba(35, 45, 55, 0.2);
-            transform: translateY(-1px);
+        .calendar-card {
+            border: 1px solid #e5eaf1;
+            border-radius: 14px;
+            box-shadow: 0 8px 28px rgba(31, 45, 61, .06);
+            overflow: hidden;
         }
 
-        .fc-day-grid-event {
-            min-height: 0;
-            margin: 4px 3px 0;
-            padding: 0;
+        .calendar-card>.card-header {
+            background: #fff;
+            border-bottom: 1px solid #edf0f5;
+            padding: 20px 24px;
         }
 
-        .fc-day-grid-event .fc-content {
-            display: block;
-            overflow: visible !important;
-            padding: 0;
-            white-space: normal !important;
+        .calendar-card>.card-body {
+            padding: 20px 24px 24px;
         }
 
-        .calendar-event-card__header {
+        .calendar-heading {
+            color: #243447;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .calendar-subheading {
+            color: #7b8794;
+            font-size: .875rem;
+            margin: 4px 0 0;
+        }
+
+        .calendar-toolbar {
             align-items: center;
-            background: #f1f5f9;
-            border-bottom: 1px solid #e2e8f0;
             display: flex;
-            min-height: 32px;
-            padding: 6px 34px 6px 9px;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: space-between;
+            margin-bottom: 20px;
         }
 
-        .calendar-event-card__notice {
+        .calendar-toolbar__navigation,
+        .calendar-toolbar__actions {
             align-items: center;
-            background: #fff1f2;
-            border-radius: 7px;
-            color: #9f1239;
             display: flex;
-            font-size: 0.75rem;
-            font-weight: 800;
             gap: 8px;
-            justify-content: center;
-            letter-spacing: 0.04em;
-            min-height: 42px;
-            padding: 8px 34px 8px 10px;
-            text-align: center;
+        }
+
+        .calendar-toolbar__date {
+            color: #26374a;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin: 0 8px;
+            min-width: 210px;
+        }
+
+        .calendar-toolbar .btn {
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background-color .15s ease, border-color .15s ease, box-shadow .15s ease;
+        }
+
+        .calendar-toolbar .btn-light {
+            background: #fff;
+            border-color: #dce3ec;
+            color: #405166;
+        }
+
+        .calendar-toolbar .btn-light:hover {
+            background: #f4f7fb;
+            border-color: #cbd5e1;
+        }
+
+        .calendar-toolbar .btn-primary {
+            background: #4169e1;
+            border-color: #4169e1;
+        }
+
+        .calendar-view-select {
+            background-color: #fff;
+            border: 1px solid #dce3ec;
+            border-radius: 8px;
+            color: #405166;
+            font-weight: 600;
+            height: 38px;
+            padding: 0 30px 0 12px;
+        }
+
+        #calendar {
+            color: #35465a;
+            font-family: inherit;
+        }
+
+        #calendar .fc-toolbar {
+            display: none;
+        }
+
+        #calendar .fc-view-container {
+            background: #fff;
+            border: 1px solid #e6ebf2;
+            border-radius: 10px;
+            overflow: visible;
+        }
+
+        #calendar .fc-more-popover {
+            display: flex;
+            flex-direction: column;
+            max-height: min(70vh, 560px);
+            overflow: hidden;
+            z-index: 20;
+        }
+
+        #calendar .fc-more-popover .fc-header {
+            flex: 0 0 auto;
+        }
+
+        #calendar .fc-more-popover .fc-event-container {
+            max-height: calc(min(70vh, 560px) - 36px);
+            overflow-x: hidden;
+            overflow-y: auto;
+            overscroll-behavior: contain;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        #calendar .fc th {
+            background: #f8fafc;
+            border-color: #e6ebf2;
+            color: #64748b;
+            font-size: .78rem;
+            font-weight: 700;
+            letter-spacing: .04em;
+            padding: 11px 4px;
             text-transform: uppercase;
         }
 
-        .calendar-event-card__notice i {
-            font-size: 0.95rem;
+        #calendar .fc td,
+        #calendar .fc-unthemed .fc-divider,
+        #calendar .fc-unthemed .fc-list-heading td,
+        #calendar .fc-unthemed .fc-popover {
+            border-color: #e8edf3;
         }
 
-        .calendar-event-card__details {
-            color: #243447;
-            font-size: 0.78rem;
-            font-weight: 400;
+        #calendar .fc-day-number {
+            color: #526174;
+            padding: 8px 10px;
+        }
+
+        #calendar .fc-unthemed td.fc-today {
+            background: #eff6ff;
+            border-color: #c8dcff;
+        }
+
+        #calendar .fc-day-top.fc-today .fc-day-number {
+            background: #4169e1;
+            border-radius: 50%;
+            color: #fff;
+            margin: 5px;
+            min-width: 28px;
+            padding: 5px;
+            text-align: center;
+        }
+
+        #calendar .fc-day-grid .fc-row {
+            min-height: 112px;
+        }
+
+        #calendar .fc-event {
+            background: var(--event-bg, #fff) !important;
+            border: 1px solid #e1e8f0 !important;
+            border-left: 4px solid var(--event-accent, #4169e1) !important;
+            border-radius: 7px;
+            box-shadow: 0 1px 3px rgba(35, 45, 55, .06);
+            color: var(--event-text, #26374a) !important;
+            cursor: pointer;
+            margin: 3px 4px 0;
+            padding: 0;
+            transition: box-shadow .15s ease, transform .15s ease;
+        }
+
+        #calendar .fc-event:hover {
+            box-shadow: 0 4px 10px rgba(35, 45, 55, .12);
+            color: #26374a !important;
+            transform: translateY(-1px);
+        }
+
+        #calendar .fc-day-grid-event .fc-content {
+            overflow: hidden;
+            padding: 5px 8px;
+            white-space: normal;
+        }
+
+        #calendar .fc-time-grid-event .fc-content {
+            padding: 4px 6px;
+        }
+
+        #calendar .fc-event-summary {
+            display: block;
+            font-size: .75rem;
             line-height: 1.35;
             overflow-wrap: anywhere;
-            padding: 8px 9px;
-            white-space: pre-wrap;
         }
 
-        .calendar-event-card__detail-line strong {
+        #calendar .fc-event-summary__title {
+            color: var(--event-text, #26374a);
+            display: block;
             font-weight: 700;
         }
 
-        .calendar-event-card__time {
-            align-items: center;
-            color: #64748b;
-            display: inline-flex;
-            font-size: 0.72rem;
-            font-weight: 700;
-            gap: 5px;
-            line-height: 1.2;
+        #calendar .fc-event-summary__meta {
+            color: var(--event-meta, #526174);
+            display: block;
+            font-size: .7rem;
+            margin-top: 2px;
         }
 
-        .calendar-event-status {
-            position: absolute;
-            top: 4px;
-            right: 4px;
-            z-index: 3;
-            width: 22px;
-            height: 22px;
-            border-radius: 50%;
+        #calendar .calendar-event-status {
             background: #fff;
-            text-align: center;
-            line-height: 22px;
-            font-size: 15px;
-            pointer-events: none;
+            border-radius: 50%;
+            font-size: .75rem;
+            line-height: 1;
+            padding: 2px;
+            position: absolute;
+            right: 4px;
+            top: 4px;
         }
 
-        .calendar-event-status--pending {
+        #calendar .calendar-event-status--confirmed {
             color: #d39e00;
         }
 
-        .calendar-event-status--completed {
+        #calendar .calendar-event-status--completed {
             color: #218838;
         }
 
-        .calendar-event-status--cancelled {
+        #calendar .calendar-event-status--cancelled {
             color: #c82333;
+        }
+
+        #calendar .fc-time-grid .fc-slats td {
+            height: 2.5em;
+        }
+
+        #calendar .fc-now-indicator-line,
+        #calendar .fc-now-indicator-arrow {
+            border-color: #ef5350;
+        }
+
+        #calendar .fc-now-indicator-arrow {
+            border-top-color: transparent;
+            border-bottom-color: transparent;
+        }
+
+        #calendar a.fc-more {
+            color: #4169e1;
+            font-weight: 700;
+        }
+
+        #calendar a.fc-more.calendar-more-link {
+            display: block;
+            font-size: .72rem;
+            line-height: 1.3;
+            padding: 5px 4px;
+            text-align: center;
+            white-space: normal;
+        }
+
+        .calendar-appointments-list {
+            max-height: min(65vh, 520px);
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .calendar-appointment-option {
+            background: #fff;
+            border: 1px solid #e6ebf2;
+            border-left: 4px solid var(--event-accent, #64748b);
+            border-radius: 8px;
+            color: #26374a;
+            display: block;
+            margin-bottom: 10px;
+            padding: 12px 14px;
+            text-align: left;
+            transition: background-color .15s ease, box-shadow .15s ease;
+            width: 100%;
+        }
+
+        .calendar-appointment-option:hover,
+        .calendar-appointment-option:focus {
+            background: #f8fafc;
+            box-shadow: 0 3px 10px rgba(35, 45, 55, .08);
+            outline: none;
+        }
+
+        .calendar-appointment-option__title {
+            display: block;
+            font-weight: 700;
+        }
+
+        .calendar-appointment-option__meta {
+            color: #64748b;
+            display: block;
+            font-size: .85rem;
+            margin-top: 4px;
+        }
+
+        .calendar-empty-hint {
+            color: #8491a2;
+            font-size: .875rem;
+            margin: 15px 0 0;
+            text-align: center;
+        }
+
+        #calendar-feedback {
+            display: none;
+        }
+
+        .calendar-modal .modal-content {
+            border: 0;
+            border-radius: 14px;
+            box-shadow: 0 16px 48px rgba(20, 34, 54, .2);
+            overflow: hidden;
+        }
+
+        .calendar-modal .modal-header {
+            background: #f8fafc;
+            border-bottom: 1px solid #e8edf3;
+            padding: 18px 22px;
+        }
+
+        .calendar-modal .modal-title {
+            color: #26374a;
+            font-weight: 700;
+        }
+
+        .calendar-modal .modal-body {
+            padding: 22px;
+        }
+
+        .calendar-modal .modal-footer {
+            background: #fbfcfe;
+            border-top: 1px solid #e8edf3;
+            padding: 14px 22px;
+        }
+
+        .calendar-modal .form-control {
+            border-color: #dce3ec;
+            border-radius: 7px;
+        }
+
+        .calendar-modal .form-control:focus {
+            border-color: #8aa6f5;
+            box-shadow: 0 0 0 .18rem rgba(65, 105, 225, .12);
+        }
+
+        @media (max-width: 767.98px) {
+
+            .calendar-card>.card-header,
+            .calendar-card>.card-body {
+                padding: 16px;
+            }
+
+            .calendar-toolbar {
+                align-items: stretch;
+                flex-direction: column;
+            }
+
+            .calendar-toolbar__navigation,
+            .calendar-toolbar__actions {
+                justify-content: space-between;
+            }
+
+            .calendar-toolbar__date {
+                flex: 1;
+                font-size: .95rem;
+                min-width: 0;
+                text-align: center;
+            }
+
+            #calendar .fc-day-grid .fc-row {
+                min-height: 76px;
+            }
+
+            #calendar .fc-day-number {
+                padding: 5px;
+            }
+
+            #calendar .fc-more-popover {
+                max-height: 65vh;
+                max-width: calc(100vw - 32px);
+            }
+
+            #calendar .fc-more-popover .fc-event-container {
+                max-height: calc(65vh - 36px);
+            }
+        }
+
+        .fc-event {
+            --event-accent: #4169e1;
         }
     </style>
 
@@ -164,20 +456,38 @@ error_reporting(0);
                 <div class="container-fluid" id="content-table">
 
                     <!-- Page Heading -->
-                    <div class="card shadow">
-                        <div class="card-header py-3 <?php echo $cards; ?>">
-                            <strong>Clinic Calendar</strong>
-
+                    <div class="card calendar-card">
+                        <div class="card-header">
+                            <h1 class="calendar-heading">Clinic Calendar</h1>
+                            <p class="calendar-subheading">Manage appointments and clinic availability.</p>
                         </div>
                         <div class="card-body">
-                            <!-- USE THIS SPACE FOR YOUR ADDITIONAL CODE SNIPPET -->
-
-                            <div id="calendar"></div>
-
-
-
-
-                            <!-- END OF YOUR ADDITIONAL CODE SNIPPET -->
+                            <div class="calendar-toolbar" aria-label="Calendar navigation">
+                                <div class="calendar-toolbar__navigation">
+                                    <button type="button" class="btn btn-light" id="calendar-prev"
+                                        aria-label="Previous date range"><i class="fas fa-chevron-left"
+                                            aria-hidden="true"></i></button>
+                                    <button type="button" class="btn btn-light" id="calendar-next"
+                                        aria-label="Next date range"><i class="fas fa-chevron-right"
+                                            aria-hidden="true"></i></button>
+                                    <button type="button" class="btn btn-light" id="calendar-today">Today</button>
+                                    <h2 class="calendar-toolbar__date" id="calendar-title" aria-live="polite"></h2>
+                                </div>
+                                <div class="calendar-toolbar__actions">
+                                    <select class="calendar-view-select" id="calendar-view" aria-label="Calendar view">
+                                        <option value="month">Month</option>
+                                        <option value="agendaWeek">Week</option>
+                                        <option value="agendaDay">Day</option>
+                                    </select>
+                                    <button type="button" class="btn btn-primary" id="calendar-create-event">
+                                        <i class="fas fa-plus mr-1" aria-hidden="true"></i> New appointment
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="alert alert-danger" id="calendar-feedback" role="alert"></div>
+                            <div id="calendar" aria-label="Clinic appointment calendar"></div>
+                            <p class="calendar-empty-hint">Select or drag across a date or time to schedule an
+                                appointment.</p>
                         </div>
                     </div>
 
@@ -185,8 +495,8 @@ error_reporting(0);
 
                 <!-- /.container-fluid -->
                 <!-- Start popup dialog box -->
-                <div class="modal fade" id="event_entry_modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
-                    aria-hidden="true">
+                <div class="modal fade calendar-modal" id="event_entry_modal" tabindex="-1" role="dialog"
+                    aria-labelledby="modalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -197,6 +507,8 @@ error_reporting(0);
                             </div>
                             <div class="modal-body">
                                 <input type="hidden" id="event_id" value="">
+                                <div class="alert alert-danger" id="event-modal-feedback" role="alert"
+                                    style="display:none;"></div>
                                 <div class="img-container">
                                     <div class="row">
                                         <div class="col-sm-12">
@@ -267,7 +579,7 @@ error_reporting(0);
                                                     $hmos = ['Flexicare', 'Intellicare', 'Avega', 'Eastwest', 'ValuCare', 'Medicard', 'Health Partners Dental Access, Inc.', 'Dental Network Company', 'Cocolife'];
                                                     foreach ($hmos as $hmo) {
                                                         $selected = ($_REQUEST['hmo'] ?? '') == $hmo ? 'selected' : '';
-                                                        echo "<option value=\"$hmo\" $selected>$hmo</option>";
+                                                        echo '<option value="' . htmlspecialchars($hmo, ENT_QUOTES, 'UTF-8') . '" ' . $selected . '>' . htmlspecialchars($hmo, ENT_QUOTES, 'UTF-8') . '</option>';
                                                     }
                                                     ?>
                                                 </select>
@@ -327,6 +639,20 @@ error_reporting(0);
                     </div>
                 </div>
                 <!-- End popup dialog box -->
+                <div class="modal fade calendar-modal" id="day-appointments-modal" tabindex="-1" role="dialog"
+                    aria-labelledby="day-appointments-title" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="day-appointments-title">Appointments</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body calendar-appointments-list" id="day-appointments-list"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <!-- End of Main Content -->
 
@@ -351,7 +677,7 @@ error_reporting(0);
             <script src="js/sb-admin-2.min.js"></script>
             <script src="controllers/logOutConroller.js"></script>
             <script src="controllers/sessionController.js"></script>
-            <script src="controllers/calendarController-v5.js"></script>
+            <script src="controllers/calendarController-v6.js"></script>
 
 
 

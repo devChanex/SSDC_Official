@@ -20,6 +20,23 @@ $dentist = [
 
 
 ];
+
+
+$dentistColorCodeCalendar = [
+    "Dr. Maria Regina I. Valencia|blue",
+    "Dr. Jessabel Valenciano|#7c5a9e",
+    "Dr. Angelu AJ Del Rosario|#b7791f",
+    "Dr. Leslie Adove|#c05b3f",
+    "Dr. Adrianne Bersabal|#4f7c5b",
+    "Dr. Ayeska Geneella Soriano|#a34f78",
+    "Dr. Nikki F. Sarmiento|#766b32",
+    "Dr. Lani Danganan|#4d7774",
+    "Dr. Dyan Vidal|#8a5a46",
+    "Dr. Joyce Ann Gabayan|#6e6a9a",
+    "Dr. Rolisa Lumba-Adove|#a34c4c",
+    "Dr. Marjorie Esguerra|#52734d",
+    "Dr. Chicklet Buaya|#9a653d"
+];
 $dentistSignature = "e-sign.png";
 $icon = "ssdc-icon.ico";
 $systemlogo = "logoFinal.png";

@@ -30,7 +30,8 @@ class ServiceClass
 		if ($stmt->rowCount() > 0) {
 			while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                
-                echo'<option value="'.$row["treatment"].'">'.$row["treatment"].'</option>';
+                $treatment = htmlspecialchars($row["treatment"], ENT_QUOTES, 'UTF-8');
+                echo '<option value="' . $treatment . '">' . $treatment . '</option>';
                 
             }
        
