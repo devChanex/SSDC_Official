@@ -16,12 +16,6 @@ $(function () {
 });
 
 function bindCalendarControls() {
-  $('#calendar').on('mouseenter.calendarMore', '.fc-more', function () {
-    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-      $(this).trigger('click');
-    }
-  });
-
   $('#calendar-prev').on('click', function () {
     $('#calendar').fullCalendar('prev');
   });
