@@ -1,32 +1,35 @@
 <?php
-$tooth = $_GET['tooth'];
-$clientId = (int) $_GET['clientid'];
+header('Content-Type: application/json');
 
-// $conn = new mysqli("localhost", "root", "", "sam_db");
-$conn = new mysqli("localhost", "smilesav_user", "H[)dnAZC-6AE", "smilesav_system");
+$tooth = filter_input(INPUT_GET, 'tooth', FILTER_VALIDATE_INT);
+$clientId = filter_input(INPUT_GET, 'clientid', FILTER_VALIDATE_INT);
 
-// $conn = new mysqli("localhost", "root", "", "ssdc_sysdb");
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if (!$tooth || !$clientId) {
+    http_response_code(400);
+    echo json_encode(['status' => 'error', 'message' => 'Invalid client or tooth.']);
+    exit;
 }
 
-$query = "SELECT remarks FROM toothremarks WHERE tooth = ? AND clientid = ?";
-$stmt = $conn->prepare($query);
+require_once(__DIR__ . '/../services/databaseService.php');
 
-if (!$stmt) {
-    // Show detailed SQL error
-    die("Prepare failed: " . $conn->error);
-}
-
-$stmt->bind_param("si", $tooth, $clientId);
+$database = new Database();
+$connection = $database->dbConnection();
+$stmt = $connection->prepare(
+    'SELECT remarks FROM dental_chart_regions WHERE tooth = :tooth AND clientid = :clientid'
+);
+$stmt->bindValue(':tooth', $tooth, PDO::PARAM_INT);
+$stmt->bindValue(':clientid', $clientId, PDO::PARAM_INT);
 $stmt->execute();
+$row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-$result = $stmt->get_result();
-$row = $result->fetch_assoc();
+if (!$row) {
+    $stmt = $connection->prepare(
+        'SELECT remarks FROM toothremarks WHERE tooth = :tooth AND clientid = :clientid'
+    );
+    $stmt->bindValue(':tooth', $tooth, PDO::PARAM_INT);
+    $stmt->bindValue(':clientid', $clientId, PDO::PARAM_INT);
+    $stmt->execute();
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+}
 
-echo json_encode(['remark' => $row['remarks'] ?? '']);
-
-$stmt->close();
-$conn->close();
-?>
+echo json_encode(['remark' => $row ? $row['remarks'] : '']);

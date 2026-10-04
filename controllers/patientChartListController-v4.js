@@ -41,6 +41,7 @@ function getclientdentalChart() {
         type: 'POST',
         success: function (result) {
             document.getElementById("dental-chart-region").innerHTML = result;
+            migrateLegacyDentalCharts();
 
         },
         error: function () {
