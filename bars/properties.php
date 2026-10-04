@@ -1,6 +1,6 @@
 <?php
 $cards = "bg-custom text-white text-lg";
-$systemname = "Smile Save Dental Care | staging";
+$systemname = "Smile Save Dental Care";
 $sidebarColor = "bg-custom";
 $superuser = "ssdc_admin2020";
 $dentist = [
