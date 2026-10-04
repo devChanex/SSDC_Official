@@ -27,35 +27,18 @@ class ServiceClass
     {
 
 
-        $query = "select * from toothremarks where clientid=:a";
-        $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':a', $clientid);
-        $stmt->execute();
-        if ($stmt->rowCount() > 0) {
-            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $tooth = $row['tooth'];
-                $toothData[$tooth] = [
-                    'image' => $row['image'],
-                    'remarks' => $row['remarks']
-                ];
-            }
-        }
-
-        $query = "SELECT * FROM toothremarks WHERE clientid = :a";
-        $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':a', $clientid);
-        $stmt->execute();
-
         $toothData = [];
+        $query = "SELECT tooth, image, remarks FROM toothremarks WHERE clientid = :a";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':a', $clientid);
+        $stmt->execute();
 
-        if ($stmt->rowCount() > 0) {
-            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $tooth = $row['tooth'];
-                $toothData[$tooth] = [
-                    'image' => $row['image'],
-                    'remarks' => $row['remarks']
-                ];
-            }
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $tooth = $row['tooth'];
+            $toothData[$tooth] = [
+                'image' => $row['image'],
+                'remarks' => $row['remarks']
+            ];
         }
 
         echo '<div class="text-center"><strong>UPPER</strong></div>';
