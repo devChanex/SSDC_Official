@@ -445,15 +445,55 @@ error_reporting(0);
             height: 6em;
         }
 
+        #calendar .fc-time-grid .fc-axis,
+        #calendar .fc-time-grid .fc-axis span {
+            font-size: .95rem;
+        }
+
+        #calendar .fc-time-grid .fc-event-summary {
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        #calendar .fc-time-grid .fc-event-summary__meta {
+            font-size: .9rem;
+        }
+
         @media (min-width: 768px) and (max-width: 1399.98px) {
             #calendar .fc-time-grid .fc-slats td {
                 height: 10em;
+            }
+
+            #calendar .fc-time-grid .fc-axis,
+            #calendar .fc-time-grid .fc-axis span {
+                font-size: 1.4rem;
+            }
+
+            #calendar .fc-time-grid .fc-event-summary {
+                font-size: 1.45rem;
+            }
+
+            #calendar .fc-time-grid .fc-event-summary__meta {
+                font-size: 1.2rem;
             }
         }
 
         @media (min-width: 768px) and (pointer: coarse) {
             #calendar .fc-time-grid .fc-slats td {
                 height: 10em;
+            }
+
+            #calendar .fc-time-grid .fc-axis,
+            #calendar .fc-time-grid .fc-axis span {
+                font-size: 1.4rem;
+            }
+
+            #calendar .fc-time-grid .fc-event-summary {
+                font-size: 1.45rem;
+            }
+
+            #calendar .fc-time-grid .fc-event-summary__meta {
+                font-size: 1.2rem;
             }
         }
 
