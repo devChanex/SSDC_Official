@@ -133,11 +133,19 @@ function display_events() {
           $('#calendar-view').val(view.name);
         },
         dayClick: function (date, jsEvent, view) {
-          var allDay = view.name === 'month' || (date.hasTime && !date.hasTime());
+          var clickedDate = date;
+          if (view.name === 'month') {
+            var cellDate = $(jsEvent.target).closest('#calendar td[data-date]').attr('data-date');
+            if (cellDate) {
+              clickedDate = moment(cellDate, 'YYYY-MM-DD');
+            }
+          }
+
+          var allDay = view.name === 'month' || (clickedDate.hasTime && !clickedDate.hasTime());
           if (allDay) {
-            openNewEvent(date, null, true);
+            openNewEvent(clickedDate, null, true);
           } else {
-            openNewEvent(date, date.clone().add(1, 'hour'), false);
+            openNewEvent(clickedDate, clickedDate.clone().add(1, 'hour'), false);
           }
         },
         select: function (start, end, jsEvent, view) {
