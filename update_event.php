@@ -21,6 +21,11 @@ function isCalendarTime($value)
     return preg_match('/^(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d)?$/', $value) === 1;
 }
 
+function describeInvalidParameter($name, $value, $expectation)
+{
+    return $name . ' (received: ' . json_encode($value, JSON_INVALID_UTF8_SUBSTITUTE) . '; ' . $expectation . ')';
+}
+
 $eventId = filter_input(INPUT_POST, 'event_id', FILTER_VALIDATE_INT);
 $eventName = trim($_POST['event_name'] ?? '');
 $eventStartDate = trim($_POST['event_start_date'] ?? '');
@@ -34,17 +39,29 @@ $contact = trim($_POST['contactNumber'] ?? '');
 $hmo = trim($_POST['hmo'] ?? '');
 $treatment = trim($_POST['treatment'] ?? '');
 
-if (
-    !$eventId ||
-    $eventName === '' ||
-    !isCalendarDate($eventStartDate) ||
-    !isCalendarDate($eventEndDate) ||
-    $eventEndDate < $eventStartDate ||
-    !isCalendarTime($eventTime) ||
-    !isCalendarTime($eventTimeTo) ||
-    !in_array($eventStatus, array('Confirmed', 'Completed', 'Cancelled'), true)
-) {
-    respondWithError('Please provide valid appointment details.');
+$invalidFields = array();
+if (!$eventId) {
+    $invalidFields[] = describeInvalidParameter('event_id', $_POST['event_id'] ?? null, 'must be a valid integer');
+}
+if ($eventName === '') {
+    $invalidFields[] = describeInvalidParameter('event_name', $eventName, 'is required');
+}
+if (!isCalendarDate($eventStartDate)) {
+    $invalidFields[] = describeInvalidParameter('event_start_date', $eventStartDate, 'must use YYYY-MM-DD format');
+}
+
+if (!isCalendarTime($eventTime)) {
+    $invalidFields[] = describeInvalidParameter('event_time', $eventTime, 'must use HH:MM format');
+}
+if (!isCalendarTime($eventTimeTo)) {
+    $invalidFields[] = describeInvalidParameter('event_time_to', $eventTimeTo, 'must use HH:MM format');
+}
+if (!in_array($eventStatus, array('Confirmed', 'Completed', 'Cancelled'), true)) {
+    $invalidFields[] = describeInvalidParameter('event_status', $eventStatus, 'must be Confirmed, Completed, or Cancelled');
+}
+
+if ($invalidFields) {
+    respondWithError('Invalid appointment parameter(s): ' . implode('; ', $invalidFields) . '.');
 }
 
 $updateQuery = mysqli_prepare(

@@ -3,7 +3,9 @@ var appointmentsForDay = [];
 var calendarUsesMobileEventLimit = null;
 
 function isMobileOrTabletCalendar() {
-  return window.matchMedia('(max-width: 991.98px)').matches;
+  return window.matchMedia(
+    '(max-width: 991.98px), (min-width: 768px) and (pointer: coarse)'
+  ).matches;
 }
 
 $(function () {
@@ -246,9 +248,10 @@ function updateMobileMoreLinks() {
     if (link.data('fullcalendar-more-label') === undefined) {
       link.data('fullcalendar-more-label', link.text());
     }
+    var hiddenAppointmentCount = Math.max(appointmentCount - 1, 0);
     link
       .addClass('calendar-more-link')
-      .text('Click to view ' + appointmentCount + ' appointment' + (appointmentCount === 1 ? '' : 's'));
+      .text('+' + hiddenAppointmentCount + ' more');
   });
 }
 
