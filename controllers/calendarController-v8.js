@@ -4,7 +4,7 @@ var calendarUsesMobileEventLimit = null;
 
 function isMobileOrTabletCalendar() {
   return window.matchMedia(
-    '(max-width: 991.98px), (min-width: 768px) and (pointer: coarse)'
+    '(max-width: 1399.98px), (pointer: coarse)'
   ).matches;
 }
 
@@ -109,6 +109,7 @@ function display_events() {
         selectHelper: true,
         editable: false,
         eventLimit: isMobileOrTabletCalendar() ? 1 : true,
+        eventLimitText: 'more',
         eventLimitClick: function (cellInfo, jsEvent) {
           if (!isMobileOrTabletCalendar()) {
             return 'popover';
@@ -117,9 +118,6 @@ function display_events() {
           jsEvent.preventDefault();
           showDayAppointments(cellInfo.date);
           return false;
-        },
-        eventAfterAllRender: function () {
-          updateMobileMoreLinks();
         },
         nowIndicator: true,
         displayEventTime: false,
@@ -212,49 +210,6 @@ function display_events() {
   });
 }
 
-function updateMobileMoreLinks() {
-  var moreLinks = $('#calendar .fc-more');
-  if (!isMobileOrTabletCalendar()) {
-    moreLinks.each(function () {
-      var link = $(this);
-      var originalLabel = link.data('fullcalendar-more-label');
-      if (originalLabel) {
-        link.text(originalLabel).removeData('fullcalendar-more-label');
-      }
-      link.removeClass('calendar-more-link');
-    });
-    return;
-  }
-
-  var events = $('#calendar').fullCalendar('clientEvents');
-  moreLinks.each(function () {
-    var dayCell = $(this).closest('td[data-date]');
-    var dateValue = dayCell.attr('data-date');
-    if (!dateValue) {
-      return;
-    }
-
-    var dayStart = moment(dateValue, 'YYYY-MM-DD').startOf('day');
-    var nextDay = dayStart.clone().add(1, 'day');
-    var appointmentCount = events.filter(function (event) {
-      if (!event.start) {
-        return false;
-      }
-      return event.start.isBefore(nextDay) &&
-        (event.end ? event.end.isAfter(dayStart) : event.start.isSame(dayStart, 'day'));
-    }).length;
-
-    var link = $(this);
-    if (link.data('fullcalendar-more-label') === undefined) {
-      link.data('fullcalendar-more-label', link.text());
-    }
-    var hiddenAppointmentCount = Math.max(appointmentCount - 1, 0);
-    link
-      .addClass('calendar-more-link')
-      .text('+' + hiddenAppointmentCount + ' more');
-  });
-}
-
 function showDayAppointments(date) {
   var dayStart = moment(date).clone().startOf('day');
   var nextDay = dayStart.clone().add(1, 'day');
@@ -341,8 +296,6 @@ $(window).on('resize', function () {
     if (useMobileLimit !== calendarUsesMobileEventLimit) {
       calendarUsesMobileEventLimit = useMobileLimit;
       $('#calendar').fullCalendar('option', 'eventLimit', useMobileLimit ? 1 : true);
-    } else {
-      updateMobileMoreLinks();
     }
   }, 150);
 });

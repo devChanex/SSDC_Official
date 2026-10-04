@@ -127,13 +127,13 @@ error_reporting(0);
             font-family: inherit;
         }
 
-        @media (min-width: 768px) and (max-width: 1199.98px) {
+        @media (min-width: 768px) and (max-width: 1399.98px) {
             #calendar {
-                zoom: .75;
+                zoom: .6;
             }
         }
 
-        @media (min-width: 1200px) {
+        @media (min-width: 1400px) {
             #calendar {
                 zoom: .9;
             }
@@ -141,7 +141,11 @@ error_reporting(0);
 
         @media (min-width: 768px) and (pointer: coarse) {
             #calendar {
-                zoom: .7;
+                zoom: .6;
+            }
+
+            #calendar .fc-day-grid .fc-row {
+                min-height: 76px;
             }
         }
 
@@ -695,7 +699,7 @@ error_reporting(0);
             <script src="js/sb-admin-2.min.js"></script>
             <script src="controllers/logOutConroller.js"></script>
             <script src="controllers/sessionController.js"></script>
-            <script src="controllers/calendarController-v8.js"></script>
+            <script src="controllers/calendarController-v8.js?v=20261004-2"></script>
 
 
 
