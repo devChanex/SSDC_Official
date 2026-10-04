@@ -673,7 +673,7 @@
             <script src="controllers/logOutConroller.js"></script>
             <script src="controllers/sessionController.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-            <script src="controllers/dentalchartController-v8.js?v=20261004-4"></script>
+            <script src="controllers/dentalchartController-v8.js?v=20261004-5"></script>
             <script src="controllers/patientChartListController-v4.js"></script>
             <script src="controllers/divDentalChartPrinterController-v1.js"></script>
 

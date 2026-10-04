@@ -4,7 +4,7 @@ let penColor = 'red';
 let isSavingToothRemark = false;
 let isMigratingLegacyDentalChart = false;
 const toothRegions = ['top', 'bottom', 'left', 'right', 'center'];
-const legacyDentalChartMigrationInterval = 500;
+const legacyDentalChartMigrationInterval = 300;
 
 document.querySelectorAll('input[name="penColor"]').forEach(input => {
     input.addEventListener('change', () => penColor = input.value);
