@@ -182,8 +182,12 @@
                     <div class="card shadow mb-12">
                         <div class="card-header py-3 <?php echo $cards; ?>">
                             <h6 class="m-0 font-weight-bold">Dental Chart : <?php echo $_GET["clientname"]; ?></h6>
-                            <button id="divPrinter" class="btn btn-warning  btn-circle float-right" data-toggle="modal"
-                                data-target="#printDentalModal"><i class=" fas fa-print"></i></button>
+                            <div class="float-right d-flex align-items-center">
+                                <span id="dental-chart-migration-status" class="badge badge-warning mr-2"
+                                    role="status" aria-live="polite">Ongoing Migration</span>
+                                <button id="divPrinter" class="btn btn-warning btn-circle" data-toggle="modal"
+                                    data-target="#printDentalModal"><i class="fas fa-print"></i></button>
+                            </div>
 
                         </div>
                         <div class="card-body" id="dental-chart-region">
@@ -673,7 +677,7 @@
             <script src="controllers/logOutConroller.js"></script>
             <script src="controllers/sessionController.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-            <script src="controllers/dentalchartController-v8.js?v=20261004-5"></script>
+            <script src="controllers/dentalchartController-v8.js?v=20261004-6"></script>
             <script src="controllers/patientChartListController-v4.js"></script>
             <script src="controllers/divDentalChartPrinterController-v1.js"></script>
 

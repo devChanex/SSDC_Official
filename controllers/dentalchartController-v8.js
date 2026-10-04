@@ -117,6 +117,17 @@ function waitForMigrationInterval() {
     return new Promise(resolve => setTimeout(resolve, legacyDentalChartMigrationInterval));
 }
 
+function setDentalChartMigrationStatus(status) {
+    const indicator = document.getElementById('dental-chart-migration-status');
+    if (!indicator) {
+        return;
+    }
+
+    indicator.textContent = status;
+    indicator.classList.remove('badge-success', 'badge-warning');
+    indicator.classList.add(status === 'Ongoing Migration' ? 'badge-warning' : 'badge-success');
+}
+
 async function waitForImage(image) {
     if (typeof image.decode === 'function') {
         await image.decode();
@@ -145,10 +156,12 @@ async function migrateLegacyDentalCharts() {
         document.querySelectorAll('#dental-chart-region .tooth[data-legacy="true"]')
     );
     if (legacyTeeth.length === 0) {
+        setDentalChartMigrationStatus('Migrated');
         return;
     }
 
     isMigratingLegacyDentalChart = true;
+    setDentalChartMigrationStatus('Ongoing Migration');
     legacyTeeth.forEach(tooth => tooth.dataset.migrating = 'true');
     let failedMigrations = 0;
 
@@ -181,9 +194,12 @@ async function migrateLegacyDentalCharts() {
 
     isMigratingLegacyDentalChart = false;
     if (failedMigrations > 0) {
+        setDentalChartMigrationStatus('Ongoing Migration');
         toastError(
             failedMigrations + ' legacy tooth chart(s) could not be migrated. They remain available and will be retried when the chart is loaded again.'
         );
+    } else {
+        setDentalChartMigrationStatus('Migration Completed');
     }
 }
 
