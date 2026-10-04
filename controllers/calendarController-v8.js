@@ -130,8 +130,8 @@ function display_events() {
         nowIndicator: true,
         displayEventTime: false,
         slotDuration: '00:30:00',
-        minTime: '00:00:00',
-        maxTime: '24:00:00',
+        minTime: '08:00:00',
+        maxTime: '20:00:00',
         events: events,
         viewRender: function (view) {
           $('#calendar-title').text(view.title);
