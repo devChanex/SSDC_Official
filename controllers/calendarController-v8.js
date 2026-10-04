@@ -16,6 +16,12 @@ $(function () {
 });
 
 function bindCalendarControls() {
+  $('#calendar').on('mouseenter.calendarMore', '.fc-more', function () {
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      $(this).trigger('click');
+    }
+  });
+
   $('#calendar-prev').on('click', function () {
     $('#calendar').fullCalendar('prev');
   });
@@ -111,6 +117,8 @@ function display_events() {
         eventLimit: isMobileOrTabletCalendar() ? 1 : true,
         eventLimitText: 'more',
         eventLimitClick: function (cellInfo, jsEvent) {
+          $('#calendar .fc-more-popover').remove();
+
           if (!isMobileOrTabletCalendar()) {
             return 'popover';
           }
