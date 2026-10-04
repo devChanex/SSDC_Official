@@ -135,7 +135,7 @@ error_reporting(0);
 
         @media (min-width: 1400px) {
             #calendar {
-                zoom: .9;
+                zoom: 1;
             }
         }
 
@@ -269,6 +269,24 @@ error_reporting(0);
             display: block;
             font-size: .7rem;
             margin-top: 2px;
+        }
+
+        @media (min-width: 1400px) {
+            #calendar .fc th {
+                font-size: .85rem;
+            }
+
+            #calendar .fc-day-number {
+                font-size: .95rem;
+            }
+
+            #calendar .fc-event-summary {
+                font-size: .85rem;
+            }
+
+            #calendar .fc-event-summary__meta {
+                font-size: .78rem;
+            }
         }
 
         #calendar .calendar-event-status {
