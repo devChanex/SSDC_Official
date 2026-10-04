@@ -677,7 +677,7 @@ error_reporting(0);
             <script src="js/sb-admin-2.min.js"></script>
             <script src="controllers/logOutConroller.js"></script>
             <script src="controllers/sessionController.js"></script>
-            <script src="controllers/calendarController-v6.js"></script>
+            <script src="controllers/calendarController-v7.js"></script>
 
 
 
