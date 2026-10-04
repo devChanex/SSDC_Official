@@ -4,6 +4,7 @@ let penColor = 'red';
 let isSavingToothRemark = false;
 let isMigratingLegacyDentalChart = false;
 const toothRegions = ['top', 'bottom', 'left', 'right', 'center'];
+const legacyDentalChartMigrationInterval = 500;
 
 document.querySelectorAll('input[name="penColor"]').forEach(input => {
     input.addEventListener('change', () => penColor = input.value);
@@ -112,6 +113,10 @@ function updateToothDisplay(toothElement, remarks, regions) {
     toothElement.querySelector('.remark-display').textContent = remarks;
 }
 
+function waitForMigrationInterval() {
+    return new Promise(resolve => setTimeout(resolve, legacyDentalChartMigrationInterval));
+}
+
 async function waitForImage(image) {
     if (typeof image.decode === 'function') {
         await image.decode();
@@ -147,7 +152,8 @@ async function migrateLegacyDentalCharts() {
     legacyTeeth.forEach(tooth => tooth.dataset.migrating = 'true');
     let failedMigrations = 0;
 
-    for (const tooth of legacyTeeth) {
+    for (let index = 0; index < legacyTeeth.length; index++) {
+        const tooth = legacyTeeth[index];
         try {
             const image = tooth.querySelector('img');
             await waitForImage(image);
@@ -166,6 +172,10 @@ async function migrateLegacyDentalCharts() {
             console.error('Legacy chart migration failed for tooth ' + tooth.dataset.tooth + ':', error);
         } finally {
             tooth.dataset.migrating = 'false';
+        }
+
+        if (index < legacyTeeth.length - 1) {
+            await waitForMigrationInterval();
         }
     }
 

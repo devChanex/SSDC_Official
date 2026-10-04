@@ -54,7 +54,8 @@
                     <div class="card shadow mb-12">
                         <div class="card-header py-3 <?php echo $cards; ?>">
                             <h6 class="m-0 font-weight-bold">Patient Chart :
-                                <?php echo htmlspecialchars($_GET["clientname"] ?? ''); ?></h6>
+                                <?php echo htmlspecialchars($_GET["clientname"] ?? ''); ?>
+                            </h6>
                             <input type="hidden" id="clientid"
                                 value="<?php echo htmlspecialchars($_GET["id"] ?? ''); ?>">
                             <input type="hidden" id="address"
@@ -555,15 +556,16 @@
                                                 style="position:absolute; top:0; left:0; width:100%; height:100%;">
                                             <svg id="svgOverlay" viewBox="0 0 300 300"
                                                 style="position:absolute; top:0; left:0; width:100%; height:100%;">
-                                                <circle id="center" data-region="center" cx="150" cy="150" r="40" fill="transparent" />
+                                                <circle id="center" data-region="center" cx="150" cy="150" r="40"
+                                                    fill="transparent" />
                                                 <rect id="top" data-region="top" x="110" y="10" width="80" height="40"
                                                     fill="transparent" />
-                                                <rect id="bottom" data-region="bottom" x="110" y="250" width="80" height="40"
-                                                    fill="transparent" />
+                                                <rect id="bottom" data-region="bottom" x="110" y="250" width="80"
+                                                    height="40" fill="transparent" />
                                                 <rect id="left" data-region="left" x="10" y="110" width="40" height="80"
                                                     fill="transparent" />
-                                                <rect id="right" data-region="right" x="250" y="110" width="40" height="80"
-                                                    fill="transparent" />
+                                                <rect id="right" data-region="right" x="250" y="110" width="40"
+                                                    height="80" fill="transparent" />
                                             </svg>
                                         </div>
 
@@ -671,7 +673,7 @@
             <script src="controllers/logOutConroller.js"></script>
             <script src="controllers/sessionController.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-            <script src="controllers/dentalchartController-v8.js?v=20261004-3"></script>
+            <script src="controllers/dentalchartController-v8.js?v=20261004-4"></script>
             <script src="controllers/patientChartListController-v4.js"></script>
             <script src="controllers/divDentalChartPrinterController-v1.js"></script>
 
