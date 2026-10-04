@@ -218,6 +218,87 @@ error_reporting(0);
             text-align: center;
         }
 
+        #calendar .fc-day-top.calendar-day-closed .fc-day-number,
+        #calendar .fc-day-top.fc-today.calendar-day-closed .fc-day-number {
+            background: #dc3545;
+            border-radius: 50%;
+            color: #fff;
+            margin: 5px;
+            min-width: 28px;
+            padding: 5px;
+            text-align: center;
+        }
+
+        #calendar .fc-day-top.calendar-day-fully-booked .fc-day-number,
+        #calendar .fc-day-top.fc-today.calendar-day-fully-booked .fc-day-number {
+            background: #e69500;
+            border-radius: 50%;
+            color: #fff;
+            margin: 5px;
+            min-width: 28px;
+            padding: 5px;
+            text-align: center;
+        }
+
+        #calendar .fc-day-top.calendar-day-holiday-closed .fc-day-number,
+        #calendar .fc-day-top.fc-today.calendar-day-holiday-closed .fc-day-number {
+            background: #7952b3;
+            border-radius: 50%;
+            color: #fff;
+            margin: 5px;
+            min-width: 28px;
+            padding: 5px;
+            text-align: center;
+        }
+
+        #calendar .fc-bg td.fc-day.calendar-day-closed {
+            background-color: #fff0f0 !important;
+            box-shadow: inset 0 0 0 2px rgba(220, 53, 69, .55);
+        }
+
+        #calendar .fc-bg td.fc-day.calendar-day-fully-booked {
+            background-color: #fff2d3 !important;
+            box-shadow: inset 0 0 0 2px rgba(230, 149, 0, .6);
+        }
+
+        #calendar .fc-bg td.fc-day.calendar-day-holiday-closed {
+            background-color: #eee4ff !important;
+            box-shadow: inset 0 0 0 2px rgba(121, 82, 179, .55);
+        }
+
+        .calendar-closure-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 16px;
+            margin-top: 12px;
+        }
+
+        .calendar-closure-legend__item {
+            align-items: center;
+            color: #526174;
+            display: inline-flex;
+            font-size: .8rem;
+            gap: 6px;
+        }
+
+        .calendar-closure-legend__swatch {
+            border-radius: 3px;
+            height: 12px;
+            width: 12px;
+        }
+
+        .calendar-closure-legend__swatch--closed {
+            background: #dc3545;
+        }
+
+        .calendar-closure-legend__swatch--fully-booked {
+            background: #e69500;
+        }
+
+        .calendar-closure-legend__swatch--holiday-closed {
+            background: #7952b3;
+        }
+
         #calendar .fc-day-grid .fc-row {
             min-height: 112px;
         }
@@ -239,6 +320,49 @@ error_reporting(0);
             box-shadow: 0 4px 10px rgba(35, 45, 55, .12);
             color: #26374a !important;
             transform: translateY(-1px);
+        }
+
+        #calendar .fc-event.fc-event-clinic-closed {
+            background: #b42332 !important;
+            border: 2px solid #8f1723 !important;
+            border-left: 7px solid #72111b !important;
+            box-shadow: 0 2px 6px rgba(143, 23, 35, .3);
+            color: #fff !important;
+        }
+
+        #calendar .fc-event.fc-event-holiday-closed {
+            background: #63369a !important;
+            border: 2px dashed #43206f !important;
+            border-left: 7px solid #43206f !important;
+            box-shadow: 0 2px 6px rgba(67, 32, 111, .3);
+            color: #fff !important;
+        }
+
+        #calendar .fc-event-clinic-closed .fc-event-summary__title,
+        #calendar .fc-event-holiday-closed .fc-event-summary__title {
+            color: #fff !important;
+            font-weight: 800;
+            letter-spacing: .03em;
+        }
+
+        #calendar .fc-day-grid-event.fc-event-clinic-closed .fc-content,
+        #calendar .fc-day-grid-event.fc-event-holiday-closed .fc-content {
+            align-items: center;
+            display: flex;
+            min-height: 42px;
+            padding: 8px 10px;
+        }
+
+        #calendar .fc-event-clinic-closed .fc-event-summary__title,
+        #calendar .fc-event-holiday-closed .fc-event-summary__title {
+            font-size: .9rem;
+            line-height: 1.4;
+        }
+
+        #calendar .fc-event-clinic-closed .fc-event-summary__title .fas,
+        #calendar .fc-event-holiday-closed .fc-event-summary__title .fas {
+            font-size: 1.1em;
+            margin-right: 4px;
         }
 
         #calendar .fc-day-grid-event .fc-content {
@@ -286,6 +410,11 @@ error_reporting(0);
 
             #calendar .fc-event-summary__meta {
                 font-size: .78rem;
+            }
+
+            #calendar .fc-event-clinic-closed .fc-event-summary__title,
+            #calendar .fc-event-holiday-closed .fc-event-summary__title {
+                font-size: 1rem;
             }
         }
 
@@ -526,6 +655,20 @@ error_reporting(0);
                             </div>
                             <div class="alert alert-danger" id="calendar-feedback" role="alert"></div>
                             <div id="calendar" aria-label="Clinic appointment calendar"></div>
+                            <div class="calendar-closure-legend" aria-label="Calendar date highlights">
+                                <span class="calendar-closure-legend__item">
+                                    <span class="calendar-closure-legend__swatch calendar-closure-legend__swatch--closed"
+                                        aria-hidden="true"></span>Clinic closed
+                                </span>
+                                <span class="calendar-closure-legend__item">
+                                    <span class="calendar-closure-legend__swatch calendar-closure-legend__swatch--fully-booked"
+                                        aria-hidden="true"></span>Fully booked
+                                </span>
+                                <span class="calendar-closure-legend__item">
+                                    <span class="calendar-closure-legend__swatch calendar-closure-legend__swatch--holiday-closed"
+                                        aria-hidden="true"></span>Holiday closed
+                                </span>
+                            </div>
                             <p class="calendar-empty-hint">Select or drag across a date or time to schedule an
                                 appointment.</p>
                         </div>
@@ -717,7 +860,7 @@ error_reporting(0);
             <script src="js/sb-admin-2.min.js"></script>
             <script src="controllers/logOutConroller.js"></script>
             <script src="controllers/sessionController.js"></script>
-            <script src="controllers/calendarController-v8.js?v=20261004-7"></script>
+            <script src="controllers/calendarController-v8.js?v=20261004-12"></script>
 
 
 

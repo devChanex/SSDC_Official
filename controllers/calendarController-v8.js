@@ -121,6 +121,7 @@ function display_events() {
           showDayAppointments(cellInfo.date);
           return false;
         },
+        eventAfterAllRender: highlightSpecialEventDays,
         nowIndicator: true,
         displayEventTime: false,
         slotDuration: '00:30:00',
@@ -157,10 +158,28 @@ function display_events() {
             'fully booked': 'Fully booked',
             'holiday-closed': 'Holiday closed'
           };
-          var specialLabel = specialEvents[eventName.toLowerCase()];
+          var normalizedEventName = eventName.toLowerCase();
+          var specialLabel = specialEvents[normalizedEventName];
+          var specialEventStyles = {
+            'closed': { className: 'fc-event-clinic-closed', icon: 'fa-ban' },
+            'holiday-closed': { className: 'fc-event-holiday-closed', icon: 'fa-calendar-times' }
+          };
+          var specialEventStyle = specialEventStyles[normalizedEventName];
+          if (specialEventStyle) {
+            element.addClass(specialEventStyle.className);
+          }
+
           var title = specialLabel || event.patient || eventName.split(/\r?\n/)[0];
           var summary = $('<span>', { 'class': 'fc-event-summary' });
-          summary.append($('<span>', { 'class': 'fc-event-summary__title' }).text(title));
+          var titleElement = $('<span>', { 'class': 'fc-event-summary__title' });
+          if (specialEventStyle) {
+            titleElement.append($('<i>', {
+              'class': 'fas ' + specialEventStyle.icon,
+              'aria-hidden': 'true'
+            })).append(' ');
+          }
+          titleElement.append(document.createTextNode(title.toUpperCase()));
+          summary.append(titleElement);
 
           if (!specialLabel) {
             var meta = [];
@@ -209,6 +228,38 @@ function display_events() {
       console.error('Calendar events could not be loaded:', status, error);
       showCalendarFeedback('Unable to load calendar events. Please try again.');
     }
+  });
+}
+
+function highlightSpecialEventDays() {
+  var calendar = $('#calendar');
+  var specialEventClasses = [
+    'calendar-day-closed',
+    'calendar-day-fully-booked',
+    'calendar-day-holiday-closed'
+  ];
+  var specialEventNames = {
+    'closed': 'calendar-day-closed',
+    'fully booked': 'calendar-day-fully-booked',
+    'holiday-closed': 'calendar-day-holiday-closed'
+  };
+
+  calendar.find('td[data-date]').removeClass(specialEventClasses.join(' '));
+
+  var events = calendar.fullCalendar('clientEvents');
+  $.each(events, function (_, event) {
+    var eventClass = specialEventNames[$.trim(event.event_name || '').toLowerCase()];
+    var startDate = event.event_start_date || (event.start && event.start.format('YYYY-MM-DD'));
+    if (!eventClass || !startDate) {
+      return;
+    }
+
+    calendar.find('td[data-date]').each(function () {
+      var dayCell = $(this);
+      if (dayCell.attr('data-date') === startDate) {
+        dayCell.addClass(eventClass);
+      }
+    });
   });
 }
 
