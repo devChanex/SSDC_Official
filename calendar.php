@@ -442,7 +442,19 @@ error_reporting(0);
         }
 
         #calendar .fc-time-grid .fc-slats td {
-            height: 2.5em;
+            height: 6em;
+        }
+
+        @media (min-width: 768px) and (max-width: 1399.98px) {
+            #calendar .fc-time-grid .fc-slats td {
+                height: 10em;
+            }
+        }
+
+        @media (min-width: 768px) and (pointer: coarse) {
+            #calendar .fc-time-grid .fc-slats td {
+                height: 10em;
+            }
         }
 
         #calendar .fc-now-indicator-line,
@@ -860,7 +872,7 @@ error_reporting(0);
             <script src="js/sb-admin-2.min.js"></script>
             <script src="controllers/logOutConroller.js"></script>
             <script src="controllers/sessionController.js"></script>
-            <script src="controllers/calendarController-v8.js?v=20261004-12"></script>
+            <script src="controllers/calendarController-v8.js?v=20261004-13"></script>
 
 
 
