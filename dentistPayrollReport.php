@@ -24,7 +24,7 @@ $today = date('Y-m-d');
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Dentist Payroll Report | Victoria Advanced Dental Care</title>
+    <title>Dentist Payroll Report | Smile Save Dental Care</title>
 
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
