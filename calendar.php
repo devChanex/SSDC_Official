@@ -508,17 +508,46 @@ error_reporting(0);
         }
 
         #calendar a.fc-more {
-            color: #4169e1;
+            align-items: center;
+            background: #eaf0ff;
+            border: 1px solid #c9d7ff;
+            border-radius: 8px;
+            color: #3154bd;
+            display: flex;
             font-weight: 700;
+            justify-content: center;
+            margin: 5px 6px;
+            min-height: 44px;
+            padding: 8px 10px;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color .15s ease, border-color .15s ease, box-shadow .15s ease;
+        }
+
+        #calendar a.fc-more:hover,
+        #calendar a.fc-more:focus {
+            background: #dce6ff;
+            border-color: #9eb5ff;
+            box-shadow: 0 2px 6px rgba(49, 84, 189, .16);
+            color: #243f99;
+            outline: none;
+        }
+
+        #calendar a.fc-more:focus-visible {
+            box-shadow: 0 0 0 3px rgba(65, 105, 225, .28);
         }
 
         #calendar a.fc-more.calendar-more-link {
-            display: block;
-            font-size: .72rem;
-            line-height: 1.3;
-            padding: 5px 4px;
-            text-align: center;
+            font-size: .875rem;
+            line-height: 1.4;
             white-space: normal;
+        }
+
+        @media (min-width: 768px) and (pointer: coarse) {
+            #calendar a.fc-more {
+                font-size: 1.25rem;
+                min-height: 72px;
+            }
         }
 
         .calendar-appointments-list {
