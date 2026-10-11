@@ -1,5 +1,27 @@
 loadUnmigratedToothRemarks();
 
+window.addEventListener("message", function (event) {
+    if (event.origin !== window.location.origin ||
+        !event.data ||
+        event.data.type !== "dental-chart-migration-completed") {
+        return;
+    }
+
+    var clientId = String(event.data.clientId);
+    var completedLink = document.querySelector(
+        '#responseBody .patient-chart-link[data-clientid="' + clientId + '"]'
+    );
+    if (!completedLink) {
+        return;
+    }
+
+    completedLink.href = completedLink.dataset.patientChartUrl;
+    completedLink.removeAttribute("onclick");
+    completedLink.textContent = "Remarks Completed";
+    completedLink.classList.remove("patient-chart-link");
+    completedLink.classList.add("patient-chart-completed-link");
+});
+
 function loadUnmigratedToothRemarks() {
     var limit = document.getElementById("limit").value;
     document.getElementById("h3id").textContent = "LIMIT: " + limit + " PATIENTS";
@@ -31,11 +53,11 @@ function openAllPatientCharts() {
     var chartLinks = document.querySelectorAll("#responseBody .patient-chart-link");
 
     chartLinks.forEach(function (link) {
-        openPatientChart(link.href);
+        openPatientChart(link.href, link.dataset.clientid);
     });
 }
 
-function openPatientChart(url) {
-    var chartWindow = window.open(url, "_blank");
+function openPatientChart(url, clientId) {
+    var chartWindow = window.open(url, "dentalChartMigration_" + clientId);
     return chartWindow === null;
 }

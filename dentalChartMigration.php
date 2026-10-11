@@ -15,8 +15,7 @@ $clientName = trim((string) ($_GET['clientname'] ?? ''));
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>SSDC - Dental Chart - <?php echo htmlspecialchars($clientName, ENT_QUOTES, 'UTF-8'); ?></title>
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <link href="css/dentalchart.css" rel="stylesheet">
@@ -36,7 +35,8 @@ $clientName = trim((string) ($_GET['clientname'] ?? ''));
                     <div class="card shadow mb-12">
                         <div class="card-header py-3 <?php echo $cards; ?>">
                             <h6 class="m-0 font-weight-bold">Dental Chart :
-                                <span id="chartPatientName"><?php echo htmlspecialchars($clientName, ENT_QUOTES, 'UTF-8'); ?></span>
+                                <span
+                                    id="chartPatientName"><?php echo htmlspecialchars($clientName, ENT_QUOTES, 'UTF-8'); ?></span>
                             </h6>
                             <div class="float-right d-flex align-items-center">
                                 <span id="dental-chart-migration-status" class="badge badge-warning mr-2" role="status"
@@ -48,7 +48,8 @@ $clientName = trim((string) ($_GET['clientname'] ?? ''));
                             </div>
                         </div>
                         <div class="card-body" id="dental-chart-region">
-                            <div class="d-flex flex-column align-items-center justify-content-center py-5" role="status">
+                            <div class="d-flex flex-column align-items-center justify-content-center py-5"
+                                role="status">
                                 <div class="spinner-border text-primary mb-3" aria-hidden="true"></div>
                                 <div class="font-weight-bold text-primary">Loading dental chart...</div>
                             </div>
@@ -84,8 +85,8 @@ $clientName = trim((string) ($_GET['clientname'] ?? ''));
                                                 height="40" fill="transparent"></rect>
                                             <rect id="left" data-region="left" x="10" y="110" width="40" height="80"
                                                 fill="transparent"></rect>
-                                            <rect id="right" data-region="right" x="250" y="110" width="40"
-                                                height="80" fill="transparent"></rect>
+                                            <rect id="right" data-region="right" x="250" y="110" width="40" height="80"
+                                                fill="transparent"></rect>
                                         </svg>
                                     </div>
                                     <div class="mb-3">
@@ -169,7 +170,7 @@ $clientName = trim((string) ($_GET['clientname'] ?? ''));
             <script src="controllers/sessionController.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
             <script src="controllers/dentalchartController-v9.js?v=20261004-6"></script>
-            <script src="controllers/dentalChartMigrationController-v1.js?v=20261011-1"></script>
+            <script src="controllers/dentalChartMigrationController-v2.js?v=20261011-1"></script>
             <script src="controllers/divDentalChartPrinterController-v1.js"></script>
 </body>
 

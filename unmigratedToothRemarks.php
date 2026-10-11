@@ -38,6 +38,8 @@
                                 </select>
                                 <button type="button" class="btn btn-primary mr-2"
                                     onclick="openAllPatientCharts()">Open All</button>
+                                <button type="button" class="btn btn-secondary mr-2"
+                                    onclick="loadUnmigratedToothRemarks()">Refresh</button>
                                 <input type="button" class="btn btn-primary" onclick="printDiv('report')" value="Print">
                             </div>
                             <h6 class="m-0 font-weight-bold">UNMIGRATED TOOTH REMARKS AS OF:

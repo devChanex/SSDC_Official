@@ -15,6 +15,12 @@ function loadDentalChartForMigration() {
             migrateLegacyDentalCharts().then(function () {
                 var status = document.getElementById("dental-chart-migration-status").textContent;
                 if (status === "Migration Completed" || status === "Migrated") {
+                    if (window.opener && !window.opener.closed) {
+                        window.opener.postMessage({
+                            type: "dental-chart-migration-completed",
+                            clientId: document.getElementById("clientid").value
+                        }, window.location.origin);
+                    }
                     document.getElementById("dental-chart-migration-status").textContent =
                         "Migration Completed - closing...";
                     window.setTimeout(function () {
