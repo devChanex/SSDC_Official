@@ -31,6 +31,11 @@ function openAllPatientCharts() {
     var chartLinks = document.querySelectorAll("#responseBody .patient-chart-link");
 
     chartLinks.forEach(function (link) {
-        window.open(link.href, "_blank", "noopener,noreferrer");
+        openPatientChart(link.href);
     });
+}
+
+function openPatientChart(url) {
+    var chartWindow = window.open(url, "_blank");
+    return chartWindow === null;
 }
