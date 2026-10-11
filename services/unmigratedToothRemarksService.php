@@ -63,10 +63,7 @@ if (!$patients) {
     exit;
 }
 
-echo '<div class="mb-2">
-    <button type="button" class="btn btn-primary" onclick="openAllPatientCharts()">Open All</button>
-</div>
-<div class="table-responsive">
+echo '<div class="table-responsive">
     <table class="table table-bordered text-dark" width="100%" cellspacing="0">
         <thead>
             <tr>

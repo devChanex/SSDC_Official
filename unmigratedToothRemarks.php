@@ -36,6 +36,8 @@
                                     <option value="10">10</option>
                                     <option value="20">20</option>
                                 </select>
+                                <button type="button" class="btn btn-primary mr-2"
+                                    onclick="openAllPatientCharts()">Open All</button>
                                 <input type="button" class="btn btn-primary" onclick="printDiv('report')" value="Print">
                             </div>
                             <h6 class="m-0 font-weight-bold">UNMIGRATED TOOTH REMARKS AS OF:
