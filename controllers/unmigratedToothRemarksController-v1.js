@@ -145,7 +145,7 @@ function startMigrationBatch(automatic, selectedPatients) {
     };
 
     document.getElementById("batchNumberProgress").textContent =
-        "Current batch: " + currentBatch.number;
+        currentBatch.number;
     document.getElementById("batchCountdownProgress").textContent = "";
     updateBatchProgress();
     $("#dentalChartMigrationModal").modal("show");
@@ -285,7 +285,7 @@ function showMigrationPatient(clientId) {
     migration.iframe.style.height = "60vh";
     document.getElementById("migrationChartView").appendChild(migration.iframe);
     visibleMigrationClientId = migration.clientId;
-    document.getElementById("dentalChartMigrationModalTitle").textContent =
+    document.getElementById("dentalChartMigrationPatientTitle").textContent =
         "Dental Chart Migration - " + migration.clientName;
     document.getElementById("migrationPatientSelect").value = migration.clientId;
 }
@@ -396,9 +396,9 @@ function updateBatchProgress() {
     }
 
     document.getElementById("batchNumberProgress").textContent =
-        "Current batch: " + currentBatch.number;
+        currentBatch.number;
     document.getElementById("completedBatchesProgress").textContent =
-        "Batches completed: " + completedBatches;
+        completedBatches;
 
     var total = currentBatch.totalRecords;
     var processed = currentBatch.successfulSaves + currentBatch.failedSaves;
@@ -407,8 +407,10 @@ function updateBatchProgress() {
     var successBar = document.getElementById("successfulSaveProgress");
     var failureBar = document.getElementById("failedSaveProgress");
     successBar.style.width = successWidth + "%";
+    successBar.setAttribute("aria-valuenow", Math.round(successWidth));
     successBar.textContent = "Successful: " + currentBatch.successfulSaves;
     failureBar.style.width = failureWidth + "%";
+    failureBar.setAttribute("aria-valuenow", Math.round(failureWidth));
     failureBar.textContent = "Failed: " + currentBatch.failedSaves;
     document.getElementById("processedRecordsProgress").textContent =
         "Save calls processed: " + processed + " / " + total +
