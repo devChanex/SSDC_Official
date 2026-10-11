@@ -162,6 +162,101 @@
             font-size: .68rem;
         }
 
+        #dentalChartMigrationModal .migration-modal-actions {
+            display: flex;
+            align-items: center;
+            gap: .65rem;
+        }
+
+        #dentalChartMigrationModal .migration-theme-toggle {
+            padding: .35rem .65rem;
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, .38);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, .14);
+            font-size: .76rem;
+            transition: background .2s ease, border-color .2s ease;
+        }
+
+        #dentalChartMigrationModal .migration-theme-toggle:hover,
+        #dentalChartMigrationModal .migration-theme-toggle:focus {
+            color: #fff;
+            border-color: rgba(255, 255, 255, .7);
+            background: rgba(255, 255, 255, .24);
+        }
+
+        #dentalChartMigrationModal .migration-modal-dark {
+            color: #e6edf7;
+            border: 1px solid rgba(188, 213, 255, .24);
+            background: linear-gradient(145deg, rgba(24, 36, 57, .97), rgba(15, 25, 43, .96));
+            box-shadow: 0 1.25rem 3.5rem rgba(4, 12, 25, .52),
+                inset 0 1px 0 rgba(255, 255, 255, .13);
+            backdrop-filter: blur(22px) saturate(145%);
+            -webkit-backdrop-filter: blur(22px) saturate(145%);
+        }
+
+        #dentalChartMigrationModal .migration-modal-dark .modal-header {
+            background: linear-gradient(120deg, rgba(38, 68, 112, .96), rgba(40, 91, 132, .92));
+            border-bottom: 1px solid rgba(206, 225, 255, .14);
+        }
+
+        #dentalChartMigrationModal .migration-modal-dark .modal-body {
+            background:
+                radial-gradient(ellipse at 8% 0%, rgba(90, 151, 211, .17), transparent 42%),
+                linear-gradient(145deg, rgba(21, 33, 53, .98), rgba(16, 26, 44, .98));
+        }
+
+        #dentalChartMigrationModal .migration-modal-dark .migration-progress-card,
+        #dentalChartMigrationModal .migration-modal-dark .migration-patient-status {
+            border-color: rgba(180, 205, 239, .18);
+            background: rgba(255, 255, 255, .055);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, .07),
+                0 .4rem 1rem rgba(2, 9, 20, .12);
+        }
+
+        #dentalChartMigrationModal .migration-modal-dark .migration-stat {
+            border: 1px solid rgba(177, 205, 246, .14);
+            border-left: 3px solid #7eaaff !important;
+            background: linear-gradient(135deg, rgba(105, 151, 220, .17), rgba(255, 255, 255, .035));
+        }
+
+        #dentalChartMigrationModal .migration-modal-dark .migration-stat-label,
+        #dentalChartMigrationModal .migration-modal-dark #processedRecordsProgress,
+        #dentalChartMigrationModal .migration-modal-dark .small.text-muted {
+            color: #aebed4 !important;
+        }
+
+        #dentalChartMigrationModal .migration-modal-dark .migration-stat-value,
+        #dentalChartMigrationModal .migration-modal-dark .text-gray-700 {
+            color: #f0f5fd !important;
+        }
+
+        #dentalChartMigrationModal .migration-modal-dark .migration-progress-track {
+            background: rgba(3, 10, 22, .64);
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, .3);
+        }
+
+        #dentalChartMigrationModal .migration-modal-dark #batchCountdownProgress {
+            color: #a9d9ff;
+        }
+
+        #dentalChartMigrationModal .migration-modal-dark .migration-patient-item {
+            color: #dce7f5;
+            border-bottom-color: rgba(197, 216, 243, .1);
+        }
+
+        #dentalChartMigrationModal .migration-modal-dark .migration-patient-list:empty::after {
+            color: #8fa2bb;
+        }
+
+        #dentalChartMigrationModal .migration-modal-dark .text-success {
+            color: #67dfb1 !important;
+        }
+
+        #dentalChartMigrationModal .migration-modal-dark .text-primary {
+            color: #8dbaff !important;
+        }
+
         @media (max-width: 767.98px) {
             #dentalChartMigrationModal .modal-dialog {
                 margin: .5rem;
@@ -266,9 +361,17 @@
                                     Batch status updates in real time
                                 </div>
                             </div>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+                            <div class="migration-modal-actions">
+                                <button type="button" id="migrationThemeToggle"
+                                    class="btn btn-sm migration-theme-toggle" aria-pressed="false"
+                                    aria-label="Enable dark crystal theme" title="Enable dark crystal theme">
+                                    <i class="fas fa-moon mr-1" aria-hidden="true"></i>
+                                    <span id="migrationThemeToggleLabel">Dark</span>
+                                </button>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
                         </div>
                         <div class="modal-body">
                             <section class="migration-progress-card" aria-label="Migration batch progress">
@@ -343,7 +446,7 @@
             <script src="controllers/logOutConroller.js"></script>
             <script src="controllers/sessionController.js"></script>
             <script src="js/custom-v1.js"></script>
-            <script src="controllers/unmigratedToothRemarksController-v1.js?v=20261011-6"></script>
+            <script src="controllers/unmigratedToothRemarksController-v1.js?v=20261011-8"></script>
             <script src="controllers/divPrinterController-v1.js"></script>
 </body>
 

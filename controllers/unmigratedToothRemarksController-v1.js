@@ -9,6 +9,22 @@ var activeMigrationSave = null;
 var nextMigrationSaveAt = 0;
 var migrationSaveResumeTimer = null;
 
+document.getElementById("migrationThemeToggle").addEventListener("click", function () {
+    var modalContent = document.querySelector("#dentalChartMigrationModal .modal-content");
+    var isDark = modalContent.classList.toggle("migration-modal-dark");
+    var icon = this.querySelector("i");
+    var label = document.getElementById("migrationThemeToggleLabel");
+    this.setAttribute("aria-pressed", String(isDark));
+    this.setAttribute(
+        "aria-label",
+        isDark ? "Disable dark crystal theme" : "Enable dark crystal theme"
+    );
+    this.title = isDark ? "Disable dark crystal theme" : "Enable dark crystal theme";
+    icon.classList.toggle("fa-moon", !isDark);
+    icon.classList.toggle("fa-sun", isDark);
+    label.textContent = isDark ? "Light" : "Dark";
+});
+
 loadUnmigratedToothRemarks();
 
 window.addEventListener("message", function (event) {
@@ -319,7 +335,7 @@ function completeCurrentBatch() {
     var hadFailures = currentBatch.failedSaves > 0 || currentBatch.failedPatients > 0;
     document.getElementById("batchCountdownProgress").textContent = hadFailures
         ? "Batch finished with failures. Refreshing to retry remaining patients in " +
-            remainingSeconds + " seconds..."
+        remainingSeconds + " seconds..."
         : "Batch completed. Refreshing report in " + remainingSeconds + " seconds...";
     setMigrationProgress(
         hadFailures
@@ -334,7 +350,7 @@ function completeCurrentBatch() {
         if (remainingSeconds > 0) {
             document.getElementById("batchCountdownProgress").textContent = hadFailures
                 ? "Batch finished with failures. Refreshing to retry remaining patients in " +
-                    remainingSeconds + " seconds..."
+                remainingSeconds + " seconds..."
                 : "Batch completed. Refreshing report in " + remainingSeconds + " seconds...";
             return;
         }
@@ -431,7 +447,7 @@ function renderBatchPatientList() {
             inProgress.appendChild(item);
         } else {
             badge.classList.add(patient.status === "failed" ? "badge-danger" : "badge-primary");
-            badge.textContent = patient.status === "failed" ? "Needs review" : "Done";
+            badge.textContent = patient.status === "failed" ? "For Retry" : "Done";
             completed.appendChild(item);
         }
         item.appendChild(badge);
