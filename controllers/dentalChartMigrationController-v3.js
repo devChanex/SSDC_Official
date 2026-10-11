@@ -18,7 +18,8 @@ function loadDentalChartForMigration() {
                     if (window.parent !== window) {
                         window.parent.postMessage({
                             type: "dental-chart-migration-completed",
-                            clientId: document.getElementById("clientid").value
+                            clientId: document.getElementById("clientid").value,
+                            clientName: document.getElementById("chartPatientName").textContent.trim()
                         }, window.location.origin);
                     } else {
                         document.getElementById("dental-chart-migration-status").textContent =
@@ -33,6 +34,12 @@ function loadDentalChartForMigration() {
                             }, 500);
                         }, 500);
                     }
+                } else {
+                    window.parent.postMessage({
+                        type: "dental-chart-migration-incomplete",
+                        clientId: document.getElementById("clientid").value,
+                        clientName: document.getElementById("chartPatientName").textContent.trim()
+                    }, window.location.origin);
                 }
             });
         },

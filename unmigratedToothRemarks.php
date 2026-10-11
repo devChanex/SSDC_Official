@@ -45,6 +45,10 @@
                             <h6 class="m-0 font-weight-bold">UNMIGRATED TOOTH REMARKS AS OF:
                                 <?php echo date('Y-m-d'); ?>
                             </h6>
+                            <div class="mt-2">
+                                <span id="migrationProgress" class="badge badge-secondary" role="status"
+                                    aria-live="polite">Idle - migration starts when you click a patient name or Open All.</span>
+                            </div>
                         </div>
 
                         <div class="card-body" id="report">
@@ -112,7 +116,7 @@
             <script src="controllers/logOutConroller.js"></script>
             <script src="controllers/sessionController.js"></script>
             <script src="js/custom-v1.js"></script>
-            <script src="controllers/unmigratedToothRemarksController-v1.js"></script>
+            <script src="controllers/unmigratedToothRemarksController-v1.js?v=20261011-1"></script>
             <script src="controllers/divPrinterController-v1.js"></script>
 </body>
 
