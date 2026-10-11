@@ -39,11 +39,23 @@ try {
     $statement->bindValue(':limit', $limit, PDO::PARAM_INT);
     $statement->execute();
     $patients = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    $countStatement = $connection->query(
+        'SELECT
+            (SELECT COUNT(DISTINCT clientid) FROM dental_chart_regions) AS migrated_count,
+            (SELECT COUNT(clientid) FROM clientprofile) AS patient_count'
+    );
+    $patientCounts = $countStatement->fetch(PDO::FETCH_ASSOC);
 } catch (PDOException $exception) {
     error_log('Unmigrated tooth remarks report failed: ' . $exception->getMessage());
     http_response_code(500);
     exit('Unable to load the unmigrated tooth remarks report.');
 }
+
+echo '<p class="font-weight-bold text-center">Total number of migrated '
+    . number_format((int) $patientCounts['migrated_count']) . ' out of '
+    . number_format((int) $patientCounts['patient_count']) . ' patients as of '
+    . date('Y-m-d h:i:s A T') . '</p>';
 
 if (!$patients) {
     echo '<p class="text-center">No patients with unmigrated tooth remarks were found.</p>';
