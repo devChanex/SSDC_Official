@@ -47,6 +47,13 @@ function loadDentalChartForMigration() {
             document.getElementById("dental-chart-region").innerHTML =
                 '<div class="alert alert-danger mb-0" role="alert">Unable to load the dental chart. Please try again.</div>';
             document.getElementById("dental-chart-migration-status").textContent = "Unable to load";
+            if (window.parent !== window) {
+                window.parent.postMessage({
+                    type: "dental-chart-migration-incomplete",
+                    clientId: document.getElementById("clientid").value,
+                    clientName: document.getElementById("chartPatientName").textContent.trim()
+                }, window.location.origin);
+            }
         }
     });
 }

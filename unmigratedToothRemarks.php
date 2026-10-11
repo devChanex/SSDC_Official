@@ -38,6 +38,8 @@
                                 </select>
                                 <button type="button" class="btn btn-primary mr-2"
                                     onclick="openAllPatientCharts()">Open All</button>
+                                <button type="button" class="btn btn-info mr-2"
+                                    onclick="showMigrationModal()">Show</button>
                                 <button type="button" class="btn btn-secondary mr-2"
                                     onclick="loadUnmigratedToothRemarks()">Refresh</button>
                                 <input type="button" class="btn btn-primary" onclick="printDiv('report')" value="Print">
@@ -97,12 +99,16 @@
                             </button>
                         </div>
                         <div class="modal-body p-0">
-                            <iframe id="dentalChartMigrationFrame" title="Dental chart migration"
-                                src="about:blank" style="display:block; width:100%; height:75vh; border:0;"></iframe>
+                            <label for="migrationPatientSelect" class="sr-only">Patient chart to view</label>
+                            <select id="migrationPatientSelect" class="form-control rounded-0 border-0"
+                                onchange="showMigrationPatient(this.value)"></select>
+                            <div id="migrationChartView" style="height:75vh;"></div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div id="migrationFramePool" aria-hidden="true"
+                style="position:fixed; left:-10000px; top:0; width:1px; height:1px; overflow:hidden;"></div>
 
             <?php include_once('bars/footer.php'); ?>
 
@@ -116,7 +122,7 @@
             <script src="controllers/logOutConroller.js"></script>
             <script src="controllers/sessionController.js"></script>
             <script src="js/custom-v1.js"></script>
-            <script src="controllers/unmigratedToothRemarksController-v1.js?v=20261011-1"></script>
+            <script src="controllers/unmigratedToothRemarksController-v1.js?v=20261011-3"></script>
             <script src="controllers/divPrinterController-v1.js"></script>
 </body>
 

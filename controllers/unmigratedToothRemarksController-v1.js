@@ -1,65 +1,81 @@
-loadUnmigratedToothRemarks();
-
-var migrationQueue = [];
+var migrationFrames = {};
 var migrationRunTotal = 0;
 var completedMigrationCount = 0;
+var failedMigrationCount = 0;
+var visibleMigrationClientId = null;
+
+loadUnmigratedToothRemarks();
 
 window.addEventListener("message", function (event) {
-    if (event.origin !== window.location.origin ||
-        event.source !== document.getElementById("dentalChartMigrationFrame").contentWindow ||
-        !event.data) {
-        return;
-    }
-
-    if (event.data.type === "dental-chart-migration-incomplete") {
-        migrationQueue = [];
-        setMigrationProgress(
-            "Migration could not complete for " + event.data.clientName +
-            ". The chart remains open for review.",
-            "warning"
-        );
-        return;
-    }
-    if (event.data.type !== "dental-chart-migration-completed") {
+    if (event.origin !== window.location.origin || !event.data) {
         return;
     }
 
     var clientId = String(event.data.clientId);
-    markPatientRemarksCompleted(clientId);
-    completedMigrationCount++;
-
-    if (migrationQueue.length > 0) {
-        startPatientChartMigration(migrationQueue.shift());
+    var migration = migrationFrames[clientId];
+    if (!migration || event.source !== migration.iframe.contentWindow) {
         return;
     }
 
-    setMigrationProgress(
-        "Migration completed for " + completedMigrationCount + " patient" +
-        (completedMigrationCount === 1 ? "" : "s") + ".",
-        "success"
-    );
-    $("#dentalChartMigrationModal").modal("hide");
+    if (event.data.type === "dental-chart-migration-completed") {
+        if (migration.status !== "completed") {
+            migration.status = "completed";
+            completedMigrationCount++;
+            markPatientRemarksCompleted(clientId);
+            updateMigrationOption(migration);
+            updateMigrationProgress();
+        }
+    } else if (event.data.type === "dental-chart-migration-incomplete") {
+        if (migration.status !== "failed") {
+            migration.status = "failed";
+            failedMigrationCount++;
+            updateMigrationOption(migration);
+            updateMigrationProgress();
+        }
+    }
 });
 
 $("#dentalChartMigrationModal").on("hidden.bs.modal", function () {
-    if (migrationQueue.length > 0) {
-        setMigrationProgress("Migration paused before all queued patients were processed.", "warning");
-    }
-    migrationQueue = [];
-    document.getElementById("dentalChartMigrationFrame").src = "about:blank";
+    moveVisibleMigrationToPool();
 });
 
 $(document).on("click", "#responseBody .patient-chart-link", function (event) {
     event.preventDefault();
-    migrationQueue = [];
-    completedMigrationCount = 0;
-    migrationRunTotal = 1;
-    startPatientChartMigration({
+    var migration = startPatientChartMigration({
         clientId: this.dataset.clientid,
         url: this.href,
         clientName: this.textContent
     });
+    if (migration) {
+        selectMigrationPatient(migration.clientId);
+    }
 });
+
+function startPatientChartMigration(patient) {
+    if (migrationFrames[patient.clientId]) {
+        return migrationFrames[patient.clientId];
+    }
+
+    var iframe = document.createElement("iframe");
+    iframe.title = "Dental chart migration for " + patient.clientName;
+    iframe.src = patient.url + (patient.url.indexOf("?") === -1 ? "?" : "&") + "embedded=1";
+    iframe.style.width = "1px";
+    iframe.style.height = "1px";
+    iframe.style.border = "0";
+
+    var migration = {
+        clientId: String(patient.clientId),
+        clientName: patient.clientName,
+        iframe: iframe,
+        status: "running"
+    };
+    migrationFrames[migration.clientId] = migration;
+    migrationRunTotal++;
+    document.getElementById("migrationFramePool").appendChild(iframe);
+    addMigrationOption(migration);
+    updateMigrationProgress();
+    return migration;
+}
 
 function markPatientRemarksCompleted(clientId) {
     var patientLink = document.querySelector(
@@ -85,23 +101,82 @@ function markPatientRemarksCompleted(clientId) {
     remarksCell.appendChild(completedLink);
 }
 
-function startPatientChartMigration(patient) {
-    setMigrationProgress(
-        "Migrating patient " + (completedMigrationCount + 1) + " of " + migrationRunTotal +
-        ": " + patient.clientName,
-        "info"
+function addMigrationOption(migration) {
+    var select = document.getElementById("migrationPatientSelect");
+    var option = document.createElement("option");
+    option.value = migration.clientId;
+    option.textContent = migration.clientName + " - Running";
+    select.appendChild(option);
+    select.value = migration.clientId;
+}
+
+function updateMigrationOption(migration) {
+    var option = document.querySelector(
+        '#migrationPatientSelect option[value="' + migration.clientId + '"]'
     );
-    document.getElementById("dentalChartMigrationModalTitle").textContent =
-        "Dental Chart Migration - " + patient.clientName;
-    document.getElementById("dentalChartMigrationFrame").src =
-        patient.url + (patient.url.indexOf("?") === -1 ? "?" : "&") + "embedded=1";
+    if (option) {
+        var statusText = migration.status === "completed" ? "Completed" : "Needs review";
+        option.textContent = migration.clientName + " - " + statusText;
+    }
+}
+
+function showMigrationModal() {
+    var clientIds = Object.keys(migrationFrames);
+    if (clientIds.length === 0) {
+        setMigrationProgress("No migration charts are currently running.", "secondary");
+        return;
+    }
+
+    var current = migrationFrames[visibleMigrationClientId] || migrationFrames[clientIds[0]];
+    selectMigrationPatient(current.clientId);
     $("#dentalChartMigrationModal").modal("show");
+}
+
+function showMigrationPatient(clientId) {
+    var migration = migrationFrames[String(clientId)];
+    if (!migration) {
+        return;
+    }
+
+    moveVisibleMigrationToPool();
+    var iframe = migration.iframe;
+    iframe.style.position = "static";
+    iframe.style.left = "auto";
+    iframe.style.top = "auto";
+    iframe.style.width = "100%";
+    iframe.style.height = "75vh";
+    document.getElementById("migrationChartView").appendChild(iframe);
+    visibleMigrationClientId = migration.clientId;
+    document.getElementById("dentalChartMigrationModalTitle").textContent =
+        "Dental Chart Migration - " + migration.clientName +
+        (migration.status === "running" ? " (Running)" : "");
+    document.getElementById("migrationPatientSelect").value = migration.clientId;
+}
+
+function selectMigrationPatient(clientId) {
+    document.getElementById("migrationPatientSelect").value = String(clientId);
+    showMigrationPatient(clientId);
+}
+
+function moveVisibleMigrationToPool() {
+    if (!visibleMigrationClientId || !migrationFrames[visibleMigrationClientId]) {
+        return;
+    }
+
+    var iframe = migrationFrames[visibleMigrationClientId].iframe;
+    iframe.style.position = "absolute";
+    iframe.style.left = "-10000px";
+    iframe.style.top = "0";
+    iframe.style.width = "1px";
+    iframe.style.height = "1px";
+    document.getElementById("migrationFramePool").appendChild(iframe);
+    visibleMigrationClientId = null;
 }
 
 function loadUnmigratedToothRemarks() {
     var limit = document.getElementById("limit").value;
     document.getElementById("h3id").textContent = "LIMIT: " + limit + " PATIENTS";
-    setMigrationProgress("Loading report. Migration is not running yet.", "secondary");
+    setMigrationProgress("Loading report. Migration has not started.", "secondary");
     $("#loading").fadeIn();
 
     var fd = new FormData();
@@ -116,7 +191,7 @@ function loadUnmigratedToothRemarks() {
         success: function (result) {
             document.getElementById("responseBody").innerHTML = result;
             setMigrationProgress(
-                "Ready - migration starts when you click a patient name or Open All.",
+                "Ready - click Open All to migrate all listed patients in the background.",
                 "secondary"
             );
         },
@@ -132,7 +207,7 @@ function loadUnmigratedToothRemarks() {
 }
 
 function openAllPatientCharts() {
-    migrationQueue = Array.from(
+    var patients = Array.from(
         document.querySelectorAll("#responseBody .patient-chart-link")
     ).map(function (link) {
         return {
@@ -141,15 +216,32 @@ function openAllPatientCharts() {
             clientName: link.textContent
         };
     });
-    if (migrationQueue.length === 0) {
-        setMigrationProgress("No patients are available to migrate in this report.", "secondary");
+    var pendingPatients = patients.filter(function (patient) {
+        return !migrationFrames[patient.clientId];
+    });
+
+    if (pendingPatients.length === 0) {
+        setMigrationProgress("No unstarted patient migrations in this report.", "secondary");
         return;
     }
 
-    completedMigrationCount = 0;
-    migrationRunTotal = migrationQueue.length;
-    setMigrationProgress("Starting migration for " + migrationRunTotal + " patients.", "info");
-    startPatientChartMigration(migrationQueue.shift());
+    pendingPatients.forEach(startPatientChartMigration);
+    updateMigrationProgress();
+}
+
+function updateMigrationProgress() {
+    var runningCount = Object.keys(migrationFrames).filter(function (clientId) {
+        return migrationFrames[clientId].status === "running";
+    }).length;
+    var message = "Migration running in background: " + runningCount + " running";
+    if (migrationRunTotal > 0) {
+        message += ", " + completedMigrationCount + " completed of " + migrationRunTotal;
+    }
+    if (failedMigrationCount > 0) {
+        message += ", " + failedMigrationCount + " need review";
+    }
+
+    setMigrationProgress(message + ".", failedMigrationCount > 0 ? "warning" : "info");
 }
 
 function setMigrationProgress(message, type) {
