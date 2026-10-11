@@ -4,6 +4,10 @@ var batchNumber = 0;
 var completedBatches = 0;
 var autoStartNextBatch = false;
 var batchCountdownTimer = null;
+var migrationSaveQueue = [];
+var activeMigrationSave = null;
+var nextMigrationSaveAt = 0;
+var migrationSaveResumeTimer = null;
 
 loadUnmigratedToothRemarks();
 
@@ -18,8 +22,21 @@ window.addEventListener("message", function (event) {
         return;
     }
 
-    if (event.data.type === "dental-chart-tooth-save") {
+    if (event.data.type === "dental-chart-save-slot-request") {
+        migrationSaveQueue.push({
+            source: event.source,
+            clientId: clientId,
+            requestId: event.data.requestId
+        });
+        processNextMigrationSave();
+    } else if (event.data.type === "dental-chart-tooth-save") {
+        if (!activeMigrationSave ||
+            activeMigrationSave.source !== event.source ||
+            activeMigrationSave.requestId !== event.data.requestId) {
+            return;
+        }
         recordToothSaveResult(migration, event.data.success);
+        finishActiveMigrationSave(event.data.success);
     } else if (event.data.type === "dental-chart-migration-completed") {
         finishPatientMigration(migration, true);
     } else if (event.data.type === "dental-chart-migration-incomplete") {
@@ -168,6 +185,37 @@ function recordToothSaveResult(migration, succeeded) {
     updateBatchProgress();
 }
 
+function processNextMigrationSave() {
+    if (activeMigrationSave || migrationSaveQueue.length === 0) {
+        return;
+    }
+
+    var delay = nextMigrationSaveAt - Date.now();
+    if (delay > 0) {
+        if (!migrationSaveResumeTimer) {
+            migrationSaveResumeTimer = window.setTimeout(function () {
+                migrationSaveResumeTimer = null;
+                processNextMigrationSave();
+            }, delay);
+        }
+        return;
+    }
+
+    activeMigrationSave = migrationSaveQueue.shift();
+    activeMigrationSave.source.postMessage({
+        type: "dental-chart-save-slot-granted",
+        requestId: activeMigrationSave.requestId
+    }, window.location.origin);
+}
+
+function finishActiveMigrationSave(succeeded) {
+    activeMigrationSave = null;
+    if (!succeeded) {
+        nextMigrationSaveAt = Date.now() + 5000;
+    }
+    processNextMigrationSave();
+}
+
 function finishPatientMigration(migration, succeeded) {
     if (!currentBatch ||
         migration.batchNumber !== currentBatch.number ||
@@ -254,39 +302,40 @@ function completeCurrentBatch() {
     }
 
     completedBatches++;
-    var hasFailures = currentBatch.failedSaves > 0 || currentBatch.failedPatients > 0;
-    if (hasFailures) {
-        autoStartNextBatch = false;
-        currentBatch.autoContinue = false;
+    if (!currentBatch.autoContinue) {
         document.getElementById("batchCountdownProgress").textContent =
-            "Automatic batches paused because failures need review.";
+            currentBatch.failedSaves > 0 || currentBatch.failedPatients > 0
+                ? "Batch finished with failures. Failed patients remain available for retry."
+                : "Batch completed successfully.";
         setMigrationProgress(
-            "Batch " + currentBatch.number + " finished with failures. Review before restarting.",
-            "warning"
+            "Batch " + currentBatch.number + " completed.",
+            currentBatch.failedSaves > 0 || currentBatch.failedPatients > 0 ? "warning" : "success"
         );
         updateBatchProgress();
         return;
     }
 
-    if (!currentBatch.autoContinue) {
-        document.getElementById("batchCountdownProgress").textContent =
-            "Batch completed successfully.";
-        setMigrationProgress("Batch " + currentBatch.number + " completed.", "success");
-        updateBatchProgress();
-        return;
-    }
-
     var remainingSeconds = 5;
-    document.getElementById("batchCountdownProgress").textContent =
-        "Batch completed. Refreshing report in " + remainingSeconds + " seconds...";
-    setMigrationProgress("Batch " + currentBatch.number + " completed successfully.", "success");
+    var hadFailures = currentBatch.failedSaves > 0 || currentBatch.failedPatients > 0;
+    document.getElementById("batchCountdownProgress").textContent = hadFailures
+        ? "Batch finished with failures. Refreshing to retry remaining patients in " +
+            remainingSeconds + " seconds..."
+        : "Batch completed. Refreshing report in " + remainingSeconds + " seconds...";
+    setMigrationProgress(
+        hadFailures
+            ? "Batch " + currentBatch.number + " finished with failures; retrying remaining patients."
+            : "Batch " + currentBatch.number + " completed successfully.",
+        hadFailures ? "warning" : "success"
+    );
     updateBatchProgress();
 
     batchCountdownTimer = window.setInterval(function () {
         remainingSeconds--;
         if (remainingSeconds > 0) {
-            document.getElementById("batchCountdownProgress").textContent =
-                "Batch completed. Refreshing report in " + remainingSeconds + " seconds...";
+            document.getElementById("batchCountdownProgress").textContent = hadFailures
+                ? "Batch finished with failures. Refreshing to retry remaining patients in " +
+                    remainingSeconds + " seconds..."
+                : "Batch completed. Refreshing report in " + remainingSeconds + " seconds...";
             return;
         }
 

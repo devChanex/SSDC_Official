@@ -173,7 +173,7 @@ $isEmbedded = isset($_GET['embedded']) && $_GET['embedded'] === '1';
             <script src="controllers/logOutConroller.js"></script>
 
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-            <script src="controllers/dentalchartController-v9.js?v=20261011-7"></script>
+            <script src="controllers/dentalchartController-v9.js?v=20261011-8"></script>
             <script src="controllers/dentalChartMigrationController-v3.js?v=20261011-4"></script>
             <script src="controllers/divDentalChartPrinterController-v1.js"></script>
 </body>

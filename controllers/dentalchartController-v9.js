@@ -113,8 +113,36 @@ function updateToothDisplay(toothElement, remarks, regions) {
     toothElement.querySelector('.remark-display').textContent = remarks;
 }
 
-function waitForMigrationInterval() {
-    return new Promise(resolve => setTimeout(resolve, legacyDentalChartMigrationInterval));
+function requestMigrationSaveSlot(clientId, tooth) {
+    if (window.parent === window ||
+        new URLSearchParams(window.location.search).get('embedded') !== '1') {
+        return Promise.resolve(null);
+    }
+
+    const requestId = String(clientId) + '-' + String(tooth) + '-' +
+        Date.now() + '-' + Math.random().toString(36).slice(2);
+
+    return new Promise(resolve => {
+        function handleGrant(event) {
+            if (event.source !== window.parent ||
+                event.origin !== window.location.origin ||
+                !event.data ||
+                event.data.type !== 'dental-chart-save-slot-granted' ||
+                event.data.requestId !== requestId) {
+                return;
+            }
+
+            window.removeEventListener('message', handleGrant);
+            resolve(requestId);
+        }
+
+        window.addEventListener('message', handleGrant);
+        window.parent.postMessage({
+            type: 'dental-chart-save-slot-request',
+            clientId: clientId,
+            requestId: requestId
+        }, window.location.origin);
+    });
 }
 
 function setDentalChartMigrationStatus(status) {
@@ -168,12 +196,18 @@ async function migrateLegacyDentalCharts() {
     for (let index = 0; index < legacyTeeth.length; index++) {
         const tooth = legacyTeeth[index];
         let saveAttempted = false;
+        let saveFailedThisTooth = false;
+        let saveRequestId = null;
         try {
             const image = tooth.querySelector('img');
             await waitForImage(image);
             const regions = readLegacyRegionColors(image);
             const remarks = tooth.dataset.remarks || '-';
 
+            saveRequestId = await requestMigrationSaveSlot(
+                tooth.dataset.clientid,
+                tooth.dataset.tooth
+            );
             saveAttempted = true;
             await saveToothRegions(
                 tooth.dataset.tooth,
@@ -181,12 +215,23 @@ async function migrateLegacyDentalCharts() {
                 remarks,
                 regions
             );
-            reportLegacyDentalChartSave(tooth.dataset.clientid, tooth.dataset.tooth, true);
+            reportLegacyDentalChartSave(
+                tooth.dataset.clientid,
+                tooth.dataset.tooth,
+                true,
+                saveRequestId
+            );
             updateToothDisplay(tooth, remarks, regions);
         } catch (error) {
             failedMigrations++;
             if (saveAttempted) {
-                reportLegacyDentalChartSave(tooth.dataset.clientid, tooth.dataset.tooth, false);
+                saveFailedThisTooth = true;
+                reportLegacyDentalChartSave(
+                    tooth.dataset.clientid,
+                    tooth.dataset.tooth,
+                    false,
+                    saveRequestId
+                );
             }
             console.error('Legacy chart migration failed for tooth ' + tooth.dataset.tooth + ':', error);
         } finally {
@@ -194,7 +239,12 @@ async function migrateLegacyDentalCharts() {
         }
 
         if (index < legacyTeeth.length - 1) {
-            await waitForMigrationInterval();
+            await new Promise(resolve => setTimeout(
+                resolve,
+                saveFailedThisTooth
+                    ? Math.max(legacyDentalChartMigrationInterval, 5000)
+                    : legacyDentalChartMigrationInterval
+            ));
         }
     }
 
@@ -209,7 +259,7 @@ async function migrateLegacyDentalCharts() {
     }
 }
 
-function reportLegacyDentalChartSave(clientId, tooth, succeeded) {
+function reportLegacyDentalChartSave(clientId, tooth, succeeded, requestId) {
     if (window.parent === window ||
         new URLSearchParams(window.location.search).get('embedded') !== '1') {
         return;
@@ -219,7 +269,8 @@ function reportLegacyDentalChartSave(clientId, tooth, succeeded) {
         type: 'dental-chart-tooth-save',
         clientId: clientId,
         tooth: tooth,
-        success: succeeded
+        success: succeeded,
+        requestId: requestId
     }, window.location.origin);
 }
 
