@@ -167,21 +167,27 @@ async function migrateLegacyDentalCharts() {
 
     for (let index = 0; index < legacyTeeth.length; index++) {
         const tooth = legacyTeeth[index];
+        let saveAttempted = false;
         try {
             const image = tooth.querySelector('img');
             await waitForImage(image);
             const regions = readLegacyRegionColors(image);
             const remarks = tooth.dataset.remarks || '-';
 
+            saveAttempted = true;
             await saveToothRegions(
                 tooth.dataset.tooth,
                 tooth.dataset.clientid,
                 remarks,
                 regions
             );
+            reportLegacyDentalChartSave(tooth.dataset.clientid, tooth.dataset.tooth, true);
             updateToothDisplay(tooth, remarks, regions);
         } catch (error) {
             failedMigrations++;
+            if (saveAttempted) {
+                reportLegacyDentalChartSave(tooth.dataset.clientid, tooth.dataset.tooth, false);
+            }
             console.error('Legacy chart migration failed for tooth ' + tooth.dataset.tooth + ':', error);
         } finally {
             tooth.dataset.migrating = 'false';
@@ -201,6 +207,20 @@ async function migrateLegacyDentalCharts() {
     } else {
         setDentalChartMigrationStatus('Migration Completed');
     }
+}
+
+function reportLegacyDentalChartSave(clientId, tooth, succeeded) {
+    if (window.parent === window ||
+        new URLSearchParams(window.location.search).get('embedded') !== '1') {
+        return;
+    }
+
+    window.parent.postMessage({
+        type: 'dental-chart-tooth-save',
+        clientId: clientId,
+        tooth: tooth,
+        success: succeeded
+    }, window.location.origin);
 }
 
 function setSVGRegions(regionColors) {

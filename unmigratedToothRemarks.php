@@ -37,7 +37,7 @@
                                     <option value="20">20</option>
                                 </select>
                                 <button type="button" class="btn btn-primary mr-2"
-                                    onclick="openAllPatientCharts()">Open All</button>
+                                    onclick="startMigrationBatch(true)">Start Migration</button>
                                 <button type="button" class="btn btn-info mr-2"
                                     onclick="showMigrationModal()">Show</button>
                                 <button type="button" class="btn btn-secondary mr-2"
@@ -48,8 +48,8 @@
                                 <?php echo date('Y-m-d'); ?>
                             </h6>
                             <div class="mt-2">
-                                <span id="migrationProgress" class="badge badge-secondary" role="status"
-                                    aria-live="polite">Idle - migration starts when you click a patient name or Open All.</span>
+                                    <span id="migrationProgress" class="badge badge-secondary" role="status"
+                                        aria-live="polite">Idle - click Start Migration to begin.</span>
                             </div>
                         </div>
 
@@ -93,16 +93,33 @@
                 <div class="modal-dialog modal-xl" role="document" style="max-width: 95vw;">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="dentalChartMigrationModalTitle">Dental Chart Migration</h5>
+                            <h5 class="modal-title" id="dentalChartMigrationModalTitle">Dental Chart Migration Progress</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body p-0">
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between">
+                                    <strong id="batchNumberProgress">Batch: -</strong>
+                                    <span id="completedBatchesProgress">Batches completed: 0</span>
+                                </div>
+                                <div class="progress mt-2" style="height: 24px;">
+                                    <div id="successfulSaveProgress" class="progress-bar bg-success"
+                                        role="progressbar" style="width: 0%">Successful: 0</div>
+                                    <div id="failedSaveProgress" class="progress-bar bg-danger"
+                                        role="progressbar" style="width: 0%">Failed: 0</div>
+                                </div>
+                                <div id="processedRecordsProgress" class="mt-2">
+                                    Records processed: 0 / 0
+                                </div>
+                                <div id="batchCountdownProgress" class="mt-2 font-weight-bold"
+                                    role="status" aria-live="polite"></div>
+                            </div>
                             <label for="migrationPatientSelect" class="sr-only">Patient chart to view</label>
                             <select id="migrationPatientSelect" class="form-control rounded-0 border-0"
                                 onchange="showMigrationPatient(this.value)"></select>
-                            <div id="migrationChartView" style="height:75vh;"></div>
+                            <div id="migrationChartView" style="height:60vh;"></div>
                         </div>
                     </div>
                 </div>
@@ -122,7 +139,7 @@
             <script src="controllers/logOutConroller.js"></script>
             <script src="controllers/sessionController.js"></script>
             <script src="js/custom-v1.js"></script>
-            <script src="controllers/unmigratedToothRemarksController-v1.js?v=20261011-3"></script>
+            <script src="controllers/unmigratedToothRemarksController-v1.js?v=20261011-4"></script>
             <script src="controllers/divPrinterController-v1.js"></script>
 </body>
 
