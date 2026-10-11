@@ -11,8 +11,7 @@
     <title>SSDC - Unmigrated Tooth Remarks Report</title>
 
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,700,700i,800,800i,900,900i"
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,700,700i,800,800i,900,900i"
         rel="stylesheet">
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -37,8 +36,7 @@
                                     <option value="10">10</option>
                                     <option value="20">20</option>
                                 </select>
-                                <input type="button" class="btn btn-primary" onclick="printDiv('report')"
-                                    value="Print">
+                                <input type="button" class="btn btn-primary" onclick="printDiv('report')" value="Print">
                             </div>
                             <h6 class="m-0 font-weight-bold">UNMIGRATED TOOTH REMARKS AS OF:
                                 <?php echo date('Y-m-d'); ?>
@@ -48,8 +46,10 @@
                         <div class="card-body" id="report">
                             <div>
                                 <div style="text-align:left;">
-                                    <h2 style="margin:0; font-weight:bold; font-size:1.5rem;">Smile Save Dental Care</h2>
-                                    <div style="font-size:14px;">L22-24 B2 2/F Mondo Bambini Commercial Strip Bldg. Brgy.
+                                    <h2 style="margin:0; font-weight:bold; font-size:1.5rem;">Smile Save Dental Care
+                                    </h2>
+                                    <div style="font-size:14px;">L22-24 B2 2/F Mondo Bambini Commercial Strip Bldg.
+                                        Brgy.
                                         Zapote, Binan City, Laguna</div>
                                     <div style="font-size:14px;">Contact: 0919 009 3099 / (049) 539 0277</div>
                                 </div>
@@ -90,7 +90,7 @@
             <script src="controllers/logOutConroller.js"></script>
             <script src="controllers/sessionController.js"></script>
             <script src="js/custom-v1.js"></script>
-            <script src="controllers/unmigratedToothRemarksController.js"></script>
+            <script src="controllers/unmigratedToothRemarksController-v1.js"></script>
             <script src="controllers/divPrinterController-v1.js"></script>
 </body>
 
