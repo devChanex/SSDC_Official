@@ -80,8 +80,8 @@
             <script src="controllers/logOutConroller.js"></script>
             <script src="controllers/sessionController.js"></script>
             <script src="js/custom-v1.js"></script>
-            <script src="controllers/dailytransactionsummaryController-v2.js"></script>
             <script src="controllers/divPrinterController-v1.js"></script>
+            <script src="controllers/dailytransactionsummaryController-v2.js"></script>
         </div>
     </div>
 </body>

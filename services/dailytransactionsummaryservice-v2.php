@@ -22,6 +22,7 @@ try {
     $fromdate = isset($_POST['from']) ? trim($_POST['from']) : '';
     $group = isset($_POST['group']) ? $_POST['group'] : '';
     $page = isset($_POST['page']) ? filter_var($_POST['page'], FILTER_VALIDATE_INT) : 1;
+    $printAll = isset($_POST['print_all']) && $_POST['print_all'] === '1';
     if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $fromdate)) {
         throw new InvalidArgumentException('Choose a valid report date.');
     }
@@ -54,21 +55,28 @@ try {
         INNER JOIN treatmentsub tsub ON tsub.clientid = cp.clientid
         INNER JOIN treatmentsoa tsoa ON tsoa.soaid = tsub.soaid ';
 
-    $countSql = 'SELECT COUNT(*) FROM (
-        SELECT tsub.tsubid' . $baseJoins . 'WHERE tsoa.date = ?
-        UNION ALL
-        SELECT tsub.tsubid' . $baseJoins . '
-        WHERE tsoa.date < ? AND EXISTS (
-            SELECT 1 FROM treatmentsubpayment tsp
-            WHERE tsp.tsubid = tsub.tsubid AND tsp.paymentDate = ?
-        )
-    ) report_records';
-    $countStmt = $conn->prepare($countSql);
-    $countStmt->execute(array($fromdate, $fromdate, $fromdate));
-    $totalRecords = (int) $countStmt->fetchColumn();
-    $totalPages = max(1, (int) ceil($totalRecords / $pageSize));
-    $page = min((int) $page, $totalPages);
+    if ($printAll) {
+        $totalRecords = 0;
+        $totalPages = 1;
+        $page = 1;
+    } else {
+        $countSql = 'SELECT COUNT(*) FROM (
+            SELECT tsub.tsubid' . $baseJoins . 'WHERE tsoa.date = ?
+            UNION ALL
+            SELECT tsub.tsubid' . $baseJoins . '
+            WHERE tsoa.date < ? AND EXISTS (
+                SELECT 1 FROM treatmentsubpayment tsp
+                WHERE tsp.tsubid = tsub.tsubid AND tsp.paymentDate = ?
+            )
+        ) report_records';
+        $countStmt = $conn->prepare($countSql);
+        $countStmt->execute(array($fromdate, $fromdate, $fromdate));
+        $totalRecords = (int) $countStmt->fetchColumn();
+        $totalPages = max(1, (int) ceil($totalRecords / $pageSize));
+        $page = min((int) $page, $totalPages);
+    }
     $offset = ($page - 1) * $pageSize;
+    $pageLimitSql = $printAll ? '' : ' LIMIT ? OFFSET ?';
 
     $recordsSql = 'SELECT activity.*, tsp.amount AS payment_amount,
             tsp.paymenttype AS payment_type, tsp.paymentDate AS payment_date
@@ -89,7 +97,7 @@ try {
                 )
             ) all_activities
             ORDER BY group_label, soaid, tsubid
-            LIMIT ? OFFSET ?
+            ' . $pageLimitSql . '
         ) activity
         LEFT JOIN treatmentsubpayment tsp ON tsp.tsubid = activity.tsubid
             AND tsp.paymentDate <= ?
@@ -99,10 +107,15 @@ try {
     $recordsStmt->bindValue(1, $fromdate, PDO::PARAM_STR);
     $recordsStmt->bindValue(2, $fromdate, PDO::PARAM_STR);
     $recordsStmt->bindValue(3, $fromdate, PDO::PARAM_STR);
-    $recordsStmt->bindValue(4, $pageSize, PDO::PARAM_INT);
-    $recordsStmt->bindValue(5, $offset, PDO::PARAM_INT);
-    $recordsStmt->bindValue(6, $fromdate, PDO::PARAM_STR);
-    $recordsStmt->bindValue(7, $fromdate, PDO::PARAM_STR);
+    if ($printAll) {
+        $recordsStmt->bindValue(4, $fromdate, PDO::PARAM_STR);
+        $recordsStmt->bindValue(5, $fromdate, PDO::PARAM_STR);
+    } else {
+        $recordsStmt->bindValue(4, $pageSize, PDO::PARAM_INT);
+        $recordsStmt->bindValue(5, $offset, PDO::PARAM_INT);
+        $recordsStmt->bindValue(6, $fromdate, PDO::PARAM_STR);
+        $recordsStmt->bindValue(7, $fromdate, PDO::PARAM_STR);
+    }
     $recordsStmt->execute();
 
     $records = array();
@@ -161,7 +174,8 @@ try {
         $groupLabel = (string) $row['group_label'];
         if ($currentGroup !== $groupLabel) {
             if ($currentGroup !== null) {
-                echo '<tr><td colspan="5"><strong>Page subtotal</strong></td><td class="text-right"><strong>'
+                echo '<tr><td colspan="5"><strong>' . ($printAll ? 'Group subtotal' : 'Page subtotal')
+                    . '</strong></td><td class="text-right"><strong>'
                     . transactionSummaryMoney($groupFeeTotal) . '</strong></td><td></td><td class="text-right"><strong>'
                     . transactionSummaryMoney($groupPaymentTotal) . '</strong></td><td></td><td></td><td class="text-right"><strong>'
                     . transactionSummaryMoney($groupFeeTotal - ($groupPaymentTotal - $groupOtherPayments)) . '</strong></td></tr>';
@@ -210,7 +224,8 @@ try {
         </tr>';
     }
     if ($currentGroup !== null) {
-        echo '<tr><td colspan="5"><strong>Page subtotal</strong></td><td class="text-right"><strong>'
+        echo '<tr><td colspan="5"><strong>' . ($printAll ? 'Group subtotal' : 'Page subtotal')
+            . '</strong></td><td class="text-right"><strong>'
             . transactionSummaryMoney($groupFeeTotal) . '</strong></td><td></td><td class="text-right"><strong>'
             . transactionSummaryMoney($groupPaymentTotal) . '</strong></td><td></td><td></td><td class="text-right"><strong>'
             . transactionSummaryMoney($groupFeeTotal - ($groupPaymentTotal - $groupOtherPayments)) . '</strong></td></tr>';
@@ -220,22 +235,24 @@ try {
     }
     echo '</tbody></table></div>';
 
-    $totalPages = max(1, $totalPages);
-    echo '<div class="d-flex justify-content-between align-items-center flex-wrap mb-3">'
-        . '<span>Showing ' . ($totalRecords ? ($offset + 1) : 0) . '–' . min($offset + $pageSize, $totalRecords)
-        . ' of ' . $totalRecords . ' transactions</span><nav aria-label="Report pages"><ul class="pagination mb-0">';
-    if ($page > 1) {
-        echo '<li class="page-item"><button class="page-link" type="button" onclick="getclientdata(' . ($page - 1) . ')">Previous</button></li>';
-    } else {
-        echo '<li class="page-item disabled"><span class="page-link">Previous</span></li>';
+    if (!$printAll) {
+        $totalPages = max(1, $totalPages);
+        echo '<div class="d-flex justify-content-between align-items-center flex-wrap mb-3">'
+            . '<span>Showing ' . ($totalRecords ? ($offset + 1) : 0) . '–' . min($offset + $pageSize, $totalRecords)
+            . ' of ' . $totalRecords . ' transactions</span><nav aria-label="Report pages"><ul class="pagination mb-0">';
+        if ($page > 1) {
+            echo '<li class="page-item"><button class="page-link" type="button" onclick="getclientdata(' . ($page - 1) . ')">Previous</button></li>';
+        } else {
+            echo '<li class="page-item disabled"><span class="page-link">Previous</span></li>';
+        }
+        echo '<li class="page-item disabled"><span class="page-link">Page ' . $page . ' of ' . $totalPages . '</span></li>';
+        if ($page < $totalPages) {
+            echo '<li class="page-item"><button class="page-link" type="button" onclick="getclientdata(' . ($page + 1) . ')">Next</button></li>';
+        } else {
+            echo '<li class="page-item disabled"><span class="page-link">Next</span></li>';
+        }
+        echo '</ul></nav></div>';
     }
-    echo '<li class="page-item disabled"><span class="page-link">Page ' . $page . ' of ' . $totalPages . '</span></li>';
-    if ($page < $totalPages) {
-        echo '<li class="page-item"><button class="page-link" type="button" onclick="getclientdata(' . ($page + 1) . ')">Next</button></li>';
-    } else {
-        echo '<li class="page-item disabled"><span class="page-link">Next</span></li>';
-    }
-    echo '</ul></nav></div>';
 
     $grandTotal = 0;
     $grandPayments = 0;
