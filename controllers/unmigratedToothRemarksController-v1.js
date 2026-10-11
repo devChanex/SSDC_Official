@@ -8,18 +8,22 @@ window.addEventListener("message", function (event) {
     }
 
     var clientId = String(event.data.clientId);
-    var completedLink = document.querySelector(
+    var patientLink = document.querySelector(
         '#responseBody .patient-chart-link[data-clientid="' + clientId + '"]'
     );
-    if (!completedLink) {
+    var patientRow = patientLink ? patientLink.closest("tr") : null;
+    if (!patientRow) {
         return;
     }
 
-    completedLink.href = completedLink.dataset.patientChartUrl;
-    completedLink.removeAttribute("onclick");
+    var remarksCell = patientRow.querySelector(".migration-remarks");
+    var completedLink = document.createElement("a");
+    completedLink.href = remarksCell.dataset.patientChartUrl;
+    completedLink.target = "_blank";
+    completedLink.rel = "noopener noreferrer";
     completedLink.textContent = "Remarks Completed";
-    completedLink.classList.remove("patient-chart-link");
-    completedLink.classList.add("patient-chart-completed-link");
+    completedLink.style.color = "black";
+    remarksCell.appendChild(completedLink);
 });
 
 function loadUnmigratedToothRemarks() {
