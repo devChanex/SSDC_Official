@@ -186,6 +186,14 @@
                     <div class="card shadow mb-12">
                         <div class="card-header py-3 <?php echo $cards; ?>">
                             <div class="row float-right align-items-center">
+                                <label for="lastNameInitial" class="mb-0 mr-2">Last name:</label>
+                                <select id="lastNameInitial" name="lastNameInitial" class="form-control mr-2"
+                                    onchange="loadUnmigratedToothRemarks()" style="width: auto;">
+                                    <option value="">All letters</option>
+                                    <?php foreach (range('A', 'Z') as $letter) { ?>
+                                        <option value="<?php echo $letter; ?>"><?php echo $letter; ?></option>
+                                    <?php } ?>
+                                </select>
                                 <label for="limit" class="mb-0 mr-2">Limit:</label>
                                 <select id="limit" name="limit" class="form-control mr-2"
                                     onchange="loadUnmigratedToothRemarks()" style="width: auto;">
@@ -335,7 +343,7 @@
             <script src="controllers/logOutConroller.js"></script>
             <script src="controllers/sessionController.js"></script>
             <script src="js/custom-v1.js"></script>
-            <script src="controllers/unmigratedToothRemarksController-v1.js?v=20261011-5"></script>
+            <script src="controllers/unmigratedToothRemarksController-v1.js?v=20261011-6"></script>
             <script src="controllers/divPrinterController-v1.js"></script>
 </body>
 

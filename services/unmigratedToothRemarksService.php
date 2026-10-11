@@ -7,6 +7,16 @@ if (!in_array($limit, [5, 10, 20], true)) {
     exit('Invalid report limit.');
 }
 
+$lastNameInitial = strtoupper(trim((string) ($_POST['lastNameInitial'] ?? '')));
+if ($lastNameInitial !== '' && !preg_match('/^[A-Z]$/', $lastNameInitial)) {
+    http_response_code(400);
+    exit('Invalid last name initial.');
+}
+
+$lastNameFilter = $lastNameInitial === ''
+    ? ''
+    : "AND UPPER(COALESCE(profile.lname, '')) LIKE :last_name_prefix";
+
 $database = new Database();
 $connection = $database->dbConnection();
 if (!$connection) {
@@ -23,14 +33,17 @@ $query = "SELECT cp.clientid, cp.birthDate, cp.homeAddress,
                      COUNT(*) AS record_count,
                      COALESCE(SUM(OCTET_LENGTH(legacy.image)), 0) AS image_bytes
               FROM toothremarks legacy
+              INNER JOIN clientprofile profile
+                  ON profile.clientid = legacy.clientid
               WHERE NOT EXISTS (
                   SELECT 1
                   FROM dental_chart_regions migrated
                   WHERE migrated.clientid = legacy.clientid
                     AND migrated.tooth = legacy.tooth
               )
+              $lastNameFilter
               GROUP BY legacy.clientid
-              ORDER BY legacy.clientid ASC
+              ORDER BY MIN(profile.lname) ASC, legacy.clientid ASC
               LIMIT :limit
           ) unmigrated ON unmigrated.clientid = cp.clientid
           ORDER BY cp.lname ASC";
@@ -38,6 +51,9 @@ $query = "SELECT cp.clientid, cp.birthDate, cp.homeAddress,
 try {
     $statement = $connection->prepare($query);
     $statement->bindValue(':limit', $limit, PDO::PARAM_INT);
+    if ($lastNameInitial !== '') {
+        $statement->bindValue(':last_name_prefix', $lastNameInitial . '%', PDO::PARAM_STR);
+    }
     $statement->execute();
     $patients = $statement->fetchAll(PDO::FETCH_ASSOC);
 
