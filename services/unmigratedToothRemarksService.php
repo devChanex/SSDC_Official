@@ -14,7 +14,8 @@ if (!$connection) {
     exit('Unable to connect to the database.');
 }
 
-$query = "SELECT cp.clientid, CONCAT(cp.lname, ', ', cp.fname, ' ', cp.mdname) AS fullname,
+$query = "SELECT cp.clientid, cp.birthDate, cp.homeAddress,
+                 CONCAT(cp.lname, ', ', cp.fname, ' ', cp.mdname) AS fullname,
                  unmigrated.record_count, unmigrated.image_bytes
           FROM clientprofile cp
           INNER JOIN (
@@ -82,10 +83,21 @@ foreach ($patients as $patient) {
     $imageBytes = (int) $patient['image_bytes'];
     $totalRecords += $recordCount;
     $totalImageBytes += $imageBytes;
+    $birthDate = (string) $patient['birthDate'];
+    $dateOfBirth = new DateTime($birthDate);
+    $age = (new DateTime())->diff($dateOfBirth)->y;
+    $chartUrl = 'patientChartList.php?' . http_build_query([
+        'id' => $patient['clientid'],
+        'clientname' => $patient['fullname'],
+        'birthDate' => $birthDate,
+        'age' => $age,
+        'address' => $patient['homeAddress']
+    ]);
 
     echo '<tr>
         <td>' . htmlspecialchars((string) $patient['clientid'], ENT_QUOTES, 'UTF-8') . '</td>
-        <td>' . htmlspecialchars((string) $patient['fullname'], ENT_QUOTES, 'UTF-8') . '</td>
+        <td><a href="' . htmlspecialchars($chartUrl, ENT_QUOTES, 'UTF-8') . '" target="_blank" rel="noopener noreferrer" style="color: black;">'
+            . htmlspecialchars((string) $patient['fullname'], ENT_QUOTES, 'UTF-8') . '</a></td>
         <td>' . number_format($recordCount) . '</td>
         <td>' . htmlspecialchars(formatImageSize($imageBytes), ENT_QUOTES, 'UTF-8') . '</td>
     </tr>';
