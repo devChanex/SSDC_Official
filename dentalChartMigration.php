@@ -174,7 +174,11 @@ $isEmbedded = isset($_GET['embedded']) && $_GET['embedded'] === '1';
 
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
             <script src="controllers/dentalchartController-v9.js?v=20261011-8"></script>
-            <script src="controllers/dentalChartMigrationController-v3.js?v=20261011-4"></script>
+            <?php if (defined('DENTAL_CHART_MIGRATION_V2')) { ?>
+                <script src="controllers/dentalChartMigrationController-v4.js?v=20261011-1"></script>
+            <?php } else { ?>
+                <script src="controllers/dentalChartMigrationController-v3.js?v=20261011-4"></script>
+            <?php } ?>
             <script src="controllers/divDentalChartPrinterController-v1.js"></script>
 </body>
 

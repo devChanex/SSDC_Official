@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SSDC - Unmigrated Tooth Remarks Report</title>
+    <title>SSDC - Unmigrated Tooth Remarks Report<?php echo defined('UNMIGRATED_TOOTH_REMARKS_V2') ? ' (V2)' : ''; ?></title>
 
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,700,700i,800,800i,900,900i"
@@ -446,7 +446,11 @@
             <script src="controllers/logOutConroller.js"></script>
             <script src="controllers/sessionController.js"></script>
             <script src="js/custom-v1.js"></script>
-            <script src="controllers/unmigratedToothRemarksController-v1.js?v=20261011-8"></script>
+            <?php if (defined('UNMIGRATED_TOOTH_REMARKS_V2')) { ?>
+                <script src="controllers/unmigratedToothRemarksController-v2.js?v=20261011-1"></script>
+            <?php } else { ?>
+                <script src="controllers/unmigratedToothRemarksController-v1.js?v=20261011-8"></script>
+            <?php } ?>
             <script src="controllers/divPrinterController-v1.js"></script>
 </body>
 
