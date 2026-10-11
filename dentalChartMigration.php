@@ -5,6 +5,7 @@ if (!$clientId || $clientId < 1) {
     exit('Invalid client ID.');
 }
 $clientName = trim((string) ($_GET['clientname'] ?? ''));
+$isEmbedded = isset($_GET['embedded']) && $_GET['embedded'] === '1';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,11 +24,13 @@ $clientName = trim((string) ($_GET['clientname'] ?? ''));
 
 <body id="page-top">
     <div id="wrapper">
-        <?php include_once('bars/sidebar.php'); ?>
+        <?php if (!$isEmbedded)
+            include_once('bars/sidebar.php'); ?>
 
         <div id="content-wrapper" class="d-flex flex-column">
             <div id="content">
-                <?php include_once('bars/topbar.php'); ?>
+                <?php if (!$isEmbedded)
+                    include_once('bars/topbar.php'); ?>
 
                 <div class="container-fluid" id="content-table">
                     <input type="hidden" id="clientid"
@@ -160,7 +163,8 @@ $clientName = trim((string) ($_GET['clientname'] ?? ''));
                 </div>
             </div>
 
-            <?php include_once('bars/footer.php'); ?>
+            <?php if (!$isEmbedded)
+                include_once('bars/footer.php'); ?>
             <script src="vendor/jquery/jquery.min.js"></script>
             <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
             <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
@@ -170,7 +174,7 @@ $clientName = trim((string) ($_GET['clientname'] ?? ''));
             <script src="controllers/sessionController.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
             <script src="controllers/dentalchartController-v9.js?v=20261004-6"></script>
-            <script src="controllers/dentalChartMigrationController-v2.js?v=20261011-1"></script>
+            <script src="controllers/dentalChartMigrationController-v3.js?v=20261011-2"></script>
             <script src="controllers/divDentalChartPrinterController-v1.js"></script>
 </body>
 

@@ -107,7 +107,7 @@ foreach ($patients as $patient) {
         <td><a class="patient-chart-link" data-clientid="' . (int) $patient['clientid']
             . '" data-patient-chart-url="' . htmlspecialchars($patientChartUrl, ENT_QUOTES, 'UTF-8')
             . '" href="' . htmlspecialchars($chartUrl, ENT_QUOTES, 'UTF-8')
-            . '" target="_blank" rel="noopener noreferrer" onclick="return openPatientChart(this.href, this.dataset.clientid)" style="color: black;">'
+            . '" style="color: black;">'
             . htmlspecialchars((string) $patient['fullname'], ENT_QUOTES, 'UTF-8') . '</a></td>
         <td class="migration-remarks" data-patient-chart-url="' . htmlspecialchars($patientChartUrl, ENT_QUOTES, 'UTF-8') . '"></td>
         <td>' . number_format($recordCount) . '</td>

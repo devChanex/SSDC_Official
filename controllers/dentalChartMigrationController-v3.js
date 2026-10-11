@@ -15,23 +15,24 @@ function loadDentalChartForMigration() {
             migrateLegacyDentalCharts().then(function () {
                 var status = document.getElementById("dental-chart-migration-status").textContent;
                 if (status === "Migration Completed" || status === "Migrated") {
-                    if (window.opener && !window.opener.closed) {
-                        window.opener.postMessage({
+                    if (window.parent !== window) {
+                        window.parent.postMessage({
                             type: "dental-chart-migration-completed",
                             clientId: document.getElementById("clientid").value
                         }, window.location.origin);
-                    }
-                    document.getElementById("dental-chart-migration-status").textContent =
-                        "Migration Completed - closing...";
-                    window.setTimeout(function () {
-                        window.close();
+                    } else {
+                        document.getElementById("dental-chart-migration-status").textContent =
+                            "Migration Completed - closing...";
                         window.setTimeout(function () {
-                            if (!window.closed) {
-                                document.getElementById("dental-chart-migration-status").textContent =
-                                    "Migration Completed - you may close this tab.";
-                            }
+                            window.close();
+                            window.setTimeout(function () {
+                                if (!window.closed) {
+                                    document.getElementById("dental-chart-migration-status").textContent =
+                                        "Migration Completed - you may close this tab.";
+                                }
+                            }, 500);
                         }, 500);
-                    }, 500);
+                    }
                 }
             });
         },

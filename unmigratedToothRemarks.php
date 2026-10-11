@@ -82,6 +82,24 @@
                 </div>
             </div>
 
+            <div class="modal fade" id="dentalChartMigrationModal" tabindex="-1" role="dialog"
+                aria-labelledby="dentalChartMigrationModalTitle" aria-hidden="true">
+                <div class="modal-dialog modal-xl" role="document" style="max-width: 95vw;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="dentalChartMigrationModalTitle">Dental Chart Migration</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body p-0">
+                            <iframe id="dentalChartMigrationFrame" title="Dental chart migration"
+                                src="about:blank" style="display:block; width:100%; height:75vh; border:0;"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <?php include_once('bars/footer.php'); ?>
 
             <script src="vendor/jquery/jquery.min.js"></script>
