@@ -17,18 +17,19 @@
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <style>
         #dentalChartMigrationModal .modal-dialog {
-            max-width: 96vw;
+            width: calc(100% - 2rem);
+            max-width: 560px;
         }
 
         #dentalChartMigrationModal .modal-content {
             overflow: hidden;
             border: 0;
-            border-radius: 1rem;
-            box-shadow: 0 1rem 3rem rgba(24, 39, 75, .24);
+            border-radius: .85rem;
+            box-shadow: 0 1rem 3rem rgba(24, 39, 75, .28);
         }
 
         #dentalChartMigrationModal .modal-header {
-            padding: 1.25rem 1.5rem;
+            padding: 1rem 1.25rem;
             color: #fff;
             background: linear-gradient(115deg, #234e70, #2f80a8);
             border-bottom: 0;
@@ -47,30 +48,25 @@
         #dentalChartMigrationModal .migration-modal-subtitle {
             margin-top: .2rem;
             color: rgba(255, 255, 255, .78);
-            font-size: .85rem;
+            font-size: .78rem;
         }
 
         #dentalChartMigrationModal .modal-body {
-            padding: 1.25rem;
+            padding: 1rem 1.1rem 1.1rem;
             background: #f4f7fb;
         }
 
-        #dentalChartMigrationModal .migration-progress-card,
-        #dentalChartMigrationModal .migration-chart-card {
+        #dentalChartMigrationModal .migration-progress-card {
             border: 1px solid #e5eaf1;
-            border-radius: .75rem;
+            border-radius: .65rem;
             background: #fff;
             box-shadow: 0 .25rem .75rem rgba(31, 45, 61, .05);
-        }
-
-        #dentalChartMigrationModal .migration-progress-card {
-            padding: 1rem 1.1rem;
-            margin-bottom: 1rem;
+            padding: .85rem .9rem;
         }
 
         #dentalChartMigrationModal .migration-stat {
             height: 100%;
-            padding: .75rem 1rem;
+            padding: .55rem .75rem;
             border-left: 3px solid #4e73df;
             border-radius: .4rem;
             background: #f7f9ff;
@@ -78,21 +74,21 @@
 
         #dentalChartMigrationModal .migration-stat-label {
             color: #718096;
-            font-size: .72rem;
+            font-size: .65rem;
             font-weight: 700;
             letter-spacing: .06em;
             text-transform: uppercase;
         }
 
         #dentalChartMigrationModal .migration-stat-value {
-            margin-top: .2rem;
+            margin-top: .1rem;
             color: #26364a;
-            font-size: 1.05rem;
+            font-size: 1rem;
             font-weight: 700;
         }
 
         #dentalChartMigrationModal .migration-progress-track {
-            height: 1.6rem;
+            height: 1.4rem;
             overflow: hidden;
             border-radius: 999px;
             background: #e9edf3;
@@ -111,69 +107,68 @@
         }
 
         #dentalChartMigrationModal #batchCountdownProgress {
-            min-height: 1.25rem;
+            min-height: 1.1rem;
             color: #2f5f8f;
-            font-size: .9rem;
+            font-size: .8rem;
         }
 
-        #dentalChartMigrationModal .migration-chart-card {
-            overflow: hidden;
+        #dentalChartMigrationModal .migration-patient-status {
+            margin-top: .75rem;
+            padding: .75rem .85rem;
+            border: 1px solid #e5eaf1;
+            border-radius: .65rem;
+            background: #fff;
         }
 
-        #dentalChartMigrationModal .migration-chart-toolbar {
+        #dentalChartMigrationModal .migration-patient-list {
+            max-height: 190px;
+            overflow-y: auto;
+            padding: 0;
+            margin: .5rem 0 0;
+            list-style: none;
+        }
+
+        #dentalChartMigrationModal .migration-patient-list:empty::after {
+            display: block;
+            padding: .45rem .55rem;
+            color: #8a96a5;
+            content: "No patients in this group.";
+            font-size: .8rem;
+        }
+
+        #dentalChartMigrationModal .migration-patient-item {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 1rem;
-            padding: .75rem 1rem;
-            border-bottom: 1px solid #e5eaf1;
+            gap: .75rem;
+            padding: .45rem .55rem;
+            border-bottom: 1px solid #edf0f4;
+            color: #3e4a59;
+            font-size: .82rem;
         }
 
-        #dentalChartMigrationModal .migration-chart-toolbar label {
-            margin: 0;
-            color: #4a5568;
-            font-size: .85rem;
-            font-weight: 700;
+        #dentalChartMigrationModal .migration-patient-item:last-child {
+            border-bottom: 0;
         }
 
-        #dentalChartMigrationModal #migrationPatientSelect {
-            max-width: 420px;
-            border-radius: .4rem;
+        #dentalChartMigrationModal .migration-patient-name {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
 
-        #dentalChartMigrationModal #migrationChartView {
-            height: 58vh;
-            min-height: 360px;
-            background: #fff;
-        }
-
-        #dentalChartMigrationModal #migrationChartView iframe {
-            display: block;
-            width: 100% !important;
-            height: 100% !important;
-            border: 0;
-            background: #fff;
+        #dentalChartMigrationModal .migration-patient-badge {
+            flex: 0 0 auto;
+            font-size: .68rem;
         }
 
         @media (max-width: 767.98px) {
             #dentalChartMigrationModal .modal-dialog {
-                max-width: 100%;
                 margin: .5rem;
             }
 
-            #dentalChartMigrationModal .migration-chart-toolbar {
-                align-items: stretch;
-                flex-direction: column;
-                gap: .5rem;
-            }
-
-            #dentalChartMigrationModal #migrationPatientSelect {
-                max-width: none;
-            }
-
-            #dentalChartMigrationModal #migrationChartView {
-                height: 55vh;
-                min-height: 300px;
+            #dentalChartMigrationModal .migration-patient-list {
+                max-height: 150px;
             }
         }
     </style>
@@ -252,16 +247,15 @@
 
             <div class="modal fade" id="dentalChartMigrationModal" tabindex="-1" role="dialog"
                 aria-labelledby="dentalChartMigrationModalTitle" aria-hidden="true">
-                <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <div>
                                 <h5 class="modal-title font-weight-bold" id="dentalChartMigrationModalTitle">
-                                    <i class="fas fa-teeth mr-2" aria-hidden="true"></i>
-                                    <span id="dentalChartMigrationPatientTitle">Dental Chart Migration</span>
+                                    <i class="fas fa-tasks mr-2" aria-hidden="true"></i>Migration Progress
                                 </h5>
                                 <div class="migration-modal-subtitle">
-                                    Live batch progress and patient chart preview
+                                    Batch status updates in real time
                                 </div>
                             </div>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -270,11 +264,11 @@
                         </div>
                         <div class="modal-body">
                             <section class="migration-progress-card" aria-label="Migration batch progress">
-                                <div class="row mb-3">
+                                <div class="row mb-2">
                                     <div class="col-md-6 mb-2 mb-md-0">
                                         <div class="migration-stat">
                                             <div class="migration-stat-label">Current batch</div>
-                                            <div class="migration-stat-value" id="batchNumberProgress">Batch: -</div>
+                                            <div class="migration-stat-value" id="batchNumberProgress">-</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -302,16 +296,25 @@
                                 <div id="batchCountdownProgress" class="mt-2 font-weight-bold"
                                     role="status" aria-live="polite"></div>
                             </section>
-                            <section class="migration-chart-card" aria-label="Patient dental chart preview">
-                                <div class="migration-chart-toolbar">
-                                    <label for="migrationPatientSelect">
-                                        <i class="fas fa-user-circle mr-1 text-primary" aria-hidden="true"></i>
-                                        Patient chart preview
-                                    </label>
-                                    <select id="migrationPatientSelect" class="form-control"
-                                        onchange="showMigrationPatient(this.value)"></select>
+                            <section class="migration-patient-status" aria-label="Patients in the current batch">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="d-flex align-items-center font-weight-bold small text-success">
+                                            <i class="fas fa-spinner fa-spin mr-2" aria-hidden="true"></i>
+                                            In progress <span id="inProgressPatientCount" class="ml-1">(0)</span>
+                                        </div>
+                                        <ul id="inProgressPatientList" class="migration-patient-list"
+                                            aria-live="polite"></ul>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="d-flex align-items-center font-weight-bold small text-primary">
+                                            <i class="fas fa-check-circle mr-2" aria-hidden="true"></i>
+                                            Completed <span id="completedPatientCount" class="ml-1">(0)</span>
+                                        </div>
+                                        <ul id="completedPatientList" class="migration-patient-list"
+                                            aria-live="polite"></ul>
+                                    </div>
                                 </div>
-                                <div id="migrationChartView"></div>
                             </section>
                         </div>
                     </div>
@@ -332,7 +335,7 @@
             <script src="controllers/logOutConroller.js"></script>
             <script src="controllers/sessionController.js"></script>
             <script src="js/custom-v1.js"></script>
-            <script src="controllers/unmigratedToothRemarksController-v1.js?v=20261011-4"></script>
+            <script src="controllers/unmigratedToothRemarksController-v1.js?v=20261011-5"></script>
             <script src="controllers/divPrinterController-v1.js"></script>
 </body>
 

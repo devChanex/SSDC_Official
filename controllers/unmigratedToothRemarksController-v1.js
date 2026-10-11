@@ -2,7 +2,6 @@ var migrationFrames = {};
 var currentBatch = null;
 var batchNumber = 0;
 var completedBatches = 0;
-var visibleMigrationClientId = null;
 var autoStartNextBatch = false;
 var batchCountdownTimer = null;
 
@@ -28,16 +27,11 @@ window.addEventListener("message", function (event) {
     }
 });
 
-$("#dentalChartMigrationModal").on("hidden.bs.modal", function () {
-    moveVisibleMigrationToPool();
-});
-
 $(document).on("click", "#responseBody .patient-chart-link", function (event) {
     event.preventDefault();
     var existing = migrationFrames[this.dataset.clientid];
     if (existing) {
-        selectMigrationPatient(existing.clientId);
-        $("#dentalChartMigrationModal").modal("show");
+        showMigrationModal();
         return;
     }
 
@@ -75,7 +69,7 @@ function startPatientChartMigration(patient) {
     migrationFrames[migration.clientId] = migration;
     currentBatch.pendingClientIds[migration.clientId] = true;
     document.getElementById("migrationFramePool").appendChild(iframe);
-    addMigrationOption(migration);
+    renderBatchPatientList();
     return migration;
 }
 
@@ -85,17 +79,7 @@ function discardFailedMigration(clientId) {
         return;
     }
 
-    if (visibleMigrationClientId === clientId) {
-        visibleMigrationClientId = null;
-        document.getElementById("migrationChartView").textContent = "";
-    }
     previous.iframe.remove();
-    var option = document.querySelector(
-        '#migrationPatientSelect option[value="' + clientId + '"]'
-    );
-    if (option) {
-        option.remove();
-    }
     delete migrationFrames[clientId];
 }
 
@@ -141,6 +125,13 @@ function startMigrationBatch(automatic, selectedPatients) {
         completedPatients: 0,
         failedPatients: 0,
         pendingClientIds: {},
+        patients: pendingPatients.map(function (patient) {
+            return {
+                clientId: String(patient.clientId),
+                clientName: patient.clientName,
+                status: "in-progress"
+            };
+        }),
         autoContinue: autoStartNextBatch
     };
 
@@ -151,6 +142,7 @@ function startMigrationBatch(automatic, selectedPatients) {
     $("#dentalChartMigrationModal").modal("show");
 
     pendingPatients.forEach(startPatientChartMigration);
+    renderBatchPatientList();
     setMigrationProgress(
         "Batch " + currentBatch.number + " running in the background.",
         "info"
@@ -186,6 +178,11 @@ function finishPatientMigration(migration, succeeded) {
     delete currentBatch.pendingClientIds[migration.clientId];
     migration.status = succeeded ? "completed" : "failed";
     currentBatch.completedPatients++;
+    currentBatch.patients.forEach(function (patient) {
+        if (patient.clientId === migration.clientId) {
+            patient.status = migration.status;
+        }
+    });
 
     if (succeeded) {
         markPatientRemarksCompleted(migration.clientId);
@@ -194,7 +191,6 @@ function finishPatientMigration(migration, succeeded) {
         addPatientMigrationFailure(migration.clientId);
     }
 
-    updateMigrationOption(migration);
     updateBatchProgress();
 
     if (Object.keys(currentBatch.pendingClientIds).length === 0) {
@@ -241,73 +237,14 @@ function addPatientMigrationFailure(clientId) {
     }
 }
 
-function addMigrationOption(migration) {
-    var select = document.getElementById("migrationPatientSelect");
-    var option = document.createElement("option");
-    option.value = migration.clientId;
-    option.textContent = migration.clientName + " - Running";
-    select.appendChild(option);
-}
-
-function updateMigrationOption(migration) {
-    var option = document.querySelector(
-        '#migrationPatientSelect option[value="' + migration.clientId + '"]'
-    );
-    if (option) {
-        var statusText = migration.status === "completed" ? "Completed" : "Needs review";
-        option.textContent = migration.clientName + " - " + statusText;
-    }
-}
-
 function showMigrationModal() {
-    if (Object.keys(migrationFrames).length === 0) {
-        setMigrationProgress("No migration charts have been started.", "secondary");
+    if (!currentBatch) {
+        setMigrationProgress("No migration batch has been started.", "secondary");
         return;
     }
 
     $("#dentalChartMigrationModal").modal("show");
-    var current = migrationFrames[visibleMigrationClientId] ||
-        migrationFrames[Object.keys(migrationFrames)[0]];
-    selectMigrationPatient(current.clientId);
-}
-
-function showMigrationPatient(clientId) {
-    var migration = migrationFrames[String(clientId)];
-    if (!migration) {
-        return;
-    }
-
-    moveVisibleMigrationToPool();
-    migration.iframe.style.position = "static";
-    migration.iframe.style.left = "auto";
-    migration.iframe.style.top = "auto";
-    migration.iframe.style.width = "100%";
-    migration.iframe.style.height = "60vh";
-    document.getElementById("migrationChartView").appendChild(migration.iframe);
-    visibleMigrationClientId = migration.clientId;
-    document.getElementById("dentalChartMigrationPatientTitle").textContent =
-        "Dental Chart Migration - " + migration.clientName;
-    document.getElementById("migrationPatientSelect").value = migration.clientId;
-}
-
-function selectMigrationPatient(clientId) {
-    document.getElementById("migrationPatientSelect").value = String(clientId);
-    showMigrationPatient(clientId);
-}
-
-function moveVisibleMigrationToPool() {
-    if (!visibleMigrationClientId || !migrationFrames[visibleMigrationClientId]) {
-        return;
-    }
-
-    var iframe = migrationFrames[visibleMigrationClientId].iframe;
-    iframe.style.position = "absolute";
-    iframe.style.left = "-10000px";
-    iframe.style.top = "0";
-    iframe.style.width = "1px";
-    iframe.style.height = "1px";
-    document.getElementById("migrationFramePool").appendChild(iframe);
-    visibleMigrationClientId = null;
+    renderBatchPatientList();
 }
 
 function completeCurrentBatch() {
@@ -415,6 +352,50 @@ function updateBatchProgress() {
     document.getElementById("processedRecordsProgress").textContent =
         "Save calls processed: " + processed + " / " + total +
         " (patients complete: " + currentBatch.completedPatients + ")";
+    renderBatchPatientList();
+}
+
+function renderBatchPatientList() {
+    if (!currentBatch) {
+        return;
+    }
+
+    var inProgress = document.getElementById("inProgressPatientList");
+    var completed = document.getElementById("completedPatientList");
+    inProgress.textContent = "";
+    completed.textContent = "";
+
+    currentBatch.patients.forEach(function (patient) {
+        var item = document.createElement("li");
+        item.className = "migration-patient-item";
+
+        var name = document.createElement("span");
+        name.className = "migration-patient-name";
+        name.textContent = patient.clientName;
+        item.appendChild(name);
+
+        var badge = document.createElement("span");
+        badge.className = "badge migration-patient-badge";
+        if (patient.status === "in-progress") {
+            badge.classList.add("badge-success");
+            badge.textContent = "Running";
+            inProgress.appendChild(item);
+        } else {
+            badge.classList.add(patient.status === "failed" ? "badge-danger" : "badge-primary");
+            badge.textContent = patient.status === "failed" ? "Needs review" : "Done";
+            completed.appendChild(item);
+        }
+        item.appendChild(badge);
+    });
+
+    document.getElementById("inProgressPatientCount").textContent =
+        "(" + currentBatch.patients.filter(function (patient) {
+            return patient.status === "in-progress";
+        }).length + ")";
+    document.getElementById("completedPatientCount").textContent =
+        "(" + currentBatch.patients.filter(function (patient) {
+            return patient.status !== "in-progress";
+        }).length + ")";
 }
 
 function loadUnmigratedToothRemarks(onSuccess) {
