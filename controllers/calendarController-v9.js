@@ -212,6 +212,7 @@ function display_events() {
           element.attr('title', eventName);
 
           var statuses = {
+            pending: { icon: 'fa-hourglass-half', label: 'Pending' },
             confirmed: { icon: 'fa-clock', label: 'Confirmed' },
             completed: { icon: 'fa-check-circle', label: 'Completed' },
             cancelled: { icon: 'fa-ban', label: 'Cancelled' }

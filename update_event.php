@@ -56,8 +56,8 @@ if (!isCalendarTime($eventTime)) {
 if (!isCalendarTime($eventTimeTo)) {
     $invalidFields[] = describeInvalidParameter('event_time_to', $eventTimeTo, 'must use HH:MM format');
 }
-if (!in_array($eventStatus, array('Confirmed', 'Completed', 'Cancelled'), true)) {
-    $invalidFields[] = describeInvalidParameter('event_status', $eventStatus, 'must be Confirmed, Completed, or Cancelled');
+if (!in_array($eventStatus, array('Pending', 'Confirmed', 'Completed', 'Cancelled'), true)) {
+    $invalidFields[] = describeInvalidParameter('event_status', $eventStatus, 'must be Pending, Confirmed, Completed, or Cancelled');
 }
 
 if ($invalidFields) {

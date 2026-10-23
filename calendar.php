@@ -433,6 +433,10 @@ error_reporting(0);
             color: #d39e00;
         }
 
+        #calendar .calendar-event-status--pending {
+            color: #6c757d;
+        }
+
         #calendar .calendar-event-status--completed {
             color: #218838;
         }
@@ -738,15 +742,18 @@ error_reporting(0);
                             <div id="calendar" aria-label="Clinic appointment calendar"></div>
                             <div class="calendar-closure-legend" aria-label="Calendar date highlights">
                                 <span class="calendar-closure-legend__item">
-                                    <span class="calendar-closure-legend__swatch calendar-closure-legend__swatch--closed"
+                                    <span
+                                        class="calendar-closure-legend__swatch calendar-closure-legend__swatch--closed"
                                         aria-hidden="true"></span>Clinic closed
                                 </span>
                                 <span class="calendar-closure-legend__item">
-                                    <span class="calendar-closure-legend__swatch calendar-closure-legend__swatch--fully-booked"
+                                    <span
+                                        class="calendar-closure-legend__swatch calendar-closure-legend__swatch--fully-booked"
                                         aria-hidden="true"></span>Fully booked
                                 </span>
                                 <span class="calendar-closure-legend__item">
-                                    <span class="calendar-closure-legend__swatch calendar-closure-legend__swatch--holiday-closed"
+                                    <span
+                                        class="calendar-closure-legend__swatch calendar-closure-legend__swatch--holiday-closed"
                                         aria-hidden="true"></span>Holiday closed
                                 </span>
                             </div>
@@ -877,8 +884,14 @@ error_reporting(0);
 
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="eventStatus" id="Pending"
-                                                value="Confirmed" checked>
-                                            <label class="form-check-label" for="Pending">Confirmed</label>
+                                                value="Pending">
+                                            <label class="form-check-label" for="Pending">Pending</label>
+                                        </div>
+
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="eventStatus"
+                                                id="Confirmed" value="Confirmed" checked>
+                                            <label class="form-check-label" for="Confirmed">Confirmed</label>
                                         </div>
 
                                         <div class="form-check form-check-inline">
@@ -941,7 +954,7 @@ error_reporting(0);
             <script src="js/sb-admin-2.min.js"></script>
             <script src="controllers/logOutConroller.js"></script>
             <script src="controllers/sessionController.js"></script>
-            <script src="controllers/calendarController-v8.js?v=20261004-14"></script>
+            <script src="controllers/calendarController-v9.js?v=20261004-14"></script>
 
 
 

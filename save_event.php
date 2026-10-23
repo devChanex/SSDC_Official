@@ -38,7 +38,7 @@ if (
     !isCalendarDate($eventStartDate) ||
     !isCalendarTime($eventTime) ||
     !isCalendarTime($eventTimeTo) ||
-    !in_array($eventStatus, array('Confirmed', 'Completed', 'Cancelled'), true)
+    !in_array($eventStatus, array('Pending', 'Confirmed', 'Completed', 'Cancelled'), true)
 ) {
     respondWithError('Please provide valid appointment details.s' + 'contact: ' + $contact + ' hmo: ' + $hmo + ' treatment: ' + $treatment + ' eventName: ' + $eventName + ' eventStartDate: ' + $eventStartDate + ' eventEndDate: ' + $eventEndDate + ' eventTime: ' + $eventTime + ' eventTimeTo: ' + $eventTimeTo + ' eventStatus: ' + $eventStatus);
 }
