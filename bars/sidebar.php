@@ -576,25 +576,7 @@ elseif ($_SESSION["account_type"] == 2) {
 
 
     echo '
-<li class="nav-item">
-    <a class="nav-link" href="#" data-toggle="collapse" data-target="#report" aria-expanded="false"
-        aria-controls="config">
-        <i class="fas fa-file"></i>
-        <span>Reports</span>
-    </a>
-    <div id="report" class="collapse" aria-labelledby="report" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-  
 
-<a class="collapse-item" href="clientTreatmentReport.php">Patient Treatments</a>
-
-
-          
- 
-
-        </div>
-    </div>
-</li>
          <li class="nav-item">
                 <a class="nav-link" href="#" data-toggle="collapse" data-target="#config" aria-expanded="false"
                     aria-controls="config">
